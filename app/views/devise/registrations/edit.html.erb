@@ -1,35 +1,133 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= content_for :title, "Mon profil" %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+<div class="container mb-5">
+  <h1 class="text-center mt-4 mb-3">Hi <%= @user.first_name %> !</h1>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+  <div class="row">
+    <div class="col-md-4 offset-md-1 mb-4">
+      <div class="card p-4 rounded-5">
+        <h2 class="text-center">Your picture</h2>
+        <div class="text-center mb-3">
+          <% if @user.profile_picture.attached? %>
+            <%= image_tag @user.profile_picture.url, id: 'profile-image', class: 'img_fluid rounded-circle', alt: 'Photo de profil', style: 'width: 233px; height: 233px; object-fit: cover;' %>
+          <% else %>
+            <%# image_tag 'default-profile-picture.png', id: 'profile-image', class: 'img_fluid rounded-circle', alt: 'Photo de profil', style: 'width: 233px; height: 233px; object-fit: cover;' %>
+          <% end %>
+        </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+        <%= form_with model: @user, url: update_profile_picture_path, method: :patch, local: false, html: { multipart: true, id: 'profile-picture-form' } do |form| %>
+          <div class="form-group">
+            <%= form.label :profile_picture, "Update profile picture" %>
+            <%= form.file_field :profile_picture, class: 'form-control', onchange: "loadFile(event)" %>
+          </div>
+          <div class="text-center">
+            <%= form.submit "Update picture", class: 'btn btn-secondary text-light mt-3' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+    <div class="col-md-6">
+      <div class="card p-4 rounded-5">
+        <h2 class="text-center">Your account</h2>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.error_notification %>
+
+            <div class="form-inputs">
+
+              <%= f.input :first_name,
+                          hint: "",
+                          required: true,
+                          input_html: { autocomplete: "first_name" } %>
+              <%= f.input :last_name,
+                          hint: "",
+                          required: true,
+                          input_html: { autocomplete: "last_name" } %>
+              <%= f.input :address,
+                          id: "user_address",
+                          hint: "format: street, city, state",
+                          required: true,
+                          placeholder: "123 Main St, Springfield, IL",
+                          input_html: { autocomplete: "address" } %>
+
+              <%= f.input :email, required: true, autofocus: true %>
+
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+              <% end %>
+              <%= f.input :current_password,
+                          hint: "we need your current password to confirm your changes",
+                          required: true,
+                          input_html: { autocomplete: "current-password" } %>
+              <%= f.input :password,
+                          hint: "leave it blank if you don't want to change it",
+                          required: false,
+                          input_html: { autocomplete: "new-password" } %>
+              <%= f.input :password_confirmation,
+                          required: false,
+                          input_html: { autocomplete: "new-password" } %>
+
+
+            </div>
+
+            <div class="form-actions text-center">
+              <%= f.button :submit, "Update", class: 'btn btn-secondary' %>
+            </div>
+          <% end %>
+      </div>
+
+
+      <div class="card p-4 rounded-5 mt-3">
+        <h2 class="text-center">Cancel my account</h2>
+        <div class="text-center">
+          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete,  class: 'btn btn-danger text-light' %>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('profile-image');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src)
+    }
+  };
 
-<h3>Cancel my account</h3>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('profile-picture-form');
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+    if (form) {
+      form.addEventListener('ajax:success', function(event) {
+        const [data, status, xhr] = event.detail;
+        const newProfilePictureUrl = data.profile_picture_url;
 
-<%= link_to "Back", :back %>
+        const profileImage = document.getElementById('profile-image');
+        if (profileImage) {
+          profileImage.src = newProfilePictureUrl;
+        }
+      });
+    }
+  });
+</script>
+
+<%# <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const addressInput = document.getElementById('user_address');
+
+    if (addressInput) {
+      addressInput.addEventListener('input', function() {
+        const addressFormat = /^[^,]+,\s*[^,]+,\s*[A-Za-z\s]+$/;
+        const addressValue = addressInput.value;
+
+        if (!addressFormat.test(addressValue)) {
+          addressInput.setCustomValidity("Address must be in the format 'street, city, state'");
+        } else {
+          addressInput.setCustomValidity("");
+        }
+      });
+    }
+  });
+</script> %>

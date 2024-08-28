@@ -54,3 +54,6 @@ user4 = User.create!(
 user4.profile_picture.attach(io: user4_img, filename: 'user4.jpg', content_type: 'image/jpg')
 user4.save
 puts "User #{user4.first_name} #{user4.last_name} created ..."
+
+puts 'All users created ...'
+puts '-------------------------------'
