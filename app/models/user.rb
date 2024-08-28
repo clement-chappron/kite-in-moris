@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :schools
-  has_many :shops
-  has_many :blog_pages
-  has_many :reviews
+  has_many :schools, foreign_key: :user_id
+  has_many :shops, foreign_key: :user_id
+  has_many :blog_pages, foreign_key: :user_id
+  has_many :reviews, foreign_key: :user_id
   has_one_attached :profile_picture
 
   validates :first_name, :last_name, :email, :address, presence: true
