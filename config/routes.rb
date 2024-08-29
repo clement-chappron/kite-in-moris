@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :locations, only: [:index]
 
   # Modidication de l'image de profil
-  patch 'update_profile_picture', to: 'pages#update_profile_picture'
-  # patch 'update_profile_picture', to: 'users/registrations#update_profile_picture'
+  # patch 'update_profile_picture', to: 'pages#update_profile_picture'
+   patch 'update_profile_picture', to: 'users/registrations#update_profile_picture'
 
 end
