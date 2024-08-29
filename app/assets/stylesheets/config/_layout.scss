@@ -1,0 +1,16 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Conteneur principal utilisant Flexbox */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Assure que la hauteur minimale est 100% de la hauteur de la fenêtre */
+}
+
+/* Contenu principal prend tout l'espace disponible */
+.content {
+  flex: 1;
+}
