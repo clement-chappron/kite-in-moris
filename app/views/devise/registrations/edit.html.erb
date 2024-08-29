@@ -15,7 +15,7 @@
           <% end %>
         </div>
 
-        <%= form_with model: @user, url: update_profile_picture_path, method: :patch, local: false, html: { multipart: true, id: 'profile-picture-form' } do |form| %>
+        <%= form_with model: @user, url: update_profile_picture_path, method: :patch, local: true, html: { multipart: true, id: 'profile-picture-form' } do |form| %>
           <div class="form-group">
             <%= form.label :profile_picture, "Update profile picture" %>
             <%= form.file_field :profile_picture, class: 'form-control', onchange: "loadFile(event)" %>
