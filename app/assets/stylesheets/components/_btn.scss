@@ -37,3 +37,21 @@
     color: white !important;
   }
 }
+
+.btn-update-parent {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-update {
+  position: absolute;
+  top: 0;
+  right: -20px;
+  font-size: 30px;
+  color: $secondary;
+
+  :hover {
+    background-color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+  }
+}
