@@ -5,12 +5,12 @@ class Review < ApplicationRecord
 
   validates :rating, presence: true, numericality: { only_integer: true, within: 1..5 }
   validates :school_or_shop_must_be_present
-  validates :user_id, presence: true
+  validates :user, presence: true
 
   private
 
   def school_or_shop_must_be_present
-    if school_id.blank? && shop_id.blank?
+    if school.blank? && shop.blank?
       errors.add(:base, "Either a school_id or a shop_id is mandatory!")
     end
   end
