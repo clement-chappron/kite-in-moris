@@ -85,31 +85,35 @@
 
   <h2 class='mt-3'>Your bio</h2>
 
-<%= form_for(@user, url: update_image_and_bio_path, html: { method: :patch, multipart: true }) do |f| %>  <% if resource.errors.any? %>
-    <div class="error_explanation">
-      <h2><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h2>
-      <ul>
-        <% resource.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+    <%= form_for(@user, url: update_image_and_bio_path, html: { method: :patch, multipart: true }) do |f| %>  <% if resource.errors.any? %>
+        <div class="error_explanation">
+          <h2><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+    <% placeholder = '' %>
+
+      <div class="">
+        <%= f.label :bio, "Tell us about yourself", class: 'sr-only' %>
+        <%= f.text_area :bio,
+                        placeholder: "Tell us about yourself... Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet, velit eu dictum auctor, mi ante aliquam est, id vehicula elit orci vel sapien. Maecenas tempus tellus in vestibulum imperdiet.",
+                        class: 'bio textarea text-very-light-gray',
+                        autocomplete: "bio" %>
+      </div>
+
+      <div class="form-actions">
+        <% if @user.bio.blank? %>
+          <%= f.submit "Add your bio", class: 'btn bg-devise-light', style: 'font-size: 18px;' %>
+        <% else %>
+          <%= f.submit "Update your bio", class: 'btn bg-devise-light', style: 'font-size: 18px;' %>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-<% placeholder = '' %>
-
-  <div class="">
-    <%= f.label :bio, "Tell us about yourself", class: 'sr-only' %>
-    <%= f.text_area :bio,
-                    placeholder: "Tell us about yourself... Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet, velit eu dictum auctor, mi ante aliquam est, id vehicula elit orci vel sapien. Maecenas tempus tellus in vestibulum imperdiet.",
-                    class: 'bio textarea text-very-light-gray',
-                    autocomplete: "bio" %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit "Update bio", class: 'btn bg-devise-light', style: 'font-size: 18px;' %>
-  </div>
-<% end %>
+      </div>
+    <% end %>
 
 
   <div style='margin-top: 12vh; padding-bottom: 3vh;'>
