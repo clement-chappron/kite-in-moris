@@ -1,0 +1,57 @@
+<h1>Schools</h1>
+
+<div class="filter-buttons">
+  <% @locations.each do |location| %>
+    <%= button_to location.name, schools_path(location_id: location.id), method: :get, class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div id="schools-list">
+  <%= render partial: 'schools_list', locals: { schools: @schools } %>
+</div>
+
+<div id="map" style="height: 400px;"></div>
+
+<%= button_to "Load More", schools_path(location_id: params[:location_id], offset: (@schools.count + (params[:offset] || 0).to_i)), remote: true, class: "btn btn-secondary", id: "load-more" %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Initialize MapBox map
+    mapboxgl.accessToken = 'your_mapbox_access_token';
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [2.3522, 48.8566], // Default center coordinates
+      zoom: 12
+    });
+
+    // Add markers to the map
+    const markers = <%= raw @markers.to_json %>;
+    markers.forEach((marker) => {
+      new mapboxgl.Marker()
+        .setLngLat([marker.lng, marker.lat])
+        .setPopup(new mapboxgl.Popup().setHTML(marker.info_window)) // add this if you want popups
+        .addTo(map);
+    });
+  });
+
+  document.addEventListener("turbo:load", function() {
+    const loadMoreButton = document.getElementById("load-more");
+
+    if (loadMoreButton) {
+      loadMoreButton.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        fetch(this.href, { headers: { "Accept": "text/vnd.turbo-stream.html" } })
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById("schools-list").insertAdjacentHTML("beforeend", html);
+            if (html.trim() === "") {
+              loadMoreButton.style.display = "none"; // Cacher le bouton s'il n'y a plus d'écoles à charger
+            }
+          });
+      });
+    }
+  });
+
+</script>

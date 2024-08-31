@@ -1,0 +1,13 @@
+<div class="row">
+  <% schools.each do |school| %>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= school.name %></h5>
+          <p class="card-text"><%= truncate(school.description, length: 100) %></p>
+          <%= link_to 'Voir plus', school_path(school), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+<h1>New facility</h1>
+
+<%= simple_form_for @school do |f| %>
+  <%= f.input :name, label: "Nom de l'établissement" %>
+  <%= f.input :address, label: "Adresse" %>
+  <%= f.input :phone, label: "Téléphone" %>
+  <%= f.input :website, label: "Site Web" %>
+  <%= f.input :email, label: "Email" %>
+  <%= f.input :description, label: "Description" %>
+
+  <%= f.input :type, collection: [['School', 'school'], ['Shop', 'shop']], prompt: "Sélectionnez le type d'établissement", label: "Type d'établissement" %>
+
+  <%= f.submit 'Créer l\'établissement', class: 'btn btn-primary' %>
+<% end %>
