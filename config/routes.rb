@@ -14,4 +14,11 @@ Rails.application.routes.draw do
 
   resources :locations, only: [:index]
 
+  resources :schools do
+    resources :reviews, as: :school_reviews
+  end
+
+  resources :shops do
+    resources :reviews, as: :shop_reviews
+  end
 end
