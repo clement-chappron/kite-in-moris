@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
-  belongs_to :reviewable, polymorphic: true
+  belongs_to :shop, optional: true
+  belongs_to :school, optional: true
   belongs_to :user
 
   validates :rating, presence: true, numericality: { only_integer: true, within: 1..5 }
