@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+  
   devise_scope :user do
     patch 'update_profile_picture', to: 'users/registrations#update_profile_picture', as: :update_profile_picture
     get 'users/profile', to: 'users/registrations#edit_image_and_bio', as: :edit_image_and_bio

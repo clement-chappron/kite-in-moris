@@ -88,6 +88,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_103723) do
     t.bigint "location_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "type"
     t.index ["location_id"], name: "index_schools_on_location_id"
     t.index ["user_id"], name: "index_schools_on_user_id"
   end
@@ -105,6 +108,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_103723) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "type"
     t.index ["location_id"], name: "index_shops_on_location_id"
     t.index ["user_id"], name: "index_shops_on_user_id"
   end

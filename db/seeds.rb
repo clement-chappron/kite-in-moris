@@ -253,3 +253,76 @@ puts "Blog #{blog2.title} created ..."
 
 puts 'All blogs created'
 puts '-------------------------------'
+# School seeds
+School.create([
+  {
+    name: 'École Primaire Saint-Jean',
+    address: '123 Rue de l\'École, Paris, France',
+    phone: '0102030405',
+    website: 'https://www.ecole-stjean.fr',
+    email: 'contact@ecole-stjean.fr',
+    description: 'Une école primaire avec un excellent programme éducatif.',
+    rental: 'Disponibilité pour location de salles',
+    levels: 'École primaire',
+    fee: 'Gratuit',
+    facebook: 'https://www.facebook.com/ecole.stjean',
+    instagram: 'https://www.instagram.com/ecole.stjean',
+    latitude: 48.8566,
+    longitude: 2.3522,
+    type: 'school',
+    user_id: User.first.id,
+    location_id: Location.first.id
+  },
+  {
+    name: 'École Secondaire Albert Camus',
+    address: '456 Avenue des Champs-Élysées, Paris, France',
+    phone: '0607080901',
+    website: 'https://www.ecole-albertcamus.fr',
+    email: 'info@ecole-albertcamus.fr',
+    description: 'Une école secondaire renommée pour ses activités parascolaires.',
+    rental: 'Salles disponibles',
+    levels: 'École secondaire',
+    fee: '2000€/an',
+    facebook: 'https://www.facebook.com/ecole.albertcamus',
+    instagram: 'https://www.instagram.com/ecole.albertcamus',
+    latitude: 48.8566,
+    longitude: 2.3522,
+    type: 'school',
+    user_id: User.second.id,
+    location_id: Location.second.id
+  }
+])
+
+# Shops seed
+Shop.create([
+  {
+    name: 'Boutique Mode Paris',
+    address: '789 Rue de Rivoli, Paris, France',
+    phone: '0123456789',
+    website: 'https://www.boutique-mode-paris.fr',
+    email: 'contact@boutique-mode-paris.fr',
+    description: 'Boutique de vêtements tendance.',
+    facebook: 'https://www.facebook.com/boutique.mode.paris',
+    instagram: 'https://www.instagram.com/boutique.mode.paris',
+    latitude: 48.8566,
+    longitude: 2.3522,
+    type: 'shop',
+    user_id: User.third.id,
+    location_id: Location.third.id
+  },
+  {
+    name: 'Librairie des Champs',
+    address: '101 Boulevard Haussmann, Paris, France',
+    phone: '0145678901',
+    website: 'https://www.librairie-des-champs.fr',
+    email: 'contact@librairie-des-champs.fr',
+    description: 'Librairie spécialisée dans les livres rares.',
+    facebook: 'https://www.facebook.com/librairie.des.champs',
+    instagram: 'https://www.instagram.com/librairie.des.champs',
+    latitude: 48.8566,
+    longitude: 2.3522,
+    type: 'shop',
+    user_id: User.fourth.id,
+    location_id: Location.fourth.id
+  }
+])
