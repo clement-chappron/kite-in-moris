@@ -6,26 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
-  def update_profile_picture
-    @user = current_user
-    if @user.update(profile_picture_params)
-      respond_to do |format|
-        format.html { redirect_to edit_user_registration_path, notice: 'Profile updated successfully' }
-        format.json { render json: { profile_picture_url: url_for(@user.profile_picture) } }
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to edit_user_registration_path, alert: 'Failed to update profile.' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def edit_image_and_bio
     if user_signed_in?
       @user = current_user
     else
-      redirect_to edit_image_and_bio_path
+      redirect_to user_session_path
     end
   end
 
