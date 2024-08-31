@@ -1,25 +1,38 @@
+
 <div class='container'>
-  <div class='col-md-4 mx-auto mt-3'>
-    <h2>Log in</h2>
+  <div class="spacer-14vh"></div>
+  <h1 style='margin-bottom: 16px;'>Log in</h1>
+  <%= render "devise/shared/signup" %>
 
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs">
-        <%= f.input :email,
-                    required: false,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" } %>
-        <%= f.input :password,
-                    required: false,
-                    input_html: { autocomplete: "current-password" } %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-      </div>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="devise-input-form">
+      <%= f.input :email,
+                  required: false,
+                  label: false,
+                  autofocus: true,
+                  placeholder: "example@email.com",
+                  class: '',
+                  input_html: { autocomplete: "email" } %>
+      <%= f.input :password,
+                  required: false,
+                  label: false,
+                  placeholder: "Password",
+                  class: '',
+                  input_html: { autocomplete: "current-password" } %>
+    </div>
+    <div class='remember-devise'>
+      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    </div>
 
-      <div class="form-actions d-flex justify-content-end">
-        <%= f.button :submit, "Log in", class: 'btn btn-secondary' %>
-      </div>
-    <% end %>
-  <br>
+    <div class="form-actions">
+      <%= f.button :submit, "Log in", class: 'btn bg-devise-light', style: 'font-size: 18px;' %>
+    </div>
+  <% end %>
+
+  <div style='margin-top: 12vh; padding-bottom: 3vh;'>
+    <%= link_to 'Add your company', '#', class: 'link link-underline' %>
+    <br>
     <%= render "devise/shared/links" %>
   </div>
-
 </div>
+

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.1].define(version: 2024_08_31_050622) do
+=======
+ActiveRecord::Schema[7.1].define(version: 2024_08_31_055709) do
+>>>>>>> master
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +63,43 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_050622) do
     t.string "level"
   end
 
+  create_table "schools", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "phone"
+    t.string "website"
+    t.string "email"
+    t.text "description"
+    t.text "rental"
+    t.text "levels"
+    t.string "fee"
+    t.string "facebook"
+    t.string "instagram"
+    t.bigint "user_id", null: false
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_schools_on_location_id"
+    t.index ["user_id"], name: "index_schools_on_user_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "phone"
+    t.string "website"
+    t.text "descrption"
+    t.string "email"
+    t.string "facebook"
+    t.string "instagram"
+    t.bigint "location_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_shops_on_location_id"
+    t.index ["user_id"], name: "index_shops_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -77,5 +118,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_050622) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+<<<<<<< HEAD
   add_foreign_key "blog_pages", "users"
+=======
+  add_foreign_key "schools", "locations"
+  add_foreign_key "schools", "users"
+  add_foreign_key "shops", "locations"
+  add_foreign_key "shops", "users"
+>>>>>>> master
 end
