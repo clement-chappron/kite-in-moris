@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+  
   devise_scope :user do
     patch 'update_profile_picture', to: 'users/registrations#update_profile_picture', as: :update_profile_picture
   end
@@ -12,5 +13,7 @@ Rails.application.routes.draw do
 
   resources :locations, only: [:index]
 
-  resources :schools
+  resources :schools do
+    resources :reviews, only: [:new, :create]
+  end
 end
