@@ -12,5 +12,4 @@ Rails.application.routes.draw do
 
   resources :locations, only: [:index]
   resources :blog_pages
-
 end
