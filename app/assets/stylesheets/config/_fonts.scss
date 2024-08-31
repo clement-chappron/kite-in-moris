@@ -9,9 +9,20 @@ h1, h2, h3, h4, h5, h6, p {
   color: #141414;
 }
 
+.text-very-light-gray {
+  color: #B5B5B5;
+}
+
 a {
   text-decoration: none !important;
   color: #141414 !important;
+}
+
+.fs-13 {
+  font-size: 13px;
+}
+.fs-16 {
+  font-size: 16px;
 }
 
 .link {
