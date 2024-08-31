@@ -10,6 +10,6 @@ class User < ApplicationRecord
   has_many :reviews, foreign_key: :user_id
   has_one_attached :profile_picture
 
-  validates :first_name, :last_name, :email, :address, presence: true
+  validates :first_name, :last_name, :email, presence: true
   # validates :profile_picture, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'], size: { less_than: 5.megabytes }
 end

@@ -11,16 +11,13 @@
   </head>
 
   <body>
-    <div class="wrapper">
-      <div class="content">
-        <%= render "shared/navbar" %>
-        <%= render "shared/flashes" %>
-
-        <%= yield %>
-
-      </div>
-      <%= render "shared/footer" %>
+    <div class="<%= 'devise-layout' if devise_controller? %>">
+      <%# render "shared/navbar" %>
+      <%= render "shared/flashes" %>
+      <%= yield %>
+      <%# render "shared/footer" %>
     </div>
+
 
   </body>
 </html>

@@ -1,0 +1,78 @@
+.devise-layout {
+  background-color: $green;
+  text-align: center;
+  min-height: 100vh;
+  margin: 0;
+
+  &h1 {
+    font-size: 40px;
+    font-weight: 400 !important;
+  }
+}
+
+.spacer-14vh {
+  height: 14vh;
+}
+
+.devise-input-form {
+  margin-top: 10vh;
+
+  input {
+    margin: 0 auto;
+    padding: 16px 24px;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+      padding: 12px 24px;
+    }
+  }
+
+  ::placeholder {
+    color: $very-light-gray;
+  }
+}
+
+.bg-devise-light {
+  background-color: rgba($color: white, $alpha: .3);
+  padding: 8px 16px;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: rgba($color: white, $alpha: .5) !important;
+  }
+}
+
+.remember-devise {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $light-gray;
+
+  //à chercher
+  input {
+    margin-right: 10px;
+    ::-ms-check {
+      background-color: white !important;
+    }
+  }
+}
+
+.alert-cc {
+  background-color: $blue;
+  font-size: 13px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: white;
+  border-radius: 50px;
+
+  .btn-close {
+  padding: 8px 8px !important;
+  top: 3px !important;
+  right: 10px !important;
+  }
+}

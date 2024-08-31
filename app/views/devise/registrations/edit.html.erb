@@ -112,22 +112,3 @@
     }
   });
 </script>
-
-<%# <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const addressInput = document.getElementById('user_address');
-
-    if (addressInput) {
-      addressInput.addEventListener('input', function() {
-        const addressFormat = /^[^,]+,\s*[^,]+,\s*[A-Za-z\s]+$/;
-        const addressValue = addressInput.value;
-
-        if (!addressFormat.test(addressValue)) {
-          addressInput.setCustomValidity("Address must be in the format 'street, city, state'");
-        } else {
-          addressInput.setCustomValidity("");
-        }
-      });
-    }
-  });
-</script> %>

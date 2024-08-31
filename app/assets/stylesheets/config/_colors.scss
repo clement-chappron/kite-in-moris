@@ -1,22 +1,9 @@
 
-$red: #FD1015;
-$blue: #04BFBF;
-$blue-secondary: #04ADBF;
-$blue-green: #027373;
-$sand: #F2E3D5;
-$sand-50: #f2e3d54f;
+$red: #F0446E;             // Couleur d'alerte
+$green: #CFED58;           // Couleur de principale
+$blue: #5BBBBC;            // Couleur de secondaire
 $yellow: #FFC65A;
 $orange: #ed9f47;
-$green: #7EA629;
-$gray: #222222;
-$light-gray: #F4F4F4;
-
-h1 {
-  color: $blue-green !important;
-}
-h2 {
-  color: $gray !important;
-}
-h3, h4, h5, h6 {
-  color: $blue-secondary !important;
-}
+$gray: #141414;            // Couleur du texte courant
+$light-gray: #5B5B5B;      // Couleur du texte plus clair
+$very-light-gray: #B5B5B5; // Couleur des placeholder
