@@ -233,6 +233,26 @@ puts "Location #{flic_en_flac.name} created ..."
 puts 'All locations created'
 puts '-------------------------------'
 
+# Blog seeds
+puts 'Starting blog page'
+blog1 = BlogPage.create!(
+  title: "My first kitesurf experience",
+  content: "description of the first experience",
+  user: user4
+)
+blog1.save
+puts "Blog #{blog1.title} created ..."
+
+blog2 = BlogPage.create!(
+  title: "My second kitesurf experience",
+  content: "description of the second experience",
+  user: user4
+)
+blog2.save
+puts "Blog #{blog2.title} created ..."
+
+puts 'All blogs created'
+puts '-------------------------------'
 # School seeds
 School.create([
   {
@@ -306,4 +326,3 @@ Shop.create([
     location_id: Location.fourth.id
   }
 ])
-

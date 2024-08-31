@@ -42,6 +42,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_103723) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "blog_pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_blog_pages_on_user_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -125,6 +134,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_103723) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blog_pages", "users"
   add_foreign_key "reviews", "schools"
   add_foreign_key "reviews", "shops"
   add_foreign_key "reviews", "users"
