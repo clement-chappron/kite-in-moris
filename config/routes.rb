@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :locations, only: [:index]
+  resources :blog_pages
 
 end
