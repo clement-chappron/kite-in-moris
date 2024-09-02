@@ -6,8 +6,14 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  font: inherit; /* Utilise la police parente */
-  color: inherit; /* Utilise la couleur parente */
+  color: inherit;
+  :focus {
+    outline: none;
+  }
+  ::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
 }
 
 .btn {
