@@ -15,12 +15,13 @@
 
   <body>
     <div class="<%= 'devise-layout' if devise_controller? %>">
-      <%# render "shared/navbar" %>
+      <%= render "shared/navbar" %>
       <%= render "shared/flashes" %>
       <%= yield %>
       <%# render "shared/footer" %>
     </div>
 
 
+    <%= javascript_include_tag 'navbar-button-effect' %>
   </body>
 </html>
