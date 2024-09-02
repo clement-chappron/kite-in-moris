@@ -1,3 +1,9 @@
+School.destroy_all
+puts 'All schools destroyed ...'
+Shop.destroy_all
+puts 'All shops destroyed ...'
+BlogPage.destroy_all
+puts 'All blogpages destroyed ...'
 User.destroy_all
 puts 'All users destroyed ...'
 Location.destroy_all
@@ -269,7 +275,7 @@ School.create([
     instagram: 'https://www.instagram.com/ecole.stjean',
     latitude: 48.8566,
     longitude: 2.3522,
-    type: 'school',
+    category: 'school',
     user_id: User.first.id,
     location_id: Location.first.id
   },
@@ -287,7 +293,7 @@ School.create([
     instagram: 'https://www.instagram.com/ecole.albertcamus',
     latitude: 48.8566,
     longitude: 2.3522,
-    type: 'school',
+    category: 'school',
     user_id: User.second.id,
     location_id: Location.second.id
   }
@@ -306,7 +312,7 @@ Shop.create([
     instagram: 'https://www.instagram.com/boutique.mode.paris',
     latitude: 48.8566,
     longitude: 2.3522,
-    type: 'shop',
+    category: 'shop',
     user_id: User.third.id,
     location_id: Location.third.id
   },
@@ -321,7 +327,7 @@ Shop.create([
     instagram: 'https://www.instagram.com/librairie.des.champs',
     latitude: 48.8566,
     longitude: 2.3522,
-    type: 'shop',
+    category: 'shop',
     user_id: User.fourth.id,
     location_id: Location.fourth.id
   }

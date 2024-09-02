@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_31_112932) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_112932) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
-    t.string "type"
+    t.string "category"
     t.index ["location_id"], name: "index_schools_on_location_id"
     t.index ["user_id"], name: "index_schools_on_user_id"
   end
@@ -100,7 +100,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_112932) do
     t.string "address"
     t.string "phone"
     t.string "website"
-    t.text "descrption"
+    t.text "description"
     t.string "email"
     t.string "facebook"
     t.string "instagram"
@@ -110,7 +110,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_112932) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
-    t.string "type"
+    t.string "category"
     t.index ["location_id"], name: "index_shops_on_location_id"
     t.index ["user_id"], name: "index_shops_on_user_id"
   end
