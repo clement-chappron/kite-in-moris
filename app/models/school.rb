@@ -2,11 +2,11 @@ class School < ApplicationRecord
   belongs_to :user
   belongs_to :location
 
-  has_many :opening_hours, dependent: :destroy
-  has_many :reviews, dependent: :destroy
+  # has_many :opening_hours, dependent: :destroy
+  has_many :reviews, as: :shop_school, dependent: :destroy
 
   # Ajout du type
-  validates :type, presence: true, inclusion: { in: %w[school shop] }
+  validates :category, presence: true, inclusion: { in: %w[school shop] }
 
   # Geocoding
   # geocoded_by :address
