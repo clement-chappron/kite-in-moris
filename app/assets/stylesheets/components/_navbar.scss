@@ -1,12 +1,28 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar-burger {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow-y: hidden;
+  z-index: 1;
+  margin: auto;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  transition: opacity 0.5s ease-in-out, background-color 0.7s ease-in-out;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-burger.active {
+  opacity: 1;
+  visibility: visible;
+  background-color: rgba($color: $gray, $alpha: .98);
 }
 
-.navbar-lewagon .navbar-brand img {
-  height: 60px;
+.navbar-burger-item {
+  color: white !important;
+  font-size: 1.5rem !important;
+  padding: .5rem !important;
+  margin: .5rem !important;
+  text-align: center !important;
 }

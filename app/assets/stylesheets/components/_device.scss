@@ -104,12 +104,12 @@
 }
 
 .textarea {
-  overflow-y: scroll; /* Permettre le défilement vertical */
-  scrollbar-width: none; /* Masquer la barre de défilement dans Firefox */
-  -ms-overflow-style: none;  /* Masquer la barre de défilement dans IE et Edge */
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Masquer la barre de défilement dans les navigateurs basés sur Webkit (Chrome, Safari) */
+
 .textarea::-webkit-scrollbar {
   display: none;
 }
