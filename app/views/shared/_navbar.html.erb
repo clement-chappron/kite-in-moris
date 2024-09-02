@@ -1,29 +1,15 @@
-<nav class="navbar">
-  <div class="container-fluid">
-    <%# <a class="navbar-brand" href="#">Offcanvas navbar</a> %>
-
-    <button class="unstyled-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-      <%# <span class="navbar-toggler-icon"></span> %>
-      <div class="menu-wrapper">
-        <div class="hamburger-bg"></div>
-          <div class="hamburger-menu"></div>
-      </div>
-    </button>
-
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-
-      <div class="offcanvas-body">
-      </div>
-    </div>
-
+<div id="navbar-burger-id" class="navbar-burger  d-flex flex-column justify-content-center align-items-center">
+  <div class="d-flex flex-column">
+    <%= link_to 'My profile', edit_image_and_bio_path, class: 'navbar-burger-item link link-underline' %>
+    <%= link_to 'Blog', blog_pages_path, class: 'navbar-burger-item link link-underline' %>
   </div>
-</nav>
+
+</div>
 
 
+<div id="navbar-btn" class="menu-wrapper">
+  <div class="hamburger-bg"></div>
+  <div class="hamburger-menu"></div>
+</div>
 
-
-<%# supprimer la marge qui gene pour le 100vh %>
+<%= javascript_include_tag 'navbar' %>
