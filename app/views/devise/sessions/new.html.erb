@@ -1,37 +1,42 @@
+<div class="container d-flex flex-column min-vh-100">
+  <!-- Section Formulaire et Contenu principal -->
+  <div class="my-3 d-flex flex-column align-items-center justify-content-center flex-grow-1">
+    <div>
+      <h1 style="margin-bottom: 16px;">Log in</h1>
+      <%= render "devise/shared/signup" %>
+    </div>
 
-<div class='container d-flex flex-column' style="min-height: 100vh;">
-  <div>
-    <div class="spacer-14vh"></div>
-    <h1 style='margin-bottom: 16px;'>Log in</h1>
-    <%= render "devise/shared/signup" %>
+    <!-- Formulaire centré verticalement et horizontalement -->
+    <div class="mt-5 d-flex flex-column align-items-center w-100">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="devise-input-form">
+          <%= f.input :email,
+                      required: false,
+                      label: false,
+                      autofocus: true,
+                      placeholder: "example@email.com",
+                      class: '',
+                      input_html: { autocomplete: "email" } %>
+          <%= f.input :password,
+                      required: false,
+                      label: false,
+                      placeholder: "Password",
+                      class: '',
+                      input_html: { autocomplete: "current-password" } %>
+        </div>
+        <div class="remember-devise">
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
 
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="devise-input-form">
-        <%= f.input :email,
-                    required: false,
-                    label: false,
-                    autofocus: true,
-                    placeholder: "example@email.com",
-                    class: '',
-                    input_html: { autocomplete: "email" } %>
-        <%= f.input :password,
-                    required: false,
-                    label: false,
-                    placeholder: "Password",
-                    class: '',
-                    input_html: { autocomplete: "current-password" } %>
-      </div>
-      <div class='remember-devise'>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-      </div>
-
-      <div class="form-actions">
-        <%= f.button :submit, "Log in", class: 'btn bg-devise-light', style: 'font-size: 18px;' %>
-      </div>
-    <% end %>
+        <div class="form-actions">
+          <%= f.button :submit, "Log in", class: 'btn bg-devise-light', style: 'font-size: 18px;' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div class="mt-auto" style='padding-bottom: 3vh;'>
+  <!-- Footer -->
+  <div class="mt-auto" style="padding-bottom: 4vh;">
     <%= link_to 'Add your company', new_school_path, class: 'link link-underline' %>
     <br>
     <%= render "devise/shared/links" %>
