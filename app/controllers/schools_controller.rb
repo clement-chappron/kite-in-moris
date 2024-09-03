@@ -30,10 +30,10 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
 
     # Horaires d'ouverture associés à l'école
-    @opening_hours = @school.opening_hours
+    # @opening_hours = @school.opening_hours
 
     # Reviews associés à l'école
-    @reviews = @school.reviews.includes(:user)
+    # @reviews = @school.reviews.includes(:user)
 
     # Données pour le marqueur sur la carte
     # @marker = {

@@ -16,10 +16,10 @@
 
 <h2>Reviews</h2>
 <div class="reviews">
-  <% @reviews.each do |review| %>
+  <% @review_schools.each do |review| %>
     <div class="review">
-      <strong><%= review.user.name %></strong>
-      <p><%= review.content %></p>
+      <strong><%= review.user.first_name %></strong>
+      <p><%= review.description %></p>
       <p><strong>Note :</strong> <%= review.rating %> / 5</p>
     </div>
   <% end %>
