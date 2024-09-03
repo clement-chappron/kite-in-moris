@@ -1,3 +1,5 @@
+require 'open-uri'
+
 School.destroy_all
 puts 'All schools destroyed ...'
 Shop.destroy_all
@@ -239,6 +241,168 @@ puts "Location #{flic_en_flac.name} created ..."
 puts 'All locations created'
 puts '-------------------------------'
 
+# Schools seeds
+puts 'Creating schools...'
+
+schools = [
+  {
+    name: 'Ocean Academy',
+    address: 'Blue Bay, Mauritius',
+    phone: '+230 1234567',
+    website: 'http://oceanacademy.mu',
+    email: 'info@oceanacademy.mu',
+    description: 'A top-notch kitesurf school with a focus on safety and fun.',
+    rental: true,
+    levels: 'All levels',
+    fee: '50',
+    facebook: 'https://www.facebook.com/oceanacademy',
+    instagram: 'https://www.instagram.com/oceanacademy',
+    location: le_morne,
+    user: user1
+  },
+  {
+    name: 'Wave Riders School',
+    address: 'Le Morne, Mauritius',
+    phone: '+230 9876543',
+    website: 'http://waveriders.mu',
+    email: 'contact@waveriders.mu',
+    description: 'Professional kitesurfing lessons in the heart of Le Morne.',
+    rental: true,
+    levels: 'Beginners to experts',
+    fee: '70',
+    facebook: 'https://www.facebook.com/waveriders',
+    instagram: 'https://www.instagram.com/waveriders',
+    location: pointe_desny,
+    user: user2
+  },
+  {
+    name: 'KiteXperience',
+    address: 'Belle Mare, Mauritius',
+    phone: '+230 2345678',
+    website: 'http://kitexperience.mu',
+    email: 'hello@kitexperience.mu',
+    description: 'Personalized kiteboarding lessons for all skill levels.',
+    rental: false,
+    levels: 'Intermediate to experts',
+    fee: '80',
+    facebook: 'https://www.facebook.com/kitexperience',
+    instagram: 'https://www.instagram.com/kitexperience',
+    location: bel_ombre,
+    user: user3
+  },
+  {
+    name: 'Island Kite School',
+    address: 'Tamarin Bay, Mauritius',
+    phone: '+230 8765432',
+    website: 'http://islandkiteschool.mu',
+    email: 'info@islandkiteschool.mu',
+    description: 'Expert instruction and rental services in the best locations.',
+    rental: true,
+    levels: 'All levels',
+    fee: '65',
+    facebook: 'https://www.facebook.com/islandkiteschool',
+    instagram: 'https://www.instagram.com/islandkiteschool',
+    location: poste_lafayette,
+    user: user4
+  },
+  {
+    name: 'Lagoon Riders',
+    address: 'Anse La Raie, Mauritius',
+    phone: '+230 1234987',
+    website: 'http://lagoonriders.mu',
+    email: 'contact@lagoonriders.mu',
+    description: 'Great conditions and expert guidance for kite surfers.',
+    rental: true,
+    levels: 'Beginners to intermediates',
+    fee: '60',
+    facebook: 'https://www.facebook.com/lagoonriders',
+    instagram: 'https://www.instagram.com/lagoonriders',
+    location: anse_la_rae,
+    user: user1
+  }
+]
+
+schools.each do |school|
+  School.create!(school)
+  puts "School #{school[:name]} created ..."
+end
+
+puts 'All schools created.'
+puts '-------------------------------'
+
+# Shops seeds
+puts 'Creating shops...'
+
+shops = [
+  {
+    name: 'Kite Shop Pro',
+    address: 'Grand Baie, Mauritius',
+    phone: '+230 1111111',
+    website: 'http://kiteshoppro.mu',
+    email: 'shop@kiteshoppro.mu',
+    description: 'High-quality kitesurfing equipment and accessories.',
+    facebook: 'https://www.facebook.com/kiteshoppro',
+    instagram: 'https://www.instagram.com/kiteshoppro',
+    location: grand_baie,
+    user: user2
+  },
+  {
+    name: 'Surf & Sail',
+    address: 'Black River, Mauritius',
+    phone: '+230 2222222',
+    website: 'http://surfandsail.mu',
+    email: 'info@surfandsail.mu',
+    description: 'Your one-stop shop for all surfing and sailing needs.',
+    facebook: 'https://www.facebook.com/surfandsail',
+    instagram: 'https://www.instagram.com/surfandsail',
+    location: la_prairie,
+    user: user3
+  },
+  {
+    name: 'Wave Supplies',
+    address: 'Trou aux Biches, Mauritius',
+    phone: '+230 3333333',
+    website: 'http://wavesupplies.mu',
+    email: 'support@wavesupplies.mu',
+    description: 'Find everything you need for water sports in one place.',
+    facebook: 'https://www.facebook.com/wavesupplies',
+    instagram: 'https://www.instagram.com/wavesupplies',
+    location: palmar,
+    user: user4
+  },
+  {
+    name: 'Riders Hub',
+    address: 'Port Louis, Mauritius',
+    phone: '+230 4444444',
+    website: 'http://ridershub.mu',
+    email: 'contact@ridershub.mu',
+    description: 'Specialized kitesurf shop with all the latest gear.',
+    facebook: 'https://www.facebook.com/ridershub',
+    instagram: 'https://www.instagram.com/ridershub',
+    location: grand_baie,
+    user: user1
+  },
+  {
+    name: 'The Kiteshop',
+    address: 'Flic en Flac, Mauritius',
+    phone: '+230 5555555',
+    website: 'http://thekiteshop.mu',
+    email: 'sales@thekiteshop.mu',
+    description: 'Premier destination for top-tier kitesurfing gear.',
+    facebook: 'https://www.facebook.com/thekiteshop',
+    instagram: 'https://www.instagram.com/thekiteshop',
+    location: grand_baie,
+    user: user2
+  }
+]
+
+shops.each do |shop|
+  Shop.create!(shop)
+  puts "Shop #{shop[:name]} created ..."
+end
+
+puts 'All shops created.'
+puts '-------------------------------'
 # Blog seeds
 puts 'Starting blog page'
 blog1 = BlogPage.create!(

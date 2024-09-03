@@ -6,7 +6,7 @@ class School < ApplicationRecord
   has_many :reviews, as: :shop_school, dependent: :destroy
 
   # Ajout du type
-  validates :category, presence: true, inclusion: { in: %w[school shop] }
+  # validates :category, presence: true, inclusion: { in: %w[school shop] }
 
   # Geocoding
   # geocoded_by :address

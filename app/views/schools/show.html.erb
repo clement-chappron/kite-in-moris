@@ -7,44 +7,5 @@
   <p><strong>Email :</strong> <%= mail_to @school.email %></p>
 </div>
 
-<h2>Opening hours</h2>
-<ul>
-  <% @opening_hours.each do |hour| %>
-    <li><%= hour.day %>: <%= hour.opening_time.strftime('%H:%M') %> - <%= hour.closing_time.strftime('%H:%M') %></li>
-  <% end %>
-</ul>
-
-<h2>Reviews</h2>
-<div class="reviews">
-  <% @reviews.each do |review| %>
-    <div class="review">
-      <strong><%= review.user.name %></strong>
-      <p><%= review.content %></p>
-      <p><strong>Note :</strong> <%= review.rating %> / 5</p>
-    </div>
-  <% end %>
-</div>
-
 <%= link_to 'Ajouter un avis', new_school_review_path(@school), class: 'btn btn-primary' %>
 
-<h2>Location</h2>
-<div id="map" style="height: 400px;"></div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Initialize MapBox map
-    mapboxgl.accessToken = 'your_mapbox_access_token';
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [<%= @marker[:lng] %>, <%= @marker[:lat] %>], // Center on the school location
-      zoom: 15
-    });
-
-    // Add marker to the map
-    new mapboxgl.Marker()
-      .setLngLat([<%= @marker[:lng] %>, <%= @marker[:lat] %>])
-      .setPopup(new mapboxgl.Popup().setHTML("<%= j @marker[:info_window] %>")) // Add a popup if needed
-      .addTo(map);
-  });
-</script>
