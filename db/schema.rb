@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_03_161614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
     t.index ["user_id"], name: "index_blog_pages_on_user_id"
   end
 
+  create_table "comment_blogs", force: :cascade do |t|
+    t.text "description"
+    t.bigint "blog_pages_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_pages_id"], name: "index_comment_blogs_on_blog_pages_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -59,17 +67,37 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
     t.string "level"
   end
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "review_schools", force: :cascade do |t|
     t.integer "rating"
     t.text "description"
-    t.bigint "school_id"
-    t.bigint "shop_id"
-    t.bigint "user_id", null: false
+    t.bigint "schools_id", null: false
+    t.bigint "users_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["school_id"], name: "index_reviews_on_school_id"
-    t.index ["shop_id"], name: "index_reviews_on_shop_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["schools_id"], name: "index_review_schools_on_schools_id"
+    t.index ["users_id"], name: "index_review_schools_on_users_id"
+  end
+
+  create_table "review_shops", force: :cascade do |t|
+    t.integer "rating"
+    t.text "description"
+    t.bigint "shops_id", null: false
+    t.bigint "users_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shops_id"], name: "index_review_shops_on_shops_id"
+    t.index ["users_id"], name: "index_review_shops_on_users_id"
+  end
+
+  create_table "review_spots", force: :cascade do |t|
+    t.integer "rating"
+    t.text "description"
+    t.bigint "spots_id", null: false
+    t.bigint "users_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spots_id"], name: "index_review_spots_on_spots_id"
+    t.index ["users_id"], name: "index_review_spots_on_users_id"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -115,6 +143,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
     t.index ["user_id"], name: "index_shops_on_user_id"
   end
 
+  create_table "spots", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "address"
+    t.bigint "locations_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["locations_id"], name: "index_spots_on_locations_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -135,11 +173,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_pages", "users"
-  add_foreign_key "reviews", "schools"
-  add_foreign_key "reviews", "shops"
-  add_foreign_key "reviews", "users"
+  add_foreign_key "comment_blogs", "blog_pages", column: "blog_pages_id"
+  add_foreign_key "review_schools", "schools", column: "schools_id"
+  add_foreign_key "review_schools", "users", column: "users_id"
+  add_foreign_key "review_shops", "shops", column: "shops_id"
+  add_foreign_key "review_shops", "users", column: "users_id"
+  add_foreign_key "review_spots", "spots", column: "spots_id"
+  add_foreign_key "review_spots", "users", column: "users_id"
   add_foreign_key "schools", "locations"
   add_foreign_key "schools", "users"
   add_foreign_key "shops", "locations"
   add_foreign_key "shops", "users"
+  add_foreign_key "spots", "locations", column: "locations_id"
 end

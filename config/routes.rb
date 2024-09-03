@@ -14,13 +14,19 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :locations, only: [:index]
-  resources :blog_pages
+  resources :blog_pages do
+    resources :comment_blogs, only: [:index, :new, :create]
+  end
 
   resources :schools do
-    resources :reviews
+    resources :review_schools, only: [:index, :new, :create]
   end
 
   resources :shops do
-    resources :reviews
+    resources :review_shops, only: [:index, :new, :create]
+  end
+
+  resources :spots do
+    resources :review_spots, only: [:index, :new, :create]
   end
 end

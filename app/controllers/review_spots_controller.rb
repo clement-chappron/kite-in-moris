@@ -1,0 +1,2 @@
+class ReviewSpotsController < ApplicationController
+end

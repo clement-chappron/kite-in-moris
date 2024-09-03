@@ -1,9 +1,9 @@
 class School < ApplicationRecord
   belongs_to :user
   belongs_to :location
+  has_many :review_schools, dependent: :destroy
 
   # has_many :opening_hours, dependent: :destroy
-  has_many :reviews, as: :shop_school, dependent: :destroy
 
   # Ajout du type
   # validates :category, presence: true, inclusion: { in: %w[school shop] }
