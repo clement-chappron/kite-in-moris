@@ -1,5 +1,5 @@
 class CommentBlog < ApplicationRecord
-  belongs_to :blog_pages
+  belongs_to :blog_page
 
-  validates :description, presence: true, length: { minimum: 20 }
+  validates :description, presence: true, length: { minimum: 5 }
 end

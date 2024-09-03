@@ -7,24 +7,11 @@
   <p><strong>Email :</strong> <%= mail_to @school.email %></p>
 </div>
 
-
 <h2>Reviews</h2>
-<% if @school.review_school.any? %>
-  <ul>
-    <% @school.review_school.each do |review| %>
-      <li>
-        <p><%= review.rating %> / 5</p>
-        <p><%= review.description %></p>
-      </li>
-    <% end %>
-  </ul>
+
+<% @review_schools.each do |review| %>
+  <p><%= review.rating %>
+  <br><%= review.description %></p>
 <% end %>
 
-<%= simple_form_for [@school, @review_school] do |f| %>
-  <%= f.input :rating %>
-  <%= f.input :description %>
-  <%= f.button :submit %>
-<% end %>
-
-
-<%= link_to 'Add review', new_school_review_path(@school), class: 'btn btn-primary' %>
+<%= link_to "Add a review", new_school_review_school_path(@school) %>

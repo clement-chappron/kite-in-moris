@@ -1,4 +1,4 @@
 class Spot < ApplicationRecord
-  belongs_to :locations
+  belongs_to :location
   has_many :review_spots, dependent: :destroy
 end

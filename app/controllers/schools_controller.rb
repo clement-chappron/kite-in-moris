@@ -12,7 +12,7 @@ class SchoolsController < ApplicationController
       format.html # Pour le rendu standard HTML
       format.turbo_stream { render partial: 'schools/schools_list', locals: { schools: @schools } }
     end
-    
+
 
     @schools = @schools.order(created_at: :desc).limit(6).offset(params[:offset] || 0)
 
@@ -29,6 +29,9 @@ class SchoolsController < ApplicationController
 
   def show
     @school = School.find(params[:id])
+    @review_schools = ReviewSchool.all
+    @review_school = ReviewSchool.new
+    
 
     # Horaires d'ouverture associés à l'école
     # @opening_hours = @school.opening_hours
