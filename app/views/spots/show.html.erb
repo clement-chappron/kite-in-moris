@@ -1,0 +1,24 @@
+<div class="container">
+  <h1><%= @spot.name %></h1>
+  <p>
+    <%= @spot.description %>
+    <br>
+    <%= @spot.address %>
+    <br>
+    Location : <%= @location.name %>
+  </p>
+
+  <h2>Reviews</h2>
+  <ul>
+    <% @spot.review_spots.each do |review| %>
+      <li>
+        <%= review.rating %>
+        <br>
+        <%= review.description %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h2>Add a review</h2>
+  <%= link_to 'Add review', new_spot_review_spot_path(@spot.id) %>
+</div>
