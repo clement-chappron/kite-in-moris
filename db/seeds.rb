@@ -6,10 +6,10 @@ Shop.destroy_all
 puts 'All shops destroyed ...'
 BlogPage.destroy_all
 puts 'All blogpages destroyed ...'
-User.destroy_all
-puts 'All users destroyed ...'
 Spot.destroy_all
 puts 'All spots destroyed ...'
+User.destroy_all
+puts 'All users destroyed ...'
 Location.destroy_all
 puts 'All locations destroyed ...'
 puts '-------------------------------'
