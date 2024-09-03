@@ -10,8 +10,8 @@
   }
 }
 
-.spacer-14vh {
-  height: 14vh;
+.container-100vh {
+  min-height: calc(100vh - 80px);
 }
 
 .devise-input-form {
