@@ -17,6 +17,13 @@
   </div>
 
 
+  <%# Rechcher logo %>
+  <div class="navbar-search">
+    <%= link_to root_path do %>
+      <i class="fi fi-rr-search"></i>
+    <% end %>
+  </div>
+
   <%# bouton se connecter || bonjour user %>
  <div class="navbar-user">
     <% if user_signed_in? %>
