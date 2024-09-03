@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_03_160138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,19 +57,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "level"
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.integer "rating"
-    t.text "description"
-    t.bigint "school_id"
-    t.bigint "shop_id"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["school_id"], name: "index_reviews_on_school_id"
-    t.index ["shop_id"], name: "index_reviews_on_shop_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -135,9 +122,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_pages", "users"
-  add_foreign_key "reviews", "schools"
-  add_foreign_key "reviews", "shops"
-  add_foreign_key "reviews", "users"
   add_foreign_key "schools", "locations"
   add_foreign_key "schools", "users"
   add_foreign_key "shops", "locations"

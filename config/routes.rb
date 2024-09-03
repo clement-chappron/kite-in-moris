@@ -15,12 +15,6 @@ Rails.application.routes.draw do
 
   resources :locations, only: [:index]
   resources :blog_pages
-
-  resources :schools do
-    resources :reviews
-  end
-
-  resources :shops do
-    resources :reviews
-  end
+  resources :schools
+  resources :shops
 end
