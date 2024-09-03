@@ -15,9 +15,11 @@
 
   <body>
     <div class="<%= 'devise-layout' if devise_controller? %>">
-      <%# render "shared/navbar" %>
+      <%= render "shared/navbar" %>
       <%= render "shared/flashes" %>
-      <%= yield %>
+      <div style="padding-top: 80px;">
+        <%= yield %>
+      </div>
       <%# render "shared/footer" %>
     </div>
 

@@ -8,7 +8,7 @@
   <%= f.input :email, label: "Email" %>
   <%= f.input :description, label: "Description" %>
 
-  <%= f.input :type, collection: [['School', 'school'], ['Shop', 'shop']], prompt: "Sélectionnez le type d'établissement", label: "Type d'établissement" %>
+  <%= f.input :category, collection: [['School', 'school'], ['Shop', 'shop']], prompt: "Sélectionnez le type d'établissement", label: "Type d'établissement" %>
 
   <%= f.submit 'Créer l\'établissement', class: 'btn btn-primary' %>
 <% end %>

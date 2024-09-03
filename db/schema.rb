@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_01_161631) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_02_155046) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_161631) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "blog_pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_blog_pages_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -81,7 +90,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_161631) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
-    t.string "type"
+    t.string "category"
     t.index ["location_id"], name: "index_schools_on_location_id"
     t.index ["user_id"], name: "index_schools_on_user_id"
   end
@@ -91,7 +100,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_161631) do
     t.string "address"
     t.string "phone"
     t.string "website"
-    t.text "descrption"
+    t.text "description"
     t.string "email"
     t.string "facebook"
     t.string "instagram"
@@ -101,7 +110,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_161631) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
-    t.string "type"
+    t.string "category"
     t.index ["location_id"], name: "index_shops_on_location_id"
     t.index ["user_id"], name: "index_shops_on_user_id"
   end
@@ -125,6 +134,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_161631) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blog_pages", "users"
   add_foreign_key "reviews", "schools"
   add_foreign_key "reviews", "shops"
   add_foreign_key "reviews", "users"

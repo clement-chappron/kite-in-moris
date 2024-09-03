@@ -10,16 +10,14 @@
   }
 }
 
-.spacer-14vh {
-  height: 14vh;
+.container-100vh {
+  min-height: calc(100vh - 80px);
 }
 
 .devise-input-form {
-  margin-top: 10vh;
-
   input {
     margin: 0 auto;
-    padding: 16px 24px;
+    padding: 12px 24px;
     border-radius: 50px;
     width: 100%;
     max-width: 300px;
@@ -56,7 +54,7 @@
   //à chercher
   input {
     margin-right: 10px;
-    ::-ms-check {
+    ::check {
       background-color: white !important;
     }
   }
@@ -84,9 +82,16 @@
   object-position: center;
 }
 
+.bio-container {
+  width: calc( 300px + 4vw );
+  margin: auto;
+}
+
 .bio {
   width: calc( 300px + 4vw );
+  min-height: 120px;
   height: 120px;
+  max-height: 180px;
   margin: 0 auto;
   padding: 16px 24px;
   background-color: rgba(255, 255, 255, 0.3) !important;
@@ -99,12 +104,12 @@
 }
 
 .textarea {
-  overflow-y: scroll; /* Permettre le défilement vertical */
-  scrollbar-width: none; /* Masquer la barre de défilement dans Firefox */
-  -ms-overflow-style: none;  /* Masquer la barre de défilement dans IE et Edge */
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Masquer la barre de défilement dans les navigateurs basés sur Webkit (Chrome, Safari) */
+
 .textarea::-webkit-scrollbar {
   display: none;
 }

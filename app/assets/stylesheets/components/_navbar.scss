@@ -1,12 +1,88 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar-container {
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  z-index: 1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-search {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  margin-right: 8px;
+  padding-top: 5px;
+  padding-left: 1px;
+  width: 54px;
+  background-color: white;
+  border-radius: 50px;
+  height: 54px;
+  transition: all 0.3s;
 }
 
-.navbar-lewagon .navbar-brand img {
-  height: 60px;
+.navbar-search:hover {
+  font-size: 1.2rem;
+  background-color: rgba(207, 237, 88, 0.6);
+}
+
+.navbar-user {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-right: 5vw;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.navbar-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 54px;
+  margin-bottom: 0;
+  text-align: center;
+  line-height: 1;
+}
+
+.navbar-subtitle {
+  color: $very-light-gray;
+  font-size: .7rem;
+  margin-top: 1px;
+}
+
+.navbar-fullscreen {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow-y: hidden;
+  z-index: 1;
+  margin: auto;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  transition: opacity 0.5s ease-in-out, background-color 0.7s ease-in-out;
+}
+
+.navbar-fullscreen.active {
+  opacity: 1;
+  visibility: visible;
+  background-color: rgba($color: $gray, $alpha: .98);
+}
+
+.navbar-burger-item {
+  color: white !important;
+  font-size: 1.5rem;
+  padding: .5rem;
+  margin: .5rem;
+  text-align: center;
 }

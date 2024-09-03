@@ -1,5 +1,33 @@
 <div class='container'>
-  <h1>Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
+  <h1 style='margin-top: 60px;'>Categories</h1>
+
+  <div id="allCategories" class="categories horizontal-scroll-container">
+    <div class="d-flex">
+      <%= link_to '#' do %>
+        <div class="categories-item active-category">
+          <p class='link link-underline'>All</p>
+        </div>
+      <% end %>
+      <%= link_to '#' do %>
+        <div class="categories-item">
+          <p class='link link-underline'>Schools</p>
+        </div>
+      <% end %>
+      <%= link_to '#' do %>
+        <div class="categories-item">
+          <p class='link link-underline'>Shops</p>
+        </div>
+      <% end %>
+      <%= link_to '#' do %>
+        <div class="categories-item">
+          <p class='link link-underline'>Spot</p>
+        </div>
+      <% end %>
+    </div>
+
+
+
+  </div>
+
 
 </div>
