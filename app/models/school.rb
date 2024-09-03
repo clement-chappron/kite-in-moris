@@ -1,6 +1,7 @@
 class School < ApplicationRecord
   belongs_to :user
   belongs_to :location
+  has_many :review_schools, dependent: :destroy
 
   # has_many :opening_hours, dependent: :destroy
 
