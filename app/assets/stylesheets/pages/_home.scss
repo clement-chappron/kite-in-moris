@@ -16,7 +16,6 @@
   transition: all 0.3s;
   p {
     margin-bottom: 0;
-    font-weight: 500;
   }
   &:hover {
     background-color: rgba(207, 237, 88, 0.4);
@@ -28,4 +27,15 @@
 
 .active-category {
   background-color: rgb(207, 237, 88);
+}
+
+.horizontal-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll: smooth;
+}
+
+.horizontal-scroll-content {
+  display: inline-block;
 }
