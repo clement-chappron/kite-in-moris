@@ -8,11 +8,11 @@
       <p><%= card.location.name %></p>
       <% case card.class.name %>
       <% when "School" %>
-        <%= link_to "Show", school_path(card.id) %>
+        <div class="d-flex"><%= link_to "Show", school_path(card.id), class:'btn btn-primary' %></div>
       <% when "Shop" %>
-        <%= link_to "Show", shop_path(card.id) %>
+        <div class="d-flex"><%= link_to "Show", shop_path(card.id), class:'btn btn-primary' %></div>
       <% when "Spot" %>
-        <%= link_to "Show", spot_path(card.id) %>
+        <div class="d-flex"><%= link_to "Show", spot_path(card.id), class:'btn btn-primary' %></div>
       <% end %>
 
     </div>

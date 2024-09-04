@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [ :home, :filter_categories ]
 
   def home
+    @locations = Location.all
   end
 
   def filter_categories
@@ -16,6 +17,8 @@ class PagesController < ApplicationController
                Shop.all.sort_by(&:name)
              when 'spots'
                Spot.all.sort_by(&:name)
+             else
+              []
              end
 
     respond_to do |format|
