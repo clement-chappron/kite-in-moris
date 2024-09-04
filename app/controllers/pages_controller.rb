@@ -9,15 +9,13 @@ class PagesController < ApplicationController
 
     @cards = case @category
              when 'all'
-                School.all + Shop.all + Spot.all
+               [School.all, Shop.all, Spot.all].flatten.sort_by(&:name)
              when 'schools'
-               School.all
+               School.all.sort_by(&:name)
              when 'shops'
-                Shop.all
+               Shop.all.sort_by(&:name)
              when 'spots'
-                Spot.all
-             else
-                School.all + Shop.all + Spot.all
+               Spot.all.sort_by(&:name)
              end
 
     respond_to do |format|

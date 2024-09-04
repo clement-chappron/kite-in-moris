@@ -1,34 +1,39 @@
 import { Controller } from "@hotwired/stimulus"
-
-// Connects to data-controller="categories-filter"
 export default class extends Controller {
   static targets = ["cards"]
 
+  connect() {
+    fetch(`/filter_categories?category=all`, {
+      headers: {
+        "Accept": "text/html"
+      }
+    })
+    .then(response => response.text())
+    .then(html => {
+        this.cardsTarget.innerHTML = html;
+
+      })
+    }
+
   filter(event) {
     event.preventDefault();
+
+    document.querySelectorAll('.categories-item').forEach(item => {
+      item.classList.remove('active-category');
+    });
+    event.currentTarget.classList.add('active-category');
 
     const category = event.currentTarget.dataset.category;
 
     fetch(`/filter_categories?category=${category}`, {
       headers: {
-        "Accept": "text/html"  // Change to accept normal HTML
+        "Accept": "text/html"
       }
     })
     .then(response => response.text())
     .then(html => {
-      console.log(html);  // Vérifie le contenu HTML
-      console.log(this.cardsTarget);  // Vérifie que l'élément cardsTarget existe
+        this.cardsTarget.innerHTML = html;
 
-      if (this.cardsTarget) {
-        this.cardsTarget.innerHTML = html;  // Injecte le HTML dans cardsTarget
-        console.log("HTML injecté avec succès dans cardsTarget");
-      } else {
-        console.error("cardsTarget est null ou non défini");
-      }
-    })
-    .catch(error => {
-      console.error('Il y a eu une erreur!', error);
-    });
+      })
   }
-
 }

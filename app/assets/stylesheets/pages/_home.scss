@@ -14,11 +14,12 @@
   padding-left: 24px;
   margin-right: 8px;
   transition: all 0.3s;
+  cursor: pointer;
   p {
     margin-bottom: 0;
   }
   &:hover {
-    background-color: rgba(207, 237, 88, 0.4);
+    background-color: rgb(207, 237, 88);
     // p {
     //   color:white !important;
     // }
@@ -27,6 +28,7 @@
 
 .active-category {
   background-color: rgb(207, 237, 88);
+  
 }
 
 .horizontal-scroll-container {
