@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_school, only: [:create_step_2, :create_step_3, :create_step_4]
+  before_action :set_school, only: [:edit, :update, :show, :destroy, :create_step_2, :create_step_3, :create_step_4]
 
   def index
     if params[:location_id]
@@ -46,15 +46,15 @@ class SchoolsController < ApplicationController
   end
 
 
-    def new
+  def new
     @school = School.new
-    @locations = Location.all # Pour l'étape 4
+    @locations = Location.all
   end
 
   def create_step_1
     @school = School.new(school_params_step_1)
     if @school.save
-      redirect_to new_school_path(step: 2) # Aller à l'étape 2
+      redirect_to new_school_path(step: 2)
     else
       render :new
     end
@@ -62,7 +62,7 @@ class SchoolsController < ApplicationController
 
   def create_step_2
     if @school.update(school_params_step_2)
-      redirect_to new_school_path(step: 3) # Aller à l'étape 3
+      redirect_to new_school_path(step: 3)
     else
       render :new
     end
@@ -70,7 +70,7 @@ class SchoolsController < ApplicationController
 
   def create_step_3
     if @school.update(school_params_step_3)
-      redirect_to new_school_path(step: 4) # Aller à l'étape 4
+      redirect_to new_school_path(step: 4)
     else
       render :new
     end
@@ -78,16 +78,33 @@ class SchoolsController < ApplicationController
 
   def create_step_4
     if @school.update(school_params_step_4)
-      redirect_to @school, notice: 'Établissement créé avec succès.' # Finaliser la création
+      redirect_to @school, notice: 'Établissement créé avec succès.'
     else
       render :new
     end
   end
 
+  def update
+    if @school.update(school_params)
+      redirect_to @school, notice: 'School was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @school.destroy
+    redirect_to schools_path, notice: 'School was successfully deleted.'
+  rescue ActiveRecord::RecordNotFound
+    redirect_to schools_path, alert: 'School not found.'
+  end  
+  
   private
 
   def set_school
     @school = School.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to schools_path, alert: 'School not found.'
   end
 
   def school_params_step_1

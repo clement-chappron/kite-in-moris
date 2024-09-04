@@ -197,6 +197,67 @@
               return true;
             }
           });
+
+
+          document.addEventListener('DOMContentLoaded', function() {
+            const nextStepButtons = document.querySelectorAll('[id^="next-step-"]');
+
+            function validateStep(step) {
+              let isValid = true;
+
+              switch(step) {
+                case 1:
+                  const phone = document.querySelector('input[name="school[phone]"]').value;
+                  const website = document.querySelector('input[name="school[website]"]').value;
+                  const email = document.querySelector('input[name="school[email]"]').value;
+
+                  // Regex pour la validation
+                  const phoneRegex = /^\+?(\d[\d\- ]{7,}\d)$/;
+                  const websiteRegex = /^(https?:\/\/[^\s/$.?#].[^\s]*)$/i;
+                  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                  if (!phoneRegex.test(phone)) {
+                    isValid = false;
+                    alert('Le numéro de téléphone est invalide.');
+                  }
+
+                  if (!websiteRegex.test(website)) {
+                    isValid = false;
+                    alert('Le site web est invalide.');
+                  }
+
+                  if (!emailRegex.test(email)) {
+                    isValid = false;
+                    alert('L\'email est invalide.');
+                  }
+                  break;
+
+                // Ajoutez d'autres validations pour les étapes suivantes si nécessaire
+
+                default:
+                  break;
+              }
+
+              return isValid;
+            }
+
+            nextStepButtons.forEach(button => {
+              button.addEventListener('click', function() {
+                const step = parseInt(button.id.split('-')[2]);
+                if (validateStep(step)) {
+                  currentStep++;
+                  showStep(currentStep);
+                }
+              });
+            });
+
+            function showStep(step) {
+              document.querySelectorAll('.step').forEach(el => {
+                el.classList.add('d-none');
+              });
+              document.querySelector(`.step-${step}`).classList.remove('d-none');
+            }
+          });
         </script>
       </div>
     </div>

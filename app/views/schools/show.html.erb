@@ -1,28 +1,116 @@
-<h1><%= @school.name %></h1>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 text-center mb-4">
+      <h1><%= @school.name %></h1>
+      <h5>School</h5>
+    </div>
+    
+    <div class="col-12 text-center mb-3">
+      <!--<h6><%#= pluralize(@school.reviews.count, 'review') %></h6>-->
+    </div>
 
-<div class="school-details">
-  <p><strong>Adresse :</strong> <%= @school.address %></p>
-  <p><strong>Téléphone :</strong> <%= @school.phone %></p>
-  <p><strong>Site web :</strong> <%= link_to @school.website, @school.website, target: "_blank" %></p>
-  <p><strong>Email :</strong> <%= mail_to @school.email %></p>
-</div>
-
-<%= link_to 'Retour à la liste des écoles', schools_path, class: 'btn btn-primary' %>
-<%= link_to 'Modifier', edit_school_path(@school), class: 'btn btn-warning' %>
-<%= link_to 'Supprimer', school_path(@school), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette école ?' }, class: 'btn btn-danger' %>
-
-
-<h2>Avis</h2>
-<div class="reviews">
-  <% if @reviews.present? %>
-    <% @reviews.each do |review| %>
-      <div class="review">
-        <strong><%= review.user.name %></strong>
-        <p><%= review.content %></p>
+    <div class="col-12 mb-4">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex">
+          <a href="tel:<%= @school.phone %>" class="btn btn-outline-primary me-2">
+            <i class="fas fa-phone-alt"></i>
+          </a>
+          <a href="mailto:<%= @school.email %>" class="btn btn-outline-primary me-2">
+            <i class="fas fa-envelope"></i>
+          </a>
+<!--          <a href="https://www.google.com/maps?q=<%#= @school.address %>" target="_blank" class="btn btn-outline-primary">
+            <i class="fas fa-map-marker-alt"></i>
+          </a>-->
+        </div>
+        <!--<div id="map" style="height: 200px; width: 100%;"></div>-->
       </div>
-    <% end %>
-  <% else %>
-    <p>Pas d'avis pour cette école.</p>
-  <% end %>
+    </div>
+
+    <div class="col-12 mb-3">
+      <h5>Description</h5>
+      <p><%= @school.description %></p>
+    </div>
+
+    <div class="col-12 mb-3">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h5>Rental</h5>
+          <p><%= @school.rental %></p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h5>Level</h5>
+          <p><%= @school.levels %></p>
+        </div>
+      </div>
+    </div>
+
+<!--    <div class="col-12 mb-3">
+      <h5>Images</h5>
+      <div class="d-flex flex-wrap">
+        <%# @school.images.each do |image| %>-->
+<!--          <div class="me-2 mb-2">-->
+            <%#= image_tag image.url, class: 'img-fluid', style: 'max-width: 200px; height: auto;' %>
+<!--          </div>-->
+        <%# end %>
+<!--      </div>
+    </div>-->
+
+    <div class="col-12 mb-3">
+      <h5>Opening Hours</h5>
+      <div id="calendar"></div>
+    </div>
+
+    <div class="col-12 mb-3 text-center">
+      <h5>Follow Us</h5>
+      <a href="<%= @school.website %>" class="btn btn-outline-primary me-2" target="_blank">
+        <i class="fas fa-globe"></i>
+      </a>
+      <a href="<%= @school.facebook %>" class="btn btn-outline-primary me-2" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="<%= @school.instagram %>" class="btn btn-outline-primary" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+
+<!--    <div class="col-12 text-center mb-4">-->
+      <%#= link_to 'Add a Review', new_school_review_path(@school), class: 'btn btn-primary' %>
+<!--    </div>-->
+
+    <div class="col-12">
+      <h5>Reviews</h5>
+      <div class="reviews">
+        <% if @reviews.present? %>
+          <% @reviews.each do |review| %>
+            <div class="review mb-3 p-3 border rounded">
+              <strong><%= review.user.name %></strong>
+              <p><%= review.content %></p>
+            </div>
+          <% end %>
+        <% else %>
+          <p>No reviews for this school yet.</p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-12 text-center mb-4">
+      <%= link_to 'Back to Index', schools_path, class: 'btn btn-secondary me-2' %>
+      <%= link_to 'Edit School', edit_school_path(@school), class: 'btn btn-warning' %>
+    </div>
+
+  </div>
 </div>
 
+<!--<script>
+  mapboxgl.accessToken = '<%#= ENV["MAPBOX_API_KEY"] %>';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [<%#= @school.longitude %>, <%= @school.latitude %>],
+    zoom: 12
+  });
+
+  new mapboxgl.Marker()
+    .setLngLat([<%#= @school.longitude %>, <%= @school.latitude %>])
+    .addTo(map);
+</script>-->
