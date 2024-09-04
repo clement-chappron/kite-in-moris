@@ -1,33 +1,27 @@
 <div class='container'>
   <h1 style='margin-top: 60px;'>Categories</h1>
 
-  <div id="allCategories" class="categories horizontal-scroll-container">
-    <div class="d-flex">
-      <%= link_to '#' do %>
-        <div class="categories-item active-category">
+  <div data-controller="categories-filter">
+    <div id="allCategories" class="categories horizontal-scroll-container">
+      <div class="d-flex">
+        <!-- Ajout d'un data-category pour identifier les catégories -->
+        <div data-action="click->categories-filter#filter" data-category="all" class="categories-item active-category">
           <p class='link link-underline'>All</p>
         </div>
-      <% end %>
-      <%= link_to '#' do %>
-        <div class="categories-item">
+        <div data-action="click->categories-filter#filter" data-category="schools" class="categories-item">
           <p class='link link-underline'>Schools</p>
         </div>
-      <% end %>
-      <%= link_to '#' do %>
-        <div class="categories-item">
+        <div data-action="click->categories-filter#filter" data-category="shops" class="categories-item">
           <p class='link link-underline'>Shops</p>
         </div>
-      <% end %>
-      <%= link_to '#' do %>
-        <div class="categories-item">
+        <div data-action="click->categories-filter#filter" data-category="spots" class="categories-item">
           <p class='link link-underline'>Spot</p>
         </div>
-      <% end %>
+      </div>
     </div>
 
-
-
+    <div data-categories-filter-target="cards" class="cards">
+        <%# rendu des cards dynamiquement par AJAX %>
+    </div>
   </div>
-
-
 </div>

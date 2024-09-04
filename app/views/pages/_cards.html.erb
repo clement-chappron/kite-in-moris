@@ -1,0 +1,20 @@
+<div data-categories-filter-target="cards">
+  <% @cards.each do |card| %>
+    <div class="card" data-category="<%= card.class.name.downcase %>">
+
+      <p><%= card.class.name %></p>
+      <h3><%= card.name %></h3>
+      <p><%= card.description %></p>
+      <p><%= card.location.name %></p>
+      <% case card.class.name %>
+      <% when "School" %>
+        <%= link_to "Show", school_path(card.id) %>
+      <% when "Shop" %>
+        <%= link_to "Show", shop_path(card.id) %>
+      <% when "Spot" %>
+        <%= link_to "Show", spot_path(card.id) %>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
