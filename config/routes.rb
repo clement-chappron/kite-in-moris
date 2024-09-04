@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   root to: "pages#home"
+  get 'filter_categories', to: 'pages#filter_categories'
 
   resources :locations, only: [:index]
 
