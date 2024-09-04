@@ -7,24 +7,22 @@
   <p><strong>Email :</strong> <%= mail_to @school.email %></p>
 </div>
 
+<%= link_to 'Retour à la liste des écoles', schools_path, class: 'btn btn-primary' %>
+<%= link_to 'Modifier', edit_school_path(@school), class: 'btn btn-warning' %>
+<%= link_to 'Supprimer', school_path(@school), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette école ?' }, class: 'btn btn-danger' %>
 
-<h2>Reviews</h2>
-<% if @school.review_school.any? %>
-  <ul>
-    <% @school.review_school.each do |review| %>
-      <li>
-        <p><%= review.rating %> / 5</p>
-        <p><%= review.description %></p>
-      </li>
+
+<h2>Avis</h2>
+<div class="reviews">
+  <% if @reviews.present? %>
+    <% @reviews.each do |review| %>
+      <div class="review">
+        <strong><%= review.user.name %></strong>
+        <p><%= review.content %></p>
+      </div>
     <% end %>
-  </ul>
-<% end %>
+  <% else %>
+    <p>Pas d'avis pour cette école.</p>
+  <% end %>
+</div>
 
-<%= simple_form_for [@school, @review_school] do |f| %>
-  <%= f.input :rating %>
-  <%= f.input :description %>
-  <%= f.button :submit %>
-<% end %>
-
-
-<%= link_to 'Add review', new_school_review_path(@school), class: 'btn btn-primary' %>

@@ -1,5 +1,6 @@
 class SchoolsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_school, only: [:create_step_2, :create_step_3, :create_step_4]
 
   def index
     if params[:location_id]
@@ -44,14 +45,40 @@ class SchoolsController < ApplicationController
     # }
   end
 
-  def new
-    @school = current_user.schools.build
+
+    def new
+    @school = School.new
+    @locations = Location.all # Pour l'étape 4
   end
 
-  def create
-    @school = current_user.schools.build(school_params)
+  def create_step_1
+    @school = School.new(school_params_step_1)
     if @school.save
-      redirect_to @school, notice: 'Établissement créé avec succès.'
+      redirect_to new_school_path(step: 2) # Aller à l'étape 2
+    else
+      render :new
+    end
+  end
+
+  def create_step_2
+    if @school.update(school_params_step_2)
+      redirect_to new_school_path(step: 3) # Aller à l'étape 3
+    else
+      render :new
+    end
+  end
+
+  def create_step_3
+    if @school.update(school_params_step_3)
+      redirect_to new_school_path(step: 4) # Aller à l'étape 4
+    else
+      render :new
+    end
+  end
+
+  def create_step_4
+    if @school.update(school_params_step_4)
+      redirect_to @school, notice: 'Établissement créé avec succès.' # Finaliser la création
     else
       render :new
     end
@@ -59,7 +86,23 @@ class SchoolsController < ApplicationController
 
   private
 
-  def school_params
-    params.require(:school).permit(:name, :address, :phone, :website, :email, :description, :type, :location_id)
+  def set_school
+    @school = School.find(params[:id])
+  end
+
+  def school_params_step_1
+    params.require(:school).permit(:name, :address, :phone, :website, :email)
+  end
+
+  def school_params_step_2
+    params.require(:school).permit(:description)
+  end
+
+  def school_params_step_3
+    params.require(:school).permit(:rental, :levels)
+  end
+
+  def school_params_step_4
+    params.require(:school).permit(:fee, :facebook, :instagram, :location_id)
   end
 end

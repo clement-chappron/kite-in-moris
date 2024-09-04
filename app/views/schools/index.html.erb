@@ -1,42 +1,45 @@
-<h1>Schools</h1>
+<div class="container my-5">
+  <div class="text-center mb-4">
+    <h1 class="display-4">Schools</h1>
+  </div>
 
-<div class="filter-buttons">
-  <% @locations.each do |location| %>
-    <%= button_to location.name, schools_path(location_id: location.id), method: :get, class: "btn btn-primary" %>
-  <% end %>
+  <div class="filter-buttons mb-4 text-center">
+    <%= button_to 'Tous', schools_path, method: :get, class: "btn btn-outline-secondary me-2" %> <!-- Bouton pour tout afficher -->
+    <% @locations.each do |location| %>
+      <%= button_to location.name, schools_path(location_id: location.id), method: :get, class: "btn btn-outline-primary me-2 mb-2" %>
+    <% end %>
+  </div>
+
+  <div id="schools-list" class="row justify-content-center">
+    <%= render partial: 'schools_list', locals: { schools: @schools } %>
+  </div>
+
+<div class="text-center my-4">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <%= button_to schools_path(location_id: params[:location_id], offset: (@schools.count + (params[:offset] || 0).to_i)), 
+                  remote: true, 
+                  method: :get, 
+                  class: "btn btn-outline-secondary d-flex align-items-center me-3", 
+                  id: "load-more" do %>
+      <i class="fas fa-plus me-2"></i> <!-- Icône Font Awesome pour le bouton "Load More" -->
+      Load More
+    <% end %>
+
+    <%= link_to new_school_path, 
+                class: 'btn btn-outline-success d-flex align-items-center', 
+                role: 'button' do %>
+      <i class="fas fa-school me-2"></i> <!-- Icône Font Awesome pour le bouton "Créer un nouvel établissement" -->
+      Create your company
+    <% end %>
+  </div>
 </div>
 
-<div id="schools-list">
-  <%= render partial: 'schools_list', locals: { schools: @schools } %>
+
+  <div id="map" class="my-4 mb-4 rounded shadow" style="height: 400px;"></div>
+
 </div>
-
-<div id="map" style="height: 400px;"></div>
-
-<%= button_to "Load More", schools_path(location_id: params[:location_id], offset: (@schools.count + (params[:offset] || 0).to_i)), remote: true, class: "btn btn-secondary", id: "load-more" %>
-
-<%= link_to 'Créer un nouvel établissement', new_school_path, class: 'btn btn-primary' %> <!-- Ceci est temporaire -->
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Initialize MapBox map
-    mapboxgl.accessToken = 'your_mapbox_access_token';
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [2.3522, 48.8566], // Default center coordinates
-      zoom: 12
-    });
-
-    // Add markers to the map
-    const markers = <%= raw @markers.to_json %>;
-    markers.forEach((marker) => {
-      new mapboxgl.Marker()
-        .setLngLat([marker.lng, marker.lat])
-        .setPopup(new mapboxgl.Popup().setHTML(marker.info_window)) // add this if you want popups
-        .addTo(map);
-    });
-  });
-
   document.addEventListener("turbo:load", function() {
     const loadMoreButton = document.getElementById("load-more");
 
@@ -56,4 +59,23 @@
     }
   });
 
+  document.addEventListener("DOMContentLoaded", function() {
+    // Initialize MapBox map
+    mapboxgl.accessToken = 'your_mapbox_access_token';
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [2.3522, 48.8566], // Default center coordinates
+      zoom: 12
+    });
+
+    // Add markers to the map
+    const markers = <%= raw @markers.to_json %>;
+    markers.forEach((marker) => {
+      new mapboxgl.Marker()
+        .setLngLat([marker.lng, marker.lat])
+        .setPopup(new mapboxgl.Popup().setHTML(marker.info_window)) // add this if you want popups
+        .addTo(map);
+    });
+  });
 </script>
