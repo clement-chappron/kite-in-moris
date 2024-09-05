@@ -1,4 +1,4 @@
-<div id="navbar-burger-id" class="navbar-fullscreen  d-flex flex-column justify-content-center align-items-center">
+<div id="navbar-burger-id" class="navbar-fullscreen d-flex flex-column justify-content-center align-items-center">
   <div class="d-flex flex-column" style="padding-bottom: 16vh;">
     <%= link_to 'Home', '/', class:'navbar-burger-item link link-underline'  %>
     <%= link_to 'My profile', edit_image_and_bio_path, class: 'navbar-burger-item link link-underline' %>
@@ -11,7 +11,7 @@
 <div class="navbar-container">
 
   <%# bouton du menu %>
-  <div id="navbar-btn" class="menu-wrapper">
+  <div id="navbar-btn" class="menu-wrapper absolute">
     <div class="hamburger-bg"></div>
     <div class="hamburger-menu"></div>
   </div>

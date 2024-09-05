@@ -5,6 +5,7 @@
 
   function toggleNavbar() {
     navbarBurger.classList.toggle('active');
+    document.getElementsByTagName('body')[0].classList.toggle('fixed-top');
   }
 
   navbarBtn.addEventListener('click', toggleNavbar);
