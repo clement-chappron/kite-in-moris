@@ -1,14 +1,272 @@
-<h1>New facility</h1>
+<div class="mb-3" style="background-color: #5BBBBC;">
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center mb-4" style="width: 25rem; border-radius: 10px;">
+      <div class="card-body">
+        <h1 class="text-center mb-4">Create Your Company</h1>
+        <h3 class="text-center mb-4">
+          <a class="btn btn-primary disabled placeholder col-3" aria-disabled="true">School</a>
+        </h3>
+        
+        <%= simple_form_for @school, url: create_step_1_schools_path, method: :post, html: { id: 'school-form' } do |f| %>
 
-<%= simple_form_for @school do |f| %>
-  <%= f.input :name, label: "Nom de l'établissement" %>
-  <%= f.input :address, label: "Adresse" %>
-  <%= f.input :phone, label: "Téléphone" %>
-  <%= f.input :website, label: "Site Web" %>
-  <%= f.input :email, label: "Email" %>
-  <%= f.input :description, label: "Description" %>
+          <div class="text-center mb-4">
+            <h5>Step <%= @step %> of 5</h5>
+          </div>
 
-  <%= f.input :category, collection: [['School', 'school'], ['Shop', 'shop']], prompt: "Sélectionnez le type d'établissement", label: "Type d'établissement" %>
+          <div class="step step-1">
+            <div class="mb-3">
+              <%= f.input :name, label: false, placeholder: "Company name", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+            </div>
+            <div class="mb-3">
+              <%= f.input :email, label: false, placeholder: "Company email", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+            </div>
+            <div class="mb-3">
+              <%= f.input :address, label: false, placeholder: "Address", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+            </div>
+            <div class="mb-3">
+              <%= f.input :phone, label: false, placeholder: "Phone", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+            </div>
+            <div class="mb-3">
+              <%= f.input :website, label: false, placeholder: "Website", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+            </div>
 
-  <%= f.submit 'Créer l\'établissement', class: 'btn btn-primary' %>
-<% end %>
+            <div class="text-center mb-4">
+              <%= link_to 'Back', schools_path, class: 'btn btn-secondary me-2' %>
+              <%= button_tag 'Next', type: 'button', class: 'btn btn-primary', id: 'next-step-1' %>
+            </div>
+          </div>
+
+          <div class="step step-2 d-none">
+            <div class="mb-3">
+              <%= f.input :description, label: false, placeholder: "Description", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+            </div>
+
+            <div class="text-center mb-4">
+              <%= button_tag 'Back', type: 'button', class: 'btn btn-secondary me-2', id: 'back-step-2' %>
+              <%= button_tag 'Next', type: 'button', class: 'btn btn-primary', id: 'next-step-2' %>
+            </div>
+          </div>
+
+          <div class="step step-3 d-none">
+
+            <div class="position-relative">
+              <%= f.input :rental, label: false, placeholder: "Rental?", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;'} %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.input :levels, label: false, placeholder: "Levels", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+            </div>
+
+            <div class="text-center mb-4">
+              <%= button_tag 'Back', type: 'button', class: 'btn btn-secondary me-2', id: 'back-step-3' %>
+              <%= button_tag 'Next', type: 'button', class: 'btn btn-primary', id: 'next-step-3' %>
+            </div>
+          </div>
+
+          <div class="step step-4 d-none">
+            <div class="mb-3">
+              <label for="fee-range" class="form-label">Fee average</label>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted" id="min-fee">€50</span>
+                <span class="text-muted" id="max-fee">€150</span>
+              </div>
+              <div class="position-relative">
+                <input type="range" id="fee-range" min="50" max="150" step="1" value="50" class="form-range mt-3" />
+                <span id="fee-value" class="position-absolute mt-4" style="left: calc(0%); top: -30px;">€50</span>
+              </div>
+              <%= f.input :fee, label: false, as: :hidden, input_html: { id: 'hidden-fee', value: '50' } %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.input :location, label: false, collection: @locations, prompt: "Select your location", input_html: { class: 'form-select-custom', style: 'border-radius: 11px;' } %>
+            </div>
+
+            <div class="text-center mb-4">
+              <%= button_tag 'Back', type: 'button', class: 'btn btn-secondary me-2', id: 'back-step-4' %>
+              <%= button_tag 'Next', type: 'button', class: 'btn btn-primary', id: 'next-step-4' %>
+            </div>
+          </div>
+
+          <div class="step step-5 d-none">
+            <div class="mb-3">
+              <%= f.input :facebook, label: false, placeholder: "Facebook", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+            </div>
+            <div class="mb-3">
+              <%= f.input :instagram, label: false, placeholder: "Instagram", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+            </div>
+
+            <div class="text-center mb-4">
+              <%= button_tag 'Back', type: 'submit', class: 'btn btn-secondary me-2', id: 'back-step-5' %>
+              <%= f.submit 'Submit', class: 'btn btn-primary' %>
+            </div>
+          </div>
+
+        <% end %>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('school-form');
+            
+            form.addEventListener('submit', function(event) {
+              if (!validateStep(currentStep)) {
+                event.preventDefault();
+                alert('Veuillez compléter tous les champs correctement.');
+              }
+            });
+          });
+
+          document.addEventListener('DOMContentLoaded', function() {
+            const feeRange = document.getElementById('fee-range');
+            const feeValue = document.getElementById('fee-value');
+            const hiddenFee = document.getElementById('hidden-fee');
+
+            function updateFeeDisplay() {
+              const value = parseInt(feeRange.value);
+              feeValue.textContent = `€${value}`;
+              const percentage = ((value - feeRange.min) / (feeRange.max - feeRange.min)) * 100;
+              feeValue.style.left = `calc(${percentage}% - 20px)`;
+
+              // Cache la valeur dynamique si le curseur est à une extrémité
+              if (value === parseInt(feeRange.min) || value === parseInt(feeRange.max)) {
+                feeValue.style.display = 'none';
+              } else {
+                feeValue.style.display = 'block';
+              }
+
+              hiddenFee.value = value;
+            }
+
+            updateFeeDisplay();
+
+            feeRange.addEventListener('input', updateFeeDisplay);
+          });
+
+          document.addEventListener("DOMContentLoaded", function() {
+            let currentStep = 1;
+            const totalSteps = 5;
+
+            function showStep(step) {
+              document.querySelectorAll('.step').forEach((el) => {
+                el.classList.add('d-none');
+              });
+              document.querySelector(`.step-${step}`).classList.remove('d-none');
+              document.querySelector('h5').innerHTML = `Step ${step} of ${totalSteps}`;
+            }
+
+            showStep(currentStep);
+
+            document.getElementById('next-step-1').addEventListener('click', function() {
+              if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
+              }
+            });
+
+            document.getElementById('back-step-2').addEventListener('click', function() {
+              currentStep--;
+              showStep(currentStep);
+            });
+
+            document.getElementById('next-step-2').addEventListener('click', function() {
+              if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
+              }
+            });
+
+            document.getElementById('back-step-3').addEventListener('click', function() {
+              currentStep--;
+              showStep(currentStep);
+            });
+
+            document.getElementById('next-step-3').addEventListener('click', function() {
+              if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
+              }
+            });
+
+            document.getElementById('back-step-4').addEventListener('click', function() {
+              currentStep--;
+              showStep(currentStep);
+            });
+
+            document.getElementById('next-step-4').addEventListener('click', function() {
+              if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
+              }
+            });
+
+            document.getElementById('back-step-5').addEventListener('click', function() {
+              currentStep--;
+              showStep(currentStep);
+            });
+
+            function validateStep(step) {
+              return true;
+            }
+          });
+
+
+          document.addEventListener('DOMContentLoaded', function() {
+            const nextStepButtons = document.querySelectorAll('[id^="next-step-"]');
+
+            function validateStep(step) {
+              let isValid = true;
+
+              switch(step) {
+                case 1:
+                  const phone = document.querySelector('input[name="school[phone]"]').value;
+                  const website = document.querySelector('input[name="school[website]"]').value;
+                  const email = document.querySelector('input[name="school[email]"]').value;
+
+                  const phoneRegex = /^\+?(\d[\d\- ]{7,}\d)$/;
+                  const websiteRegex = /^(https?:\/\/[^\s/$.?#].[^\s]*)$/i;
+                  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                  if (!phoneRegex.test(phone)) {
+                    isValid = false;
+                    alert('Le numéro de téléphone est invalide.');
+                  }
+
+                  if (!websiteRegex.test(website)) {
+                    isValid = false;
+                    alert('Le site web est invalide.');
+                  }
+
+                  if (!emailRegex.test(email)) {
+                    isValid = false;
+                    alert('L\'email est invalide.');
+                  }
+                  break;
+
+                default:
+                  break;
+              }
+
+              return isValid;
+            }
+
+            nextStepButtons.forEach(button => {
+              button.addEventListener('click', function() {
+                const step = parseInt(button.id.split('-')[2]);
+                if (validateStep(step)) {
+                  currentStep++;
+                  showStep(currentStep);
+                }
+              });
+            });
+
+            function showStep(step) {
+              document.querySelectorAll('.step').forEach(el => {
+                el.classList.add('d-none');
+              });
+              document.querySelector(`.step-${step}`).classList.remove('d-none');
+            }
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

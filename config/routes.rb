@@ -22,6 +22,13 @@ Rails.application.routes.draw do
 
   resources :schools do
     resources :review_schools, only: [:index, :new, :create]
+
+    collection do
+      post :create_step_1
+      patch :create_step_2
+      patch :create_step_3
+      patch :create_step_4
+    end
   end
 
   resources :shops do

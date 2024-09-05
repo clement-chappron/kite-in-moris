@@ -1,14 +1,68 @@
-<h1>Edit facility</h1>
+<div class="mb-2" style="background-color: #5BBBBC;">
+  <div class="d-flex justify-content-center align-items-center vh-100">
 
-<%= simple_form_for @school do |f| %>
-  <%= f.input :name, label: "Nom de l'établissement" %>
-  <%= f.input :address, label: "Adresse" %>
-  <%= f.input :phone, label: "Téléphone" %>
-  <%= f.input :website, label: "Site Web" %>
-  <%= f.input :email, label: "Email" %>
-  <%= f.input :description, label: "Description" %>
+    <div class="container">
+      <h1 class="text-center mb-3">Edit School</h1>
+      <%= simple_form_for @school do |f| %>
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <%= f.input :name, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :address, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+          </div>
+        </div>
 
-  <%= f.input :type, collection: [['School', 'school'], ['Shop', 'shop']], prompt: "Sélectionnez le type d'établissement", label: "Type d'établissement" %>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= f.input :phone, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :website, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+          </div>
+        </div>
 
-  <%= f.submit 'Mettre à jour l\'établissement', class: 'btn btn-primary' %>
-<% end %>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= f.input :email, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :description, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= f.input :rental, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :levels, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= f.input :fee, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :facebook, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <%= f.input :instagram, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :category, label: false, input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center gap-2 mt-4">
+          <%= link_to 'Back', school_path(@school), class: 'btn btn-secondary' %>
+          <%= f.submit "Update School", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
