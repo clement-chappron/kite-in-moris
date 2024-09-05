@@ -98,7 +98,7 @@ class SchoolsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     redirect_to schools_path, alert: 'School not found.'
   end  
-  
+
   private
 
   def set_school
@@ -121,5 +121,9 @@ class SchoolsController < ApplicationController
 
   def school_params_step_4
     params.require(:school).permit(:fee, :facebook, :instagram, :location_id)
+  end
+
+  def school_params
+    params.require(:school).permit(:name, :address, :phone, :website, :email, :description, :rental, :levels, :fee, :facebook, :instagram, :latitude, :longitude, :category)
   end
 end
