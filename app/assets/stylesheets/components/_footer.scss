@@ -1,11 +1,10 @@
 .footer {
+  margin-top: 60px;
+}
 
-  font-weight: 100 !important;
-  a {
-    color: white;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+.copyright {
+  font-size: .7rem !important;
+  color: rgb(190, 190, 190);
+  margin-top: 10px;
+  padding-bottom: 12px;
 }
