@@ -1,112 +1,17 @@
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-12 text-center mb-4">
-      <h1 class="display-4"><%= @school.name %></h1>
-      <p class="lead">School</p>
-    </div>
+<h1><%= @school.name %></h1>
 
-    <div class="col-12 mb-4">
-      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <div class="d-flex mb-3 mb-md-0">
-          <a href="tel:<%= @school.phone %>" class="btn btn-outline-primary me-2" title="Call">
-            <i class="fas fa-phone-alt"></i>
-          </a>
-          <a href="mailto:<%= @school.email %>" class="btn btn-outline-primary me-2" title="Email">
-            <i class="fas fa-envelope"></i>
-          </a>
-          <a href="https://www.google.com/maps?q=<%= @school.address %>" target="_blank" class="btn btn-outline-primary" title="View on Map">
-            <i class="fas fa-map-marker-alt"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 mb-3">
-      <h5>Description</h5>
-      <p class="text-muted"><%= @school.description %></p>
-    </div>
-
-    <div class="col-12 mb-3">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <h5>Rental</h5>
-          <p class="text-muted"><%= @school.rental %></p>
-        </div>
-        <div class="col-md-6 mb-3">
-          <h5>Level</h5>
-          <p class="text-muted"><%= @school.levels %></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 mb-3">
-      <h5>Images</h5>
-      <div class="d-flex flex-wrap">
-        <% @school.images.each do |image| %>
-          <div class="me-2 mb-2">
-            <%= image_tag image.url, class: 'img-fluid rounded', style: 'max-width: 200px; height: auto;' %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-12 mb-3">
-      <h5>Opening Hours</h5>
-      <div id="calendar" class="border rounded p-3 bg-light"></div> <!-- Replace with a calendar or schedule component -->
-    </div>
-
-    <div class="col-12">
-      <h5>Reviews</h5>
-      <div class="reviews mb-3">
-        <% if @reviews.present? %>
-          <% @reviews.each do |review| %>
-            <div class="review mb-3 p-3 border rounded">
-              <p class="mb-1"><strong>Rating:</strong> <%= review.rating %> / 5</p>
-              <p><%= review.content %></p>
-            </div>
-          <% end %>
-        <% else %>
-          <p class="text-muted">No reviews for this school yet.</p>
-        <% end %>
-      </div>
-      <div class="col-12 text-center mb-4">
-        <%= link_to "Add a Review", new_school_review_school_path(@school), class: 'btn btn-primary' %>
-      </div>
-    </div>
-
-    <div class="col-12 text-center mb-4">
-      <%= link_to 'Back', schools_path, class: 'btn btn-secondary me-2' %>
-      <%= link_to 'Edit School Information', edit_school_path(@school), class: 'btn btn-warning' %>
-    </div>
-
-    <div class="col-12 mb-3 text-center">
-      <h5>Follow Us</h5>
-      <div class="d-flex justify-content-center">
-        <a href="<%= @school.website %>" class="btn btn-outline-primary me-2" target="_blank" title="Website">
-          <i class="fas fa-globe"></i>
-        </a>
-        <a href="<%= @school.facebook %>" class="btn btn-outline-primary me-2" target="_blank" title="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="<%= @school.instagram %>" class="btn btn-outline-primary" target="_blank" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
-    </div>
-    <div id="map" style="height: 200px; width: 100%;" class="rounded border"></div>
-  </div>
+<div class="school-details">
+  <p><strong>Adresse :</strong> <%= @school.address %></p>
+  <p><strong>Téléphone :</strong> <%= @school.phone %></p>
+  <p><strong>Site web :</strong> <%= link_to @school.website, @school.website, target: "_blank" %></p>
+  <p><strong>Email :</strong> <%= mail_to @school.email %></p>
 </div>
 
-<script>
-  mapboxgl.accessToken = '<%= ENV["MAPBOX_API_KEY"] %>';
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [<%= @school.longitude %>, <%= @school.latitude %>],
-    zoom: 12
-  });
+<h2>Reviews</h2>
 
-  new mapboxgl.Marker()
-    .setLngLat([<%= @school.longitude %>, <%= @school.latitude %>])
-    .addTo(map);
-</script>
+<% @review_schools.each do |review| %>
+  <p><%= review.rating %>
+  <br><%= review.description %></p>
+<% end %>
+
+<%= link_to "Add a review", new_school_review_school_path(@school) %>
