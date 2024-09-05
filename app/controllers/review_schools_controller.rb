@@ -1,5 +1,5 @@
 class ReviewSchoolsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index new create]
   before_action :set_school, only: %i[index new create]
 
   def index
@@ -12,10 +12,11 @@ class ReviewSchoolsController < ApplicationController
 
   def create
     @review_school = ReviewSchool.new(review_school_params)
-    @review_school.school = @school
-    @review_school.user = current_user
+    @review_school.school_id = params[:school_id]
+    @review_school.user_id = current_user.id
+
     if @review_school.save
-      redirect_to school_review_schools_path(@school)
+      redirect_to school_path(params[:school_id])
     else
       render :new
     end

@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   end
 
   root to: "pages#home"
+  get 'filter_categories', to: 'pages#filter_categories'
 
   resources :locations, only: [:index]
+
   resources :blog_pages do
     resources :comment_blogs, only: [:index, :new, :create]
   end
@@ -33,7 +35,7 @@ Rails.application.routes.draw do
     resources :review_shops, only: [:index, :new, :create]
   end
 
-  resources :spots do
+  resources :spots, only: [:index, :show] do
     resources :review_spots, only: [:index, :new, :create]
   end
 end

@@ -1,2 +1,8 @@
 <h1><%= @blog_page.title %></h1>
 <p><%= @blog_page.content %></p>
+
+<% @comment_blogs.each do |comment| %>
+  <br><%= comment.description %></p>
+<% end %>
+
+<%= link_to 'Add comment', new_blog_page_comment_blog_path(@blog_page) %>

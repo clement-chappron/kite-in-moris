@@ -1,33 +1,47 @@
 <div class='container'>
   <h1 style='margin-top: 60px;'>Categories</h1>
 
-  <div id="allCategories" class="categories horizontal-scroll-container">
-    <div class="d-flex">
-      <%= link_to '#' do %>
-        <div class="categories-item active-category">
-          <p class='link link-underline'>All</p>
+  <div data-controller="categories-filter">
+    <div id="allCategories" class="categories horizontal-scroll-container">
+      <div class="d-flex">
+        <div data-action="click->categories-filter#filter" data-category="all" class="categories-item active-category">
+          <%= link_to 'All', '#', class: 'link link-underline' %>
         </div>
-      <% end %>
-      <%= link_to '#' do %>
-        <div class="categories-item">
-          <p class='link link-underline'>Schools</p>
+        <div data-action="click->categories-filter#filter" data-category="schools" class="categories-item">
+          <%= link_to 'Schools', '#', class: 'link link-underline' %>
         </div>
-      <% end %>
-      <%= link_to '#' do %>
-        <div class="categories-item">
-          <p class='link link-underline'>Shops</p>
+        <div data-action="click->categories-filter#filter" data-category="shops" class="categories-item">
+          <%= link_to 'Shops', '#', class: 'link link-underline' %>
         </div>
-      <% end %>
-      <%= link_to '#' do %>
-        <div class="categories-item">
-          <p class='link link-underline'>Spot</p>
+        <div data-action="click->categories-filter#filter" data-category="spots" class="categories-item">
+          <%= link_to 'Spot', '#', class: 'link link-underline' %>
         </div>
-      <% end %>
+      </div>
+    </div>
+    <br>
+
+    <div data-controller="categories-filter">
+      <div class="d-flex">
+        <div class="location-filter">
+          <%= link_to 'Filter by location', '#', class: 'link link-underline' %>
+        </div>
+      </div>
+
+      <div class="d-flex flex-wrap justify-content-center mt-2 px-4 w-100" style="max-width: 650px;">
+        <% @locations.each do |location| %>
+          <div class="location-items">
+            <%= link_to location.name, '#', class: 'link link-underline' %>
+          </div>
+        <% end %>
+      </div>
+
     </div>
 
 
+    <br>
 
+    <div data-categories-filter-target="cards" class="cards">
+        <%# rendu des cards dynamiquement par AJAX %>
+    </div>
   </div>
-
-
 </div>
