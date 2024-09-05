@@ -39,6 +39,11 @@ export default class extends Controller {
     document.getElementById("all-locations").classList.add('active-location');
 
     this.selectedLocation = 'All locations';
+    this.params = {
+      offset: 8,
+      limit: 8
+    };
+
     this.loadCards();
   }
 
@@ -51,6 +56,10 @@ export default class extends Controller {
     event.currentTarget.classList.add('active-category');
 
     this.selectedCategory = event.currentTarget.dataset.category;
+    this.params = {
+      offset: 8,
+      limit: 8
+    };
     this.loadCards();
   }
 
@@ -63,12 +72,18 @@ export default class extends Controller {
     event.currentTarget.classList.add('active-location');
 
     this.selectedLocation = event.currentTarget.dataset.location;
+    this.params = {
+      offset: 8,
+      limit: 8
+    };
+
     this.loadCards();
   }
 
   loadMore(event) {
     event.preventDefault();
     console.log('limit', this.params.limit);
+    console.log('offset', this.params.offset);
 
     fetch(`/filter_categories?category=${this.selectedCategory}&location=${this.selectedLocation}&limitLoad=${this.params.limit}&offset=${this.params.offset}`, {
       headers: {
