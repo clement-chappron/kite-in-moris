@@ -1,0 +1,31 @@
+.header-show {
+  height: 80vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.title-show {
+  position: relative;
+  top: 36%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+
+  h1 {
+    color: rgba(228, 238, 192, 0.35);
+    font-size: calc(1.5rem + 22vw);
+    font-weight: 900;
+    line-height: 90%;
+    text-align: center;
+  }
+}
+
+.icon-header {;
+  font-size: 3rem;
+  color: #CFED58;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -30,8 +30,7 @@
   border-radius: 50px;
 }
 .back-bg:hover {
-  border: 1px solid $light-gray;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(255, 255, 255, .5);
 }
 
 .back-arrow, .back-arrow::before, .back-arrow::after {
@@ -49,10 +48,6 @@
   width: 16px;
   border-radius: 2px;
   transition: all 0ms 300ms;
-}
-
-.back-arrow.animate {
-  background-color: transparent;
 }
 
 .back-arrow::before {

@@ -15,19 +15,17 @@
 
   <body>
     <div class="<%= 'devise-layout' if devise_controller? %>">
-    <% if spots_show_page? || shops_show_page? || schools_show_page? || blogs_show_page? %>
-      <%= render "shared/navbar_back" %>
-    <% else %>
-      <%= render "shared/navbar" %>
-    <% end %>
+      <% if spots_show_page? || shops_show_page? || schools_show_page? || blogs_show_page? %>
+        <%= render "shared/navbar_back" %>
+      <% else %>
+        <%= render "shared/navbar" %>
+      <% end %>
 
-      <%= render "shared/flashes" %>
-      <div style="padding-top: 80px;">
-        <%= yield %>
-      </div>
-      <%= render "shared/footer" %>
+        <%= render "shared/flashes" %>
+          <%= yield %>
+        </div>
+        <%= render "shared/footer" %>
     </div>
-
 
   </body>
 </html>
