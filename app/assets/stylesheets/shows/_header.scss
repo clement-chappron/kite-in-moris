@@ -7,25 +7,26 @@
 }
 
 .title-show {
-  position: relative;
-  top: 36%;
+  position: absolute;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 100%;
 
   h1 {
-    color: rgba(228, 238, 192, 0.35);
+    color: rgba(228, 238, 192, 0.183);
     font-size: calc(1.5rem + 22vw);
     font-weight: 900;
     line-height: 90%;
     text-align: center;
-  }
-}
+    text-shadow: 0px 10px 30px rgba(82, 89, 56, 0.43);
 
-.icon-header {;
-  font-size: 3rem;
-  color: #CFED58;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    @media (min-width: 768px) {
+      font-size: calc(1.5rem + 10vw);
+    }
+  }
+  p {
+    font-size: 2.6rem;
+    color: rgba(207, 237, 88, 0.4);
+  }
 }

@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :review_shops, only: [:index, :new, :create]
   end
 
-  resources :spots, only: [:index, :show] do
+  resources :spots, param: :slug, only: [:show] do
     resources :review_spots, only: [:index, :new, :create]
   end
 end

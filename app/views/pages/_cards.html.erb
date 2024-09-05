@@ -23,23 +23,22 @@
             <% case card.class.name %>
             <% when "School" %>
               <div class="d-flex">
-                <%= link_to school_path(card.id) do %>
+                <%= link_to school_path(card) do %>
                   <i class="fi fi-rs-arrow-up-right
                    card-arrow"></i>
                 <% end %>
               </div>
             <% when "Shop" %>
               <div class="d-flex">
-                <%= link_to shop_path(card.id) do %>
+                <%= link_to shop_path(card) do %>
                   <i class="fi fi-rs-arrow-up-right
                    card-arrow"></i>
                 <% end %>
               </div>
             <% when "Spot" %>
               <div class="d-flex">
-                <%= link_to spot_path(card.id) do %>
-                  <i class="fi fi-rs-arrow-up-right
-                   card-arrow"></i>
+                <%= link_to spot_path(card) do %>
+                  <i class="fi fi-rs-arrow-up-right card-arrow"></i>
                 <% end %>
               </div>
             <% end %>
