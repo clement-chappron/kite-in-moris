@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header">
+          <h2><%= @shop.name %></h2>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <strong>Address:</strong> <%= @shop.address %>
+          </p>
+          <p class="card-text">
+            <strong>Phone:</strong> <%= @shop.phone %>
+          </p>
+          <p class="card-text">
+            <strong>Website:</strong> <%= link_to @shop.website, @shop.website, target: '_blank', class: 'btn btn-link' %>
+          </p>
+          <p class="card-text">
+            <strong>Description:</strong> <%= @shop.description %>
+          </p>
+          <p class="card-text">
+            <strong>Email:</strong> <%= @shop.email %>
+          </p>
+          <p class="card-text">
+            <strong>Facebook:</strong> <%= link_to @shop.facebook, @shop.facebook, target: '_blank', class: 'btn btn-link' %>
+          </p>
+          <p class="card-text">
+            <strong>Instagram:</strong> <%= link_to @shop.instagram, @shop.instagram, target: '_blank', class: 'btn btn-link' %>
+          </p>
+          <p class="card-text">
+            <strong>Location:</strong> <%= @shop.location.name if @shop.location %>
+          </p>
+          <p class="card-text">
+            <strong>User:</strong> <%= @shop.user.email if @shop.user %>
+          </p>
+        </div>
+        <div class="card-footer text-right">
+          <%= link_to 'Edit', edit_shop_path(@shop), class: 'btn btn-warning' %>
+          <%= link_to 'Back', shops_path, class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

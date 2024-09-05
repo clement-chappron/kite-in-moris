@@ -1,0 +1,45 @@
+<div class="container my-5">
+  <div class="text-center mb-4">
+    <h1>Shops</h1>
+  </div>
+
+  <div class="row">
+    <% @shops.each do |shop| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= shop.name %></h5>
+            <p class="card-text"><strong>Address:</strong> <%= shop.address %></p>
+            <p class="card-text"><strong>Phone:</strong> <%= shop.phone %></p>
+            <p class="card-text">
+              <strong>Website:</strong>
+              <%= link_to shop.website, shop.website, class: 'btn btn-link', target: '_blank' %>
+            </p>
+            <p class="card-text"><strong>Description:</strong> <%= shop.description %></p>
+            <p class="card-text"><strong>Email:</strong> <%= shop.email %></p>
+            <p class="card-text">
+              <strong>Facebook:</strong>
+              <%= link_to shop.facebook, shop.facebook, class: 'btn btn-link', target: '_blank' %>
+            </p>
+            <p class="card-text">
+              <strong>Instagram:</strong>
+              <%= link_to shop.instagram, shop.instagram, class: 'btn btn-link', target: '_blank' %>
+            </p>
+            <p class="card-text">
+              <strong>Location:</strong> <%= shop.location.name if shop.location %>
+            </p>
+            <p class="card-text">
+              <strong>User:</strong> <%= shop.user.email if shop.user %>
+            </p>
+            <div class="d-flex justify-content-between">
+              <%= link_to 'Show', shop_path(shop), class: 'btn btn-info' %>
+              <%= link_to 'Edit', edit_shop_path(shop), class: 'btn btn-warning' %>
+              <%= link_to 'Destroy', shop_path(shop), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to 'New Shop', new_shop_path, class: 'btn btn-primary mb-3' %>
+</div>

@@ -1,0 +1,47 @@
+<%= simple_form_for shop, html: { class: 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.input :name, label: 'Shop Name', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.input :address, label: 'Address', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.input :phone, label: 'Phone Number', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.input :website, label: 'Website URL', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.input :description, label: 'Description', as: :text, input_html: { class: 'form-control', rows: 4 }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.input :email, label: 'Email Address', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.input :facebook, label: 'Facebook URL', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.input :instagram, label: 'Instagram URL', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.association :location, label: 'Location', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.association :user, label: 'User', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
