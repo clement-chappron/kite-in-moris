@@ -1,19 +1,46 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
+
 export default class extends Controller {
-  static targets = ["cards"]
+  static targets = ["locations", "locationBtn", "cards"];
+  static values = { params: Object };
 
   connect() {
-    fetch(`/filter_categories?category=all`, {
+    this.selectedCategory = 'all';
+    this.selectedLocation = 'All locations';
+    this.params = {
+      offset: 8,
+      limit: 8
+    };
+    this.loadCards();
+  }
+
+  loadCards() {
+    fetch(`/filter_categories?category=${this.selectedCategory}&location=${this.selectedLocation}&limitLoad=${this.params.limit}`, {
       headers: {
         "Accept": "text/html"
       }
     })
     .then(response => response.text())
     .then(html => {
-        this.cardsTarget.innerHTML = html;
+      this.cardsTarget.innerHTML = html;
+    })
+    .catch(error => console.error('Error:', error));
+  }
 
-      })
-    }
+  locations(event) {
+    event.preventDefault();
+
+    this.locationsTarget.classList.toggle("d-none");
+    this.locationBtnTarget.classList.toggle("border-green");
+
+    document.querySelectorAll('.location-items').forEach(item => {
+      item.classList.remove('active-location');
+    });
+    document.getElementById("all-locations").classList.add('active-location');
+
+    this.selectedLocation = 'All locations';
+    this.loadCards();
+  }
 
   filter(event) {
     event.preventDefault();
@@ -23,17 +50,38 @@ export default class extends Controller {
     });
     event.currentTarget.classList.add('active-category');
 
-    const category = event.currentTarget.dataset.category;
+    this.selectedCategory = event.currentTarget.dataset.category;
+    this.loadCards();
+  }
 
-    fetch(`/filter_categories?category=${category}`, {
+  filterByLocation(event) {
+    event.preventDefault();
+
+    document.querySelectorAll('.location-items').forEach(item => {
+      item.classList.remove('active-location');
+    });
+    event.currentTarget.classList.add('active-location');
+
+    this.selectedLocation = event.currentTarget.dataset.location;
+    this.loadCards();
+  }
+
+  loadMore(event) {
+    event.preventDefault();
+    console.log('limit', this.params.limit);
+
+    fetch(`/filter_categories?category=${this.selectedCategory}&location=${this.selectedLocation}&limitLoad=${this.params.limit}&offset=${this.params.offset}`, {
       headers: {
         "Accept": "text/html"
       }
     })
     .then(response => response.text())
     .then(html => {
-        this.cardsTarget.innerHTML = html;
+      // Ajoute les nouveaux éléments à la page
+      this.cardsTarget.insertAdjacentHTML('beforeend', html);
 
-      })
+      // Mise à jour pour le prochain chargement
+      this.params.offset += this.params.limit;
+    })
   }
 }

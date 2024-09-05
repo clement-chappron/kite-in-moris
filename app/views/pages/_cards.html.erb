@@ -1,52 +1,52 @@
-<div data-categories-filter-target="cards" class=" row g-2 row-cols-1 row-cols-md-2 row-cols-lg-3">
+
   <% @cards.each do |card| %>
-    <div class="categories-card col"
-         data-category="<%= card.class.name.downcase %>">
-      <div class="image-card"
-           style="background-image: url('<%= card.images.attached? ? cl_image_path(card.images.first.key,
-                         crop: :fill,
-                         dpr: 2.0,
-                         quality: "auto:best",
-                         gravity: :face,
-                         fetch_format: :auto) : asset_path("IMG_4667.webp") %>');">
-      </div>
-
-
-      <div class="pt-3 ps-3 d-flex justify-content-between">
-        <div>
-          <span><%= card.class.name %></span>
-          <h2 class="fs-4 fw-1"><%= card.name %></h2>
-          <p><i class="fi fi-rr-marker text-primary me-2"></i><%= card.location.name %></p>
+    <div class="col px-1">
+      <div class="categories-card" data-category="<%= card.class.name.downcase %>">
+        <div class="image-card"
+             style="background-image: url('<%= card.images.attached? ? cl_image_path(card.images.first.key,
+                           crop: :fill,
+                           dpr: 2.0,
+                           quality: "auto:best",
+                           gravity: :face,
+                           fetch_format: :auto) : asset_path("IMG_4667.webp") %>');">
         </div>
 
-        <div class="mt-auto">
-          <% case card.class.name %>
-          <% when "School" %>
-            <div class="d-flex">
-              <%= link_to school_path(card.id) do %>
-                <i class="fi fi-rs-arrow-up-right
-                 card-arrow"></i>
-              <% end %>
-            </div>
-          <% when "Shop" %>
-            <div class="d-flex">
-              <%= link_to shop_path(card.id) do %>
-                <i class="fi fi-rs-arrow-up-right
-                 card-arrow"></i>
-              <% end %>
-            </div>
-          <% when "Spot" %>
-            <div class="d-flex">
-              <%= link_to spot_path(card.id) do %>
-                <i class="fi fi-rs-arrow-up-right
-                 card-arrow"></i>
-              <% end %>
-            </div>
-          <% end %>
+
+        <div class="pt-3 ps-3 d-flex justify-content-between">
+          <div>
+            <span><%= card.class.name %></span>
+            <h2 class="fs-4 fw-1"><%= card.name %></h2>
+            <p><i class="fi fi-rr-marker text-primary me-2"></i><%= card.location.name %></p>
+          </div>
+
+          <div class="mt-auto">
+            <% case card.class.name %>
+            <% when "School" %>
+              <div class="d-flex">
+                <%= link_to school_path(card.id) do %>
+                  <i class="fi fi-rs-arrow-up-right
+                   card-arrow"></i>
+                <% end %>
+              </div>
+            <% when "Shop" %>
+              <div class="d-flex">
+                <%= link_to shop_path(card.id) do %>
+                  <i class="fi fi-rs-arrow-up-right
+                   card-arrow"></i>
+                <% end %>
+              </div>
+            <% when "Spot" %>
+              <div class="d-flex">
+                <%= link_to spot_path(card.id) do %>
+                  <i class="fi fi-rs-arrow-up-right
+                   card-arrow"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
+
+
       </div>
-
-
     </div>
   <% end %>
-</div>

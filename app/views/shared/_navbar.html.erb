@@ -1,4 +1,4 @@
-<div id="navbar-burger-id" class="navbar-fullscreen  d-flex flex-column justify-content-center align-items-center">
+<div id="navbar-burger-id" class="navbar-fullscreen d-flex flex-column justify-content-center align-items-center">
   <div class="d-flex flex-column" style="padding-bottom: 16vh;">
     <%= link_to 'Home', '/', class:'navbar-burger-item link link-underline'  %>
     <%= link_to 'My profile', edit_image_and_bio_path, class: 'navbar-burger-item link link-underline' %>
@@ -11,7 +11,7 @@
 <div class="navbar-container">
 
   <%# bouton du menu %>
-  <div id="navbar-btn" class="menu-wrapper">
+  <div id="navbar-btn" class="menu-wrapper absolute">
     <div class="hamburger-bg"></div>
     <div class="hamburger-menu"></div>
   </div>
@@ -29,8 +29,8 @@
     <% if user_signed_in? %>
         <%= link_to edit_image_and_bio_path do %>
           <p class='navbar-btn'>
-            <span class='link link-underline'>Hi <%= current_user.first_name %> !</span>
-            <span class='navbar-subtitle'>Kite in mauritius</span>
+            <span class='link link-underline'>Hi <%= current_user.first_name %></span>
+            <span class='navbar-subtitle'>Have a good ride !</span>
           </p>
         <% end %>
     <% else %>

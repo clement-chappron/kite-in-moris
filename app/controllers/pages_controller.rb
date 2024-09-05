@@ -7,19 +7,30 @@ class PagesController < ApplicationController
 
   def filter_categories
     @category = params[:category]
+    @location = params[:location]
 
     @cards = case @category
              when 'all'
-               [School.all, Shop.all, Spot.all].flatten.sort_by(&:name)
+               [School.all, Shop.all, Spot.all].flatten
              when 'schools'
-               School.all.sort_by(&:name)
+               School.all
              when 'shops'
-               Shop.all.sort_by(&:name)
+               Shop.all
              when 'spots'
-               Spot.all.sort_by(&:name)
+               Spot.all
              else
               []
              end
+
+    # Apply location filter if necessary
+    if @location.present? && @location != 'All locations'
+      @cards = @cards.select { |card| card.location.name == @location }
+    end
+
+    limit = params[:limitLoad].to_i
+    offset = params[:offset].to_i
+
+    @cards = @cards.sort_by(&:name).drop(offset).first(limit)
 
     respond_to do |format|
       format.html { render partial: "pages/cards", locals: { cards: @cards } }
