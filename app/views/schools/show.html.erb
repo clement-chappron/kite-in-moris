@@ -1,17 +1,95 @@
-<h1><%= @school.name %></h1>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 text-center mb-4">
+      <h1 class="display-4 text-primary"><%= @school.name %></h1>
+      <p class="lead text-secondary">School</p>
+    </div>
 
-<div class="school-details">
-  <p><strong>Adresse :</strong> <%= @school.address %></p>
-  <p><strong>Téléphone :</strong> <%= @school.phone %></p>
-  <p><strong>Site web :</strong> <%= link_to @school.website, @school.website, target: "_blank" %></p>
-  <p><strong>Email :</strong> <%= mail_to @school.email %></p>
+    <div class="col-12 mb-4">
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+        <a href="tel:<%= @school.phone %>" class="btn btn-outline-primary" title="Call">
+          <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="mailto:<%= @school.email %>" class="btn btn-outline-primary" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://www.google.com/maps?q=<%= @school.address %>" target="_blank" class="btn btn-outline-primary" title="View on Map">
+          <i class="fas fa-map-marker-alt"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-12 mb-3">
+      <h5 class="fw-bold text-primary">Description</h5>
+      <p class="text-muted"><%= @school.description %></p>
+    </div>
+
+    <div class="col-12 mb-4">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h5 class="fw-bold text-primary">Rental</h5>
+          <p class="text-muted"><%= @school.rental %></p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h5 class="fw-bold text-primary">Level</h5>
+          <p class="text-muted"><%= @school.levels %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mb-4">
+      <h5 class="fw-bold text-primary">Images</h5>
+      <div class="d-flex flex-wrap gap-3">
+        <% @school.images.each do |image| %>
+          <div class="rounded shadow-sm overflow-hidden" style="width: 150px; height: auto;">
+            <%= image_tag image.url, class: 'img-fluid' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-12 mb-4">
+      <h5 class="fw-bold text-primary">Opening Hours</h5>
+      <div id="calendar" class="border rounded p-3 bg-light"></div> <!-- Replace with a calendar or schedule component -->
+    </div>
+
+    <div class="col-12 mb-4">
+      <h5 class="fw-bold text-primary">Reviews</h5>
+      <div class="list-group">
+        <% @school.review_schools.each do |review| %>
+          <div class="list-group-item mb-2 shadow-sm">
+            <strong>Rating:</strong> <%= review.rating %>/5
+            <p class="mb-1"><%= review.description %></p>
+          </div>
+        <% end %>
+        <% if @school.review_schools.empty? %>
+          <p class="text-muted">No reviews for this school yet.</p>
+        <% end %>
+      </div>
+      <div class="col-12 mb-4">
+        <%= link_to "Add a Review", new_school_review_school_path(@school.id), class: 'btn btn-success' %>
+      </div>
+    </div>
+
+    <div class="col-12 mb-4 text-end">
+      <h5 class="fw-bold text-primary">Follow Us</h5>
+      <div class="d-flex justify-content-end gap-3">
+        <a href="<%= @school.website %>" class="btn btn-outline-primary" target="_blank" title="Website">
+          <i class="fas fa-globe"></i>
+        </a>
+        <a href="<%= @school.facebook %>" class="btn btn-outline-primary" target="_blank" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="<%= @school.instagram %>" class="btn btn-outline-primary" target="_blank" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-12 text-center mb-4">
+      <%= link_to 'Back', schools_path, class: 'btn btn-secondary me-2' %>
+      <%= link_to 'Edit School Information', edit_school_path(@school), class: 'btn btn-warning me-2' %>
+      <%= link_to 'Delete School', school_path(@school), method: :delete, data: { confirm: 'Are you sure you want to delete this school?' }, class: 'btn btn-danger' %>
+    </div>
+  </div>
 </div>
-
-<h2>Reviews</h2>
-
-<% @review_schools.each do |review| %>
-  <p><%= review.rating %>
-  <br><%= review.description %></p>
-<% end %>
-
-<%= link_to "Add a review", new_school_review_school_path(@school) %>

@@ -96,7 +96,7 @@
             </div>
 
             <div class="text-center mb-4">
-              <%= button_tag 'Back', type: 'button', class: 'btn btn-secondary me-2', id: 'back-step-5' %>
+              <%= button_tag 'Back', type: 'submit', class: 'btn btn-secondary me-2', id: 'back-step-5' %>
               <%= f.submit 'Submit', class: 'btn btn-primary' %>
             </div>
           </div>
@@ -104,6 +104,17 @@
         <% end %>
 
         <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('school-form');
+            
+            form.addEventListener('submit', function(event) {
+              if (!validateStep(currentStep)) {
+                event.preventDefault();
+                alert('Veuillez compléter tous les champs correctement.');
+              }
+            });
+          });
+
           document.addEventListener('DOMContentLoaded', function() {
             const feeRange = document.getElementById('fee-range');
             const feeValue = document.getElementById('fee-value');
@@ -122,7 +133,7 @@
                 feeValue.style.display = 'block';
               }
 
-              hiddenFee.value = value; // Met à jour le champ caché
+              hiddenFee.value = value;
             }
 
             updateFeeDisplay();
@@ -193,7 +204,6 @@
             });
 
             function validateStep(step) {
-              // Ajoutez ici la logique de validation spécifique à chaque étape
               return true;
             }
           });
@@ -211,7 +221,6 @@
                   const website = document.querySelector('input[name="school[website]"]').value;
                   const email = document.querySelector('input[name="school[email]"]').value;
 
-                  // Regex pour la validation
                   const phoneRegex = /^\+?(\d[\d\- ]{7,}\d)$/;
                   const websiteRegex = /^(https?:\/\/[^\s/$.?#].[^\s]*)$/i;
                   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -231,8 +240,6 @@
                     alert('L\'email est invalide.');
                   }
                   break;
-
-                // Ajoutez d'autres validations pour les étapes suivantes si nécessaire
 
                 default:
                   break;
@@ -263,4 +270,3 @@
     </div>
   </div>
 </div>
-

@@ -24,10 +24,10 @@ Rails.application.routes.draw do
     resources :review_schools, only: [:index, :new, :create]
 
     collection do
-    post :create_step_1
-    post :create_step_2
-    post :create_step_3
-    post :create_step_4
+      post :create_step_1
+      patch :create_step_2
+      patch :create_step_3
+      patch :create_step_4
     end
   end
 
