@@ -5,31 +5,74 @@
     <div id="allCategories" class="categories horizontal-scroll-container">
       <div class="d-flex">
         <div data-action="click->categories-filter#filter" data-category="all" class="categories-item active-category">
-          <%= link_to 'All', '#', class: 'link link-underline' %>
+          <%= link_to 'All', '', class: 'link link-underline' %>
         </div>
         <div data-action="click->categories-filter#filter" data-category="schools" class="categories-item">
-          <%= link_to 'Schools', '#', class: 'link link-underline' %>
+          <%= link_to 'Schools', '', class: 'link link-underline' %>
         </div>
         <div data-action="click->categories-filter#filter" data-category="shops" class="categories-item">
-          <%= link_to 'Shops', '#', class: 'link link-underline' %>
+          <%= link_to 'Shops', '', class: 'link link-underline' %>
         </div>
         <div data-action="click->categories-filter#filter" data-category="spots" class="categories-item">
-          <%= link_to 'Spot', '#', class: 'link link-underline' %>
+          <%= link_to 'Spot', '', class: 'link link-underline' %>
         </div>
       </div>
     </div>
     <br>
 
-    <div data-controller="categories-filter">
-      <div class="d-flex">
-        <div class="location-filter">
-          <%= link_to 'Filter by location', '#', class: 'link link-underline' %>
+    <div class="d-flex">
+      <div data-action="click->categories-filter#locations" data-categories-filter-target="locationBtn" class="location-filter">
+        <%= link_to 'Filter by location', '', class: 'link link-underline' %>
+      </div>
+    </div>
+
+    <div data-categories-filter-target="locations" class="d-none d-flex flex-wrap mt-2 px-4 w-100" style="max-width: 650px;">
+
+      <div>
+        <div data-action="click->categories-filter#filterByLocation" data-location="All locations" class="location-items active-location">
+          <%= link_to "All locations", '', class: 'link link-underline' %>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center">
+        <div data-action="click->categories-filter#filterByLocation" data-location="The North" class="location-items">
+          <%= link_to "The north", '', class: 'link link-underline' %>
+        </div>
+        <div data-action="click->categories-filter#filterByLocation" data-location="West coast" class="location-items">
+          <%= link_to "West coast", '', class: 'link link-underline' %>
+        </div>
+        <div data-action="click->categories-filter#filterByLocation" data-location="East coast" class="location-items">
+          <%= link_to "East coast", '', class: 'link link-underline' %>
+        </div>
+        <div data-action="click->categories-filter#filterByLocation" data-location="The South" class="location-items">
+          <%= link_to "The South", '', class: 'link link-underline' %>
+        </div>
+        <div data-action="click->categories-filter#filterByLocation" data-location="South East coast" class="location-items">
+          <%= link_to "South East coast", '', class: 'link link-underline' %>
         </div>
       </div>
 
-      <div class="d-flex flex-wrap justify-content-center mt-2 px-4 w-100" style="max-width: 650px;">
+    </div>
+
+    <br>
+
+    <div data-categories-filter-target="cards" class="cards">
+      <%# rendu des cards dynamiquement par AJAX %>
+    </div>
+
+
+  </div>
+</div>
+
+<!--    <div data-controller="categories-filter">
+      <div class="d-flex">
+        <div data-action="click->categories-filter#locations" data-categories-filter-target="locationBtn" class="location-filter">
+          <%= link_to 'Filter by location', '', class: 'link link-underline' %>
+        </div>
+      </div>
+
+      <div data-categories-filter-target="locations" class="d-none d-flex flex-wrap justify-content-center mt-2 px-4 w-100" style="max-width: 650px;">
         <% @locations.each do |location| %>
-          <div class="location-items">
+          <div data-action="click->categories-filter#filter" data-category="#{location.name}" class="location-items">
             <%= link_to location.name, '#', class: 'link link-underline' %>
           </div>
         <% end %>
@@ -37,11 +80,8 @@
 
     </div>
 
-
     <br>
 
     <div data-categories-filter-target="cards" class="cards">
         <%# rendu des cards dynamiquement par AJAX %>
-    </div>
-  </div>
-</div>
+    </div>-->

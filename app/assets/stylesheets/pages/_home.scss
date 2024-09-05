@@ -58,8 +58,8 @@
   height: 32px;
   padding-right: 18px;
   padding-left: 18px;
-  transition: all 0.3s;
   cursor: pointer;
+  border: 2px solid white;
   p {
     margin-bottom: 0;
     color: #2a2a2a;
@@ -92,12 +92,21 @@
   }
 }
 
+.active-location {
+  background-color: rgb(207, 237, 88) !important;
+  font-weight: 500;
+  opacity: 1 !important;
+  p {
+    color: white !important;
+  }
+}
+
 .categories-card {
   margin-top: 8px;
   padding: 14px;
   background-color: white;
   border-radius: 38px;
-  
+
   span {
     font-size: .9rem;
     color: $light-gray;
@@ -135,4 +144,8 @@
     background-color: rgb(207, 237, 88);
     color: white
   }
+}
+
+.border-green {
+  border: 2px solid rgb(207, 237, 88);
 }
