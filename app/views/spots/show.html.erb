@@ -19,7 +19,7 @@
       <path class="cls-1" d="M0,4.6v115.4s915.4,0,915.4,0c0-24.4,0,8.2,0-16.2-101,22.7-217.2,17.4-408.2-30.6S142.9,0,0,4.6Z"/>
   </svg>
 </div>
-<div style="background-color: #fff;">
+<div class="pb-5" style="background-color: #fff;">
   <div class="container">
     <div class="content-show">
       <span><%= @spot.class.name %></span>
@@ -68,37 +68,68 @@
     </div>
   </div>
 
-<div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
-  <% count = 0 %>
-  <% @spot.images.each do |image| %>
-    <%= cl_image_tag(image.key,
-                 crop: :fill,
-                 quality: "auto:best",
-                 fetch_format: :auto,
-                 data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
-    <% count += 1 %>
-  <% end %>
-</div>
-
-<br>
+  <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
+    <% count = 0 %>
+    <% @spot.images.each do |image| %>
+      <%= cl_image_tag(image.key,
+                  crop: :fill,
+                  quality: "auto:best",
+                  fetch_format: :auto,
+                  data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
+      <% count += 1 %>
+    <% end %>
+  </div>
 </div>
 
 
   <div class="container">
     <div class="content-show">
-      <h2>Reviews</h2>
-      <ul>
-        <% @spot.review_spots.each do |review| %>
-          <li>
-            <%= review.rating %>
-            <br>
-            <%= review.description %>
-          </li>
-        <% end %>
-      </ul>
+      <p class="mt-4 mb-2">
+        <%= link_to 'Add a review', new_spot_review_spot_path(@spot.id) %>
+      </p>
 
-      <h2>Add a review</h2>
-      <%= link_to 'Add review', new_spot_review_spot_path(@spot.id) %>
+      <div data-controller="load-more" data-load-more-spot-slug="<%= @spot.slug %>">
+
+        <div data-load-more-target="reviews" class="">
+            <%# rendu des cards dynamiquement par AJAX %>
+            <% @review_spots.each do |review| %>
+              <div class="review-card">
+                <div class="d-flex align-items-center">
+                  <p>
+                    <%= cl_image_tag(review.user.profile_picture.key,
+                                  class: 'me-2 img_fluid rounded-circle',
+                                  alt: "#{review.user.first_name}'s avatar from kite in mauritius",
+                                  width: 40,
+                                  height: 40,
+                                  crop: :fill,
+                                  dpr: 2.0,
+                                  quality: "auto:best",
+                                  gravity: :face,
+                                  fetch_format: :auto,
+                                  effect: "sharpen:50",
+                                  radius: "max")
+                                  %>
+                  </p>
+                  <p class="review-user"><%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize.first %></p>
+                  <p class="text-primary ms-auto"><%= review.rating %>/5</p>
+                </div>
+                <p class="review-description"><%= review.description %></p>
+              </div>
+            <% end %>
+
+            <%= tag.div "", id: "more_reviews_exist", data: { more: @more_reviews_exist } %>
+
+        </div>
+
+
+        <div class="d-flex mx-auto mt-5">
+          <div data-action="click->load-more#loadMore" class="btn-load-more">
+            <%= link_to 'Load More', '#', class: 'link link-underline'%>
+          </div>
+        </div>
+
+
+      </div>
+
     </div>
-
   </div>

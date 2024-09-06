@@ -1,5 +1,11 @@
 require 'open-uri'
 
+puts '-------------------------------'
+puts 'Destroying all records ...'
+puts '-------------------------------'
+
+ReviewSpot.destroy_all
+puts 'All review_spots destroyed ...'
 School.destroy_all
 puts 'All schools destroyed ...'
 Shop.destroy_all
@@ -395,6 +401,38 @@ puts '-------------------------------'
 # Schools seeds
 puts 'Creating schools...'
 
+#Review_spots
+#
+# Create 15 reviews for each spot
+#
+# User seeds
+puts 'Creating reviews for spots...'
+users = User.all
+spots = [le_morne, pointe_desny, bel_ombre, poste_lafayette, anse_la_rae, trou_deau_douce, la_prairie, palmar, grand_baie, ile_aux_cerfs, flic_en_flac]
+
+descriptions = [
+  "Amazing spot! The wind conditions were perfect, and the lagoon is simply stunning.",
+  "Good for beginners, but can be crowded during peak season. Still a great experience overall.",
+  "I had a wonderful time here, though the winds weren't as strong as I'd hoped. The scenery made up for it!",
+  "The spot is beautiful but watch out for rocks in some areas. Great for advanced kitesurfers.",
+  "Friendly locals and good facilities. I recommend visiting early in the morning to avoid crowds."
+]
+spots.each do |spot|
+  (1..15).each do |i|
+    ReviewSpot.create!(
+      rating: (i % 5) + 1,
+      description: descriptions[i % 5],
+      spot_id: spot.id,
+      user_id: users[i % users.size].id
+    )
+  end
+  puts "Reviews for #{spot.name} created ..."
+end
+
+puts 'All reviews for spots created.'
+puts '-------------------------------'
+
+
 schools = [
   {
     name: 'Ocean Academy',
@@ -576,4 +614,3 @@ puts "Blog #{blog2.title} created ..."
 
 puts 'All blogs created'
 puts '-------------------------------'
-

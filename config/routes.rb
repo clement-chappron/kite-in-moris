@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   end
 
   resources :spots, param: :slug, only: [:show] do
-    resources :review_spots, only: [:index, :new, :create]
+    resources :review_spots, only: [:new, :create]
   end
+  get 'load_more', to: 'review_spots#load_more'
+
 end
