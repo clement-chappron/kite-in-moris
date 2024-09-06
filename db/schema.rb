@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_05_213910) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_06_172413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -164,6 +164,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_05_213910) do
     t.datetime "updated_at", null: false
     t.string "level"
     t.string "slug"
+    t.text "wind_conditions"
+    t.text "safety"
+    t.text "amenities"
+    t.text "accessibility"
+    t.text "points_of_interest"
+    t.text "local_culture"
+    t.text "water_temperature"
+    t.text "best_time_to_visit"
     t.index ["location_id"], name: "index_spots_on_location_id"
     t.index ["slug"], name: "index_spots_on_slug", unique: true
   end
