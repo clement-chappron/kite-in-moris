@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_03_203321) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_06_172413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_203321) do
     t.bigint "user_id", null: false
     t.index ["blog_page_id"], name: "index_comment_blogs_on_blog_page_id"
     t.index ["user_id"], name: "index_comment_blogs_on_user_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -152,7 +163,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_203321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "level"
+    t.string "slug"
+    t.text "wind_conditions"
+    t.text "safety"
+    t.text "amenities"
+    t.text "accessibility"
+    t.text "points_of_interest"
+    t.text "local_culture"
+    t.text "water_temperature"
+    t.text "best_time_to_visit"
     t.index ["location_id"], name: "index_spots_on_location_id"
+    t.index ["slug"], name: "index_spots_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|

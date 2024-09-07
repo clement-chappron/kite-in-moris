@@ -7,22 +7,23 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flaticon-uicons/your-version/flaticon-uicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons/css/all/all.min.css">
 
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <div class="<%= 'devise-layout' if devise_controller? %>">
-      <%= render "shared/navbar" %>
-      <%= render "shared/flashes" %>
-      <div style="padding-top: 80px;">
-        <%= yield %>
-      </div>
-      <%= render "shared/footer" %>
-    </div>
+      <% if spots_show_page? || shops_show_page? || schools_show_page? || blogs_show_page? %>
+        <%= render "shared/navbar_back" %>
+      <% else %>
+        <%= render "shared/navbar" %>
+      <% end %>
 
+        <%= render "shared/flashes" %>
+          <%= yield %>
+        </div>
+        <%= render "shared/footer" unless devise_controller? %>
+    </div>
 
   </body>
 </html>
