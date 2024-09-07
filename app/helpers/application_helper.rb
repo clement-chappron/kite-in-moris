@@ -12,6 +12,6 @@ module ApplicationHelper
   end
 
   def blogs_show_page?
-    controller_name == 'blogs' && action_name == 'show'
+    controller_name == 'blog_pages' && action_name == 'show'
   end
 end
