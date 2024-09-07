@@ -40,7 +40,7 @@ class ReviewSpotsController < ApplicationController
   private
 
   def set_spot
-    @spot = Spot.friendly.find(params[:slug])
+    @spot = Spot.find(params[:spot_slug])
   end
 
 

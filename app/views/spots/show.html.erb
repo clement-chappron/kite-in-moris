@@ -19,6 +19,8 @@
       <path class="cls-1" d="M0,4.6v115.4s915.4,0,915.4,0c0-24.4,0,8.2,0-16.2-101,22.7-217.2,17.4-408.2-30.6S142.9,0,0,4.6Z"/>
   </svg>
 </div>
+
+
 <div class="pb-5" style="background-color: #fff;">
   <div class="container">
     <div class="content-show">
@@ -35,34 +37,34 @@
         <% end %>
       </div>
 
-      <h2 class="mt-3">Description</h2>
+      <h2 class="fs-4 mt-3">Description</h2>
       <p><%= @spot.description %></p>
 
-      <h2>Level</h2>
+      <h2 class="fs-4">Level</h2>
       <p><%= @spot.level %></p>
 
-      <h2>Wind conditions</h2>
+      <h2 class="fs-4">Wind conditions</h2>
       <p><%= @spot.wind_conditions %></p>
 
-      <h2>Best season</h2>
+      <h2 class="fs-4">Best season</h2>
       <p><%= @spot.best_time_to_visit%></p>
 
-      <h2>Safety</h2>
+      <h2 class="fs-4">Safety</h2>
       <p><%= @spot.safety %></p>
 
-      <h2>Accessibility</h2>
+      <h2 class="fs-4">Accessibility</h2>
       <p><%= @spot.accessibility %></p>
 
-      <h2>Amenities</h2>
+      <h2 class="fs-4">Amenities</h2>
       <p><%= @spot.amenities %></p>
 
-      <h2>Points of interest</h2>
+      <h2 class="fs-4">Points of interest</h2>
       <p><%= @spot.points_of_interest %></p>
 
-      <h2>Local culture</h2>
+      <h2 class="fs-4">Local culture</h2>
       <p><%= @spot.local_culture %></p>
 
-      <h2>Water temperature</h2>
+      <h2 class="fs-4">Water temperature</h2>
       <p><%= @spot.water_temperature %></p>
 
     </div>
@@ -79,57 +81,99 @@
       <% count += 1 %>
     <% end %>
   </div>
-</div>
-
 
   <div class="container">
     <div class="content-show">
-      <p class="mt-4 mb-2">
-        <%= link_to 'Add a review', new_spot_review_spot_path(@spot.id) %>
-      </p>
+      <!-- Button trigger modal -->
+      <div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
+          <div class="d-flex justify-content-end align-items-center">
+            <p class="mb-0">Add a picture</p>
+            <p class="mb-0 mt-2">
+              <i class="fi fi-rs-add text-primary ms-2 fs-4"></i>
+            </p>
+          </div>
+        <% end %>
+      </div>
 
-      <div data-controller="load-more" data-load-more-spot-slug="<%= @spot.slug %>">
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title fs-5" id="exampleModalLabel">Add your best picture for <%= @spot.name %></h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-        <div data-load-more-target="reviews" class="">
-            <%# rendu des cards dynamiquement par AJAX %>
-            <% @review_spots.each do |review| %>
-              <div class="review-card">
-                <div class="d-flex align-items-center">
-                  <p>
-                    <%= cl_image_tag(review.user.profile_picture.key,
-                                  class: 'me-2 img_fluid rounded-circle',
-                                  alt: "#{review.user.first_name}'s avatar from kite in mauritius",
-                                  width: 40,
-                                  height: 40,
-                                  crop: :fill,
-                                  dpr: 2.0,
-                                  quality: "auto:best",
-                                  gravity: :face,
-                                  fetch_format: :auto,
-                                  effect: "sharpen:50",
-                                  radius: "max")
-                                  %>
-                  </p>
-                  <p class="review-user"><%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize.first %></p>
-                  <p class="text-primary ms-auto"><%= review.rating %>/5</p>
-                </div>
-                <p class="review-description"><%= review.description %></p>
+            <div class="modal-body">
+              <div class="modal-content py-4 px-5" style= "border: none;">
+                <%= simple_form_for @spot, html: { multipart: true } do |f| %>
+                  <div class="d-flex justify-content-center">
+                    <%= f.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
+                    <%= f.submit "Upload", class: "btn btn-primary", style: "border-radius: 0px;" %>
+                  </div>
+                <% end %>
               </div>
-            <% end %>
-
-            <%= tag.div "", id: "more_reviews_exist", data: { more: @more_reviews_exist } %>
-
-        </div>
-
-
-        <div class="d-flex mx-auto mt-5">
-          <div data-action="click->load-more#loadMore" class="btn-load-more">
-            <%= link_to 'Load More', '#', class: 'link link-underline'%>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+<%# Reviews %>
+
+
+<div class="container">
+  <div class="content-show">
+    <p class="mt-5 mb-3">
+      <%= link_to 'Add a review', new_spot_review_spot_path(@spot.id), class: 'link link-underline' %>
+    </p>
+
+    <div data-controller="load-more" data-load-more-spot-slug="<%= @spot.slug %>">
+
+      <div data-load-more-target="reviews" class="">
+          <%# rendu des cards dynamiquement par AJAX %>
+          <% @review_spots.each do |review| %>
+            <div class="review-card">
+              <div class="d-flex align-items-center">
+                <p>
+                  <%= cl_image_tag(review.user.profile_picture.key,
+                                class: 'me-2 img_fluid rounded-circle',
+                                alt: "#{review.user.first_name}'s avatar from kite in mauritius",
+                                width: 40,
+                                height: 40,
+                                crop: :fill,
+                                dpr: 2.0,
+                                quality: "auto:best",
+                                gravity: :face,
+                                fetch_format: :auto,
+                                effect: "sharpen:50",
+                                radius: "max")
+                                %>
+                </p>
+                <p class="review-user"><%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize.first %></p>
+                <p class="text-primary ms-auto"><%= review.rating %>/5</p>
+              </div>
+              <p class="review-description"><%= review.description %></p>
+            </div>
+          <% end %>
+
+          <%= tag.div "", id: "more_reviews_exist", data: { more: @more_reviews_exist } %>
 
       </div>
 
+
+      <div class="d-flex mx-auto mt-5">
+        <div data-action="click->load-more#loadMore" class="btn-load-more">
+          <%= link_to 'Load More', '#', class: 'link link-underline'%>
+        </div>
+      </div>
+
+
     </div>
+
   </div>
+</div>

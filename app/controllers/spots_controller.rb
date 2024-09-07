@@ -8,6 +8,29 @@ class SpotsController < ApplicationController
 
     # Vérifier s'il reste d'autres reviews à charger
     @more_reviews_exist = @spot.review_spots.count > 5
+  end
 
+
+  def edit
+    @spot = Spot.friendly.find(params[:slug])
+  end
+
+  def update
+    @spot = Spot.friendly.find(params[:slug])
+    if spot_params[:images]
+      @spot.images.attach(spot_params[:images])
+    end
+    if @spot.update(spot_params.except(:images))
+      redirect_to @spot, notice: "Spot updated successfully!"
+    else
+      render :edit
+    end
+  end
+
+
+  private
+
+  def spot_params
+    params.require(:spot).permit(images: [])
   end
 end
