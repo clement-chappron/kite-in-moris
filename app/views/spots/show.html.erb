@@ -12,13 +12,48 @@
   <ul>
     <% @spot.review_spots.each do |review| %>
       <li>
-        <%= review.rating %>
+        <strong><%= review.user.first_name %> <%= review.user.last_name %></strong>
+        <% review.rating.times do %>
+          <i class="fas fa-star"></i>
+        <% end %>
         <br>
         <%= review.description %>
       </li>
     <% end %>
   </ul>
 
-  <h2>Add a review</h2>
-  <%= link_to 'Add review', new_spot_review_spot_path(@spot.id) %>
+  <!-- Button to trigger modal -->
+      <div class="col-12 mb-4">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reviewModal">
+          Add a Review
+        </button>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="reviewModalLabel">New Review</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= form_with model: [@spot, @review_spot], url: spot_review_spots_path(@spot), method: :post, local: true do |f| %>
+              <div class="mb-3">
+                <%= f.label :rating, class: 'form-label' %>
+                <%= f.number_field :rating, in: 1..5, step: 1, class: 'form-control', required: true %>
+              </div>
+              <div class="mb-3">
+                <%= f.label :description, class: 'form-label' %>
+                <%= f.text_area :description, class: 'form-control', rows: 3, required: true %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <%= f.submit 'Submit Review', class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
