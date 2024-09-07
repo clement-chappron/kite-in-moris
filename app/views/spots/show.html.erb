@@ -129,18 +129,18 @@
 
 <div class="container">
   <div class="content-show">
-    
+
   <!-- Button to trigger modal -->
-    
+
     <div data-bs-toggle="modal" data-bs-target="#reviewModal">
       <p class="mt-5 mb-3">
-        <%= link_to 'Add a review', new_spot_review_spot_path(@spot.id), class: 'link link-underline' %>
+        <%= link_to 'Add a review', 'javascript:void(0);', class: 'link link-underline' %>
       </p>
     </div>
 
     <!-- Modal -->
     <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="reviewModalLabel">New Review</h5>
@@ -157,7 +157,7 @@
                 <%= f.text_area :description, class: 'form-control', rows: 3, required: true %>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">Close</button>
                 <%= f.submit 'Submit Review', class: 'btn btn-primary' %>
               </div>
             <% end %>
@@ -165,7 +165,7 @@
         </div>
       </div>
     </div>
-    
+
 
     <div data-controller="load-more" data-load-more-spot-slug="<%= @spot.slug %>">
 
