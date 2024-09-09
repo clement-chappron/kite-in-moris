@@ -70,52 +70,55 @@
 
       </div>
     </div>
-</div>
 
-  <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
-    <% count = 0 %>
-    <% @spot.images.each do |image| %>
-      <%= cl_image_tag(image.key,
-                  crop: :fill,
-                  quality: "auto:best",
-                  fetch_format: :auto,
-                  data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
-      <% count += 1 %>
 
-    <% end %>
-  </div>
+    <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
+      <% count = 0 %>
+      <% @spot.images.each do |image| %>
+        <%= cl_image_tag(image.key,
+                    crop: :fill,
+                    quality: "auto:best",
+                    fetch_format: :auto,
+                    data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
+        <% count += 1 %>
 
-  <div class="container">
-    <div class="content-show">
-      <!-- Button trigger modal -->
-      <div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
-          <div class="d-flex justify-content-end align-items-center">
-            <p class="mb-0">Add a picture</p>
-            <p class="mb-0 mt-2">
-              <i class="fi fi-rs-add text-primary ms-2 fs-4"></i>
-            </p>
-          </div>
-        <% end %>
-      </div>
+      <% end %>
+    </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-md">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 class="modal-title fs-5" id="exampleModalLabel">Add your best picture for <%= @spot.name %></h3>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="container">
+      <div class="content-show">
+        <!-- Button trigger modal -->
+        <div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
+            <div class="d-flex justify-content-end align-items-center">
+              <p class="mb-0">Add a picture</p>
+              <p class="mb-0 mt-2">
+                <i class="fi fi-rs-add text-primary ms-2 fs-4"></i>
+              </p>
             </div>
+          <% end %>
+        </div>
 
-            <div class="modal-body">
-              <div class="modal-content py-4 px-5" style= "border: none;">
-                <%= simple_form_for @spot, html: { multipart: true } do |f| %>
-                  <div class="d-flex justify-content-center">
-                    <%= f.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
-                    <%= f.submit "Upload", class: "btn btn-primary", style: "border-radius: 0px;" %>
-                  </div>
-                <% end %>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title fs-5" id="exampleModalLabel">Add your best picture for <%= @spot.name %></h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body">
+                <div class="modal-content py-4 px-5" style= "border: none;">
+
+                  <%= simple_form_for @spot, html: { multipart: true } do |f| %>
+                    <div class="d-flex justify-content-center">
+                      <%= f.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
+                      <%= f.submit "Upload", class: "btn btn-primary", style: "border-radius: 0px;" %>
+                    </div>
+                  <% end %>
+
+                </div>
               </div>
             </div>
           </div>
@@ -123,7 +126,6 @@
       </div>
     </div>
   </div>
-</div>
 
 
 <%# Reviews %>
@@ -212,5 +214,5 @@
     </div>
 
 
-
+  </div>
 </div>

@@ -11,74 +11,68 @@
 </div>
 
 
-<div class="custom-shape">
-  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 915.4 120" preserveAspectRatio="none">
-      <path class="cls-2" d="M915.4,119V46.8c-164.7,68.9-279.3,59.8-354.4,37.8C460.2,55,426.4.9,326.5,7.3c-62.5,4-93.4,20.5-211.2,46.9C60.9,66.4,33.2,86.9,0,66.5v52.5h915.4Z"/>
-      <path class="cls-3" d="M489.1,46.3c-90.6,0-206.6,25.6-247.6,33.4C184.7,90.5,103.2,101,0,97.5v21.4h915.4v-51.5c-42.8,7.2-107.5,19.2-190.6,15.1-134.7-6.6-122.8-36.4-235.7-36.3Z"/>
-      <path class="cls-1" d="M0,4.6v115.4s915.4,0,915.4,0c0-24.4,0,8.2,0-16.2-101,22.7-217.2,17.4-408.2-30.6S142.9,0,0,4.6Z"/>
-  </svg>
-</div>
+<div style=' margin-top: calc(-45px - 5vw);'>
+  <div class="custom-shape">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 915.4 120" preserveAspectRatio="none">
+        <path class="cls-2" d="M915.4,119V46.8c-164.7,68.9-279.3,59.8-354.4,37.8C460.2,55,426.4.9,326.5,7.3c-62.5,4-93.4,20.5-211.2,46.9C60.9,66.4,33.2,86.9,0,66.5v52.5h915.4Z"/>
+        <path class="cls-3" d="M489.1,46.3c-90.6,0-206.6,25.6-247.6,33.4C184.7,90.5,103.2,101,0,97.5v21.4h915.4v-51.5c-42.8,7.2-107.5,19.2-190.6,15.1-134.7-6.6-122.8-36.4-235.7-36.3Z"/>
+        <path class="cls-1" d="M0,4.6v115.4s915.4,0,915.4,0c0-24.4,0,8.2,0-16.2-101,22.7-217.2,17.4-408.2-30.6S142.9,0,0,4.6Z"/>
+    </svg>
+  </div>
 
 
-<div class="pb-5" style="background-color: #fff;">
-  <div class="container">
-    <div class="content-show">
-      <span><%= @blog_page.class.name %></span>
-      <div class="d-lg-flex align-items-end justify-content-between">
-        <h1><%= @blog_page.title %></h1>
+  <div class="pb-5" style="background-color: #fff;">
+    <div class="container">
+      <div class="content-show">
+        <span><%= @blog_page.class.name %></span>
+        <div class="d-lg-flex align-items-end justify-content-between">
+          <h1><%= @blog_page.title %></h1>
+        </div>
+
+
+        <h2 class="fs-4 mt-3">Title 2</h2>
+        <p><%= @blog_page.content %></p>
+
       </div>
-
-
-      <h2 class="fs-4 mt-3">Title 2</h2>
-      <p><%= @blog_page.content %></p>
-
     </div>
-  </div>
 
-  <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
-    <% count = 0 %>
-    <% @blog_page.blog_picture.each do |image| %>
-      <%= cl_image_tag(image.key,
-                  crop: :fill,
-                  quality: "auto:best",
-                  fetch_format: :auto,
-                  data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
-      <% count += 1 %>
-
-    <% end %>
-  </div>
-
-  <div class="container">
-    <div class="content-show">
-      <!-- Button trigger modal -->
-      <div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
-          <div class="d-flex justify-content-end align-items-center">
-            <p class="mb-0">Add a picture</p>
-            <p class="mb-0 mt-2">
-              <i class="fi fi-rs-add text-primary ms-2 fs-4"></i>
-            </p>
+  <%# Add picture  %>
+    <% if @blog_page.user == current_user %>
+      <div class="container">
+        <div class="content-show">
+          <!-- Button trigger modal -->
+          <div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
+              <div class="d-flex justify-content-end align-items-center">
+                <p class="mb-0">Update picture</p>
+                <p class="mb-0 mt-2">
+                  <i class="fi fi-rs-add text-primary ms-2 fs-4"></i>
+                </p>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-      </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-md">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 class="modal-title fs-5" id="exampleModalLabel">Add your best picture for <%= @blog_page.title %></h3>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title fs-5" id="exampleModalLabel">Add your best picture for <%= @blog_page.title %></h3>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-            <div class="modal-body">
-              <div class="modal-content py-4 px-5" style= "border: none;">
-                <%= simple_form_for @blog_page, html: { multipart: true } do |f| %>
-                  <div class="d-flex justify-content-center">
-                    <%= f.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
-                    <%= f.submit "Upload", class: "btn btn-primary", style: "border-radius: 0px;" %>
+                <div class="modal-body">
+                  <div class="modal-content py-4 px-5" style= "border: none;">
+
+                    <%= simple_form_for @blog_page, html: { multipart: true } do |f| %>
+                      <div class="d-flex justify-content-center">
+                        <%= f.file_field :blog_picture, multiple: false, direct_upload: true, class: "form-control" %>
+                        <%= f.submit "Upload", class: "btn btn-primary", style: "border-radius: 0px;" %>
+                      </div>
+                    <% end %>
+
                   </div>
-                <% end %>
+                </div>
               </div>
             </div>
           </div>
@@ -86,7 +80,7 @@
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
 
 <%# Reviews %>
