@@ -18,11 +18,22 @@
 
 
   <%# Rechcher logo %>
-  <div class="navbar-search">
+  <% if controller_name == "pages" && action_name == "home"%>
+      <%= form_with url: root_path, method: :get, html: {class: "mb-4"}, data: {search_target: "form"} do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Enter name of school, shop, or spot"
+        %>
+        <%= submit_tag "search", name: "", class: "btn" %>
+      <% end %>
+    <% end %>
+
+  <!--<div class="navbar-search">
     <%= link_to root_path do %>
       <i class="fi fi-rs-search"></i>
     <% end %>
-  </div>
+  </div><-->
 
   <%# bouton se connecter || bonjour user %>
  <div class="navbar-user">

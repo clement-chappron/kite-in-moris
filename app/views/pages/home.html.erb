@@ -1,69 +1,79 @@
 <div class='container'>
-  <h1 style='margin-top: 60px;'>Categories</h1>
+  <% if params[:query].present? %>
+    <% if @search_cards.any? %>
+     <%= render "search_cards" %>
+    <% else %>
+      <em>"Sorry we cannot find any corresponding entry"</em>
+    <% end %>
+  <% else %>
 
-  <div data-controller="categories-filter">
-    <div id="allCategories" class="categories horizontal-scroll-container">
+    <h1 style='margin-top: 60px;'>Categories</h1>
+
+    <div data-controller="categories-filter">
+      <div id="allCategories" class="categories horizontal-scroll-container">
+        <div class="d-flex">
+          <div data-action="click->categories-filter#filter" data-category="all" class="categories-item active-category">
+            <%= link_to 'All', '', class: 'link link-underline' %>
+          </div>
+          <div data-action="click->categories-filter#filter" data-category="schools" class="categories-item">
+            <%= link_to 'Schools', '', class: 'link link-underline' %>
+          </div>
+          <div data-action="click->categories-filter#filter" data-category="shops" class="categories-item">
+            <%= link_to 'Shops', '', class: 'link link-underline' %>
+          </div>
+          <div data-action="click->categories-filter#filter" data-category="spots" class="categories-item">
+            <%= link_to 'Spot', '', class: 'link link-underline' %>
+          </div>
+        </div>
+      </div>
+      <br>
+
       <div class="d-flex">
-        <div data-action="click->categories-filter#filter" data-category="all" class="categories-item active-category">
-          <%= link_to 'All', '', class: 'link link-underline' %>
-        </div>
-        <div data-action="click->categories-filter#filter" data-category="schools" class="categories-item">
-          <%= link_to 'Schools', '', class: 'link link-underline' %>
-        </div>
-        <div data-action="click->categories-filter#filter" data-category="shops" class="categories-item">
-          <%= link_to 'Shops', '', class: 'link link-underline' %>
-        </div>
-        <div data-action="click->categories-filter#filter" data-category="spots" class="categories-item">
-          <%= link_to 'Spot', '', class: 'link link-underline' %>
+        <div data-action="click->categories-filter#locations" data-categories-filter-target="locationBtn" class="location-filter">
+          <%= link_to 'Filter by location', '', class: 'link link-underline' %>
         </div>
       </div>
-    </div>
-    <br>
 
-    <div class="d-flex">
-      <div data-action="click->categories-filter#locations" data-categories-filter-target="locationBtn" class="location-filter">
-        <%= link_to 'Filter by location', '', class: 'link link-underline' %>
+      <div data-categories-filter-target="locations" class="d-none d-flex flex-wrap mt-2 px-4 w-100" style="max-width: 650px;">
+
+        <div>
+          <div id="all-locations" data-action="click->categories-filter#filterByLocation" data-location="All locations" class="location-items active-location">
+            <%= link_to "All locations", '', class: 'link link-underline' %>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center">
+          <div data-action="click->categories-filter#filterByLocation" data-location="The North" class="location-items">
+            <%= link_to "The north", '', class: 'link link-underline' %>
+          </div>
+          <div data-action="click->categories-filter#filterByLocation" data-location="West coast" class="location-items">
+            <%= link_to "West coast", '', class: 'link link-underline' %>
+          </div>
+          <div data-action="click->categories-filter#filterByLocation" data-location="East coast" class="location-items">
+            <%= link_to "East coast", '', class: 'link link-underline' %>
+          </div>
+          <div data-action="click->categories-filter#filterByLocation" data-location="The South" class="location-items">
+            <%= link_to "The South", '', class: 'link link-underline' %>
+          </div>
+          <div data-action="click->categories-filter#filterByLocation" data-location="South East coast" class="location-items">
+            <%= link_to "South East coast", '', class: 'link link-underline' %>
+          </div>
+        </div>
+
       </div>
-    </div>
 
-    <div data-categories-filter-target="locations" class="d-none d-flex flex-wrap mt-2 px-4 w-100" style="max-width: 650px;">
+      <br>
 
-      <div>
-        <div id="all-locations" data-action="click->categories-filter#filterByLocation" data-location="All locations" class="location-items active-location">
-          <%= link_to "All locations", '', class: 'link link-underline' %>
-        </div>
+
+      <div data-categories-filter-target="cards" class="row g-2 row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <%# rendu des cards dynamiquement par AJAX %>
       </div>
-      <div class="d-flex flex-wrap justify-content-center">
-        <div data-action="click->categories-filter#filterByLocation" data-location="The North" class="location-items">
-          <%= link_to "The north", '', class: 'link link-underline' %>
-        </div>
-        <div data-action="click->categories-filter#filterByLocation" data-location="West coast" class="location-items">
-          <%= link_to "West coast", '', class: 'link link-underline' %>
-        </div>
-        <div data-action="click->categories-filter#filterByLocation" data-location="East coast" class="location-items">
-          <%= link_to "East coast", '', class: 'link link-underline' %>
-        </div>
-        <div data-action="click->categories-filter#filterByLocation" data-location="The South" class="location-items">
-          <%= link_to "The South", '', class: 'link link-underline' %>
-        </div>
-        <div data-action="click->categories-filter#filterByLocation" data-location="South East coast" class="location-items">
-          <%= link_to "South East coast", '', class: 'link link-underline' %>
+
+      <div class="d-flex mx-auto mt-5">
+        <div data-action="click->categories-filter#loadMore" class="btn-load-more">
+        <%= link_to 'Load More', '#', class: 'link link-underline'%>
         </div>
       </div>
 
     </div>
-
-    <br>
-
-    <div data-categories-filter-target="cards" class="row g-2 row-cols-1 row-cols-md-2 row-cols-lg-3">
-      <%# rendu des cards dynamiquement par AJAX %>
-    </div>
-
-    <div class="d-flex mx-auto mt-5">
-      <div data-action="click->categories-filter#loadMore" class="btn-load-more">
-      <%= link_to 'Load More', '#', class: 'link link-underline'%>
-      </div>
-    </div>
-
-  </div>
+  <% end %>
 </div>
