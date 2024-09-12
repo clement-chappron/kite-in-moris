@@ -9,6 +9,8 @@ class School < ApplicationRecord
   validates :website, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp, message: 'doit être une URL valide' }
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'doit être une adresse email valide' }
 
+  include PgSearch::Model
+  multisearchable against: [:name, :address, :description, :rental, :levels, :fee]
   # has_many :opening_hours, dependent: :destroy
 
   # Ajout du type
