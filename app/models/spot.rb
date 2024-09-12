@@ -8,6 +8,9 @@ class Spot < ApplicationRecord
   validates :name, :description, presence: true
   validates :name, uniqueness: true
 
+  include PgSearch::Model
+  multisearchable against: [:name, :description]
+
   has_many_attached :images
 
   def should_generate_new_friendly_id?

@@ -1,0 +1,14 @@
+<div id="search-results">
+  <% if @results.empty? %>
+    <p>No results found for "<%= @query %>".</p>
+  <% else %>
+    <ul>
+      <% @results.each do |result| %>
+        <li>
+          <%= link_to result.name, result.path %>
+          <p><%= result.description %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

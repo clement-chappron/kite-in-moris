@@ -3,6 +3,14 @@ class PagesController < ApplicationController
 
   def home
     @locations = Location.all
+    if params[:query].present?
+      @results = PgSearch.multisearch(params[:query])
+      @search_cards = []
+      @results.each do |result|
+        i = result.searchable.class.find(result.searchable.id)
+        @search_cards << i
+      end
+    end
   end
 
   def filter_categories
