@@ -125,6 +125,7 @@
 
 
   <div class="mt-auto" style='padding-bottom: 4vh;'>
+    <%= link_to 'Add a blog page', new_blog_page_path, class: 'link link-underline me-3' %>
     <% if @user.is_manager? %>
       <%= link_to 'Manage your company', '#', class: 'link link-underline' %>
     <% else %>

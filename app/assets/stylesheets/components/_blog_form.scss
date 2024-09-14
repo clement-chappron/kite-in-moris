@@ -1,0 +1,22 @@
+.blog-input-form {
+  button {
+   background-color: white !important;
+  }
+  input {
+    margin: 0 auto;
+    padding: 12px 24px;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 300px;
+    text-align: left;
+    background-color: white;
+
+    @media screen and (min-width: 768px) {
+      padding: 12px 24px;
+    }
+  }
+
+  ::placeholder {
+    color: $very-light-gray;
+  }
+}
