@@ -172,6 +172,20 @@
     </div>
 </div>
 
+<%= link_to "Delete",
+blog_page_path(@blog_page),
+data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
+
+<br>
+<br>
+
+<%= link_to "Edit",
+blog_page_path(@blog_page),
+data: {turbo_method: :edit, turbo_confirm: "Are you sure you want to update?"}
+%>
+
+
 
 
 

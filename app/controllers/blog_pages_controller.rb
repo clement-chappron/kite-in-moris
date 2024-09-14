@@ -18,7 +18,23 @@ class BlogPagesController < ApplicationController
   def create
     @blog_page = BlogPage.new(blog_page_params)
     @blog_page.save
-    redirect_to blog_page_path(@blog_page)
+    redirect_to blog_pages_path(@blog_page)
+  end
+
+  def edit
+    @blog_page = BlogPage.find(params[:id])
+  end
+
+  def update
+    @blog_page = BlogPage.find(params[:id])
+    @blog_page.update(blog_page_params)
+    redirect_to blog_pages_path(@blog_page)
+  end
+
+  def destroy
+    @blog_page = BlogPage.find(params[:id])
+    @blog_page.destroy
+    redirect_to blog_pages_path, status: :see_other
   end
 
   private
