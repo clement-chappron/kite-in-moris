@@ -595,22 +595,138 @@ puts '-------------------------------'
 
 
 # Blog seeds
+
 puts 'Starting blog page'
+img_blog_1 = URI.open('https://sportihome.com/uploads/spots/587e6f0ebcc3d4e1419df327/large/IMG_4667.jpg')
+img_blog_2 = URI.open('https://i0.wp.com/isabellefabre.fr/wp-content/uploads/DJI_0566.jpg?resize=1170%2C780&ssl=1')
+img_blog_3 = URI.open('https://fun-and-fly.com/wp-content/uploads/pgi/brut/card_jpg/SPOT__LOCATION_DOC_427.jpg')
+img_blog_4 = URI.open('https://spots-evasion.com/wp-content/uploads/2022/05/sejour-kite-C-Mauritius-4.jpg')
+img_blog_5 = URI.open('https://fun-and-fly.com/wp-content/uploads/pgi/brut/SPOT__LOCATION_DOC_821.jpg')
+
+
 blog1 = BlogPage.create!(
   title: "My first kitesurf experience",
-  content: "description of the first experience",
-  user: user4
+  content: "<h2>Introduction to Kitesurfing in Mauritius</h2>
+            <p>Discovering kitesurfing in Mauritius was a life-changing experience. The island’s pristine beaches and perfect wind conditions make it ideal for beginners and pros alike.</p>
+            <h3>Why Mauritius is Perfect for Kitesurfing</h3>
+            <p>With steady winds and crystal-clear lagoons, Mauritius offers a unique blend of conditions that are suitable for all levels.</p>
+            <h3>The Best Spots for Beginners</h3>
+            <p>Le Morne and Belle Mare are among the most beginner-friendly spots, offering shallow waters and steady winds.</p>
+            <h2>Getting Started: Gear and Techniques</h2>
+            <h3>Essential Gear for Kitesurfing</h3>
+            <p>Choosing the right gear is crucial. You’ll need a kite, board, harness, and safety equipment.</p>
+            <h3>Basic Techniques to Master</h3>
+            <p>Learning to control the kite and balance on the board are fundamental skills. Taking a lesson from a local school is highly recommended.</p>
+            <h2>My Experience at Le Morne</h2>
+            <h3>The Learning Curve</h3>
+            <p>While the first few attempts were challenging, the feeling of gliding over the water was exhilarating.</p>
+            <h3>What I Learned</h3>
+            <p>Patience and practice are key. After a few days, I was able to stay on the board and ride small waves.</p>",
+  user: user1
 )
+blog1.blog_picture.attach(io: img_blog_1, filename: 'img_blog_1.jpg', content_type: 'image/jpg')
 blog1.save
 puts "Blog #{blog1.title} created ..."
 
+
+
 blog2 = BlogPage.create!(
-  title: "My second kitesurf experience",
-  content: "description of the second experience",
-  user: user4
+  title: "The Ultimate Kite Gear Comparison: North vs Duotone",
+  content: "<h2>Kitesurf Gear Overview</h2>
+            <p>When choosing kitesurfing gear, two popular brands stand out: North and Duotone. But which one is better for your needs?</p>
+            <h3>Durability and Build Quality</h3>
+            <p>Both brands offer high-quality materials, but Duotone kites tend to last longer due to reinforced stitching.</p>
+            <h3>Performance in Different Wind Conditions</h3>
+            <p>North kites are known for their power in low-wind conditions, while Duotone kites excel in high-wind scenarios.</p>
+            <h2>Board Comparison: Which One Rides Better?</h2>
+            <h3>Flex and Responsiveness</h3>
+            <p>North boards are slightly stiffer, offering more control for advanced riders. Duotone boards, on the other hand, provide more flexibility, making them ideal for freestyle.</p>
+            <h3>Comfort and Stability</h3>
+            <p>Duotone boards are praised for their comfortable foot straps and stability in choppy waters, while North offers more aggressive handling.</p>
+            <h2>Harnesses and Safety Gear</h2>
+            <h3>Comfort and Fit</h3>
+            <p>Both brands offer ergonomic harnesses, but Duotone's waist harnesses are considered more comfortable for longer sessions.</p>
+            <h3>Safety Features</h3>
+            <p>North and Duotone both offer reliable quick-release systems, though North’s safety mechanisms are more user-friendly for beginners.</p>",
+  user: user1
 )
+blog2.blog_picture.attach(io: img_blog_2, filename: 'img_blog_2.jpg', content_type: 'image/jpg')
 blog2.save
 puts "Blog #{blog2.title} created ..."
 
-puts 'All blogs created'
+puts 'Starting blog page'
+blog3 = BlogPage.create!(
+  title: "Top 5 Kitesurfing Spots in Mauritius",
+  content: "<h2>Le Morne: A Paradise for Kitesurfers</h2>
+            <h3>Why Le Morne is Perfect for All Levels</h3>
+            <p>Le Morne offers a variety of conditions, from shallow lagoons for beginners to powerful waves for pros.</p>
+            <h3>Best Time to Visit Le Morne</h3>
+            <p>The ideal months for kitesurfing here are from June to October when the trade winds are strongest.</p>
+            <h2>Belle Mare: A Hidden Gem for Freestyle</h2>
+            <h3>Freestyle Opportunities</h3>
+            <p>Belle Mare’s flat water makes it perfect for practicing freestyle tricks.</p>
+            <h3>What Makes Belle Mare Special</h3>
+            <p>This spot is less crowded, providing ample space for kitesurfers to practice without interference.</p>
+            <h2>Anse La Raie: A Beginner’s Dream</h2>
+            <h3>Calm Waters for Learning</h3>
+            <p>Anse La Raie is known for its flat, shallow waters, ideal for those who are just starting out.</p>
+            <h3>Kite Schools in Anse La Raie</h3>
+            <p>Several kitesurfing schools offer lessons and rentals, making it convenient for beginners to get started.</p>",
+  user: user1
+)
+blog3.blog_picture.attach(io: img_blog_3, filename: 'img_blog_3.jpg', content_type: 'image/jpg')
+blog3.save
+puts "Blog #{blog3.title} created ..."
+
+puts 'Starting blog page'
+blog4 = BlogPage.create!(
+  title: "How to Perform Your First Kitesurf Jump",
+  content: "<h2>Understanding the Basics of Jumping</h2>
+            <h3>Timing and Wind Conditions</h3>
+            <p>Mastering the timing of your jump is crucial. You’ll need to catch the wind at the right moment for lift.</p>
+            <h3>Kite Positioning</h3>
+            <p>Your kite should be at a 45-degree angle when you're ready to jump, providing the perfect balance between lift and control.</p>
+            <h2>Step-by-Step Jump Guide</h2>
+            <h3>Step 1: Build Up Speed</h3>
+            <p>Before jumping, ride upwind to build momentum. Speed is essential for a successful jump.</p>
+            <h3>Step 2: Pull the Bar In</h3>
+            <p>As you prepare to jump, pull in on the bar to generate lift.</p>
+            <h3>Step 3: Launch into the Air</h3>
+            <p>Push the board down, and use your legs to propel yourself into the air while keeping the kite stable.</p>
+            <h2>Landing Safely</h2>
+            <h3>Control Your Descent</h3>
+            <p>As you descend, slowly steer the kite back to the 12 o’clock position to soften your landing.</p>
+            <h3>Keep Your Knees Bent</h3>
+            <p>Bend your knees upon landing to absorb the impact and regain control of your board.</p>",
+  user: user1
+)
+blog4.blog_picture.attach(io: img_blog_4, filename: 'img_blog_4.jpg', content_type: 'image/jpg')
+blog4.save
+puts "Blog #{blog4.title} created ..."
+
+puts 'Starting blog page'
+blog5 = BlogPage.create!(
+  title: "The Evolution of Kitesurfing Gear: What’s New in 2024?",
+  content: "<h2>New Kite Designs for Better Performance</h2>
+            <h3>Lighter Materials</h3>
+            <p>The latest kites feature lighter materials, making them easier to control and more responsive.</p>
+            <h3>Improved Aerodynamics</h3>
+            <p>Design improvements have led to more aerodynamic kites, which reduce drag and enhance speed.</p>
+            <h2>Boards with Advanced Flex Technology</h2>
+            <h3>Enhanced Durability</h3>
+            <p>New boards are built with stronger materials, offering increased durability without compromising on flexibility.</p>
+            <h3>Better Shock Absorption</h3>
+            <p>Advanced shock-absorption technology helps riders maintain control in choppy waters.</p>
+            <h2>Safety Features: What’s Improved?</h2>
+            <h3>Enhanced Quick-Release Systems</h3>
+            <p>2024 sees the introduction of faster, more intuitive quick-release mechanisms for increased safety.</p>
+            <h3>Smarter Harness Designs</h3>
+            <p>New harnesses provide better lumbar support, reducing strain during long sessions.</p>",
+  user: user1
+)
+blog5.blog_picture.attach(io: img_blog_5, filename: 'img_blog_5.jpg', content_type: 'image/jpg')
+blog5.save
+puts "Blog #{blog5.title} created ..."
+
+puts 'All blog pages created.'
 puts '-------------------------------'

@@ -1,0 +1,60 @@
+[1mdiff --cc app/controllers/blog_pages_controller.rb[m
+[1mindex 81aba8d,1f8bb61..0000000[m
+[1m--- a/app/controllers/blog_pages_controller.rb[m
+[1m+++ b/app/controllers/blog_pages_controller.rb[m
+[36m@@@ -11,31 -12,21 +12,45 @@@[m [mclass BlogPagesController < Application[m
+      @comment_blogs = @blog_page.comment_blogs[m
+    end[m
+  [m
+[31m-   def new[m
+[31m-     @blog_page = BlogPage.new[m
+[32m+   def edit[m
+[32m+     @blog_page = BlogPage.find(params[:id])[m
+    end[m
+  [m
+[32m++# <<<<<<< HEAD[m
+[32m +  def create[m
+[32m +    @blog_page = BlogPage.new(blog_page_params)[m
+[32m +    @blog_page.save[m
+[32m +    redirect_to blog_pages_path(@blog_page)[m
+[32m +  end[m
+[32m +[m
+[32m +  def edit[m
+[32m +    @blog_page = BlogPage.find(params[:id])[m
+[32m +  end[m
+[32m +[m
+    def update[m
+      @blog_page = BlogPage.find(params[:id])[m
+[31m -    if blog_page_params[:blog_picture][m
+[31m -      @blog_page.blog_picture.attach(blog_page_params[:blog_picture])[m
+[31m -    end[m
+[31m -    if @blog_page.update(blog_page_params.except(:blog_picture))[m
+[31m -      redirect_to @blog_page, notice: "Blog page updated successfully!"[m
+[31m -    else[m
+[31m -      render :edit[m
+[31m -    end[m
+[32m +    @blog_page.update(blog_page_params)[m
+[32m +    redirect_to blog_pages_path(@blog_page)[m
+[32m +  end[m
+[32m +[m
+[32m +  def destroy[m
+[32m +    @blog_page = BlogPage.find(params[:id])[m
+[32m +    @blog_page.destroy[m
+[32m +    redirect_to blog_pages_path, status: :see_other[m
+    end[m
+[32m++# =======[m
+[32m++#   def update[m
+[32m++#     @blog_page = BlogPage.find(params[:id])[m
+[32m++#     if blog_page_params[:blog_picture][m
+[32m++#       @blog_page.blog_picture.attach(blog_page_params[:blog_picture])[m
+[32m++#     end[m
+[32m++#     if @blog_page.update(blog_page_params.except(:blog_picture))[m
+[32m++#       redirect_to @blog_page, notice: "Blog page updated successfully!"[m
+[32m++#     else[m
+[32m++#       render :edit[m
+[32m++#     end[m
+[32m++# >>>>>>> master[m
+[32m++#   end[m
+  [m
+    private[m
+  [m
