@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <div class="<%= 'devise-layout' if devise_controller? %>">
+    <div data-controller="categories-filter" class="<%= 'devise-layout' if devise_controller? %>">
       <% if spots_show_page? || shops_show_page? || schools_show_page? %>
         <%= render "shared/navbar_back" %>
       <% elsif blogs_show_page? %>
@@ -21,10 +21,11 @@
         <%= render "shared/navbar" %>
       <% end %>
 
-        <%= render "shared/flashes" %>
-          <%= yield %>
-        </div>
-        <%= render "shared/footer" unless devise_controller? %>
+      <%= render "shared/flashes" %>
+        <%= yield %>
+      </div>
+
+      <%= render "shared/footer" unless devise_controller? %>
     </div>
 
   </body>

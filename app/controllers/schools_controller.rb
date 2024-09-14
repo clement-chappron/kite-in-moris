@@ -1,5 +1,6 @@
 class SchoolsController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_school, only: [:edit, :update, :show, :destroy]
   before_action :set_school_step, only: [:create_step_1, :create_step_2, :create_step_3, :create_step_4]
   before_action :find_school, only: [:create_step_2, :create_step_3, :create_step_4]
@@ -81,7 +82,7 @@ class SchoolsController < ApplicationController
     redirect_to schools_path, notice: 'School was successfully deleted.'
   rescue ActiveRecord::RecordNotFound
     redirect_to schools_path, alert: 'School not found.'
-  end  
+  end
 
   private
 
