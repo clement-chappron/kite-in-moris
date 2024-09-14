@@ -14,7 +14,7 @@ class BlogPagesController < ApplicationController
   end
 
   def new
-    @blog_page = BlogPage.new
+    @blog_page = BlogPage.new(user: current_user)
   end
 
   def create
@@ -33,7 +33,10 @@ class BlogPagesController < ApplicationController
 
   def update
     @blog_page = BlogPage.find(params[:id])
-    if @blog_page.update(blog_page_params)
+    if blog_page_params[:blog_picture]
+      @blog_page.blog_picture.attach(blog_page_params[:blog_picture])
+    end
+    if @blog_page.update(blog_page_params.except(:blog_picture))
       redirect_to @blog_page, notice: "Blog page updated successfully!"
     else
       render :edit
