@@ -1,21 +1,24 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["locations", "locationBtn", "cards"];
+  static targets = ["locations", "locationBtn", "cards", "input"];
   static values = { params: Object };
 
   connect() {
     this.selectedCategory = 'all';
-    this.selectedLocation = 'All locations';
+    this.selectedLocation = 'all locations';
+    this.searchQuery = 'anse';
     this.params = {
-      offset: 8,
-      limit: 8
+      offset: 9,
+      limit: 9
     };
+
+    console.log(this.searchQuery.value);
     this.loadCards();
   }
 
   loadCards() {
-    fetch(`/filter_categories?category=${this.selectedCategory}&location=${this.selectedLocation}&limitLoad=${this.params.limit}`, {
+    fetch(`/filter_categories?category=${this.selectedCategory}&location=${this.selectedLocation}&limitLoad=${this.params.limit}&query=${this.searchQuery}`, {
       headers: {
         "Accept": "text/html"
       }
@@ -25,6 +28,18 @@ export default class extends Controller {
       this.cardsTarget.innerHTML = html;
     })
     .catch(error => console.error('Error:', error));
+  }
+
+  // Fonction pour gérer la recherche
+  submit(event) {
+    event.preventDefault();
+    console.log(' hello from submit');
+    console.log(this.inputTarget.value)
+    this.searchQuery = this.inputTarget.value;
+
+    this.params.offset = 0;
+
+    this.loadCards();
   }
 
   locations(event) {
@@ -38,10 +53,10 @@ export default class extends Controller {
     });
     document.getElementById("all-locations").classList.add('active-location');
 
-    this.selectedLocation = 'All locations';
+    this.selectedLocation = 'all locations';
     this.params = {
-      offset: 8,
-      limit: 8
+      offset: 9,
+      limit: 9
     };
 
     this.loadCards();
@@ -57,9 +72,10 @@ export default class extends Controller {
 
     this.selectedCategory = event.currentTarget.dataset.category;
     this.params = {
-      offset: 8,
-      limit: 8
+      offset: 9,
+      limit: 9
     };
+
     this.loadCards();
   }
 
@@ -73,8 +89,8 @@ export default class extends Controller {
 
     this.selectedLocation = event.currentTarget.dataset.location;
     this.params = {
-      offset: 8,
-      limit: 8
+      offset: 9,
+      limit: 9
     };
 
     this.loadCards();
@@ -85,7 +101,7 @@ export default class extends Controller {
     console.log('limit', this.params.limit);
     console.log('offset', this.params.offset);
 
-    fetch(`/filter_categories?category=${this.selectedCategory}&location=${this.selectedLocation}&limitLoad=${this.params.limit}&offset=${this.params.offset}`, {
+    fetch(`/filter_categories?category=${this.selectedCategory}&location=${this.selectedLocation}&limitLoad=${this.params.limit}&offset=${this.params.offset}&query=${this.searchQuery}`, {
       headers: {
         "Accept": "text/html"
       }
