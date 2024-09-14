@@ -33,7 +33,7 @@ class BlogPagesController < ApplicationController
   def authorize_user!
     redirect_to root_path, alert: 'Not authorized' unless @blog_page.user == current_user
   end
-  
+
   def record_not_found
     flash[:alert] = "The blog page you were looking for could not be found."
     redirect_to root_path

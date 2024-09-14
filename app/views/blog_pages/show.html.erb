@@ -6,7 +6,6 @@
                            fetch_format: :auto) : asset_path("IMG_4667.webp") %>);height: 80vh">
   <div class="title-show">
     <h1><%= @blog_page.title %></h1>
-    <p class="text-center"><i class="fi fi-rs-marker icon-header"></i></p>
   </div>
 </div>
 
@@ -30,17 +29,17 @@
         </div>
 
 
-        <h2 class="fs-4 mt-3">Title 2</h2>
-        <p><%= @blog_page.content %></p>
+
+        <div><%= @blog_page.content.html_safe %></div>
 
       </div>
     </div>
-
+<!--
   <%# Add picture  %>
     <% if @blog_page.user == current_user %>
       <div class="container">
         <div class="content-show">
-          <!-- Button trigger modal -->
+          <%# Button trigger modal %>
           <div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
               <div class="d-flex justify-content-end align-items-center">
@@ -52,7 +51,7 @@
             <% end %>
           </div>
 
-          <!-- Modal -->
+           <%# Modal %>
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md">
               <div class="modal-content">
@@ -80,7 +79,7 @@
       </div>
     </div>
   </div>
-<% end %>
+<% end %> -->
 
 
 <%# Reviews %>
