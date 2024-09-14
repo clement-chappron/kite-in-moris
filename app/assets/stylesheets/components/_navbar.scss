@@ -1,4 +1,5 @@
 .navbar-container {
+  display: flex;
   width: 100%;
   height: 80px;
   margin-bottom: 25px;
@@ -6,6 +7,13 @@
   display: flex;
   justify-content: end;
   align-items: center;
+  padding-top: 10px;
+  padding-right: 3vw;
+  padding-left: 3vw;
+  @media screen and (min-width: 768px) {
+    padding-right: 6vw;
+    padding-left: 6vw;
+  }
 }
 
 .navbar-back-container {
@@ -16,29 +24,33 @@
   height: 80px;
   z-index: 1;
   display: flex;
-  justify-content: end;
   align-items: center;
+  margin-top: 10px;
+  padding-right: 3vw;
+  padding-left: 3vw;
+@media screen and (min-width: 768px) {
+  padding-right: 6vw;
+  padding-left: 6vw;
+}
 }
 
 .navbar-search {
-  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
   margin-right: 8px;
   padding-top: 5px;
-  padding-left: 1px;
   width: 54px;
   background-color: white;
   border-radius: 50px;
   height: 54px;
   transition: all 0.3s;
-  border-color: white;
+  border: 1px solid white;
   &:hover {
     font-size: 1.2rem;
     background-color: rgba(207, 237, 88, 0.6);
-    border: 1px solid white;
+    border: 1px solid black;
   }
 }
 
@@ -50,17 +62,17 @@
 }
 
 .navbar-user {
-  margin-top: 10px;
   display: flex;
   align-items: center;
   font-size: 1rem;
-  margin-right: 3vw;
   padding-left: 24px;
   padding-right: 24px;
   background-color: white;
   border-radius: 50px;
-  @media screen and (min-width: 768px) {
-    margin-right: 6vw;
+  border: solid 1px white;
+  &:hover {
+    border: solid 1px black;
+    background-color: rgb(207, 237, 88);
   }
 }
 
@@ -118,7 +130,6 @@
   border-radius: 50px;
   padding: 16px 24px;
   font-size: 1rem;
-  margin-top: 9px;
   &:focus {
     outline: none;
   }
