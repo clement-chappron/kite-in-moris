@@ -18,10 +18,7 @@ class BlogPagesController < ApplicationController
 
   def update
     @blog_page = BlogPage.find(params[:id])
-    if blog_page_params[:blog_picture]
-      @blog_page.blog_picture.attach(blog_page_params[:blog_picture])
-    end
-    if @blog_page.update(blog_page_params.except(:blog_picture))
+    if @blog_page.update(blog_page_params)
       redirect_to @blog_page, notice: "Blog page updated successfully!"
     else
       render :edit
