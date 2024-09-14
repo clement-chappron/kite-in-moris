@@ -1,11 +1,18 @@
 <div class="navbar-back-container">
 
   <%# bouton back %>
-  <div class="menu-wrapper">
-    <%= link_to blog_pages_path  do %>
-      <div class="back-bg"></div>
-      <div class="back-arrow"></div>
-    <% end %>
+  <div class="d-flex">
+    <div class="menu-wrapper" style="margin-right: 8px;">
+      <%= link_to blog_pages_path  do %>
+        <div class="back-bg"></div>
+        <div class="back-arrow"></div>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to root_path do %>
+        <%= image_tag asset_path('logo.png'), class: 'navbar-blog-logo' %>
+      <% end %>
+    </div>
   </div>
 
 </div>
