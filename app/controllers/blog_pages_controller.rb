@@ -1,6 +1,6 @@
 class BlogPagesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  before_action :authorize_user!, only: [:edit, :update]
+  after_action :authorize_user!, only: [:edit, :update]
 
   def index
     @blog_pages = BlogPage.all
@@ -10,6 +10,20 @@ class BlogPagesController < ApplicationController
     @blog_page = BlogPage.find(params[:id])
     @comment_blog = @blog_page.comment_blogs.new
     @comment_blogs = @blog_page.comment_blogs
+  end
+
+  def new
+    @blog_page = BlogPage.new
+  end
+
+  def create
+    @blog_page = BlogPage.new(blog_page_params)
+    @blog_page.user = current_user
+    if @blog_page.save
+      redirect_to @blog_page, notice: 'Blog page was successfully created.'
+    else
+      render :new
+    end
   end
 
   def edit

@@ -1,15 +1,15 @@
 <div class='container'>
-  <% if params[:query].present? %>
-    <% if @search_cards.any? %>
-     <%= render "search_cards" %>
-    <% else %>
-      <em>"Sorry we cannot find any corresponding entry"</em>
-    <% end %>
-  <% else %>
 
     <h1 style='margin-top: 60px;'>Categories</h1>
 
     <div data-controller="categories-filter">
+        <form data-action="categories-filter#submit">
+          <input id="search-form" type="text" data-categories-filter-target="input" placeholder="Search..." class="" />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+
+
       <div id="allCategories" class="categories horizontal-scroll-container">
         <div class="d-flex">
           <div data-action="click->categories-filter#filter" data-category="all" class="categories-item active-category">
@@ -63,7 +63,15 @@
 
       <br>
 
-
+      <% if params[:query].present? %>
+        <div class="row g-2 row-cols-1 row-cols-md-2 row-cols-lg-3">
+          <% if @cards.any? %>
+            <%= render "cards" %>
+          <% else %>
+            <em>"Sorry we cannot find any corresponding entry"</em>
+          <% end %>
+        </div>
+      <% else %>
       <div data-categories-filter-target="cards" class="row g-2 row-cols-1 row-cols-md-2 row-cols-lg-3">
         <%# rendu des cards dynamiquement par AJAX %>
       </div>

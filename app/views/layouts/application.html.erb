@@ -13,8 +13,10 @@
 
   <body>
     <div class="<%= 'devise-layout' if devise_controller? %>">
-      <% if spots_show_page? || shops_show_page? || schools_show_page? || blogs_show_page? %>
+      <% if spots_show_page? || shops_show_page? || schools_show_page? %>
         <%= render "shared/navbar_back" %>
+      <% elsif blogs_show_page? %>
+        <%= render "shared/navbar_blog_back" %>
       <% else %>
         <%= render "shared/navbar" %>
       <% end %>

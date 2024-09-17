@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :review_shops
   has_many :review_schools
   has_many :review_spots
+  has_many :comment_blogs
 
   has_one_attached :profile_picture
 
