@@ -18,12 +18,6 @@
     </svg>
   </div>
 
-  <% if @blog_page.user == current_user %>
-    <div class="d-flex justify-content-end align-items-center mt-3">
-      <%= link_to "Edit", edit_blog_page_path(@blog_page), class: "btn btn-primary" %>
-    </div>
-  <% end %>
-
   <div class="pb-5" style="background-color: #fff;">
     <div class="container">
       <div class="content-show">
@@ -36,22 +30,57 @@
           <%= @blog_page.content.html_safe %>
         </div>
       </div>
+       <% if @blog_page.user == current_user %>
+        <div class="d-flex justify-content-left align-items-center ">
+          <%= link_to "Edit", edit_blog_page_path(@blog_page), class: "btn btn-primary"%>
+        </div>
+        <% end %>
     </div>
   </div>
 
-<%# Reviews %>
 
+
+<%# Reviews %>
+<!--
+<div class="container">
+  <div class="content-show">
+
+
+  <% if user_signed_in? %>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+      Add a Review
+    </button>
+    <% else %>
+    <p>* If you want to leave a comment, please sign in:</p>
+    <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %>
+    <% end %>
+
+    <div class="mt-4">
+      <% @blog_page.comment_blogs.each do |comment| %>
+        <div class="card mb-3">
+          <div class="card-body review-card">
+            <p class="card-text"><%= comment.description %></p>
+            <small>By <%= comment.user.first_name %> <%= comment.user.last_name %> on <%= comment.created_at.strftime('%d %b %Y') %></small>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> -->
 
 <div class="container">
   <div class="content-show">
 
   <!-- Button to trigger modal -->
 
-    <div data-bs-toggle="modal" data-bs-target="#reviewModal">
-      <p class="mt-5 mb-3">
-        <%# link_to 'Add a review', 'javascript:void(0);', class: 'link link-underline' %>
-      </p>
-    </div>
+    <% if user_signed_in? %>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#reviewModal">
+      Add a Review
+    </button>
+    <% else %>
+    <p>* If you want to leave a comment, please sign in:</p>
+    <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %>
+    <% end %>
 
     <!-- Modal -->
     <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
@@ -62,20 +91,62 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <%= form_with model: [@blog_page, @comment_blog], url: blog_page_comment_blogs_path(@blog_page), method: :post, local: true do |f| %>
-
+            <%= simple_form_for [@blog_page, @comment_blog], url: blog_page_comment_blogs_path(@blog_page), method: :post, html: { class: 'form-horizontal' } do |f| %>
               <div class="mb-3">
-                <%= f.label :description, class: 'form-label' %>
-                <%= f.text_area :description, class: 'form-control', rows: 3, required: true %>
+                <%= f.input :description, as: :text, input_html: { rows: 3, class: 'form-control', required: true }, label_html: { class: 'form-label' } %>
               </div>
+
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">Close</button>
-                <%= f.submit 'Submit Review', class: 'btn btn-primary' %>
+                <%= f.button :submit, 'Submit Review', class: 'btn btn-primary' %>
               </div>
             <% end %>
           </div>
         </div>
       </div>
     </div>
+
+
+    <div data-controller="load-more" data-load-more-comment_blog="<%= @comment_blog %>">
+
+      <div data-load-more-target="comment" class="">
+          <%# rendu des cards dynamiquement par AJAX %>
+          <%  @blog_page.comment_blogs.each do |comment| %>
+            <div class="review-card">
+              <div class="d-flex align-items-center">
+                <p>
+                  <%= cl_image_tag(comment.user.profile_picture.key,
+                                class: 'me-2 img_fluid rounded-circle',
+                                alt: "#{comment.user.first_name}'s avatar from kite in mauritius",
+                                width: 40,
+                                height: 40,
+                                crop: :fill,
+                                dpr: 2.0,
+                                quality: "auto:best",
+                                gravity: :face,
+                                fetch_format: :auto,
+                                effect: "sharpen:50",
+                                radius: "max")
+                                %>
+                </p>
+                <p class="comment-user"><%= comment.user.first_name.capitalize %> <%= comment.user.last_name.capitalize.first %></p>
+              </div>
+              <p class="comment-description"><%= comment.description %></p>
+              <small><%= comment.created_at.strftime('%d %b %Y') %></small>
+            </div>
+          <% end %>
+
+          <%= tag.div "", id: "more_comments_exist", data: { more: @more_comments_exist } %>
+
+      </div>
+
+      <div class="d-flex mx-auto mt-5">
+        <div data-action="click->load-more#loadMore" class="btn-load-more">
+          <%= link_to 'Load More', '#', class: 'link link-underline'%>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </div>

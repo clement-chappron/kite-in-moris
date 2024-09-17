@@ -1,7 +1,7 @@
 class BlogPagesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  before_action :authorize_user!, only: [:edit, :update]
-
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  after_action :authorize_user!, only: [:edit, :update]
 
   def index
     @blog_pages = BlogPage.all
@@ -9,8 +9,8 @@ class BlogPagesController < ApplicationController
 
   def show
     @blog_page = BlogPage.find(params[:id])
-    @comment_blog = @blog_page.comment_blogs.new
-    @comment_blogs = @blog_page.comment_blogs
+    @comment_blog = CommentBlog.new
+    @comment_blog.user = current_user
   end
 
   def new
