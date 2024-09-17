@@ -1,4 +1,5 @@
 class SpotsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
   def show
     @spot = Spot.friendly.find(params[:slug])
     @review_spot = ReviewSpot.new

@@ -11,32 +11,40 @@
 <div class="navbar-container">
 
   <%# bouton du menu %>
-  <div id="navbar-btn" class="menu-wrapper absolute">
-    <div class="hamburger-bg"></div>
-    <div class="hamburger-menu"></div>
+  <div class="d-flex">
+    <div data-categories-filter-target="burger" id="navbar-btn" class="menu-wrapper" style="margin-right: 8px;">
+      <div class="hamburger-bg"></div>
+      <div class="hamburger-menu"></div>
+    </div>
+    <div>
+      <%= link_to root_path do %>
+        <%= image_tag asset_path('logo.png'), class: 'navbar-logo' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center ms-auto">
+    <form data-action="categories-filter#submit">
+      <input id="search-form" type="text" data-categories-filter-target="input" placeholder="Search..." class="input-search-form d-none" />
+    </form>
+      <div id="show-search" data-action="click->categories-filter#showSearch" class="navbar-search">
+        <button type="submit" class="unstyled-button">
+          <i class="fi fi-rs-search"></i>
+        </button>
+      </div>
+      <div id="search" data-action="click->categories-filter#submit" class="navbar-search d-none">
+        <button type="submit" class="unstyled-button">
+          <i class="fi fi-rs-search"></i>
+        </button>
+      </div>
+    <div id="close-search" data-action="click->categories-filter#removeSearch" class="navbar-search cross d-none">
+      <i class="fi fi-rs-cross-small"></i>
+    </div>
   </div>
 
 
-  <%# Rechcher logo %>
-  <% if controller_name == "pages" && action_name == "home"%>
-      <%= form_with url: root_path, method: :get, html: {class: "mb-4"}, data: {search_target: "form"} do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Enter name of school, shop, or spot"
-        %>
-        <%= submit_tag "search", name: "", class: "btn" %>
-      <% end %>
-    <% end %>
-
-  <!--<div class="navbar-search">
-    <%= link_to root_path do %>
-      <i class="fi fi-rs-search"></i>
-    <% end %>
-  </div><-->
-
   <%# bouton se connecter || bonjour user %>
- <div class="navbar-user">
+ <div data-categories-filter-target="profile" class="navbar-user">
     <% if user_signed_in? %>
         <%= link_to edit_image_and_bio_path do %>
           <p class='navbar-btn'>

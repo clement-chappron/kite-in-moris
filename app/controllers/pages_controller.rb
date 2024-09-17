@@ -13,6 +13,8 @@ class PagesController < ApplicationController
     end
   end
 
+
+
   def filter_categories
     @category = params[:category]
     @location = params[:location]
@@ -20,31 +22,30 @@ class PagesController < ApplicationController
 
     if query.present?
       @cards = case @category
-                when 'all'
-                  [School.all, Shop.all, Spot.all].flatten.where("name ILIKE ?", "%#{query}%")
-                when 'schools'
-                  School.all.where("name ILIKE ?", "%#{query}%")
-                when 'shops'
-                  Shop.all.where("name ILIKE ?", "%#{query}%")
-                when 'spots'
-                  Spot.all.where("name ILIKE ?", "%#{query}%")
-                else
-                []
-                end
-
+      when 'all'
+        [search_in_all_columns(School, query), search_in_all_columns(Shop, query), search_in_all_columns(Spot, query)].flatten
+      when 'schools'
+        search_in_all_columns(School, query)
+      when 'shops'
+        search_in_all_columns(Shop, query)
+      when 'spots'
+        search_in_all_columns(Spot, query)
+      else
+        []
+      end
     else
       @cards = case @category
-               when 'all'
-                 [School.all, Shop.all, Spot.all].flatten
-               when 'schools'
-                 School.all
-               when 'shops'
-                 Shop.all
-               when 'spots'
-                 Spot.all
-               else
-                []
-               end
+      when 'all'
+        [School.all, Shop.all, Spot.all].flatten
+      when 'schools'
+        School.all
+      when 'shops'
+        Shop.all
+      when 'spots'
+        Spot.all
+      else
+        []
+      end
     end
 
     # Apply location filter if necessary
@@ -61,4 +62,30 @@ class PagesController < ApplicationController
       format.html { render partial: "pages/cards", locals: { cards: @cards } }
     end
   end
+
+
+  private
+
+  def search_in_all_columns(klass, query)
+    unless [School, Shop, Spot].include?(klass)
+      raise ArgumentError, "Classe non supportée"
+    end
+
+    search_terms = query.split
+    columns = klass.column_names
+    conditions = []
+    search_terms.each do |term|
+      column_conditions = []
+      columns.each do |column|
+        column_conditions << "#{klass.table_name}.#{column}::text ILIKE ?"
+      end
+
+      conditions << "(#{column_conditions.join(' OR ')})"
+    end
+    sql_conditions = conditions.join(' AND ')
+    values = search_terms.flat_map { |term| Array.new(columns.size, "%#{term}%") }
+
+    klass.where(sql_conditions, *values)
+  end
+
 end

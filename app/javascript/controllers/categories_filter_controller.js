@@ -1,19 +1,18 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["locations", "locationBtn", "cards", "input"];
+  static targets = ["locations", "locationBtn", "cards", "input", "burger", "profile"];
   static values = { params: Object };
 
   connect() {
     this.selectedCategory = 'all';
     this.selectedLocation = 'all locations';
-    this.searchQuery = 'anse';
+    this.searchQuery = '';
     this.params = {
       offset: 9,
       limit: 9
     };
 
-    console.log(this.searchQuery.value);
     this.loadCards();
   }
 
@@ -33,9 +32,45 @@ export default class extends Controller {
   // Fonction pour gérer la recherche
   submit(event) {
     event.preventDefault();
-    console.log(' hello from submit');
-    console.log(this.inputTarget.value)
+    this.selectedCategory = 'all';
+    this.selectedLocation = 'all locations';
+
+    this.locationsTarget.classList.add("d-none");
+    this.locationBtnTarget.classList.remove("border-green");
+
+    document.querySelectorAll('.categories-item').forEach(item => {
+      item.classList.remove('active-category');
+    });
+    document.getElementById('all').classList.add('active-category');
+
     this.searchQuery = this.inputTarget.value;
+    document.getElementById('search').classList.add('d-none');
+    document.getElementById('close-search').classList.remove('d-none');
+
+    this.params.offset = 0;
+
+    this.loadCards();
+  }
+
+  showSearch(event) {
+    event.preventDefault();
+    document.getElementById('search').classList.remove('d-none');
+    document.getElementById('show-search').classList.add('d-none');
+    document.getElementById('search-form').classList.remove('d-none');
+    this.burgerTarget.classList.add('search-mobile');
+    this.profileTarget.classList.add('search-mobile');
+  }
+
+  removeSearch(event) {
+    event.preventDefault();
+    this.searchQuery = '';
+    this.inputTarget.value = '';
+
+    document.getElementById('show-search').classList.remove('d-none');
+    document.getElementById('close-search').classList.add('d-none');
+    document.getElementById('search-form').classList.add('d-none');
+    this.burgerTarget.classList.remove('search-mobile');
+    this.profileTarget.classList.remove('search-mobile');
 
     this.params.offset = 0;
 

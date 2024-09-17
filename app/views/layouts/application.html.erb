@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="icon" type="image/png" href="<%= asset_path('favicon.png') %>">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
@@ -12,7 +13,7 @@
   </head>
 
   <body>
-    <div class="<%= 'devise-layout' if devise_controller? %>">
+    <div data-controller="categories-filter" class="<%= 'devise-layout' if devise_controller? %>">
       <% if spots_show_page? || shops_show_page? || schools_show_page? %>
         <%= render "shared/navbar_back" %>
       <% elsif blogs_show_page? %>
@@ -21,10 +22,11 @@
         <%= render "shared/navbar" %>
       <% end %>
 
-        <%= render "shared/flashes" %>
-          <%= yield %>
-        </div>
-        <%= render "shared/footer" unless devise_controller? %>
+      <%= render "shared/flashes" %>
+        <%= yield %>
+      </div>
+
+      <%= render "shared/footer" unless devise_controller? %>
     </div>
 
   </body>
