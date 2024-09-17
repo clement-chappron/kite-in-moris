@@ -18,6 +18,8 @@ User.destroy_all
 puts 'All users destroyed ...'
 Location.destroy_all
 puts 'All locations destroyed ...'
+CommentBlog.destroy_all
+puts 'All comments on blogpages destroyed ...'
 puts '-------------------------------'
 
 # User seeds
@@ -72,6 +74,19 @@ user4 = User.create!(
 user4.profile_picture.attach(io: user4_img, filename: 'user4.jpg', content_type: 'image/jpg')
 user4.save
 puts "User #{user4.first_name} #{user4.last_name} created ..."
+
+user5_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726593709/Aurelia_pcd7xx.jpg')
+user5 = User.create!(
+  first_name: 'Aurelia',
+  last_name: 'Ritter',
+  email: 'ar@mail.com',
+  address: 'Calodyne, Mauritius',
+  password: 'password',
+  password_confirmation: 'password',
+)
+user5.profile_picture.attach(io: user5_img, filename: 'user5.jpg', content_type: 'image/jpg')
+user5.save
+puts "User #{user5.first_name} #{user5.last_name} created ..."
 
 puts 'All users created ...'
 puts '-------------------------------'
@@ -729,4 +744,28 @@ blog5.save
 puts "Blog #{blog5.title} created ..."
 
 puts 'All blog pages created.'
+
+puts 'Creating blog pages comments'
+CommentBlog.create(
+  description: "This is a great blog post. It is a good read.",
+  user: user1,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "I am amazed. It sounds too good to be true.",
+  user: user2,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "This blog post is very informative. I learned a lot from it.",
+  user: user3,
+  blog_page: blog1
+)
+CommentBlog.create!(
+  description: "I do not agree with your view. Can we discuss it?",
+  user: user4,
+  blog_page: blog1
+)
+
+puts 'All comments on blog pages created'
 puts '-------------------------------'
