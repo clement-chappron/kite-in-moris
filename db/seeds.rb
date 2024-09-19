@@ -18,6 +18,8 @@ User.destroy_all
 puts 'All users destroyed ...'
 Location.destroy_all
 puts 'All locations destroyed ...'
+CommentBlog.destroy_all
+puts 'All comments on blogpages destroyed ...'
 puts '-------------------------------'
 
 # User seeds
@@ -28,7 +30,7 @@ user1 = User.create!(
   email: 'clement.chappron@gmail.com',
   address: '13D rue des terminalias, Tamarin, Mauritius',
   password: 'password',
-  password_confirmation: 'password',
+  password_confirmation: 'password'
 )
 user1.profile_picture.attach(io: user1_img, filename: 'user1.jpg', content_type: 'image/jpg')
 user1.save
@@ -41,20 +43,20 @@ user2 = User.create!(
   email: 'ed@mail.com',
   address: 'Casablanca, Morocco',
   password: 'password',
-  password_confirmation: 'password',
+  password_confirmation: 'password'
 )
 user2.profile_picture.attach(io: user2_img, filename: 'user2.jpg', content_type: 'image/jpg')
 user2.save
 puts "User #{user2.first_name} #{user2.last_name} created ..."
 
-user3_img = URI.open('https://res.cloudinary.com/deewxzlno/image/upload/v1724074421/production/avatars/zqf6zhn2lbkx0iaoexn7.jpg')
+user3_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726678411/Avi_wsv3rl.jpg')
 user3 = User.create!(
   first_name: 'Avinash',
   last_name: 'Daby',
   email: 'ad@mail.com',
   address: 'Moka, Mauritius',
   password: 'password',
-  password_confirmation: 'password',
+  password_confirmation: 'password'
 )
 user3.profile_picture.attach(io: user3_img, filename: 'user3.jpg', content_type: 'image/jpg')
 user3.save
@@ -67,11 +69,76 @@ user4 = User.create!(
   email: 'ls@mail.com',
   address: 'Port Louis, Mauritius',
   password: 'password',
-  password_confirmation: 'password',
+  password_confirmation: 'password'
 )
 user4.profile_picture.attach(io: user4_img, filename: 'user4.jpg', content_type: 'image/jpg')
 user4.save
 puts "User #{user4.first_name} #{user4.last_name} created ..."
+
+user5_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726593709/Aurelia_pcd7xx.jpg')
+user5 = User.create!(
+  first_name: 'Aurelia',
+  last_name: 'Ritter',
+  email: 'ar@mail.com',
+  address: 'Calodyne, Mauritius',
+  password: 'password',
+  password_confirmation: 'password'
+)
+user5.profile_picture.attach(io: user5_img, filename: 'user5.jpg', content_type: 'image/jpg')
+user5.save
+puts "User #{user5.first_name} #{user5.last_name} created ..."
+
+user6_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726640658/Ophelie_cuhaxf.jpg')
+user6 = User.create!(
+  first_name: 'Ophelie',
+  last_name: 'Turenne',
+  email: 'ot@mail.com',
+  address: 'Beau-Bassin, Mauritius',
+  password: 'password',
+  password_confirmation: 'password'
+)
+user6.profile_picture.attach(io: user6_img, filename: 'user6.jpg', content_type: 'image/jpg')
+user6.save
+puts "User #{user6.first_name} #{user6.last_name} created ..."
+
+user7_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726640647/Cedric_ycjlgc.jpg')
+user7 = User.create!(
+  first_name: 'Cédric',
+  last_name: 'Thonney',
+  email: 'ct@mail.com',
+  address: 'Mahébourg, Mauritius',
+  password: 'password',
+  password_confirmation: 'password'
+)
+user7.profile_picture.attach(io: user7_img, filename: 'user7.jpg', content_type: 'image/jpg')
+user7.save
+puts "User #{user7.first_name} #{user7.last_name} created ..."
+
+user8_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726640634/Ajmal_deqeul.jpg')
+user8 = User.create!(
+  first_name: 'Ajmal',
+  last_name: 'Rambocus',
+  email: 'ajmal@mail.com',
+  address: 'Curepipe, Mauritius',
+  password: 'password',
+  password_confirmation: 'password'
+)
+user8.profile_picture.attach(io: user8_img, filename: 'user8.jpg', content_type: 'image/jpg')
+user8.save
+puts "User #{user8.first_name} #{user8.last_name} created ..."
+
+user9_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726640668/Yaasir_vuvah0.jpg')
+user9 = User.create!(
+  first_name: 'Yaasir',
+  last_name: 'Cheekoory',
+  email: 'yc@mail.com',
+  address: 'Port-Louis, Mauritius',
+  password: 'password',
+  password_confirmation: 'password'
+)
+user9.profile_picture.attach(io: user9_img, filename: 'user9.jpg', content_type: 'image/jpg')
+user9.save
+puts "User #{user9.first_name} #{user9.last_name} created ..."
 
 puts 'All users created ...'
 puts '-------------------------------'
@@ -622,7 +689,7 @@ blog1 = BlogPage.create!(
             <p>While the first few attempts were challenging, the feeling of gliding over the water was exhilarating.</p>
             <h3>What I Learned</h3>
             <p>Patience and practice are key. After a few days, I was able to stay on the board and ride small waves.</p>",
-  user: user1
+  user: user2
 )
 blog1.blog_picture.attach(io: img_blog_1, filename: 'img_blog_1.jpg', content_type: 'image/jpg')
 blog1.save
@@ -656,7 +723,7 @@ puts "Blog #{blog2.title} created ..."
 
 puts 'Starting blog page'
 blog3 = BlogPage.create!(
-  title: "Top 5 Kitesurfing Spots in Mauritius",
+  title: "My Top 3 Kitesurfing Spots in Mauritius",
   content: "<h2>Le Morne: A Paradise for Kitesurfers</h2>
             <h3>Why Le Morne is Perfect for All Levels</h3>
             <p>Le Morne offers a variety of conditions, from shallow lagoons for beginners to powerful waves for pros.</p>
@@ -672,7 +739,7 @@ blog3 = BlogPage.create!(
             <p>Anse La Raie is known for its flat, shallow waters, ideal for those who are just starting out.</p>
             <h3>Kite Schools in Anse La Raie</h3>
             <p>Several kitesurfing schools offer lessons and rentals, making it convenient for beginners to get started.</p>",
-  user: user1
+  user: user5
 )
 blog3.blog_picture.attach(io: img_blog_3, filename: 'img_blog_3.jpg', content_type: 'image/jpg')
 blog3.save
@@ -698,7 +765,7 @@ blog4 = BlogPage.create!(
             <p>As you descend, slowly steer the kite back to the 12 o’clock position to soften your landing.</p>
             <h3>Keep Your Knees Bent</h3>
             <p>Bend your knees upon landing to absorb the impact and regain control of your board.</p>",
-  user: user1
+  user: user4
 )
 blog4.blog_picture.attach(io: img_blog_4, filename: 'img_blog_4.jpg', content_type: 'image/jpg')
 blog4.save
@@ -722,11 +789,253 @@ blog5 = BlogPage.create!(
             <p>2024 sees the introduction of faster, more intuitive quick-release mechanisms for increased safety.</p>
             <h3>Smarter Harness Designs</h3>
             <p>New harnesses provide better lumbar support, reducing strain during long sessions.</p>",
-  user: user1
+  user: user3
 )
 blog5.blog_picture.attach(io: img_blog_5, filename: 'img_blog_5.jpg', content_type: 'image/jpg')
 blog5.save
 puts "Blog #{blog5.title} created ..."
 
 puts 'All blog pages created.'
+
+puts 'Creating blog pages comments'
+CommentBlog.create(
+  description: "I am amazed. Mauritius sounds too good to be true.",
+  user: user1,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "This is my first blog post. Thank you for your comments!",
+  user: user2,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "This blog post is very informative. I learned a lot from it.",
+  user: user3,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "I do not agree with your view. Can we discuss it?",
+  user: user4,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "This is a great read. Very vivid experience!",
+  user: user5,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "Sounds amazing! I guess I must try too!",
+  user: user6,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "I feel motivated by your experience!",
+  user: user7,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "Wow you sure had a great time!",
+  user: user8,
+  blog_page: blog1
+)
+CommentBlog.create(
+  description: "Nice post! Keep updating us!",
+  user: user9,
+  blog_page: blog1
+)
+
+puts "Comments for #{blog1.title} created ..."
+
+CommentBlog.create(
+  description: "Waiting to hear your comments!",
+  user: user1,
+  blog_page: blog2
+)
+CommentBlog.create(
+  description: "You sure gave a good analysis of the gears! Keep writing about your experiences!",
+  user: user2,
+  blog_page: blog2
+)
+CommentBlog.create(
+  description: "Wonderful! It makes me want to try it too!",
+  user: user3,
+  blog_page: blog2
+)
+CommentBlog.create(
+  description: "Please contact me. i would like to know more about Duotone.",
+  user: user4,
+  blog_page: blog2
+)
+CommentBlog.create(
+  description: "Great comparison made!",
+  user: user5,
+  blog_page: blog2
+)
+CommentBlog.create(
+  description: "Would you mind giving me some advices on how to start kitesurfing?",
+  user: user6,
+  blog_page: blog2
+)
+CommentBlog.create(
+  description: "Nice analysis. What are the prices involved?",
+  user: user7,
+  blog_page: blog2
+)
+CommentBlog.create(
+  description: "I prefer North ones!",
+  user: user8,
+  blog_page: blog2
+)
+CommentBlog.create(
+  description: "You have good writing skills!",
+  user: user9,
+  blog_page: blog2
+)
+
+puts "Comments for #{blog2.title} created ..."
+
+CommentBlog.create(
+  description: "I love Le Morne!",
+  user: user1,
+  blog_page: blog3
+)
+CommentBlog.create(
+  description: "You sure had fun in those spots! Keep writing about your experiences!",
+  user: user2,
+  blog_page: blog3
+)
+CommentBlog.create(
+  description: "Wonderful! It makes me want to try these spots too!",
+  user: user3,
+  blog_page: blog3
+)
+CommentBlog.create(
+  description: "What other interesting spots can we find?",
+  user: user4,
+  blog_page: blog3
+)
+CommentBlog.create(
+  description: "I like Anse La Raie!",
+  user: user5,
+  blog_page: blog3
+)
+CommentBlog.create(
+  description: "Belle Mare is so nice!",
+  user: user6,
+  blog_page: blog3
+)
+CommentBlog.create(
+  description: "How would you compare these spots to the best spots in the world?",
+  user: user7,
+  blog_page: blog3
+)
+CommentBlog.create(
+  description: "I've been to these spots and I love them all!",
+  user: user8,
+  blog_page: blog3
+)
+CommentBlog.create(
+  description: "Hey pal! Just wanted to give a thumbs up and encourage you in your endeavours!",
+  user: user9,
+  blog_page: blog3
+)
+
+puts "Comments for #{blog3.title} created ..."
+
+CommentBlog.create(
+  description: "Important tips to follow!",
+  user: user1,
+  blog_page: blog4
+)
+CommentBlog.create(
+  description: "Mmm...but these are really the basics...",
+  user: user2,
+  blog_page: blog4
+)
+CommentBlog.create(
+  description: "It sounds complicated to me!",
+  user: user3,
+  blog_page: blog4
+)
+CommentBlog.create(
+  description: "These are essential advices! Beginners should really understand these!",
+  user: user4,
+  blog_page: blog4
+)
+CommentBlog.create(
+  description: "Hi! How are you doing? Your website looks great!",
+  user: user5,
+  blog_page: blog4
+)
+CommentBlog.create(
+  description: "What are the best schools on the island?",
+  user: user6,
+  blog_page: blog4
+)
+CommentBlog.create(
+  description: "I am always afraid at the moment of landing. Hope your tips will help me!",
+  user: user7,
+  blog_page: blog4
+)
+CommentBlog.create(
+  description: "Do you have links to some good youtube videos for these tips?",
+  user: user8,
+  blog_page: blog4
+)
+CommentBlog.create(
+  description: "I came across your blog page recently and I must say it is very useful!",
+  user: user9,
+  blog_page: blog4
+)
+
+puts "Comments for #{blog4.title} created ..."
+
+CommentBlog.create(
+  description: "Talk a little more about enhanced durability. What materials are being used?",
+  user: user1,
+  blog_page: blog5
+)
+CommentBlog.create(
+  description: "Oh my! This is really a very dynamic field!",
+  user: user2,
+  blog_page: blog5
+)
+CommentBlog.create(
+  description: "A succinct account of developments in the field of kitesurfing! Stay connected for more updates!",
+  user: user3,
+  blog_page: blog5
+)
+CommentBlog.create(
+  description: "The advances in aerodynamics are simply astonishing!",
+  user: user4,
+  blog_page: blog5
+)
+CommentBlog.create(
+  description: "What about prices involved in this activity? Are they going down in 2024?",
+  user: user5,
+  blog_page: blog5
+)
+CommentBlog.create(
+  description: "Hey could you tell us a little more about safety issues?",
+  user: user6,
+  blog_page: blog5
+)
+CommentBlog.create(
+  description: "Brief but very interesting account of evolution in the sector!",
+  user: user7,
+  blog_page: blog5
+)
+CommentBlog.create(
+  description: "I have a youtube channel dealing on kitesurfing where I give tips and advices. Please do check it out!",
+  user: user8,
+  blog_page: blog5
+)
+CommentBlog.create(
+  description: "Good work!",
+  user: user9,
+  blog_page: blog5
+)
+
+puts "Comments for #{blog5.title} created ..."
+puts 'All comments on blog pages created'
 puts '-------------------------------'

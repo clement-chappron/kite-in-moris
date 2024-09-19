@@ -26,10 +26,19 @@
           <h1><%= @blog_page.title %></h1>
         </div>
           <p class="fs-6 text-primary">By <%= @blog_page.user.first_name %> <%= @blog_page.user.last_name %></p>
+          <small class="fs-6 text-primary">Written on <%= @blog_page.created_at.strftime('%d %b %Y') %></small>
+          <br>
+          <br>
         <div>
           <%= @blog_page.content.html_safe %>
         </div>
+        <% if @blog_page.user == current_user %>
+          <div class="d-flex justify-content-left align-items-center ">
+          <%= link_to "Edit", edit_blog_page_path(@blog_page), class: "btn btn-primary mt-4"%>
+          </div>
+        <% end %>
       </div>
+
        <% if @blog_page.user == current_user %>
         <div class="d-flex justify-content-left align-items-center ">
           <%= link_to "Edit", edit_blog_page_path(@blog_page), class: "btn btn-primary"%>
@@ -67,7 +76,6 @@
     </div>
   </div>
 </div> -->
-
 <div class="container">
   <div class="content-show">
 
