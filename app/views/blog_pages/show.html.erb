@@ -39,9 +39,43 @@
         <% end %>
       </div>
 
+       <% if @blog_page.user == current_user %>
+        <div class="d-flex justify-content-left align-items-center ">
+          <%= link_to "Edit", edit_blog_page_path(@blog_page), class: "btn btn-primary"%>
+        </div>
+        <% end %>
     </div>
   </div>
 
+
+
+<%# Reviews %>
+<!--
+<div class="container">
+  <div class="content-show">
+
+
+  <% if user_signed_in? %>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+      Add a Review
+    </button>
+    <% else %>
+    <p>* If you want to leave a comment, please sign in:</p>
+    <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %>
+    <% end %>
+
+    <div class="mt-4">
+      <% @blog_page.comment_blogs.each do |comment| %>
+        <div class="card mb-3">
+          <div class="card-body review-card">
+            <p class="card-text"><%= comment.description %></p>
+            <small>By <%= comment.user.first_name %> <%= comment.user.last_name %> on <%= comment.created_at.strftime('%d %b %Y') %></small>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> -->
 <div class="container">
   <div class="content-show">
 
