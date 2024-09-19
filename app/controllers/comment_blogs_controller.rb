@@ -3,7 +3,8 @@ class CommentBlogsController < ApplicationController
   before_action :set_blog_page, only: %i[index new create]
 
   def index
-    @comment_blogs = @blog_page.comment_blogs
+    @comment_blogs = @blog_page.comment_blogs.order(created_at: :desc).limit(5)
+    @more_comments_exist = @blog_page.comment_blogs.count > 5
   end
 
   def new
@@ -16,7 +17,7 @@ class CommentBlogsController < ApplicationController
     if @comment_blog.save
       redirect_to blog_page_path(@comment_blog.blog_page_id)
     else
-      render :new
+      render "blog_pages/show", status: :unprocessable_entity
     end
   end
 
