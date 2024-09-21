@@ -23,7 +23,7 @@
             <% case card.class.name %>
             <% when "School" %>
               <div class="d-flex">
-                <%= link_to school_path(card) do %>
+                <%= link_to school_path(card.id) do %>
                   <i class="fi fi-rs-arrow-up-right
                    card-arrow"></i>
                 <% end %>

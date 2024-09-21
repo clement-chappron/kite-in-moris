@@ -14,7 +14,7 @@ class SchoolsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.turbo_stream { render partial: 'schools/_schools_list', locals: { schools: @schools } }
+      format.turbo_stream { render partial: 'schools/schools_list', locals: { schools: @schools } }
     end
 
     @schools = @schools.order(created_at: :desc).limit(6).offset(params[:offset] || 0)
