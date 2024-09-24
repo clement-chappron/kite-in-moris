@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :shops do
+  resources :shops, except: [:index] do
     resources :review_shops, only: [:index, :new, :create]
   end
 

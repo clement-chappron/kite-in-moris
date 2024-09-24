@@ -22,17 +22,14 @@
           <div class="mt-auto">
             <% case card.class.name %>
             <% when "School" %>
-              <div class="d-flex">
                 <%= link_to school_path(card.id) do %>
-                  <i class="fi fi-rs-arrow-up-right
-                   card-arrow"></i>
+                  <i class="fi fi-rs-arrow-up-right card-arrow"></i>
                 <% end %>
               </div>
             <% when "Shop" %>
               <div class="d-flex">
                 <%= link_to shop_path(card) do %>
-                  <i class="fi fi-rs-arrow-up-right
-                   card-arrow"></i>
+                  <i class="fi fi-rs-arrow-up-right card-arrow"></i>
                 <% end %>
               </div>
             <% when "Spot" %>
