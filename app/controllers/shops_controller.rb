@@ -1,10 +1,7 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: %i[show edit update destroy]
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[show]
 
-  def index
-    @shops = Shop.all
-  end
 
   def new
     @shop = Shop.new

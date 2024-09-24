@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :comment_blogs, only: [:index, :new, :create]
   end
 
-  resources :schools do
+  resources :schools, except: [:index] do
     resources :review_schools, only: [:index, :new, :create]
 
     collection do
