@@ -20,6 +20,8 @@ class ShopsController < ApplicationController
   end
 
   def show
+    @shop = Shop.find(params[:id])
+    @review_shop = ReviewShop.new
   end
 
   def edit
@@ -45,6 +47,6 @@ class ShopsController < ApplicationController
   end
 
   def shop_params
-    params.require(:shop).permit(:name, :address, :phone, :website, :description, :email, :facebook, :instagram, :location_id, :user_id)
+    params.require(:shop).permit(:name, :address, :phone, :website, :description, :email, :facebook, :instagram, :location_id, :user_id, main_image: [])
   end
 end

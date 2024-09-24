@@ -5,20 +5,51 @@ class SchoolsController < ApplicationController
   before_action :set_school_step, only: [:create_step_1, :create_step_2, :create_step_3, :create_step_4]
   before_action :find_school, only: [:create_step_2, :create_step_3, :create_step_4]
 
-  def index
-    if params[:location_id]
-      @schools = School.where(location_id: params[:location_id])
-    else
-      @schools = School.all
-    end
+  # def index
+  #   # if params[:location_id]
+  #     # @schools = School.where(location_id: params[:location_id])
+  #     @schools = School.all
+  # # # The `geocoded` scope filters only schools with coordinates
+  # #     @markers = @schools.geocoded.map do |school|
+  # #       {
+  # #         lat: school.latitude,
+  # #         lng: school.longitude
+  # #       }
+  # #     end
+  # #   else
+  # #     @schools = School.all
+  # #     # The `geocoded` scope filters only schools with coordinates
+  # #     @markers = @schools.geocoded.map do |school|
+  # #       {
+  # #         lat: school.latitude,
+  # #         lng: school.longitude
+  # #       }
+  # #     end
+  #   # end
 
+  #   # respond_to do |format|
+  #   #   format.html
+  #   #   format.turbo_stream { render partial: 'schools/schools_list', locals: { schools: @schools } }
+  #   # end
+
+  #   # @schools = @schools.order(created_at: :desc).limit(6).offset(params[:offset] || 0)
+  #   # @locations = Location.all
+  # end
+
+  def index
+    @schools = if params[:location_id]
+                 School.where(location_id: params[:location_id])
+               else
+                 School.all
+               end
+  
+    @schools = @schools.order(created_at: :desc).limit(6).offset(params[:offset] || 0)
+    @locations = Location.all
+  
     respond_to do |format|
       format.html
       format.turbo_stream { render partial: 'schools/schools_list', locals: { schools: @schools } }
     end
-
-    @schools = @schools.order(created_at: :desc).limit(6).offset(params[:offset] || 0)
-    @locations = Location.all
   end
 
   def show
@@ -113,6 +144,6 @@ class SchoolsController < ApplicationController
   end
 
   def school_params
-    params.require(:school).permit(:name, :address, :phone, :website, :email, :description, :rental, :levels, :fee, :facebook, :instagram, :latitude, :longitude, :category)
+    params.require(:school).permit(:name, :address, :phone, :website, :email, :description, :rental, :levels, :fee, :facebook, :instagram, :latitude, :longitude, :category, images: [] )
   end
 end

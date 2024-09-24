@@ -1,95 +1,111 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12 text-center mb-4">
-      <h1 class="display-4 text-primary"><%= @school.name %></h1>
-      <p class="lead text-secondary">School</p>
-    </div>
+<div class="header-show" style="background-image: url(<%= @school.main_image.attached? ? cl_image_path(@school.main_image.key,
+                           crop: :fill,
+                           dpr: 2.0,
+                           quality: "auto:best",
+                           gravity: :face,
+                           fetch_format: :auto) : asset_path("IMG_4667.webp") %>); height: 80vh">
+</div>
 
-    <div class="col-12 mb-4">
-      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-        <a href="tel:<%= @school.phone %>" class="btn btn-outline-primary" title="Call">
-          <i class="fas fa-phone-alt"></i>
-        </a>
-        <a href="mailto:<%= @school.email %>" class="btn btn-outline-primary" title="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://www.google.com/maps?q=<%= @school.address %>" target="_blank" class="btn btn-outline-primary" title="View on Map">
-          <i class="fas fa-map-marker-alt"></i>
-        </a>
-      </div>
-    </div>
+<div style='margin-top: calc(-45px - 5vw);'>
+  <div class="custom-shape">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 915.4 120" preserveAspectRatio="none">
+        <path class="cls-2" d="M915.4,119V46.8c-164.7,68.9-279.3,59.8-354.4,37.8C460.2,55,426.4.9,326.5,7.3c-62.5,4-93.4,20.5-211.2,46.9C60.9,66.4,33.2,86.9,0,66.5v52.5h915.4Z"/>
+        <path class="cls-3" d="M489.1,46.3c-90.6,0-206.6,25.6-247.6,33.4C184.7,90.5,103.2,101,0,97.5v21.4h915.4v-51.5c-42.8,7.2-107.5,19.2-190.6,15.1-134.7-6.6-122.8-36.4-235.7-36.3Z"/>
+        <path class="cls-1" d="M0,4.6v115.4s915.4,0,915.4,0c0-24.4,0,8.2,0-16.2-101,22.7-217.2,17.4-408.2-30.6S142.9,0,0,4.6Z"/>
+    </svg>
+  </div>
 
-    <div class="col-12 mb-3">
-      <h5 class="fw-bold text-primary">Description</h5>
-      <p class="text-muted"><%= @school.description %></p>
-    </div>
-
-    <div class="col-12 mb-4">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <h5 class="fw-bold text-primary">Rental</h5>
-          <p class="text-muted"><%= @school.rental %></p>
+  <div class="pb-5" style="background-color: #fff;">
+    <div class="container">
+      <div class="content-show">
+        <span>School</span>
+        <div class="d-lg-flex align-items-end justify-content-between">
+          <h1><%= @school.name %></h1>
+          <p><i class="fi fi-rs-marker"></i> <%= @school.address %></p>
         </div>
-        <div class="col-md-6 mb-3">
-          <h5 class="fw-bold text-primary">Level</h5>
-          <p class="text-muted"><%= @school.levels %></p>
+
+        <div class="d-flex justify-content-center">
+          <div class="text-center mx-2">
+            <a href="tel:<%= @school.phone %>" class="btn btn-outline-primary d-flex flex-column align-items-center" title="Call" style="flex-direction: column-reverse;">
+              <i class="fas fa-phone-alt" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
+            </a>
+          </div>
+          <div class="text-center mx-2">
+            <a href="mailto:<%= @school.email %>" class="btn btn-outline-primary d-flex flex-column align-items-center" title="Email" style="flex-direction: column-reverse;">
+              <i class="fas fa-envelope" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
+            </a>
+          </div>
+          <div class="text-center mx-2">
+            <%= link_to "https://www.google.com/maps?q=#{CGI.escape(@school.address)}", target: '_blank', class: 'btn btn-outline-primary d-flex flex-column align-items-center', title: 'Map', style: 'flex-direction: column-reverse;' do %>
+              <i class="fi fi-rs-diamond-turn-right text-primary" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
+            <% end %>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-12 mb-4">
-      <h5 class="fw-bold text-primary">Images</h5>
-      <div class="d-flex flex-wrap gap-3">
-        <% @school.images.each do |image| %>
-          <div class="rounded shadow-sm overflow-hidden" style="width: 150px; height: auto;">
-            <%= image_tag image.url, class: 'img-fluid' %>
-          </div>
+
+        <h2 class="fs-4 mt-3">Description</h2>
+        <p><%= @school.description %></p>
+
+        <h2 class="fs-4">Level</h2>
+        <p><%= @school.levels %></p>
+
+        <h2 class="fs-4">Rental</h2>
+        <p><%= @school.rental %></p>
+
+        <div class="d-flex justify-content-between">
+          <h2 class="fs-4">Images</h2>
+          <%= render 'add_picture' %>
+        </div>
+        <div class="images-show d-flex flex-wrap gap-3">
+          <% @school.images.each do |image| %>
+            <%= cl_image_tag(image.key,
+                            crop: :fill,
+                            quality: "auto:best",
+                            fetch_format: :auto,
+                            class: "rounded shadow-sm overflow-hidden",
+                            style: "width: 150px; height: auto;") %>
+                            <% end %>
+                            
+        </div>
+
+        <!--<h2 class="fs-4">Opening Hours</h2>
+        <p><%#= @school.opening_hours %></p>-->
+
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mt-4">
+        <%= link_to @school.website, target: '_blank', class: 'btn btn-outline-primary', title: 'Website' do %>
+          <i class="fas fa-globe" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
+        <% end %>
+
+        <%= link_to @school.facebook, target: '_blank', class: 'btn btn-outline-primary', title: 'Facebook' do %>
+          <i class="fab fa-facebook" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
+        <% end %>
+
+        <%= link_to @school.instagram, target: '_blank', class: 'btn btn-outline-primary', title: 'Instagram' do %>
+          <i class="fab fa-instagram" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
         <% end %>
       </div>
-    </div>
 
-    <div class="col-12 mb-4">
-      <h5 class="fw-bold text-primary">Opening Hours</h5>
-      <div id="calendar" class="border rounded p-3 bg-light"></div> <!-- Replace with a calendar or schedule component -->
-    </div>
-
-    <div class="col-12 mb-4">
-      <h5 class="fw-bold text-primary">Reviews</h5>
-      <div class="list-group">
-        <% @school.review_schools.each do |review| %>
-          <div class="list-group-item mb-2 shadow-sm">
-            <strong>Rating:</strong> <%= review.rating %>/5
-            <p class="mb-1"><%= review.description %></p>
-          </div>
-        <% end %>
-        <% if @school.review_schools.empty? %>
-          <p class="text-muted">No reviews for this school yet.</p>
-        <% end %>
-      </div>
-      <div class="col-12 mb-4">
-        <%= link_to "Add a Review", new_school_review_school_path(@school.id), class: 'btn btn-success' %>
+      <div style="width: 100%; height: 600px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="col-12 mb-4 text-end">
-      <h5 class="fw-bold text-primary">Follow Us</h5>
-      <div class="d-flex justify-content-end gap-3">
-        <a href="<%= @school.website %>" class="btn btn-outline-primary" target="_blank" title="Website">
-          <i class="fas fa-globe"></i>
-        </a>
-        <a href="<%= @school.facebook %>" class="btn btn-outline-primary" target="_blank" title="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="<%= @school.instagram %>" class="btn btn-outline-primary" target="_blank" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
-    </div>
+<div class="container">
+  <%= render 'add_review' %>
+</div>
 
-    <div class="col-12 text-center mb-4">
-      <%= link_to 'Back', schools_path, class: 'btn btn-secondary me-2' %>
-      <%= link_to 'Edit School Information', edit_school_path(@school), class: 'btn btn-warning me-2' %>
-      <%= link_to 'Delete School', school_path(@school), method: :delete, data: { confirm: 'Are you sure you want to delete this school?' }, class: 'btn btn-danger' %>
-    </div>
+<div class="container">
+  <div class="content-show">
+    <%= render 'edit_schools' %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="content-show">
+    <%= render 'destroy' %>
   </div>
 </div>

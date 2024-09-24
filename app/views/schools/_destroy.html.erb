@@ -1,0 +1,34 @@
+<!--<div class="d-flex justify-content-end align-items-center mt-3">-->
+  <%#= link_to school_path(@school), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+<!--    <i class="fi fi-rs-trash text-white"></i> Delete-->
+  <%# end %>
+<!--</div>
+-->
+<div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#destroyModal">
+  <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
+    <div class="d-flex justify-content-end align-items-center">
+      <p class="mb-0">Destroy</p>
+      <p class="mb-0 mt-2">
+        <i class="fi fi-rs-delete text-danger ms-2 fs-4"></i>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<div class="modal fade" id="destroyModal" tabindex="-1" aria-labelledby="destroyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title fs-5" id="destroyModalLabel">Delete <%= @school.name %>?</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete <%= @school.name %> ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <%= link_to 'Destroy', school_path(@school), data: { turbo_method: :delete }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+</div>
