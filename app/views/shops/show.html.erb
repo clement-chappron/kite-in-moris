@@ -1,3 +1,4 @@
+
 <div class="header-show" style="background-image: url(<%= @shop.main_image.attached? ? cl_image_path(@shop.main_image.key,
                            crop: :fill,
                            dpr: 2.0,
@@ -8,7 +9,6 @@
     <h1><%= @shop.name %></h1>
     <p class="mt-3 text-center"><i class="fi fi-rs-marker icon-header"></i></p>
   </div>
-
 </div>
 
 
@@ -27,28 +27,14 @@
         <span><%= @shop.class.name %></span>
         <div class="d-lg-flex align-items-end justify-content-between">
           <h1><%= @shop.name %></h1>
-          <p><i class="fi fi-rs-marker" style="color: #CFED58"></i> <%= @shop.location.name %></p>
+          <p><i class="fi fi-rs-marker"></i> <%= @shop.location.name %></p>
         </div>
-        <%# <i class="fi fi-rs-star"></i> <%= @shop.average_rating %>
+         <%# <i class="fi fi-rs-star"></i> <%= @shop.average_rating %>
 
         <div class="d-flex justify-content-center">
-          <div class="text-center mx-3">
-            <a href="tel:<%= @shop.phone %>" class="btn btn-outline-primary d-flex flex-column align-items-center" title="Call">
-              <i class="fi fi-rs-phone-flip fa-flip-horizontal" style="width: 54px; height: 54px; font-size: 54px;"></i>
-            </a>
-          </div>
-          <div class="text-center mx-3">
-            <a href="mailto:<%= @shop.email %>" class="btn btn-outline-primary d-flex flex-column align-items-center" title="Email">
-              <i class="fi fi-rs-comment" style="width: 54px; height: 54px; font-size: 54px;"></i>
-            </a>
-          </div>
-          <div class="text-center mx-4">
-            <%= link_to do %>
-              <i class="fi fi-rs-road-sign-left text-primary" style="width: 60px; height: 60px; font-size: 60px;"></i>
-            <% end %>
-            <%= link_to "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@shop.address || 'Le Morne kite lagoon, mauritius')}", target: '_blank' do %>
-            <% end %>
-          </div>
+          <%= link_to "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@shop.address || 'Le Morne kite lagoon, mauritius')}", target: '_blank' do %>
+            <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2rem + 1.5vw);"></i>
+          <% end %>
         </div>
 
         <h2 class="fs-4 mt-3">Description</h2>
@@ -67,7 +53,6 @@
                     fetch_format: :auto,
                     data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
         <% count += 1 %>
-
       <% end %>
     </div>
 
@@ -84,7 +69,7 @@
             </div>
           <% end %>
         </div>
-        
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-md">
@@ -120,32 +105,31 @@
 
   <!-- Button to trigger modal -->
 
-    <div data-bs-toggle="modal" data-bs-target="#reviewModal">
-      <p class="mt-5 mb-3">
-        <%= link_to 'Add a review', 'javascript:void(0);', class: 'link link-underline' %>
-      </p>
-    </div>
+   <% if user_signed_in? %>
+    <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#reviewShopModal">
+      Add a Review
+    </button>
+    <% else %>
+    <p>* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %></p>
+    <% end %>
 
     <!-- Modal -->
-    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal fade" id="reviewShopModal" tabindex="-1" aria-labelledby="reviewShopModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="reviewModalLabel">New Review</h5>
+            <h5 class="modal-title" id="reviewShopModalLabel">New Review</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <%= form_with model: [@shop, @review_shop], url: shop_review_shops_path(@shop), method: :post, local: true do |f| %>
+            <%= simple_form_for [@shop, @review_shop], url: shop_review_shops_path(@shop), method: :post, html: { class: 'form-horizontal' } do |f| %>
               <div class="mb-3">
-                <div class="form-group"> <%= f.label :rating, "Rate (1 to 5)" %> <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]), {}, class: "form-control" %> </div>
+                <%= f.input :description, as: :text, input_html: { rows: 3, class: 'form-control', required: true }, label_html: { class: 'form-label' } %>
               </div>
-              <div class="mb-3">
-                <%= f.label :description, class: 'form-label' %>
-                <%= f.text_area :description, class: 'form-control', rows: 3, required: true %>
-              </div>
+
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">Close</button>
-                <%= f.submit 'Submit Review', class: 'btn btn-primary' %>
+                <%= f.button :submit, 'Submit Review', class: 'btn btn-primary' %>
               </div>
             <% end %>
           </div>
@@ -153,8 +137,48 @@
       </div>
     </div>
 
-    </div>
 
+    <div data-controller="load-more" data-load-more-review_shop="<%= @review_shop %>">
+
+      <div data-load-more-target="review" class="">
+          <%# rendu des cards dynamiquement par AJAX %>
+          <%  @shop.review_shops.each do |review| %>
+            <div class="review-card">
+              <div class="d-flex align-items-center">
+                <p>
+                  <%= cl_image_tag(review.user.profile_picture.key,
+                                class: 'me-2 img_fluid rounded-circle',
+                                alt: "#{review.user.first_name}'s avatar from kite in mauritius",
+                                width: 40,
+                                height: 40,
+                                crop: :fill,
+                                dpr: 2.0,
+                                quality: "auto:best",
+                                gravity: :face,
+                                fetch_format: :auto,
+                                effect: "sharpen:50",
+                                radius: "max")
+                                %>
+                </p>
+                <p class="review-user"><%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize.first %></p>
+                <p class="text-primary ms-auto"><%= review.rating %>/5</p>
+              </div>
+              <p class="review-description"><%= review.description %></p>
+              <small><%= review.created_at.strftime('%d %b %Y') %></small>
+            </div>
+          <% end %>
+
+          <%= tag.div "", id: "more_reviews_exist", data: { more: @more_reviews_exist } %>
+
+      </div>
+
+      <div class="d-flex mx-auto mt-5">
+        <div data-action="click->load-more#loadMore" class="btn-load-more">
+          <%= link_to 'Load More', '#', class: 'link link-underline'%>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 </div>

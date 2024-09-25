@@ -26,7 +26,7 @@
           <h1><%= @blog_page.title %></h1>
         </div>
           <p class="fs-6 text-primary">By <%= @blog_page.user.first_name %> <%= @blog_page.user.last_name %></p>
-          <small class="fs-6 text-primary">Written on <%= @blog_page.created_at.strftime('%d %b %Y') %></small>
+          <small class="fs-6">Written on <%= @blog_page.created_at.strftime('%d %b %Y') %></small>
           <br>
           <br>
         <div>
@@ -47,12 +47,11 @@
   <!-- Button to trigger modal -->
 
     <% if user_signed_in? %>
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#reviewModal">
+    <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#reviewModal">
       Add a Review
     </button>
     <% else %>
-    <p>* If you want to leave a comment, please sign in:</p>
-    <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %>
+    <p>* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %></p>
     <% end %>
 
     <!-- Modal -->
