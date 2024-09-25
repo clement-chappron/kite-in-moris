@@ -1,10 +1,9 @@
 class School < ApplicationRecord
-  # extend FriendlyId
-  # friendly_id :name, use: :slugged
-
   belongs_to :user
   belongs_to :location
   has_many :review_schools, dependent: :destroy
+  has_many_attached :images
+  
 
   # validates :name, :address, :description, :rental, :levels, :fee, :location_id, presence: true
 
@@ -23,10 +22,4 @@ class School < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  has_many_attached :images
-  has_one_attached :main_image
-
-  # def should_generate_new_friendly_id?
-  #   slug.blank? || saved_change_to_name?
-  # end
 end
