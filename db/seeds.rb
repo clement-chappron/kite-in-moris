@@ -8,6 +8,8 @@ puts '-------------------------------'
 
 ReviewSpot.destroy_all
 puts 'All review_spots destroyed ...'
+ReviewShop.destroy_all
+puts 'All review_shops destroyed ...'
 School.destroy_all
 puts 'All schools destroyed ...'
 Shop.destroy_all
@@ -56,7 +58,7 @@ user3 = User.create!(
   first_name: 'Avinash',
   last_name: 'Daby',
   email: 'ad@mail.com',
-  address: 'Moka, Mauritius',
+  address: 'Vacoas, Mauritius',
   password: 'password',
   password_confirmation: 'password'
 )
@@ -1042,6 +1044,36 @@ puts '-------------------------------'
 puts 'All shops created.'
 puts '-------------------------------'
 
+puts 'Creating Reviews for Shops...'
+
+shops = Shop.all
+
+shops.each do |shop|
+  User.all.each do |user|
+
+    description = case user.email
+                  when 'clement.chappron@gmail.com' then "Great selection of gear at #{shop.name}!"
+                  when 'ed@mail.com' then "Excellent customer service at #{shop.name}."
+                  when 'ad@mail.com' then "Loved the vibe at #{shop.name}."
+                  when 'ls@mail.com' then "Best prices I found for kitesurfing equipment at #{shop.name}."
+                  when 'ar@mail.com' then "Highly recommend #{shop.name} for beginners."
+                  when 'ot@mail.com' then "Great location for #{shop.name}."
+                  when 'ct@mail.com' then "Friendly staff at #{shop.name}."
+                  when 'ajmal@mail.com' then "Good variety of brands at #{shop.name}."
+                  when 'yc@mail.com' then "Overall, a great experience at #{shop.name}."
+                  end
+
+    ReviewShop.create(
+      rating: rand(3..5),
+      description: description,
+      user: user,
+      shop: shop
+    )
+  end
+end
+
+puts 'All reviews for shops created.'
+puts '-------------------------------'
 
 # Blog seeds
 
