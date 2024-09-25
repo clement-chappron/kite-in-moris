@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <div data-controller="categories-filter" class="<%= 'devise-layout' if devise_controller? %>">
+    <%= tag.div(class: ('devise-layout' if devise_controller?), data: { controller: ('categories-filter' if current_page?(root_path)) }) do %>
       <% if spots_show_page? || shops_show_page? || schools_show_page? %>
         <%= render "shared/navbar_back" %>
       <% elsif blogs_show_page? %>
@@ -27,7 +27,7 @@
       </div>
 
       <%= render "shared/footer" unless devise_controller? %>
-    </div>
+    <% end %>
 
   </body>
 </html>

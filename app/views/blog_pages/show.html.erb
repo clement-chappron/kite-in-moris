@@ -25,10 +25,10 @@
         <div class="d-lg-flex align-items-end justify-content-between">
           <h1><%= @blog_page.title %></h1>
         </div>
+        <div class='d-flex justify-content-between mb-4'>
           <p class="fs-6 text-primary">By <%= @blog_page.user.first_name %> <%= @blog_page.user.last_name %></p>
-          <small class="fs-6">Written on <%= @blog_page.created_at.strftime('%d %b %Y') %></small>
-          <br>
-          <br>
+          <p class="fs-6">Written on <%= @blog_page.created_at.strftime('%d %b %Y') %></p>
+        </div>
         <div>
           <%= @blog_page.content.html_safe %>
         </div>
@@ -47,11 +47,22 @@
   <!-- Button to trigger modal -->
 
     <% if user_signed_in? %>
+<<<<<<< HEAD
+      <div data-bs-toggle="modal" data-bs-target="#reviewModal">
+        <p class="mt-5 mb-3 text-end me-3">
+          <%= link_to 'Add a review', 'javascript:void(0);', class: 'link link-underline' %>
+        </p>
+      </div>
+    <% else %>
+      <p>* If you want to leave a comment, please sign in:</p>
+      <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %>
+=======
     <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#reviewModal">
       Add a Review
     </button>
     <% else %>
     <p>* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %></p>
+>>>>>>> master
     <% end %>
 
     <!-- Modal -->
@@ -112,11 +123,11 @@
 
       </div>
 
-      <div class="d-flex mx-auto mt-5">
+      <%# <div class="d-flex mx-auto mt-5">
         <div data-action="click->load-more#loadMore" class="btn-load-more">
           <%= link_to 'Load More', '#', class: 'link link-underline'%>
-        </div>
-      </div>
+        <%# </div>
+      </div>  %>
 
     </div>
 

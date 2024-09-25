@@ -1,7 +1,7 @@
 <div class="container d-flex flex-column container-100vh">
 
-  <h1 class='mb-3'>Add a blog page</h1>
-  <div class="col-md-10 mx-auto">
+  <h1 class='mb-3' style='margin-top: 60px;'>Add a blog page</h1>
+  <div class="mt-3 col-md-8 mx-auto">
 
     <%= simple_form_for(@blog_page, html: { multipart: true }) do |f| %>
       <%= f.error_notification %>
@@ -14,11 +14,11 @@
                     required: true,
                     label:  "Add your own HTML tags for titles",
                     placeholder: "Content of the blog page." %>
-        <div class="blog-input-form">
-          <%= f.input :blog_picture, as: :file, label: false %>
+        <div class="mt-3">
+          <%= f.input :blog_picture, as: :file, label: 'Add a picture' %>
         </div>
       <div class="d-flex justify-content-center">
-        <%= f.button :submit, "Add your blog page", class: 'btn btn-primary', style: 'font-size: 18px; width: 300px;' %>
+        <%= f.button :submit, "Add your blog page", class: 'btn btn-primary mt-3', style: 'font-size: 18px; width: 300px;' %>
       </div>
     <% end %>
 

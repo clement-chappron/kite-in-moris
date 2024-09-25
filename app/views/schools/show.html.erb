@@ -1,4 +1,4 @@
-<div class="header-show" style="background-image: url(<%= @school.main_image.attached? ? cl_image_path(@school.main_image.key,
+<div class="header-show" style="background-image: url(<%= @school.images.attached? ? cl_image_path(@school.images.first.key,
                            crop: :fill,
                            dpr: 2.0,
                            quality: "auto:best",
@@ -21,7 +21,7 @@
         <span>School</span>
         <div class="d-lg-flex align-items-end justify-content-between">
           <h1><%= @school.name %></h1>
-          <p><i class="fi fi-rs-marker"></i> <%= @school.address %></p>
+          <p><i class="fi fi-rs-marker"></i> <%= @school.location.name %></p>
         </div>
 
         <div class="d-flex justify-content-center">
@@ -52,47 +52,88 @@
         <h2 class="fs-4">Rental</h2>
         <p><%= @school.rental %></p>
 
-        <div class="d-flex justify-content-between">
-          <h2 class="fs-4">Images</h2>
-          <%= render 'add_picture' %>
-        </div>
-        <div class="images-show d-flex flex-wrap gap-3">
-          <% @school.images.each do |image| %>
-            <%= cl_image_tag(image.key,
-                            crop: :fill,
-                            quality: "auto:best",
-                            fetch_format: :auto,
-                            class: "rounded shadow-sm overflow-hidden",
-                            style: "width: 150px; height: auto;") %>
-                            <% end %>
-                            
+     </div>
+    </div>
+
+<%# Images %>
+
+    <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
+      <% count = 0 %>
+      <% @school.images.each do |image| %>
+        <%= cl_image_tag(image.key,
+                    crop: :fill,
+                    quality: "auto:best",
+                    fetch_format: :auto,
+                    data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
+        <% count += 1 %>
+
+      <% end %>
+    </div>
+
+    <div class="container">
+      <div class="content-show">
+        <!-- Button trigger modal -->
+        <div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
+            <div class="d-flex justify-content-end align-items-center">
+              <p class="mb-0">Add a picture</p>
+              <p class="mb-0 mt-2">
+                <i class="fi fi-rs-add text-primary ms-2 fs-4"></i>
+              </p>
+            </div>
+          <% end %>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title fs-5" id="exampleModalLabel">Add your best picture for <%= @school.name %></h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body">
+                <div class="modal-content py-4 px-5" style= "border: none;">
+
+                  <%= simple_form_for @school, html: { multipart: true } do |f| %>
+                    <div class="d-flex justify-content-center">
+                      <%= f.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
+                      <%= f.submit "Upload", class: "btn btn-primary", style: "border-radius: 0px;" %>
+                    </div>
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <!--<h2 class="fs-4">Opening Hours</h2>
         <p><%#= @school.opening_hours %></p>-->
 
-      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mt-4">
-        <%= link_to @school.website, target: '_blank', class: 'btn btn-outline-primary', title: 'Website' do %>
-          <i class="fas fa-globe" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
-        <% end %>
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mt-4">
+          <%= link_to @school.website, target: '_blank', class: 'btn btn-outline-primary', title: 'Website' do %>
+            <i class="fas fa-globe" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
+          <% end %>
 
-        <%= link_to @school.facebook, target: '_blank', class: 'btn btn-outline-primary', title: 'Facebook' do %>
-          <i class="fab fa-facebook" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
-        <% end %>
+          <%= link_to @school.facebook, target: '_blank', class: 'btn btn-outline-primary', title: 'Facebook' do %>
+            <i class="fab fa-facebook" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
+          <% end %>
 
-        <%= link_to @school.instagram, target: '_blank', class: 'btn btn-outline-primary', title: 'Instagram' do %>
-          <i class="fab fa-instagram" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
-        <% end %>
-      </div>
+          <%= link_to @school.instagram, target: '_blank', class: 'btn btn-outline-primary', title: 'Instagram' do %>
+            <i class="fab fa-instagram" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
+          <% end %>
+        </div>
 
-      <div style="width: 100%; height: 600px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        <!--<div style="width: 100%; height: 600px;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>-->
       </div>
     </div>
   </div>
-</div>
+
 
 <div class="container">
   <%= render 'add_review' %>
