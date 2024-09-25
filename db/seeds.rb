@@ -664,260 +664,260 @@ puts '-------------------------------'
 
 puts 'Creating Reviews for Shops...'
 
-# shops = Shop.all
+shops = Shop.all
 
-# shops.each do |shop|
-#   User.all.each do |user|
+shops.each do |shop|
+  User.all.each do |user|
 
-#     description = case
-#                   when user1 then "Great selection of gear at #{shop.name}!"
-#                   when user2 then "Excellent customer service at #{shop.name}."
-#                   when user3 then "Loved the vibe at #{shop.name}."
-#                   when user4 then "Best prices I found for kitesurfing equipment at #{shop.name}."
-#                   when user5 then "Highly recommend #{shop.name} for beginners."
-#                   when user6 then "Great location for #{shop.name}."
-#                   when user7 then "Friendly staff at #{shop.name}."
-#                   when user8 then "Good variety of brands at #{shop.name}."
-#                   when user9 then "Overall, a great experience at #{shop.name}."
-#                   end
+    description = case user.email
+                  when 'clement.chappron@gmail.com' then "Great selection of gear at #{shop.name}!"
+                  when 'ed@mail.com' then "Excellent customer service at #{shop.name}."
+                  when 'ad@mail.com' then "Loved the vibe at #{shop.name}."
+                  when 'ls@mail.com' then "Best prices I found for kitesurfing equipment at #{shop.name}."
+                  when 'ar@mail.com' then "Highly recommend #{shop.name} for beginners."
+                  when 'ot@mail.com' then "Great location for #{shop.name}."
+                  when 'ct@mail.com' then "Friendly staff at #{shop.name}."
+                  when 'ajmal@mail.com' then "Good variety of brands at #{shop.name}."
+                  when 'yc@mail.com' then "Overall, a great experience at #{shop.name}."
+                  end
 
-#     ReviewShop.create(
-#       rating: rand(3..5),
-#       description: description,
-#       user: user,
-#       shop: shop
-#     )
-#   end
-# end
+    ReviewShop.create(
+      rating: rand(3..5),
+      description: description,
+      user: user,
+      shop: shop
+    )
+  end
+end
 
-shop1 = Shop.find_by(name: 'Kite Shop Pro')
-ReviewShop.create(
-  rating: 5,
-  description: "Great little shop!",
-  user: user1,
-  shop: shop1
-)
-ReviewShop.create(
-  rating: 5,
-  description: "#{shop1.name} has everything we need!",
-  user: user2,
-  shop: shop1
-)
-ReviewShop.create(
-  rating: 4,
-  description: "#{shop1.name} is the place to go for everything Kitesurf!!!",
-  user: user3,
-  shop: shop1
-)
-ReviewShop.create(
-  rating: 3,
-  description: "#{shop1.name} is not bad at all...",
-  user: user4,
-  shop: shop1
-)
-ReviewShop.create(
-  rating: 4,
-  description: "I love #{shop1.name}!!!",
-  user: user5,
-  shop: shop1
-)
-ReviewShop.create(
-  rating: 5,
-  description: "Superb facilities! You get everything you want!",
-  user: user6,
-  shop: shop1
-)
+# shop1 = Shop.find_by(name: 'Kite Shop Pro')
+# ReviewShop.create(
+#   rating: 5,
+#   description: "Great little shop!",
+#   user: user1,
+#   shop: shop1
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "#{shop1.name} has everything we need!",
+#   user: user2,
+#   shop: shop1
+# )
+# ReviewShop.create(
+#   rating: 4,
+#   description: "#{shop1.name} is the place to go for everything Kitesurf!!!",
+#   user: user3,
+#   shop: shop1
+# )
+# ReviewShop.create(
+#   rating: 3,
+#   description: "#{shop1.name} is not bad at all...",
+#   user: user4,
+#   shop: shop1
+# )
+# ReviewShop.create(
+#   rating: 4,
+#   description: "I love #{shop1.name}!!!",
+#   user: user5,
+#   shop: shop1
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "Superb facilities! You get everything you want!",
+#   user: user6,
+#   shop: shop1
+# )
 
-shop2 = Shop.find_by(name: 'Surf & Sail')
-ReviewShop.create(
-  rating: 4,
-  description: "Interesting! Several items at good prices!",
-  user: user1,
-  shop: shop2
-)
-ReviewShop.create(
-  rating: 3,
-  description: "Nice shop,friendly staff.",
-  user: user2,
-  shop: shop2
-)
-ReviewShop.create(
-  rating: 5,
-  description: "Fantastic! Helpful people!",
-  user: user3,
-  shop: shop2
-)
-ReviewShop.create(
-  rating: 3,
-  description: "I was a little underwhelmed by #{shop2.name}",
-  user: user5,
-  shop: shop2
-)
-ReviewShop.create(
-  rating: 5,
-  description: "Fantastic! Helpful people!",
-  user: user6,
-  shop: shop2
-)
-ReviewShop.create(
-  rating: 3,
-  description: "I was a little underwhelmed by #{shop2.name}",
-  user: user7,
-  shop: shop2
-)
-shop3 = Shop.find_by(name: 'Wave Supplies')
-ReviewShop.create(
-  rating: 5,
-  description: "Superb shop! You'll find everything you need!",
-  user: user1,
-  shop: shop3
-)
-ReviewShop.create(
-  rating: 5,
-  description: "#{shop3.name} is the best shop on the island!",
-  user: user2,
-  shop: shop3
-)
-ReviewShop.create(
-  rating: 3,
-  description: "#{shop3.name} is quite nice actually but some things can be improved...",
-  user: user3,
-  shop: shop3
-)
-ReviewShop.create(
-  rating: 5,
-  description: "#{shop3.name} is the benchmark of the industry...",
-  user: user4,
-  shop: shop3
-)
-ReviewShop.create(
-  rating: 4,
-  description: "I love #{shop3.name}!!!",
-  user: user5,
-  shop: shop3
-)
-ReviewShop.create(
-  rating: 5,
-  description: "So many things available!",
-  user: user6,
-  shop: shop3
-)
-ReviewShop.create(
-  rating: 5,
-  description: "The best quality is available at #{shop3.name}!",
-  user: user7,
-  shop: shop3
-)
-shop4 = Shop.find_by(name: 'Riders Hub')
-ReviewShop.create(
-  rating: 4,
-  description: "Nice little shop! Ali Baba's cave!",
-  user: user1,
-  shop: shop4
-)
-ReviewShop.create(
-  rating: 5,
-  description: "#{shop4.name} is a fantastic shop to find all the gears you need!",
-  user: user2,
-  shop: shop4
-)
-ReviewShop.create(
-  rating: 5,
-  description: "#{shop4.name} rocks!",
-  user: user3,
-  shop: shop4
-)
-ReviewShop.create(
-  rating: 5,
-  description: "#{shop4.name} is the cream of the crop",
-  user: user4,
-  shop: shop4
-)
-ReviewShop.create(
-  rating: 4,
-  description: "I really like #{shop4.name}!!!",
-  user: user5,
-  shop: shop4
-)
-ReviewShop.create(
-  rating: 3,
-  description: "Good staff!",
-  user: user6,
-  shop: shop4
-)
-ReviewShop.create(
-  rating: 5,
-  description: "Finest quality is at #{shop4.name}!",
-  user: user7,
-  shop: shop4
-)
-ReviewShop.create(
-  rating: 3,
-  description: "Not bad, can improve the atmosphere inside the shop.",
-  user: user8,
-  shop: shop4
-)
-ReviewShop.create(
-  rating: 5,
-  description: "Prices are actually good at #{shop4.name}!",
-  user: user9,
-  shop: shop4
-)
-shop5 = Shop.find_by(name: 'The Kiteshop')
-ReviewShop.create(
-  rating: 5,
-  description: "The best on the West Coast!",
-  user: user1,
-  shop: shop5
-)
-ReviewShop.create(
-  rating: 3,
-  description: "#{shop5.name} is a good shop in #{shop5.address}!",
-  user: user2,
-  shop: shop5
-)
-ReviewShop.create(
-  rating: 4,
-  description: "#{shop5.name} has such a variety of gears of the highest quality!",
-  user: user3,
-  shop: shop5
-)
-ReviewShop.create(
-  rating: 5,
-  description: "#{shop5.name} is definitely one of the best shops on the island.",
-  user: user4,
-  shop: shop5
-)
-ReviewShop.create(
-  rating: 4,
-  description: "I will definitely recommend #{shop5.name}!!!",
-  user: user5,
-  shop: shop5
-)
-ReviewShop.create(
-  rating: 5,
-  description: "You can find everything you want for kitesurfing!",
-  user: user6,
-  shop: shop5
-)
-ReviewShop.create(
-  rating: 5,
-  description: "Affordable prices and even discounts at #{shop5.name}!",
-  user: user7,
-  shop: shop5
-)
-ReviewShop.create(
-  rating: 4,
-  description: "Great shop in the west!",
-  user: user8,
-  shop: shop5
-)
-ReviewShop.create(
-  rating: 5,
-  description: "#{shop5.name} is always full of customers!",
-  user: user9,
-  shop: shop5
-)
+# shop2 = Shop.find_by(name: 'Surf & Sail')
+# ReviewShop.create(
+#   rating: 4,
+#   description: "Interesting! Several items at good prices!",
+#   user: user1,
+#   shop: shop2
+# )
+# ReviewShop.create(
+#   rating: 3,
+#   description: "Nice shop,friendly staff.",
+#   user: user2,
+#   shop: shop2
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "Fantastic! Helpful people!",
+#   user: user3,
+#   shop: shop2
+# )
+# ReviewShop.create(
+#   rating: 3,
+#   description: "I was a little underwhelmed by #{shop2.name}",
+#   user: user5,
+#   shop: shop2
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "Fantastic! Helpful people!",
+#   user: user6,
+#   shop: shop2
+# )
+# ReviewShop.create(
+#   rating: 3,
+#   description: "I was a little underwhelmed by #{shop2.name}",
+#   user: user7,
+#   shop: shop2
+# )
+# shop3 = Shop.find_by(name: 'Wave Supplies')
+# ReviewShop.create(
+#   rating: 5,
+#   description: "Superb shop! You'll find everything you need!",
+#   user: user1,
+#   shop: shop3
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "#{shop3.name} is the best shop on the island!",
+#   user: user2,
+#   shop: shop3
+# )
+# ReviewShop.create(
+#   rating: 3,
+#   description: "#{shop3.name} is quite nice actually but some things can be improved...",
+#   user: user3,
+#   shop: shop3
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "#{shop3.name} is the benchmark of the industry...",
+#   user: user4,
+#   shop: shop3
+# )
+# ReviewShop.create(
+#   rating: 4,
+#   description: "I love #{shop3.name}!!!",
+#   user: user5,
+#   shop: shop3
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "So many things available!",
+#   user: user6,
+#   shop: shop3
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "The best quality is available at #{shop3.name}!",
+#   user: user7,
+#   shop: shop3
+# )
+# shop4 = Shop.find_by(name: 'Riders Hub')
+# ReviewShop.create(
+#   rating: 4,
+#   description: "Nice little shop! Ali Baba's cave!",
+#   user: user1,
+#   shop: shop4
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "#{shop4.name} is a fantastic shop to find all the gears you need!",
+#   user: user2,
+#   shop: shop4
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "#{shop4.name} rocks!",
+#   user: user3,
+#   shop: shop4
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "#{shop4.name} is the cream of the crop",
+#   user: user4,
+#   shop: shop4
+# )
+# ReviewShop.create(
+#   rating: 4,
+#   description: "I really like #{shop4.name}!!!",
+#   user: user5,
+#   shop: shop4
+# )
+# ReviewShop.create(
+#   rating: 3,
+#   description: "Good staff!",
+#   user: user6,
+#   shop: shop4
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "Finest quality is at #{shop4.name}!",
+#   user: user7,
+#   shop: shop4
+# )
+# ReviewShop.create(
+#   rating: 3,
+#   description: "Not bad, can improve the atmosphere inside the shop.",
+#   user: user8,
+#   shop: shop4
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "Prices are actually good at #{shop4.name}!",
+#   user: user9,
+#   shop: shop4
+# )
+# shop5 = Shop.find_by(name: 'The Kiteshop')
+# ReviewShop.create(
+#   rating: 5,
+#   description: "The best on the West Coast!",
+#   user: user1,
+#   shop: shop5
+# )
+# ReviewShop.create(
+#   rating: 3,
+#   description: "#{shop5.name} is a good shop in #{shop5.address}!",
+#   user: user2,
+#   shop: shop5
+# )
+# ReviewShop.create(
+#   rating: 4,
+#   description: "#{shop5.name} has such a variety of gears of the highest quality!",
+#   user: user3,
+#   shop: shop5
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "#{shop5.name} is definitely one of the best shops on the island.",
+#   user: user4,
+#   shop: shop5
+# )
+# ReviewShop.create(
+#   rating: 4,
+#   description: "I will definitely recommend #{shop5.name}!!!",
+#   user: user5,
+#   shop: shop5
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "You can find everything you want for kitesurfing!",
+#   user: user6,
+#   shop: shop5
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "Affordable prices and even discounts at #{shop5.name}!",
+#   user: user7,
+#   shop: shop5
+# )
+# ReviewShop.create(
+#   rating: 4,
+#   description: "Great shop in the west!",
+#   user: user8,
+#   shop: shop5
+# )
+# ReviewShop.create(
+#   rating: 5,
+#   description: "#{shop5.name} is always full of customers!",
+#   user: user9,
+#   shop: shop5
+# )
 # Blog seeds
 
 puts 'Starting blog page'
