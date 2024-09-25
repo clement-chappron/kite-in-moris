@@ -101,18 +101,17 @@
 
 <div class="container">
   <div class="content-show">
-
   <!-- Button to trigger modal -->
 
    <% if user_signed_in? %>
-    <div data-bs-toggle="modal" data-bs-target="#reviewShopModal">
+    <div data-bs-toggle="modal" data-bs-target="#reviewModal">
       <p class="mt-5 mb-3 text-end">
         <%= link_to 'Add a review', 'javascript:void(0);', class: 'link link-underline' %>
       </p>
     </div>
-    <% else %>
-      <p>* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %></p>
-    <% end %>
+  <% else %>
+    <p class="mt-5 mb-3">* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "link link-underline" %></p>
+  <% end %>
 
     <!-- Modal -->
     <div class="modal fade" id="reviewShopModal" tabindex="-1" aria-labelledby="reviewShopModalLabel" aria-hidden="true">
