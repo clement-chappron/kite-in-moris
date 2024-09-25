@@ -1,4 +1,6 @@
 require 'open-uri'
+require 'cloudinary'
+require 'cloudinary/utils'
 
 puts '-------------------------------'
 puts 'Destroying all records ...'
@@ -391,7 +393,7 @@ palmar.images.attach(io: palmar_img3, filename: 'palmar3.jpg', content_type: 'im
 palmar.save
 puts "Spot #{palmar.name} created ..."
 
-grand_baie_img3 = URI.open('https://www.villa-vie.com/wp-content/uploads/2022/09/Samples1_HR-164-1-scaled.jpg')
+grand_baie_img3 = URI.open('https://www.mauritius-travel.com/images/og/Landing/grand-baie.jpg')
 grand_baie_img1 = URI.open('https://ilemauricehotels.com/data/images/discover-mauritius/kitesurf/mauritius-kitesurfing%20(5).jpg')
 grand_baie_img2 = URI.open('https://www.mauritius-travel.com/images/LieuxActivites/galerie/image-843.jpg')
 
@@ -502,6 +504,7 @@ puts 'All reviews for spots created.'
 puts '-------------------------------'
 
 
+
 schools = [
   {
     name: 'Ocean Academy',
@@ -588,76 +591,455 @@ end
 puts 'All schools created.'
 puts '-------------------------------'
 
+
 # Shops seeds
+
 puts 'Creating shops...'
 
-shops = [
-  {
-    name: 'Kite Shop Pro',
-    address: 'Grand Baie, Mauritius',
-    phone: '+230 1111111',
-    website: 'http://kiteshoppro.mu',
-    email: 'shop@kiteshoppro.mu',
-    description: 'High-quality kitesurfing equipment and accessories.',
-    facebook: 'https://www.facebook.com/kiteshoppro',
-    instagram: 'https://www.instagram.com/kiteshoppro',
-    location_id: north_location.id,
-    user: user2
-  },
-  {
-    name: 'Surf & Sail',
-    address: 'Black River, Mauritius',
-    phone: '+230 2222222',
-    website: 'http://surfandsail.mu',
-    email: 'info@surfandsail.mu',
-    description: 'Your one-stop shop for all surfing and sailing needs.',
-    facebook: 'https://www.facebook.com/surfandsail',
-    instagram: 'https://www.instagram.com/surfandsail',
-    location_id: south_location.id,
-    user: user3
-  },
-  {
-    name: 'Wave Supplies',
-    address: 'Trou aux Biches, Mauritius',
-    phone: '+230 3333333',
-    website: 'http://wavesupplies.mu',
-    email: 'support@wavesupplies.mu',
-    description: 'Find everything you need for water sports in one place.',
-    facebook: 'https://www.facebook.com/wavesupplies',
-    instagram: 'https://www.instagram.com/wavesupplies',
-    location_id: north_location.id,
-    user: user4
-  },
-  {
-    name: 'Riders Hub',
-    address: 'Port Louis, Mauritius',
-    phone: '+230 4444444',
-    website: 'http://ridershub.mu',
-    email: 'contact@ridershub.mu',
-    description: 'Specialized kitesurf shop with all the latest gear.',
-    facebook: 'https://www.facebook.com/ridershub',
-    instagram: 'https://www.instagram.com/ridershub',
-    location_id: north_location.id,
-    user: user1
-  },
-  {
-    name: 'The Kiteshop',
-    address: 'Flic en Flac, Mauritius',
-    phone: '+230 5555555',
-    website: 'http://thekiteshop.mu',
-    email: 'sales@thekiteshop.mu',
-    description: 'Premier destination for top-tier kitesurfing gear.',
-    facebook: 'https://www.facebook.com/thekiteshop',
-    instagram: 'https://www.instagram.com/thekiteshop',
-    location_id: west_coast_location.id,
-    user: user2
-  }
-]
+# Shops for "The North"
+Shop.create!(
+  name: "North Bay Boutique",
+  address: "Coastal Road, Grand Baie, The North, Mauritius",
+  phone: "+230 1234561",
+  website: "www.northbayboutique.com",
+  description: "North Bay Boutique offers an exquisite collection of high-end fashion and accessories tailored for beach lovers. Located in the heart of Grand Baie, the shop provides tourists with everything from summer dresses to stylish beachwear. With a curated selection of local and international brands, North Bay Boutique is the go-to place for fashion-conscious visitors. The shop’s airy design and welcoming atmosphere make for an enjoyable shopping experience near the picturesque beaches of the North.",
+  email: "info@northbayboutique.com",
+  facebook: "facebook.com/northbayboutique",
+  instagram: "instagram.com/northbayboutique",
+  location_id: north_location.id,
+  user_id: user1.id
+)
 
-shops.each do |shop|
-  Shop.create!(shop)
-  puts "Shop #{shop[:name]} created ..."
+Shop.create!(
+  name: "Lagoon Dive Center",
+  address: "Royal Road, Pereybere, The North, Mauritius",
+  phone: "+230 1234562",
+  website: "www.lagoondivecenter.com",
+  description: "Lagoon Dive Center offers thrilling diving experiences for both beginners and experts. Located near Pereybere Beach, the shop provides all necessary equipment and personalized diving courses. Explore the vibrant marine life of Mauritius with certified guides and top-quality gear. Lagoon Dive Center is renowned for its safety standards and expert knowledge of local dive sites. Whether it's your first dive or you're a seasoned diver, this center guarantees a memorable underwater adventure in the crystal-clear waters of the North.",
+  email: "info@lagoondivecenter.com",
+  facebook: "facebook.com/lagoondivecenter",
+  instagram: "instagram.com/lagoondivecenter",
+  location_id: north_location.id,
+  user_id: user2.id
+)
+
+Shop.create!(
+  name: "Tropical Treats",
+  address: "Sunset Boulevard, Grand Baie, The North, Mauritius",
+  phone: "+230 1234563",
+  website: "www.tropicaltreats.com",
+  description: "Tropical Treats is a delightful bakery and café offering a wide variety of local Mauritian pastries and tropical-flavored desserts. Famous for its artisanal cakes and freshly brewed coffee, it’s the perfect stop for a sweet indulgence after a day on the beach. The café's laid-back vibe and delicious menu make it a favorite among both tourists and locals. Whether you’re in the mood for a light snack or a full dessert experience, Tropical Treats is a must-visit in the North.",
+  email: "info@tropicaltreats.com",
+  facebook: "facebook.com/tropicaltreats",
+  instagram: "instagram.com/tropicaltreats",
+  location_id: north_location.id,
+  user_id: user3.id
+)
+
+Shop.create!(
+  name: "Island Souvenirs",
+  address: "B13 Road, Mont Choisy, The North, Mauritius",
+  phone: "+230 1234564",
+  website: "www.islandsouvenirs.com",
+  description: "Island Souvenirs is the go-to place for those looking to bring home a piece of Mauritius. Specializing in handcrafted products such as wooden sculptures, jewelry, and paintings, the shop reflects the island's rich cultural heritage. Located near Mont Choisy Beach, it attracts tourists with its wide range of unique items. Visitors can browse through local handicrafts while enjoying the serene surroundings of the North. A perfect spot for finding authentic, locally made gifts and keepsakes.",
+  email: "info@islandsouvenirs.com",
+  facebook: "facebook.com/islandsouvenirs",
+  instagram: "instagram.com/islandsouvenirs",
+  location_id: north_location.id,
+  user_id: user4.id
+)
+
+Shop.create!(
+  name: "Sea Breeze Watersports",
+  address: "Coastal Road, Cap Malheureux, The North, Mauritius",
+  phone: "+230 1234565",
+  website: "www.seabreezewatersports.com",
+  description: "Sea Breeze Watersports is a leading provider of water-based activities in the North of Mauritius. From jet skiing to parasailing, the shop offers a variety of thrilling experiences for adrenaline junkies. Located in Cap Malheureux, it provides easy access to the vibrant waters of the Indian Ocean. The shop prides itself on safety and fun, making it the perfect spot for both families and solo travelers looking to explore the sea. The stunning coastal views only add to the appeal.",
+  email: "info@seabreezewatersports.com",
+  facebook: "facebook.com/seabreezewatersports",
+  instagram: "instagram.com/seabreezewatersports",
+  location_id: north_location.id,
+  user_id: user5.id
+)
+
+Shop.create!(
+  name: "North Wellness Spa",
+  address: "Beach Lane, Grand Baie, The North, Mauritius",
+  phone: "+230 1234566",
+  website: "www.northwellnessspa.com",
+  description: "North Wellness Spa is a sanctuary of relaxation and rejuvenation, offering a wide range of spa treatments inspired by Mauritian traditions. From massages to facials, this luxurious spa provides personalized services in a tranquil setting. Located in Grand Baie, it is easily accessible and offers a calming retreat from the bustling beach area. With experienced therapists and high-quality products, North Wellness Spa is the perfect place to unwind after a day of sun and sea.",
+  email: "info@northwellnessspa.com",
+  facebook: "facebook.com/northwellnessspa",
+  instagram: "instagram.com/northwellnessspa",
+  location_id: north_location.id,
+  user_id: user6.id
+)
+
+puts 'All North shops created...'
+puts '-------------------------------'
+
+# Shops for "West Coast"
+Shop.create!(
+  name: "West Coast Surf Shop",
+  address: "La Preneuse, Black River, West Coast, Mauritius",
+  phone: "+230 1234571",
+  website: "www.westcoastsurf.com",
+  description: "West Coast Surf Shop is the leading provider of surfboards, wetsuits, and accessories on the West Coast of Mauritius. Located near La Preneuse Beach, the shop caters to both beginners and experienced surfers. With a wide selection of gear from top brands, as well as local advice on the best surf spots, it’s a must-visit for anyone looking to catch some waves. The shop also offers surfboard rentals and repair services for those who prefer not to travel with their own equipment.",
+  email: "info@westcoastsurf.com",
+  facebook: "facebook.com/westcoastsurf",
+  instagram: "instagram.com/westcoastsurf",
+  location_id: west_coast_location.id,
+  user_id: user7.id
+)
+
+Shop.create!(
+  name: "West End Café",
+  address: "Coastal Road, Flic en Flac, West Coast, Mauritius",
+  phone: "+230 1234572",
+  website: "www.westendcafe.com",
+  description: "West End Café is a lively beachfront café in Flic en Flac, known for its excellent coffee, fresh pastries, and vibrant atmosphere. Whether you're looking for a quick breakfast before heading to the beach or a cozy spot to relax with friends, West End Café offers a diverse menu of local and international flavors. The café is also a great place to enjoy sunsets over the ocean while sipping on tropical smoothies or enjoying a light meal.",
+  email: "info@westendcafe.com",
+  facebook: "facebook.com/westendcafe",
+  instagram: "instagram.com/westendcafe",
+  location_id: west_coast_location.id,
+  user_id: user8.id
+)
+
+Shop.create!(
+  name: "Blue Horizon Tours",
+  address: "Avenue des Cocotiers, Tamarin, West Coast, Mauritius",
+  phone: "+230 1234573",
+  website: "www.bluehorizontours.com",
+  description: "Blue Horizon Tours offers a wide range of excursions and adventure activities on the West Coast of Mauritius. Whether you're looking to explore the stunning landscapes of Black River Gorges, enjoy a boat trip to the nearby islands, or experience dolphin watching, Blue Horizon Tours has something for every traveler. The team’s expertise and commitment to providing a personalized experience make them one of the top tour operators in the region. Enjoy Mauritius from a new perspective with their carefully curated tours.",
+  email: "info@bluehorizontours.com",
+  facebook: "facebook.com/bluehorizontours",
+  instagram: "instagram.com/bluehorizontours",
+  location_id: west_coast_location.id,
+  user_id: user9.id
+)
+
+Shop.create!(
+  name: "West Coast Gallery",
+  address: "Royal Road, Black River, West Coast, Mauritius",
+  phone: "+230 1234574",
+  website: "www.westcoastgallery.com",
+  description: "West Coast Gallery is a charming art gallery located in Black River, showcasing the works of talented local artists. The gallery offers a curated selection of paintings, sculptures, and handcrafted items that reflect the beauty of Mauritius. It’s a peaceful place to immerse yourself in the island's artistic culture. Visitors can also purchase original artwork, making it the perfect stop for art lovers or those looking for unique souvenirs to remember their trip to Mauritius.",
+  email: "info@westcoastgallery.com",
+  facebook: "facebook.com/westcoastgallery",
+  instagram: "instagram.com/westcoastgallery",
+  location_id: west_coast_location.id,
+  user_id: user1.id
+)
+
+Shop.create!(
+  name: "Lagoon Adventures",
+  address: "Beach Road, Flic en Flac, West Coast, Mauritius",
+  phone: "+230 1234575",
+  website: "www.lagoonadventures.com",
+  description: "Lagoon Adventures offers exciting water-based activities on the West Coast, including kayaking, snorkeling, and sunset boat trips. Located in the heart of Flic en Flac, the shop provides easy access to the crystal-clear waters of the lagoon. Whether you’re a family looking for a fun day out on the water or a couple seeking a romantic sunset cruise, Lagoon Adventures has a range of experiences to suit all tastes. The friendly staff ensures a safe and memorable day.",
+  email: "info@lagoonadventures.com",
+  facebook: "facebook.com/lagoonadventures",
+  instagram: "instagram.com/lagoonadventures",
+  location_id: west_coast_location.id,
+  user_id: user2.id
+)
+
+Shop.create!(
+  name: "Mauritius Wildlife Centre",
+  address: "Main Road, Tamarin, West Coast, Mauritius",
+  phone: "+230 1234576",
+  website: "www.mauritiuswildlifecentre.com",
+  description: "Mauritius Wildlife Centre is dedicated to the conservation of the island's unique wildlife and ecosystems. Located in Tamarin, the centre offers educational tours and interactive experiences for visitors to learn about the native flora and fauna. The shop sells eco-friendly products and souvenirs, with all proceeds supporting wildlife conservation efforts. It's a must-visit for nature lovers and anyone interested in contributing to the preservation of Mauritius' natural beauty. The centre’s efforts focus on creating a sustainable future for local wildlife.",
+  email: "info@mauritiuswildlifecentre.com",
+  facebook: "facebook.com/mauritiuswildlifecentre",
+  instagram: "instagram.com/mauritiuswildlifecentre",
+  location_id: west_coast_location.id,
+  user_id: user3.id
+)
+
+puts 'All West Coast shops created...'
+puts '-------------------------------'
+
+# Shops for "East Coast"
+Shop.create!(
+  name: "East Coast Kiteboarding",
+  address: "Palmar Beach, East Coast, Mauritius",
+  phone: "+230 1234577",
+  website: "www.eastcoastkiteboarding.com",
+  description: "East Coast Kiteboarding is the go-to destination for kitesurfing enthusiasts. Nestled along the stunning beaches of Palmar, this shop offers everything from high-quality kites and boards to lessons for beginners. With experienced instructors and a vibrant community, East Coast Kiteboarding ensures you have a memorable experience while mastering the art of kitesurfing. The shop also provides equipment rentals and repair services, making it an essential stop for anyone looking to ride the waves in one of the best spots in Mauritius.",
+  email: "info@eastcoastkiteboarding.com",
+  facebook: "facebook.com/eastcoastkiteboarding",
+  instagram: "instagram.com/eastcoastkiteboarding",
+  location_id: east_coast_location.id,
+  user_id: user4.id
+)
+
+Shop.create!(
+  name: "Tropical Paradise Restaurant",
+  address: "Grand River South East, East Coast, Mauritius",
+  phone: "+230 1234578",
+  website: "www.tropicalparadiserestaurant.com",
+  description: "Tropical Paradise Restaurant is a charming beachfront eatery located along the East Coast, known for its delicious seafood and stunning views of the lagoon. Guests can enjoy fresh fish dishes, tropical salads, and local delicacies while relaxing in a vibrant atmosphere. The restaurant is perfect for families and couples alike, offering both indoor and outdoor seating. With a focus on using fresh, local ingredients, Tropical Paradise ensures a delightful dining experience that highlights the flavors of Mauritius.",
+  email: "info@tropicalparadiserestaurant.com",
+  facebook: "facebook.com/tropicalparadiserestaurant",
+  instagram: "instagram.com/tropicalparadiserestaurant",
+  location_id: east_coast_location.id,
+  user_id: user5.id
+)
+
+Shop.create!(
+  name: "East Coast Adventures",
+  address: "Belle Mare, East Coast, Mauritius",
+  phone: "+230 1234579",
+  website: "www.eastcoastadventures.com",
+  description: "East Coast Adventures specializes in outdoor activities and excursions tailored to nature lovers and adventure seekers. Located in Belle Mare, the shop offers a range of activities including snorkeling, hiking, and guided nature tours. Visitors can explore the lush surroundings and discover the island's diverse flora and fauna while enjoying personalized service from the friendly staff. Whether you're a thrill-seeker or someone looking to relax in nature, East Coast Adventures has something for everyone to enjoy.",
+  email: "info@eastcoastadventures.com",
+  facebook: "facebook.com/eastcoastadventures",
+  instagram: "instagram.com/eastcoastadventures",
+  location_id: east_coast_location.id,
+  user_id: user6.id
+)
+
+Shop.create!(
+  name: "Coral Reef Boutique",
+  address: "Trou d'Eau Douce, East Coast, Mauritius",
+  phone: "+230 1234580",
+  website: "www.coralreefboutique.com",
+  description: "Coral Reef Boutique is a delightful shop that specializes in unique clothing, accessories, and souvenirs inspired by the beauty of the East Coast. Located in Trou d'Eau Douce, the boutique showcases local artisans' work and offers a range of products, from beachwear to handcrafted jewelry. The friendly staff is always ready to help customers find the perfect gift or memento to remember their trip. It’s a great place to shop for something special that reflects the spirit of Mauritius.",
+  email: "info@coralreefboutique.com",
+  facebook: "facebook.com/coralreefboutique",
+  instagram: "instagram.com/coralreefboutique",
+  location_id: east_coast_location.id,
+  user_id: user1.id
+)
+
+Shop.create!(
+  name: "East Coast Eco Tours",
+  address: "Ile aux Cerfs, East Coast, Mauritius",
+  phone: "+230 1234581",
+  website: "www.eastcoastecotours.com",
+  description: "East Coast Eco Tours is committed to providing eco-friendly experiences that highlight the natural beauty of Mauritius. Offering guided tours to the stunning Ile aux Cerfs, visitors can enjoy activities such as snorkeling, kayaking, and nature walks while learning about the local ecosystem. The team prioritizes sustainability and ensures that all tours minimize their environmental impact, making it a perfect choice for conscious travelers who want to explore while preserving the island's beauty.",
+  email: "info@eastcoastecotours.com",
+  facebook: "facebook.com/eastcoastecotours",
+  instagram: "instagram.com/eastcoastecotours",
+  location_id: east_coast_location.id,
+  user_id: user2.id
+)
+
+Shop.create!(
+  name: "Island Souvenirs",
+  address: "Quatre Soeurs, East Coast, Mauritius",
+  phone: "+230 1234582",
+  website: "www.islandsouvenirs.com",
+  description: "Island Souvenirs is the perfect place to find unique gifts and keepsakes that capture the essence of Mauritius. Located in Quatre Soeurs, the shop offers a variety of handcrafted items, local art, and traditional crafts that reflect the island's rich culture. Visitors can browse through an array of products, from spices to textiles, making it an ideal stop for anyone looking to take a piece of Mauritius home. The friendly staff is eager to assist you in finding the perfect memento.",
+  email: "info@islandsouvenirs.com",
+  facebook: "facebook.com/islandsouvenirs",
+  instagram: "instagram.com/islandsouvenirs",
+  location_id: east_coast_location.id,
+  user_id: user3.id
+)
+
+puts 'All East Coast shops created...'
+puts '-------------------------------'
+
+
+# Shops for "South East Coast"
+Shop.create!(
+  name: "South East Water Sports",
+  address: "Anahita, South East Coast, Mauritius",
+  phone: "+230 1234583",
+  website: "www.southeastwatersports.com",
+  description: "South East Water Sports is a premier destination for water sports enthusiasts looking to experience the beauty of the South East Coast. Located in Anahita, this shop offers a wide range of activities including jet skiing, paddleboarding, and kite surfing. With experienced instructors and top-notch equipment, visitors can explore the stunning lagoons and enjoy thrilling adventures. Whether you're a beginner or an experienced rider, South East Water Sports ensures an unforgettable experience in one of Mauritius's most beautiful settings.",
+  email: "info@southeastwatersports.com",
+  facebook: "facebook.com/southeastwatersports",
+  instagram: "instagram.com/southeastwatersports",
+  location_id: south_est_coast_location.id,
+  user_id: user4.id
+)
+
+Shop.create!(
+  name: "La Belle Vie Restaurant",
+  address: "Bel Ombre, South East Coast, Mauritius",
+  phone: "+230 1234584",
+  website: "www.labellevierestaurant.com",
+  description: "La Belle Vie Restaurant is a hidden gem nestled along the picturesque South East Coast, known for its exquisite cuisine and breathtaking ocean views. Guests can indulge in a variety of gourmet dishes featuring fresh, locally sourced ingredients. The restaurant offers a romantic ambiance with outdoor seating that allows diners to soak in the beautiful surroundings while enjoying their meals. Whether you're looking for a casual lunch or a fine dining experience, La Belle Vie promises a delightful culinary journey.",
+  email: "info@labellevierestaurant.com",
+  facebook: "facebook.com/labellevierestaurant",
+  instagram: "instagram.com/labellevierestaurant",
+  location_id: south_est_coast_location.id,
+  user_id: user5.id
+)
+
+Shop.create!(
+  name: "South East Safari Tours",
+  address: "Vieux Grand Port, South East Coast, Mauritius",
+  phone: "+230 1234585",
+  website: "www.southeastsafaritours.com",
+  description: "South East Safari Tours specializes in unforgettable excursions that allow visitors to explore the stunning landscapes and wildlife of the South East Coast. Offering guided tours that include visits to nature reserves, cultural sites, and scenic viewpoints, the team ensures a personalized experience tailored to each guest's interests. Travelers can immerse themselves in the beauty of Mauritius while learning about its unique history and biodiversity. South East Safari Tours is the ideal choice for adventure seekers and nature lovers alike.",
+  email: "info@southeastsafaritours.com",
+  facebook: "facebook.com/southeastsafaritours",
+  instagram: "instagram.com/southeastsafaritours",
+  location_id: south_est_coast_location.id,
+  user_id: user6.id
+)
+
+Shop.create!(
+  name: "Coral Bay Boutique",
+  address: "Souillac, South East Coast, Mauritius",
+  phone: "+230 1234586",
+  website: "www.coralbayboutique.com",
+  description: "Coral Bay Boutique is a charming shop that offers a variety of unique clothing, accessories, and handcrafted souvenirs inspired by the stunning coastal landscape. Located in Souillac, the boutique showcases local artisans' creations, making it a perfect stop for visitors looking to bring home a piece of Mauritian culture. From beachwear to beautiful crafts, Coral Bay Boutique is dedicated to providing quality products that reflect the island's vibrant spirit. The friendly staff is always on hand to assist customers in finding the perfect item.",
+  email: "info@coralbayboutique.com",
+  facebook: "facebook.com/coralbayboutique",
+  instagram: "instagram.com/coralbayboutique",
+  location_id: south_est_coast_location.id,
+  user_id: user1.id
+)
+
+Shop.create!(
+  name: "Adventure Isle Tours",
+  address: "Ile aux Cerfs, South East Coast, Mauritius",
+  phone: "+230 1234587",
+  website: "www.adventureisletours.com",
+  description: "Adventure Isle Tours offers exciting excursions to the stunning Ile aux Cerfs, where visitors can enjoy a day of relaxation and adventure. From boat trips to snorkeling and beach games, Adventure Isle ensures that every guest experiences the beauty and fun that the island has to offer. With knowledgeable guides who provide insights into the local ecology and culture, guests can explore both the natural beauty and historical significance of this magnificent destination. Adventure Isle Tours is perfect for families, couples, and solo travelers alike.",
+  email: "info@adventureisletours.com",
+  facebook: "facebook.com/adventureisletours",
+  instagram: "instagram.com/adventureisletours",
+  location_id: south_est_coast_location.id,
+  user_id: user2.id
+)
+
+Shop.create!(
+  name: "South East Gifts",
+  address: "Rose Belle, South East Coast, Mauritius",
+  phone: "+230 1234588",
+  website: "www.southeastgifts.com",
+  description: "South East Gifts is the perfect shop to find authentic Mauritian souvenirs and gifts that showcase the island's rich culture. Located in Rose Belle, the shop offers a wide range of products, including traditional crafts, spices, and artwork made by local artisans. Whether you're looking for the perfect gift for a loved one or a keepsake to remember your trip, South East Gifts has something special for everyone. The friendly atmosphere and knowledgeable staff will help you find exactly what you need.",
+  email: "info@southeastgifts.com",
+  facebook: "facebook.com/southeastgifts",
+  instagram: "instagram.com/southeastgifts",
+  location_id: south_est_coast_location.id,
+  user_id: user3.id
+)
+
+puts 'All South East Coast shops created...'
+puts '-------------------------------'
+
+# Shops for "The South"
+Shop.create!(
+  name: "South Adventure Tours",
+  address: "Bel Ombre, South, Mauritius",
+  phone: "+230 1234590",
+  website: "www.southadventuretours.com",
+  description: "South Adventure Tours offers exhilarating excursions that allow visitors to discover the breathtaking landscapes and diverse wildlife of the South of Mauritius. From guided hikes to waterfalls and gorges to boat trips in pristine lagoons, this tour operator tailors experiences to match every adventurer's desires. Knowledgeable guides share insights into the local flora and fauna, ensuring guests leave with unforgettable memories and a deeper appreciation of this stunning region. Perfect for families, couples, and solo explorers, South Adventure Tours promises an adventure like no other.",
+  email: "info@southadventuretours.com",
+  facebook: "facebook.com/southadventuretours",
+  instagram: "instagram.com/southadventuretours",
+  location_id: south_location.id,
+  user_id: user4.id
+)
+
+Shop.create!(
+  name: "The Beach House Restaurant",
+  address: "Souillac, South, Mauritius",
+  phone: "+230 1234591",
+  website: "www.thebeachhouserestaurant.com",
+  description: "The Beach House Restaurant is a beautiful seaside dining destination that offers a delectable selection of fresh seafood and local delicacies. With its stunning ocean views and relaxing ambiance, it’s the perfect spot to unwind after a day of exploring the South. The menu features seasonal ingredients and dishes inspired by traditional Mauritian cuisine. Guests can enjoy both indoor and outdoor seating while savoring the delightful flavors of the island. The friendly staff ensures a warm and welcoming experience for all diners.",
+  email: "info@thebeachhouserestaurant.com",
+  facebook: "facebook.com/thebeachhouserestaurant",
+  instagram: "instagram.com/thebeachhouserestaurant",
+  location_id: south_location.id,
+  user_id: user5.id
+)
+
+Shop.create!(
+  name: "Island Explorers Kayaking",
+  address: "Bel Ombre, South, Mauritius",
+  phone: "+230 1234592",
+  website: "www.islandexplorerskayaking.com",
+  description: "Island Explorers Kayaking provides exciting kayaking adventures in the beautiful waters off the South coast of Mauritius. This shop offers rental services and guided tours that allow participants to explore hidden coves and observe marine life in their natural habitat. With qualified instructors on hand, visitors can enjoy a safe and memorable experience, whether they're seasoned paddlers or first-timers. Kayaking through the stunning lagoons is a fantastic way to discover the beauty of the island's coastline and get up close with nature.",
+  email: "info@islandexplorerskayaking.com",
+  facebook: "facebook.com/islandexplorerskayaking",
+  instagram: "instagram.com/islandexplorerskayaking",
+  location_id: south_location.id,
+  user_id: user6.id
+)
+
+Shop.create!(
+  name: "Coconut Grove Spa",
+  address: "Le Morne, South, Mauritius",
+  phone: "+230 1234593",
+  website: "www.coconutgrovespa.com",
+  description: "Coconut Grove Spa is a tranquil oasis offering a range of wellness treatments designed to rejuvenate the mind, body, and spirit. Nestled in the lush surroundings of Le Morne, the spa features professional therapists who specialize in traditional and modern massage techniques, facials, and holistic treatments. Guests can enjoy a serene atmosphere while indulging in spa packages that provide relaxation and tranquility. It’s the ideal place to unwind after exploring the natural beauty of the South of Mauritius.",
+  email: "info@coconutgrovespa.com",
+  facebook: "facebook.com/coconutgrovespa",
+  instagram: "instagram.com/coconutgrovespa",
+  location_id: south_location.id,
+  user_id: user1.id
+)
+
+Shop.create!(
+  name: "Le Morne Boutique",
+  address: "Le Morne, South, Mauritius",
+  phone: "+230 1234594",
+  website: "www.lemorneboutique.com",
+  description: "Le Morne Boutique is a delightful shop that offers an array of unique souvenirs, beachwear, and handcrafted items inspired by the island’s rich culture and natural beauty. Located in the iconic area of Le Morne, the boutique showcases the work of local artisans, allowing visitors to take home a piece of Mauritius. From clothing and accessories to artwork and crafts, Le Morne Boutique is dedicated to providing quality products that reflect the vibrant spirit of the island. The friendly staff is eager to assist customers in finding the perfect memento.",
+  email: "info@lemorneboutique.com",
+  facebook: "facebook.com/lemorneboutique",
+  instagram: "instagram.com/lemorneboutique",
+  location_id: south_location.id,
+  user_id: user2.id
+)
+
+Shop.create!(
+  name: "South Lagoon Diving Center",
+  address: "Bel Ombre, South, Mauritius",
+  phone: "+230 1234595",
+  website: "www.southlagoondiving.com",
+  description: "South Lagoon Diving Center is the ultimate destination for diving enthusiasts eager to explore the underwater wonders of the South coast. The center offers PADI-certified courses for divers of all levels and organizes guided dives to stunning coral reefs, shipwrecks, and marine parks. With a focus on safety and fun, South Lagoon Diving Center provides high-quality equipment and experienced instructors to ensure an unforgettable diving experience. Discover the vibrant marine life and beautiful underwater landscapes that make Mauritius a top diving destination.",
+  email: "info@southlagoondiving.com",
+  facebook: "facebook.com/southlagoondiving",
+  instagram: "instagram.com/southlagoondiving",
+  location_id: south_location.id,
+  user_id: user3.id
+)
+
+puts 'All South shops created...'
+puts '-------------------------------'
+
+# images des shops
+
+def fetch_public_ids_from_cloudinary
+  public_ids = []
+  next_cursor = nil
+
+  begin
+    response = Cloudinary::Api.resources(type: 'upload', prefix: 'Kite_in_moris/Shops', max_results: 100, next_cursor: next_cursor)
+    # Ajouter les public_ids récupérés à la liste
+    public_ids.concat(response['resources'].map { |resource| resource['public_id'] })
+    # Vérifier s'il y a une page suivante
+    next_cursor = response['next_cursor']
+  end while next_cursor
+  public_ids
 end
+
+
+public_ids = fetch_public_ids_from_cloudinary
+
+if public_ids.any?
+  Shop.all.each do |shop|
+    selected_images = public_ids.sample(8)
+    selected_images.each do |public_id|
+      image_url = Cloudinary::Utils.cloudinary_url(public_id)
+      shop.images.attach(io: URI.open(image_url), filename: "#{public_id}.jpg")
+      puts "Image attached to #{shop.name}"
+    end
+  end
+else
+  puts "No image in the Cloudinary folder."
+end
+puts 'All images are upload'
+puts '-------------------------------'
 
 puts 'All shops created.'
 puts '-------------------------------'
