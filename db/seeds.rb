@@ -1030,7 +1030,7 @@ if public_ids.any?
     selected_images.each do |public_id|
       image_url = Cloudinary::Utils.cloudinary_url(public_id)
       shop.images.attach(io: URI.open(image_url), filename: "#{public_id}.jpg")
-      puts "Image attached to #{shop}"
+      puts "Image attached to #{shop.name}"
     end
   end
 else
