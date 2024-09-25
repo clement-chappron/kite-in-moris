@@ -1,4 +1,6 @@
 source "https://rubygems.org"
+gem 'rubygems-update', '>= 3.3.22'
+
 
 ruby "3.1.2"
 
