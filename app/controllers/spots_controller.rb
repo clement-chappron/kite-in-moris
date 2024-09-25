@@ -9,6 +9,13 @@ class SpotsController < ApplicationController
 
     # Vérifier s'il reste d'autres reviews à charger
     @more_reviews_exist = @spot.review_spots.count > 5
+
+    @markers = [ 
+      {
+        lat: @spot.latitude,
+        lng: @spot.longitude
+      }
+    ]
   end
 
 
