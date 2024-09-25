@@ -47,6 +47,7 @@
   <!-- Button to trigger modal -->
 
     <% if user_signed_in? %>
+<<<<<<< HEAD
       <div data-bs-toggle="modal" data-bs-target="#reviewModal">
         <p class="mt-5 mb-3 text-end me-3">
           <%= link_to 'Add a review', 'javascript:void(0);', class: 'link link-underline' %>
@@ -55,6 +56,13 @@
     <% else %>
       <p>* If you want to leave a comment, please sign in:</p>
       <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %>
+=======
+    <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#reviewModal">
+      Add a Review
+    </button>
+    <% else %>
+    <p>* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %></p>
+>>>>>>> master
     <% end %>
 
     <!-- Modal -->
