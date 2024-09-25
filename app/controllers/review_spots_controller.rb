@@ -19,7 +19,6 @@ class ReviewSpotsController < ApplicationController
     end
   end
 
-
   def load_more
     @spot = Spot.friendly.find(params[:spot_slug])
 
