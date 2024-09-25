@@ -54,6 +54,7 @@ gem 'friendly_id', '~> 5.5.0'
 gem 'pg_search'
 gem 'faraday'
 gem 'geocoder'
+gem 'open-weather-api'
 
 # Cloudinary
 gem "cloudinary"
