@@ -15,16 +15,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <%= form_with model: [@school, @review_school], url: school_review_schools_path(@school), method: :post, local: true do |f| %>
+            <%= form_with model: [@school, @review_school], url: school_review_schools_path(@school), local: true do |f| %>
               <div class="mb-3">
-                <div class="form-group"> <%= f.label :rating, "Rate (1 to 5)" %> <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]), {}, class: "form-control" %> </div>
+                <%= f.label :rating, "Rate (1 to 5)" %>
+                <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]), {}, class: "form-control" %>
               </div>
               <div class="mb-3">
                 <%= f.label :description, class: 'form-label' %>
                 <%= f.text_area :description, class: 'form-control', rows: 3, required: true %>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <%= f.submit 'Submit Review', class: 'btn btn-primary' %>
               </div>
             <% end %>
@@ -33,16 +34,15 @@
       </div>
     </div>
 
+    <div id="reviews-section" data-controller="load-more" 
+         data-load-more-model-type="school" 
+         data-load-more-model-slug="<%= @school.slug %>">
 
-    <div data-controller="load-more" data-load-more-school-slug="<%= @school.name %>">
-
-      <div data-load-more-target="reviews" class="">
-          <%# rendu des cards dynamiquement par AJAX %>
-          <% @review_schools.each do |review| %>
-            <div class="review-card">
-              <div class="d-flex align-items-center">
-                <p>
-                  <%= cl_image_tag(review.user.profile_picture.key,
+      <div data-load-more-target="reviews">
+        <% @review_schools.each do |review| %>
+          <div class="review-card">
+            <div class="d-flex align-items-center">
+              <p><%= cl_image_tag(review.user.profile_picture.key,
                                 class: 'me-2 img_fluid rounded-circle',
                                 alt: "#{review.user.first_name}'s avatar from kite in mauritius",
                                 width: 40,
@@ -54,29 +54,22 @@
                                 fetch_format: :auto,
                                 effect: "sharpen:50",
                                 radius: "max")
-                                %>
-                </p>
-                <p class="review-user"><%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize.first %></p>
-                <p class="text-primary ms-auto"><%= review.rating %>/5</p>
-              </div>
-              <p class="review-description"><%= review.description %></p>
+                                %></p>
+              <p class="review-user"><%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize.first  %></p>
+              <p class="text-primary ms-auto"><%= review.rating %>/5</p>
             </div>
-          <% end %>
-
-          <%= tag.div "", id: "more_reviews_exist", data: { more: @more_reviews_exist } %>
-
+            <p class="review-description"><%= review.description %></p>
+          </div>
+        <% end %>
+        <%= tag.div "", id: "more_reviews_exist", data: { more: @more_reviews_exist } %>
       </div>
-
 
       <div class="d-flex mx-auto mt-5">
         <div data-action="click->load-more#loadMore" class="btn-load-more">
           <%= link_to 'Load More', '#', class: 'link link-underline'%>
         </div>
       </div>
-
-
     </div>
 
-
-
+  </div>
 </div>

@@ -78,7 +78,7 @@
             </div>
 
             <div class="mb-3">
-              <%= f.input :location, label: false, collection: @locations, prompt: "Select your location", input_html: { class: 'form-select-custom', style: 'border-radius: 11px;' } %>
+              <%= f.collection_select :location_id, Location.all, :id, :name, prompt: "Select Location" %>
             </div>
 
             <div class="text-center mb-4">

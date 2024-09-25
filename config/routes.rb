@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :comment_blogs, only: [:index, :new, :create]
   end
 
-  resources :schools, except: [:index] do
+  resources :schools do
     resources :review_schools, only: [:index, :new, :create]
 
     collection do
@@ -29,6 +29,8 @@ Rails.application.routes.draw do
       patch :create_step_3
       patch :create_step_4
     end
+    get 'load_more_reviews', to: 'review_schools#load_more'
+    get 'search', to: 'pages#search'
   end
 
   resources :shops, except: [:index] do

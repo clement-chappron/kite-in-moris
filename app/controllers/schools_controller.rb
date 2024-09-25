@@ -7,8 +7,13 @@ class SchoolsController < ApplicationController
 
 
   def show
-    @review_schools = ReviewSchool.all
-    @review_school = ReviewSchool.new
+    # @review_schools = ReviewSchool.all
+    # @review_school = ReviewSchool.new
+
+    @school = School.find(params[:id])
+    @review_school = @school.review_schools.build
+    @review_schools = @school.review_schools.limit(5) # Limiter aux 5 premiers avis
+    @more_reviews_exist = @school.review_schools.count > 5
   end
 
   def new
