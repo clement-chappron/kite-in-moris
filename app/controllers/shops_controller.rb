@@ -25,8 +25,11 @@ class ShopsController < ApplicationController
   end
 
   def update
-    if @shop.update(shop_params)
-      redirect_to @shop, notice: 'Shop was successfully updated.'
+    if shop_params[:images]
+      @shop.images.attach(shop_params[:images])
+    end
+    if @shop.update(shop_params.except(:images))
+      redirect_to @shop, notice: "Shop updated successfully!"
     else
       render :edit
     end
