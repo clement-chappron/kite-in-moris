@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     resources :review_spots, only: [:new, :create]
   end
   get 'load_more', to: 'review_spots#load_more'
+  get 'load_more_shop_reviews', to: 'review_shops#load_more'
+
   get 'search', to: 'pages#search'
 
 end
