@@ -69,14 +69,37 @@
         <p><%= @spot.water_temperature %></p>
 
       </div>
-    <div class="mb-5" style="width: 100%; height: 200px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
-    </div>
+        <!--map div-->
+        <div class="mb-5" style="width: 100%; height: 200px;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
 
-
+        <!--weather div-->
+        <div class="card mt-4 mb-5">
+          <div class="card-body">
+            <h1>Weather in <span id="city"><%= @spot.address %></span></h1>
+            <h3 id="date" class="text-secondary"><%= Date.today.strftime("%B %d, %Y") %></h3>
+            <div id="weather">
+              <p id="description"><%= @weather ? @weather['description'].capitalize : 'No weather data available' %></p>
+              <div class="d-flex align-items-center">
+                <% if @weather %>
+                  <img src="<%= @weather['icon_url'] %>" alt="Weather Icon" id="icon">
+                  <h2 id="temperature"><%= @weather['temp'].round(1) %>°C</h2>
+                <% else %>
+                  <img src="" alt="Weather Icon" id="icon" style="display: none;">
+                  <h2 id="temperature">N/A</h2>
+                <% end %>
+              </div>
+              <h3>💨 <%= @weather['speed_knots'] %> knots  🧭 <%= @weather ? @weather['deg'] : 'N/A' %>°</h3>
+              <p>Gust: <%= @weather ? @weather['gust'] : 'N/A' %> knots</p>
+              <p>Humidity: <%= @weather ? @weather['humidity'] : 'N/A' %>%</p>
+              <p>Pressure: <%= @weather ? @weather['pressure'] : 'N/A' %> hPa</p>
+            </div>
+          </div>
+        </div>
+    </div>
 
     <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
       <% count = 0 %>
