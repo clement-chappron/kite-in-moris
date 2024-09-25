@@ -19,14 +19,19 @@ class ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @review_shop = ReviewShop.new
+
+    @review_shops = @shop.review_shops.order(created_at: :desc).limit(5)
   end
 
   def edit
   end
 
   def update
-    if @shop.update(shop_params)
-      redirect_to @shop, notice: 'Shop was successfully updated.'
+    if shop_params[:images]
+      @shop.images.attach(shop_params[:images])
+    end
+    if @shop.update(shop_params.except(:images))
+      redirect_to @shop, notice: "Shop updated successfully!"
     else
       render :edit
     end
@@ -44,6 +49,6 @@ class ShopsController < ApplicationController
   end
 
   def shop_params
-    params.require(:shop).permit(:name, :address, :phone, :website, :description, :email, :facebook, :instagram, :location_id, :user_id, main_image: [])
+    params.require(:shop).permit(:name, :address, :phone, :website, :description, :email, :facebook, :instagram, :location_id, :user_id, images: [])
   end
 end

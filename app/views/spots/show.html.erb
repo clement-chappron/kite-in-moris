@@ -6,7 +6,6 @@
                            fetch_format: :auto) : asset_path("IMG_4667.webp") %>);height: 80vh">
   <div class="title-show">
     <h1><%= @spot.name %></h1>
-    <p class="mt-3 text-center"><i class="fi fi-rs-marker icon-header"></i></p>
   </div>
 
 </div>
@@ -32,11 +31,16 @@
         </div>
          <%# <i class="fi fi-rs-star"></i> <%= @spot.average_rating %>
 
-        <div class="d-flex justify-content-center">
-          <%= link_to "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@spot.address || 'Le Morne kite lagoon, mauritius')}", target: '_blank' do %>
-            <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2rem + 1.5vw);"></i>
+        <div class="d-flex justify-content-center mt-5">
+          <%= link_to "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@spot.address || 'Le Morne kite lagoon, mauritius')}", target: '_blank', class: 'text-center mx-4' do %>
+            <div style="transform: scaleX(-1); display: inline-block;">
+              <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2.2rem + 1.5vw);"></i>
+            </div>
+            <p class="text-dark link link-underline" style=" margin-top: -10px;">Go to <%= @spot.name %></p>
           <% end %>
         </div>
+        <%# MapBox %>
+
 
         <h2 class="fs-4 mt-3">Description</h2>
         <p><%= @spot.description %></p>
@@ -68,7 +72,13 @@
         <h2 class="fs-4">Water temperature</h2>
         <p><%= @spot.water_temperature %></p>
 
+        <div class="mt-3 mb-5" style="width: 100%; height: 70vh;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
+
         <!--map div-->
         <div class="mb-5" style="width: 100%; height: 200px;"
           data-controller="map"
@@ -127,7 +137,7 @@
             </div>
           <% end %>
         </div>
-        
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-md">
@@ -164,7 +174,7 @@
   <!-- Button to trigger modal -->
 
     <div data-bs-toggle="modal" data-bs-target="#reviewModal">
-      <p class="mt-5 mb-3">
+      <p class="mt-5 mb-3 text-end">
         <%= link_to 'Add a review', 'javascript:void(0);', class: 'link link-underline' %>
       </p>
     </div>
