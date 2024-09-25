@@ -1,4 +1,4 @@
-<div class="header-show" style="background-image: url(<%= @shop.main_image.attached? ? cl_image_path(@shop.main_image.key,
+<div class="header-show" style="background-image: url(<%= @shop.images.attached? ? cl_image_path(@shop.images.first.key,
                            crop: :fill,
                            dpr: 2.0,
                            quality: "auto:best",
@@ -84,7 +84,7 @@
             </div>
           <% end %>
         </div>
-        
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-md">

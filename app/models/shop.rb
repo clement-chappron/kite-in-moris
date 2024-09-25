@@ -4,7 +4,6 @@ class Shop < ApplicationRecord
   has_many :review_shops, dependent: :destroy
 
   has_many_attached :images
-  has_one_attached :main_image
 
   validates :name, :address, :phone, :website, :description, :email, :facebook, :instagram, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
