@@ -858,14 +858,14 @@ Shop.create!(
 )
 
 Shop.create!(
-  name: "La Belle Vie Restaurant",
+  name: "La Belle Vie",
   address: "Bel Ombre, South East Coast, Mauritius",
   phone: "+230 1234584",
-  website: "www.labellevierestaurant.com",
-  description: "La Belle Vie Restaurant is a hidden gem nestled along the picturesque South East Coast, known for its exquisite cuisine and breathtaking ocean views. Guests can indulge in a variety of gourmet dishes featuring fresh, locally sourced ingredients. The restaurant offers a romantic ambiance with outdoor seating that allows diners to soak in the beautiful surroundings while enjoying their meals. Whether you're looking for a casual lunch or a fine dining experience, La Belle Vie promises a delightful culinary journey.",
-  email: "info@labellevierestaurant.com",
-  facebook: "facebook.com/labellevierestaurant",
-  instagram: "instagram.com/labellevierestaurant",
+  website: "www.labellevie.com",
+  description: "La Belle Vie  is a hidden gem nestled along the picturesque South East Coast, known for its exquisite cuisine and breathtaking ocean views. Guests can indulge in a variety of gourmet dishes featuring fresh, locally sourced ingredients. The  offers a romantic ambiance with outdoor seating that allows diners to soak in the beautiful surroundings while enjoying their meals. Whether you're looking for a casual lunch or a fine dining experience, La Belle Vie promises a delightful culinary journey.",
+  email: "info@labellevie.com",
+  facebook: "facebook.com/labellevie",
+  instagram: "instagram.com/labellevie",
   location_id: south_est_coast_location.id,
   user_id: user5.id
 )
@@ -940,14 +940,14 @@ Shop.create!(
 )
 
 Shop.create!(
-  name: "The Beach House Restaurant",
+  name: "The Beach House",
   address: "Souillac, South, Mauritius",
   phone: "+230 1234591",
-  website: "www.thebeachhouserestaurant.com",
-  description: "The Beach House Restaurant is a beautiful seaside dining destination that offers a delectable selection of fresh seafood and local delicacies. With its stunning ocean views and relaxing ambiance, it’s the perfect spot to unwind after a day of exploring the South. The menu features seasonal ingredients and dishes inspired by traditional Mauritian cuisine. Guests can enjoy both indoor and outdoor seating while savoring the delightful flavors of the island. The friendly staff ensures a warm and welcoming experience for all diners.",
-  email: "info@thebeachhouserestaurant.com",
-  facebook: "facebook.com/thebeachhouserestaurant",
-  instagram: "instagram.com/thebeachhouserestaurant",
+  website: "www.thebeachhouse.com",
+  description: "The Beach House  is a beautiful seaside dining destination that offers a delectable selection of fresh seafood and local delicacies. With its stunning ocean views and relaxing ambiance, it’s the perfect spot to unwind after a day of exploring the South. The menu features seasonal ingredients and dishes inspired by traditional Mauritian cuisine. Guests can enjoy both indoor and outdoor seating while savoring the delightful flavors of the island. The friendly staff ensures a warm and welcoming experience for all diners.",
+  email: "info@thebeachhouse.com",
+  facebook: "facebook.com/thebeachhouse",
+  instagram: "instagram.com/thebeachhouse",
   location_id: south_location.id,
   user_id: user5.id
 )
@@ -966,14 +966,14 @@ Shop.create!(
 )
 
 Shop.create!(
-  name: "Coconut Grove Spa",
+  name: "Coconut Grove",
   address: "Le Morne, South, Mauritius",
   phone: "+230 1234593",
-  website: "www.coconutgrovespa.com",
-  description: "Coconut Grove Spa is a tranquil oasis offering a range of wellness treatments designed to rejuvenate the mind, body, and spirit. Nestled in the lush surroundings of Le Morne, the spa features professional therapists who specialize in traditional and modern massage techniques, facials, and holistic treatments. Guests can enjoy a serene atmosphere while indulging in spa packages that provide relaxation and tranquility. It’s the ideal place to unwind after exploring the natural beauty of the South of Mauritius.",
-  email: "info@coconutgrovespa.com",
-  facebook: "facebook.com/coconutgrovespa",
-  instagram: "instagram.com/coconutgrovespa",
+  website: "www.coconutgrove.com",
+  description: "Coconut Grove  is a tranquil oasis offering a range of wellness treatments designed to rejuvenate the mind, body, and spirit. Nestled in the lush surroundings of Le Morne, the  features professional therapists who specialize in traditional and modern massage techniques, facials, and holistic treatments. Guests can enjoy a serene atmosphere while indulging in  packages that provide relaxation and tranquility. It’s the ideal place to unwind after exploring the natural beauty of the South of Mauritius.",
+  email: "info@coconutgrove.com",
+  facebook: "facebook.com/coconutgrove",
+  instagram: "instagram.com/coconutgrove",
   location_id: south_location.id,
   user_id: user1.id
 )
