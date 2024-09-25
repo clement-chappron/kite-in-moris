@@ -3,10 +3,10 @@
     <div class="text-center mb-4" style="width: 25rem; border-radius: 10px;">
       <div class="card-body">
         <h1 class="text-center mb-4">Create Your Company</h1>
-        <h3 class="text-center mb-4">
-          <a class="btn btn-primary disabled placeholder col-3" aria-disabled="true">School</a>
-        </h3>
-        
+        <div class="container d-flex justify-content-center align-items-center mb-4" style="width: 147px; height: 44px; background: #cfed58; border-radius: 35px;">
+          <h4 class="text-center" style="color: #5bbbbc; margin: 0;">School</h4>
+        </div>
+
         <%= simple_form_for @school, url: create_step_1_schools_path, method: :post, html: { id: 'school-form' } do |f| %>
 
           <div class="text-center mb-4">
@@ -15,19 +15,19 @@
 
           <div class="step step-1">
             <div class="mb-3">
-              <%= f.input :name, label: false, placeholder: "Company name", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+              <%= f.input :name, label: false, placeholder: "Company name", input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px; width: 397px; height: 70px;' } %>
             </div>
             <div class="mb-3">
-              <%= f.input :email, label: false, placeholder: "Company email", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+              <%= f.input :email, label: false, placeholder: "Company email", input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px; width: 397px; height: 70px;' } %>
             </div>
             <div class="mb-3">
-              <%= f.input :address, label: false, placeholder: "Address", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+              <%= f.input :address, label: false, placeholder: "Address", input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px; width: 397px; height: 70px;' } %>
             </div>
             <div class="mb-3">
-              <%= f.input :phone, label: false, placeholder: "Phone", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+              <%= f.input :phone, label: false, placeholder: "Phone", input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px; width: 397px; height: 70px;' } %>
             </div>
             <div class="mb-3">
-              <%= f.input :website, label: false, placeholder: "Website", input_html: { class: 'form-control-custom', style: 'border-radius: 35px;' } %>
+              <%= f.input :website, label: false, placeholder: "Website", input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px; width: 397px; height: 70px;' } %>
             </div>
 
             <div class="text-center mb-4">
@@ -38,7 +38,7 @@
 
           <div class="step step-2 d-none">
             <div class="mb-3">
-              <%= f.input :description, label: false, placeholder: "Description", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+              <%= f.input :description, label: false, placeholder: "Type a description for your company …", input_html: { class: 'form-control-custom', style: 'border-radius: 11px; width: 397px; height: 408px;' } %>
             </div>
 
             <div class="text-center mb-4">
@@ -50,11 +50,11 @@
           <div class="step step-3 d-none">
 
             <div class="position-relative">
-              <%= f.input :rental, label: false, placeholder: "Rental?", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;'} %>
+              <%= f.input :rental, label: false, placeholder: "Rental ?", input_html: { class: 'form-control-custom', style: 'border-radius: 11px; width: 397px; height: 153px;'} %>
             </div>
 
             <div class="mb-3">
-              <%= f.input :levels, label: false, placeholder: "Levels", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+              <%= f.input :levels, label: false, placeholder: "Levels", input_html: { class: 'form-control-custom', style: 'border-radius: 11px; width: 397px; height: 153px;' } %>
             </div>
 
             <div class="text-center mb-4">
@@ -64,21 +64,23 @@
           </div>
 
           <div class="step step-4 d-none">
-            <div class="mb-3">
-              <label for="fee-range" class="form-label">Fee average</label>
-              <div class="d-flex justify-content-between">
-                <span class="text-muted" id="min-fee">€50</span>
-                <span class="text-muted" id="max-fee">€150</span>
+            <div class="d-flex justify-content-center align-items-center mb-4" style="width: 397px; height: 138px; background: #ffffff; border-radius: 11px;">
+              <div class="mb-2">
+                <label for="fee-range" class="form-label mt-2">Fee average</label>
+                <div class="d-flex justify-content-between">
+                  <span class="text-muted" id="min-fee">€50</span>
+                  <span class="text-muted" id="max-fee">€150</span>
+                </div>
+                <div class="position-relative">
+                  <input type="range" id="fee-range" min="50" max="150" step="1" value="50" class="form-range mt-3" style="width: 250px" />
+                  <span id="fee-value" class="position-absolute mt-4" style="left: calc(0%); top: -30px;">€50</span>
+                </div>
+                <%= f.input :fee, label: false, as: :hidden, input_html: { id: 'hidden-fee', value: '50' } %>
               </div>
-              <div class="position-relative">
-                <input type="range" id="fee-range" min="50" max="150" step="1" value="50" class="form-range mt-3" />
-                <span id="fee-value" class="position-absolute mt-4" style="left: calc(0%); top: -30px;">€50</span>
-              </div>
-              <%= f.input :fee, label: false, as: :hidden, input_html: { id: 'hidden-fee', value: '50' } %>
             </div>
-
-            <div class="mb-3">
-              <%= f.collection_select :location_id, Location.all, :id, :name, prompt: "Select Location" %>
+            
+            <div class="d-flex justify-content-center align-items-center mb-4" style="width: 397px; height: 91px; background: #ffffff; border-radius: 11px;">
+              <%= f.collection_select :location_id, Location.all, :id, :name, { prompt: "Select Location" }  %>
             </div>
 
             <div class="text-center mb-4">
@@ -89,15 +91,15 @@
 
           <div class="step step-5 d-none">
             <div class="mb-3">
-              <%= f.input :facebook, label: false, placeholder: "Facebook", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+              <%= f.input :facebook, label: false, placeholder: "Facebook", input_html: { class: 'text-center form-control-custom', style: 'width: 397px; height: 70px; background: #ffffff; border-radius: 35px;' } %>
             </div>
             <div class="mb-3">
-              <%= f.input :instagram, label: false, placeholder: "Instagram", input_html: { class: 'form-control-custom', style: 'border-radius: 11px;' } %>
+              <%= f.input :instagram, label: false, placeholder: "Instagram", input_html: { class: 'text-center form-control-custom', style: 'width: 397px; height: 70px; background: #ffffff; border-radius: 35px;' } %>
             </div>
 
             <div class="text-center mb-4">
               <%= button_tag 'Back', type: 'submit', class: 'btn btn-secondary me-2', id: 'back-step-5' %>
-              <%= f.submit 'Submit', class: 'btn btn-primary' %>
+              <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
             </div>
           </div>
 
