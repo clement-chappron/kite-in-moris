@@ -32,6 +32,21 @@ class ReviewShopsController < ApplicationController
     end
   end
 
+  def load_more
+    @shop = Shop.find(params[:shop_id])
+    offset = params[:offset].to_i
+    limit = params[:limitLoad].to_i
+
+    @review_shops = @shop.review_shops.order(created_at: :desc).offset(offset).limit(limit)
+
+    # Vérifie s'il reste des reviews à charger
+    more_reviews_exist = @shop.review_shops.count > offset + limit
+
+    render partial: "shops/review_shops", locals: { review_shops: @review_shops, more_reviews_exist: more_reviews_exist }
+  end
+
+
+
   private
 
   def set_shop
