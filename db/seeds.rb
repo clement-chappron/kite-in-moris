@@ -1270,7 +1270,7 @@ def fetch_public_ids_from_cloudinary_for_schools
   public_ids
 end
 
-public_ids = fetch_public_ids_from_cloudinary
+public_ids = fetch_public_ids_from_cloudinary_for_schools
 
 if public_ids.any?
   School.all.each do |school|
