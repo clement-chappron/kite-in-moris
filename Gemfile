@@ -1,6 +1,4 @@
 source "https://rubygems.org"
-gem 'rubygems-update', '>= 3.3.22'
-
 
 ruby "3.1.2"
 
@@ -55,7 +53,7 @@ gem "sassc-rails"
 gem 'friendly_id', '~> 5.5.0'
 gem 'pg_search'
 # gem 'faraday'
-gem 'geocoder'
+# gem 'geocoder'
 # gem 'open-weather-api'
 
 # Cloudinary
