@@ -12,11 +12,15 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/satellite-v9"
+      style: "mapbox://styles/mapbox/satellite-v9",
+      scrollZoom: false
     })
+    this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
   }
+
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {

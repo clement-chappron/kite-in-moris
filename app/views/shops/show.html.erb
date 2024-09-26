@@ -1,6 +1,8 @@
-<div class="overlay"></div> <!-- Overlay for images -->
-
-
+<div class="overlay">
+  <div class="title-show-for-overlay">
+    <h3><%= @shop.name %></h3>
+  </div>
+</div>
 <div class="header-show" style="background-image: url(<%= @shop.images.attached? ? cl_image_path(@shop.images.first.key,
                            crop: :fill,
                            dpr: 2.0,

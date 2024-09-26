@@ -1,3 +1,9 @@
+<div class="overlay">
+  <div class="title-show-for-overlay">
+    <h1><%= @spot.name %></h1>
+  </div>
+</div>
+
 <div class="header-show" style="background-image: url(<%= @spot.images.attached? ? cl_image_path(@spot.images.first.key,
                            crop: :fill,
                            dpr: 2.0,
@@ -108,14 +114,15 @@
     <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
       <% count = 0 %>
       <% @spot.images.each do |image| %>
-        <%= cl_image_tag(image.key,
-                    crop: :fill,
-                    height: 300,
-                    quality: "auto:good",
-                    fetch_format: :auto,
-                    data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
-        <% count += 1 %>
-
+        <div data-action= "click->images-show#overviewImage">
+          <%= cl_image_tag(image.key,
+                      crop: :fill,
+                      height: 300,
+                      quality: "auto:good",
+                      fetch_format: :auto,
+                      data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
+          <% count += 1 %>
+        </div>
       <% end %>
     </div>
 
