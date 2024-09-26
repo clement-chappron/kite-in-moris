@@ -1,4 +1,4 @@
-<div class="header-show" style="background-image: url(<%= @spot.images.attached? ? cl_image_path(@spot.images.first.key,
+<div class="header-show" style="background-image: url(<%= @spot.main_image.attached? ? cl_image_path(@spot.main_image.key,
                            crop: :fill,
                            dpr: 2.0,
                            quality: "auto:best",
@@ -201,7 +201,7 @@
     </div>
 
 
-    <div data-controller="load-more" data-load-more-spot-slug="<%= @spot.slug %>">
+    <div data-controller="load-more" data-load-more-model-type="spot" data-load-more-model-slug="<%= @spot.slug %>">
 
       <div data-load-more-target="reviews" class="">
           <%# rendu des cards dynamiquement par AJAX %>

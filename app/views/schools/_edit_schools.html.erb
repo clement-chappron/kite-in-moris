@@ -1,10 +1,7 @@
-<div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#editModal">
-  <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
-    <div class="d-flex justify-content-end align-items-center">
-      <p class="mb-0">Edit</p>
-      <p class="mb-0 mt-2">
-        <i class="fi fi-rs-edit text-warning ms-2 fs-4"></i>
-      </p>
+<div class="d-flex justify-content-end align-items-center mb-4" data-bs-toggle="modal" data-bs-target="#editModal">
+  <%= link_to 'javascript:void(0);' do %>
+    <div>
+      <p class="btn btn-primary justif-content-center mb-0" style="width: 100px; height: 35px;" >Edit</p>
     </div>
   <% end %>
 </div>
@@ -41,12 +38,33 @@
           </div>
 
           <div class="mb-3">
-            <%= f.label :description, "Description", class: 'form-label' %>
-            <%= f.text_area :description, class: "form-control", rows: 3 %>
+            <%= f.label :website, "Website", class: 'form-label' %>
+            <%= f.url_field :website, class: "form-control" %>
           </div>
+
+          <div class="mb-3">
+            <%= f.label :fee, "Fee average", class: 'form-label mt-2' %>
+            <div class="container d-flex flex-column align-items-center">
+              <div class="d-flex justify-content-between w-100" style="max-width: 300px;">
+                <span class="text-muted" id="min-fee">€50</span>
+                <span class="text-muted" id="max-fee">€150</span>
+              </div>
+              <div class="position-relative" style="width: 300px;">
+                <input type="range" id="fee-range" min="50" max="150" step="1" value="50" class="form-range mt-3 mb-3" style="width: 100%;" />
+                <span id="fee-value" class="position-absolute mt-4" style="top: -30px; font-size: 0.875rem;">€50</span>
+              </div>
+              <%= f.input :fee, label: false, as: :hidden, input_html: { id: 'hidden-fee', value: '50' } %>
+            </div>
+          </div>
+
         </div>
 
       <div class="col">
+
+          <div class="mb-3">
+            <%= f.label :description, "Description", class: 'form-label' %>
+            <%= f.text_area :description, class: "form-control", rows: 3 %>
+          </div>
 
         <div class="mb-3">
           <%= f.label :rental, "Rental", class: 'form-label' %>
@@ -58,11 +76,6 @@
           <%= f.text_area :levels, class: "form-control", rows: 3 %>
         </div>
 
-
-        <div class="mb-3">
-          <%= f.label :website, "Website", class: 'form-label' %>
-          <%= f.url_field :website, class: "form-control" %>
-        </div>
 
         <div class="mb-3">
           <%= f.label :facebook, "Facebook", class: 'form-label' %>
@@ -85,3 +98,30 @@
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const feeRange = document.getElementById('fee-range');
+    const feeValue = document.getElementById('fee-value');
+    const hiddenFee = document.getElementById('hidden-fee');
+
+    function updateFeeDisplay() {
+      const value = parseInt(feeRange.value);
+      feeValue.textContent = `€${value}`;
+      const percentage = ((value - feeRange.min) / (feeRange.max - feeRange.min)) * 100;
+      feeValue.style.left = `calc(${percentage}% - 20px)`;
+
+      // Cache la valeur dynamique si le curseur est à une extrémité
+      if (value === parseInt(feeRange.min) || value === parseInt(feeRange.max)) {
+        feeValue.style.display = 'none';
+      } else {
+        feeValue.style.display = 'block';
+      }
+
+      hiddenFee.value = value;
+    }
+
+    updateFeeDisplay();
+
+    feeRange.addEventListener('input', updateFeeDisplay);
+  });
+</script>

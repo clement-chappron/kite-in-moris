@@ -8,7 +8,17 @@ class SchoolsController < ApplicationController
 
   def show
     @review_schools = ReviewSchool.all
-    @review_school = ReviewSchool.new
+    # @review_school = ReviewSchool.new
+
+    @school = School.find(params[:id])
+
+    @review_schools = @school.review_schools
+    @average_rating = @review_schools.average(:rating).to_f.round(1)
+    @total_review_schools = @review_schools.count
+
+    @review_school = @school.review_schools.build
+    @review_schools = @school.review_schools.limit(5)
+    @more_reviews_exist = @school.review_schools.count > 5
   end
 
   def new
@@ -55,6 +65,13 @@ class SchoolsController < ApplicationController
   end
 
   def update
+    @school = School.find(params[:id])
+  
+    # Attacher les nouvelles images sans supprimer les anciennes
+    if params[:school][:images]
+      @school.images.attach(params[:school][:images])
+    end
+  
     if @school.update(school_params)
       redirect_to @school, notice: 'School was successfully updated.'
     else
@@ -98,6 +115,6 @@ class SchoolsController < ApplicationController
   end
 
   def school_params
-    params.require(:school).permit(:name, :address, :phone, :website, :email, :description, :rental, :levels, :fee, :facebook, :instagram, :latitude, :longitude, :category, images: [] )
+    params.require(:school).permit(:name, :email, :address, :phone, :website, :description, :rental, :levels, :fee, :location_id, :facebook, :instagram, :latitude, :longitude, :category, images: [] )
   end
 end
