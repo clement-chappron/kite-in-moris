@@ -27,55 +27,77 @@
         <span><%= @school.class.name %></span>
         <div class="d-lg-flex align-items-end justify-content-between">
           <h1><%= @school.name %></h1>
-          <p><i class="fi fi-rs-marker" style="color: #CFED58"></i> <%= @school.location.name %></p>
+          <p><i class="fi fi-rs-marker" style="color: #CFED58; width: 59px; height: 19px"></i> <%= @school.location.name %></p>
+        </div>
+        <div class="d-flex">
+         <% if @school.user == current_user %>
+            <%= render 'edit_schools' %>
+
+          <div class="ms-3">
+            <%= render 'destroy' %>
+          </div>
+          <% end %>
+
+          <div class="ms-3 d-flex align-item-center">
+            
+              <i class="fi fi-rs-fee" style="color: #CFED58; font-size: 2rem; margin-right: 10px;"></i>
+              <p class="fs-4 mb-0">
+              <%= number_to_currency(@school.fee, unit: "€") %>
+            </p>
+          </div>
+
+          <div class="ms-3 mt-1">
+            <% if @total_review_schools > 0 %>
+              <p><%= @average_rating %>/5 (<%= @total_review_schools %> reviews)</p>
+            <% else %>
+              <p>No reviews yet</p>
+            <% end %>
+          </div>
         </div>
 
-
-        <div class="d-flex justify-content-center">
-          <div class="text-center mx-3">
-            <a href="tel:<%= @school.phone %>" class="btn btn-outline-primary d-flex flex-column align-items-center" title="Call">
-              <i class="fi fi-rs-phone-flip fa-flip-horizontal" style="width: 54px; height: 54px; font-size: 54px;"></i>
-            </a>
-          </div>
-          <div class="text-center mx-3">
-            <a href="mailto:<%= @school.email %>" class="btn btn-outline-primary d-flex flex-column align-items-center" title="Email">
-              <i class="fi fi-rs-comment" style="width: 54px; height: 54px; font-size: 54px;"></i>
-            </a>
-          </div>
-          <div class="text-center mx-3">
-            <a href="https://www.google.com/maps/search/?api=1&query=<%= CGI.escape(@school.address || 'Le Morne kite lagoon, mauritius') %>" 
-              target="_blank" 
-              class="btn btn-outline-primary d-flex flex-column align-items-center" 
-              title="Email">
-              <i class="fi fi-rs-road-sign-left" style="width: 60px; height: 60px; font-size: 60px;"></i>
-            </a>
-          </div>
+        <div class="d-flex justify-content-center mb-3">
+          <%= link_to "tel:#{@school.phone}", target: '_blank', class: 'text-center mx-4 mx-md-5 ' do %>
+            <div style="transform: scaleX(-1); display: inline-block;">
+              <i class="fi fi-rs-phone-flip text-primary" style="font-size: calc(2.2rem + .5vw);"></i>
+            </div>
+            <p class="text-dark link link-underline" style="margin-top: -10px;">Phone</p>
+          <% end %>
+          <%= link_to "mailto:#{@school.email}", target: '_blank', class: 'text-center mx-4 mx-md-5 ' do %>
+            <i class="fi fi-rs-comment text-primary" style="font-size: calc(2.2rem + .5vw);"></i>
+            <p class="text-dark link link-underline" style=" margin-top: -10px;">Message</p>
+          <% end %>
+          <%= link_to "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@school.address || 'Le Morne kite lagoon, mauritius')}", target: '_blank', class: 'text-center mx-4 mx-md-5 ' do %>
+            <div style="transform: scaleX(-1); display: inline-block;">
+              <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2.2rem + .5vw);"></i>
+            </div>
+            <p class="text-dark link link-underline" style=" margin-top: -10px;">Go to</p>
+          <% end %>
         </div>
 
-<div class="d-flex justify-content-center align-items-center mb-4 mt-4" style="margin: 50px 0; opacity: 1;">
-  <div class="card" style="border: none; width: 100%; height: 100%; background: #CFED58; border-radius: 21px; opacity: 1;">
-    <div class="d-flex">
-      <% if @school.user&.profile_picture&.attached? %>
-        <%= image_tag url_for(@school.user.profile_picture), class: "img-fluid rounded-circle mt-4", alt: "Avatar", style: "width: 150px; height: 150px; margin-left: 70px; object-fit: cover;" %>
-      <% else %>
-        <img src="<%= asset_path('IMG_4667.webp') %>" class="img-fluid rounded-circle mt-4" alt="Avatar" style="width: 150px; height: 150px; margin-left: 70px; object-fit: cover;">
-      <% end %>
-      <div class="card-body d-flex flex-column justify-content-center">
-        <% if @school.user %>
-          <h5 class="card-title"><%= "#{@school.user.first_name} #{@school.user.last_name}" %></h5>
-          <h8>Kite monitor</h8>
-        <% else %>
-          <h5 class="card-title">Guest</h5>
-        <% end %>
-      </div>
-    </div>
-    <div class="card-body mx-4">
-      <p class="card-text text-center mb-4">
-        <%= @school.user ? @school.user.bio : "No bio available." %>
-      </p>
-    </div>
-  </div>
-</div>
+        <div class="d-flex justify-content-center align-items-center mb-4 mt-4" style="margin: 50px 0; opacity: 1;">
+          <div class="card" style="border: none; width: 100%; height: 100%; background: #CFED58; border-radius: 21px; opacity: 1;">
+            <div class="d-flex">
+              <% if @school.user&.profile_picture&.attached? %>
+                <%= image_tag url_for(@school.user.profile_picture), class: "img-fluid rounded-circle mt-4", alt: "Avatar", style: "width: 150px; height: 150px; margin-left: 70px; object-fit: cover;" %>
+              <% else %>
+                <img src="<%= asset_path('IMG_4667.webp') %>" class="img-fluid rounded-circle mt-4" alt="Avatar" style="width: 150px; height: 150px; margin-left: 70px; object-fit: cover;">
+              <% end %>
+              <div class="card-body d-flex flex-column justify-content-center">
+                <% if @school.user %>
+                  <h5 class="card-title"><%= "#{@school.user.first_name} #{@school.user.last_name}" %></h5>
+                  <h8>Kite monitor</h8>
+                <% else %>
+                  <h5 class="card-title">Guest</h5>
+                <% end %>
+              </div>
+            </div>
+            <div class="card-body mx-4">
+              <p class="card-text text-center mb-4">
+                <%= @school.user ? @school.user.bio : "No bio available." %>
+              </p>
+            </div>
+          </div>
+        </div>
 
 
         <h2 class="fs-4 mt-3">Description</h2>
@@ -86,11 +108,8 @@
 
         <h2 class="fs-4">Rental</h2>
         <p><%= @school.rental %></p>
-
-     </div>
+      </div>
     </div>
-
-<%# Images %>
 
     <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
       <% count = 0 %>
@@ -110,7 +129,7 @@
         <!-- Button trigger modal -->
         <div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
-            <div class="d-flex justify-content-end align-items-center">
+            <div class="d-flex justify-content-end align-items-center mb-2">
               <p class="mb-0">Add a picture</p>
               <p class="mb-0 mt-2">
                 <i class="fi fi-rs-add text-primary ms-2 fs-4"></i>
@@ -118,6 +137,26 @@
             </div>
           <% end %>
         </div>
+
+
+      <div class="d-flex flex-column flex-md-row justify-content-end align-items-center gap-3 mt-4">
+          
+        
+        <%= link_to @school.website, target: '_blank', class: 'btn btn-outline-primary', title: 'Website' do %>
+          <!--<i class="fi fi-rs-site-alt" style="font-size: 40px;"></i>-->
+          <i class="fas fa-globe" style="width: 54px; height: 54px; font-size: 54px;"></i>
+        <% end %>
+
+        <%= link_to @school.facebook, target: '_blank', class: 'btn btn-outline-primary', title: 'Facebook' do %>
+          <!--<i class="fi fi-brands-facebook" style="font-size: 50px;"></i>-->
+          <i class="fab fa-facebook" style="width: 54px; height: 54px; font-size: 54px;"></i>
+        <% end %>
+
+        <%= link_to @school.instagram, target: '_blank', class: 'btn btn-outline-primary', title: 'Instagram' do %>
+          <!--<i class="fi fi-brands-instagram" style="font-size: 50px;"></i>-->
+          <i class="fab fa-instagram" style="width: 54px; height: 54px; font-size: 54px;"></i>
+        <% end %>
+      </div>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -137,31 +176,17 @@
                       <%= f.submit "Upload", class: "btn btn-primary", style: "border-radius: 0px;" %>
                     </div>
                   <% end %>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+      </div>
+    </div>
         <!--<h2 class="fs-4">Opening Hours</h2>
         <p><%#= @school.opening_hours %></p>-->
 
-      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mt-4">
-        <%= link_to @school.website, target: '_blank', class: 'btn btn-outline-primary', title: 'Website' do %>
-          <!--<i class="fi fi-rs-site-alt" style="font-size: 40px;"></i>-->
-          <i class="fas fa-globe" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
-        <% end %>
-
-        <%= link_to @school.facebook, target: '_blank', class: 'btn btn-outline-primary', title: 'Facebook' do %>
-          <!--<i class="fi fi-brands-facebook" style="font-size: 50px;"></i>-->
-          <i class="fab fa-facebook" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
-        <% end %>
-
-        <%= link_to @school.instagram, target: '_blank', class: 'btn btn-outline-primary', title: 'Instagram' do %>
-          <!--<i class="fi fi-brands-instagram" style="font-size: 50px;"></i>-->
-          <i class="fab fa-instagram" style="width: 40.58px; height: 40.58px; font-size: 40.58px;"></i>
-        <% end %>
-      </div>
 
         <!--<div style="width: 100%; height: 600px;"
           data-controller="map"
@@ -171,20 +196,9 @@
       </div>
     </div>
   </div>
+</div>
 
 
 <div class="container">
   <%= render 'add_review' %>
-</div>
-
-<div class="container">
-  <div class="content-show">
-    <%= render 'edit_schools' %>
-  </div>
-</div>
-
-<div class="container">
-  <div class="content-show">
-    <%= render 'destroy' %>
-  </div>
 </div>
