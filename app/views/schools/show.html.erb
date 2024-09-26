@@ -1,4 +1,4 @@
-<div class="header-show" style="background-image: url(<%= @school.main_image.attached? ? cl_image_path(@school.main_image.key,
+<div class="header-show" style="background-image: url(<%= @school.images.attached? ? cl_image_path(@school.images.first.key,
                            crop: :fill,
                            dpr: 2.0,
                            quality: "auto:best",
@@ -39,7 +39,7 @@
           <% end %>
 
           <div class="ms-3 d-flex align-item-center">
-            
+
               <i class="fi fi-rs-fee" style="color: #CFED58; font-size: 2rem; margin-right: 10px;"></i>
               <p class="fs-4 mb-0">
               <%= number_to_currency(@school.fee, unit: "€") %>
@@ -140,8 +140,8 @@
 
 
       <div class="d-flex flex-column flex-md-row justify-content-end align-items-center gap-3 mt-4">
-          
-        
+
+
         <%= link_to @school.website, target: '_blank', class: 'btn btn-outline-primary', title: 'Website' do %>
           <!--<i class="fi fi-rs-site-alt" style="font-size: 40px;"></i>-->
           <i class="fas fa-globe" style="width: 54px; height: 54px; font-size: 54px;"></i>
