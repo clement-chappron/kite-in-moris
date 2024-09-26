@@ -29,15 +29,9 @@ class ReviewSchoolsController < ApplicationController
     @review_school = @school.review_schools.new(review_school_params)
     @review_school.user_id = current_user.id
     if @review_school.save
-      respond_to do |format|
-        format.html { redirect_to school_path(@school) }
-        format.json { render json: @review_school }
-      end
+      redirect_to @school, notice: 'Your review has been successfully submitted.'
     else
-      respond_to do |format|
-        format.html { render 'schools/show' }
-        format.json { render json: @review_school.errors, status: :unprocessable_entity }
-      end
+      render 'schools/show', status: :unprocessable_entity
     end
   end
 

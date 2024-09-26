@@ -7,9 +7,27 @@ class ShopsController < ApplicationController
     @shop = Shop.new
   end
 
-  def create
-    @shop = Shop.new(shop_params)
+  # def create
+  #   @shop = Shop.new(shop_params)
+  #   if @shop.save
+  #     redirect_to @shop, notice: 'Shop was successfully created.'
+  #   else
+  #     render :new
+  #   end
+  # end
+
+  def create_step1
+    @shop = Shop.new(shop_params_step1)
     if @shop.save
+      redirect_to new_shop_path(@shop)
+    else
+      render :new
+    end
+  end
+
+  def create_step2
+    @shop = Shop.find(params[:id])
+    if @shop.update(shop_params_step2)
       redirect_to @shop, notice: 'Shop was successfully created.'
     else
       render :new
@@ -50,6 +68,14 @@ class ShopsController < ApplicationController
 
   def set_shop
     @shop = Shop.find(params[:id])
+  end
+
+  def shop_params_step1
+    params.require(:shop).permit(:name, :address, :phone, :email, :facebook, :website, :user_id)
+  end
+
+  def shop_params_step2
+    params.require(:shop).permit(:description, :instagram, :location_id)
   end
 
   def shop_params

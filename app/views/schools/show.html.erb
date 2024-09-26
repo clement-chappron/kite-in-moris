@@ -144,27 +144,6 @@
           <% end %>
         </div>
 
-
-      <div class="d-flex flex-column flex-md-row justify-content-end align-items-center gap-3 mt-4">
-
-
-        <%= link_to @school.website, target: '_blank', class: 'btn btn-outline-primary', title: 'Website' do %>
-          <!--<i class="fi fi-rs-site-alt" style="font-size: 40px;"></i>-->
-          <i class="fas fa-globe" style="width: 54px; height: 54px; font-size: 54px;"></i>
-        <% end %>
-
-        <%= link_to @school.facebook, target: '_blank', class: 'btn btn-outline-primary', title: 'Facebook' do %>
-          <!--<i class="fi fi-brands-facebook" style="font-size: 50px;"></i>-->
-          <i class="fab fa-facebook" style="width: 54px; height: 54px; font-size: 54px;"></i>
-        <% end %>
-
-        <%= link_to @school.instagram, target: '_blank', class: 'btn btn-outline-primary', title: 'Instagram' do %>
-          <!--<i class="fi fi-brands-instagram" style="font-size: 50px;"></i>-->
-          <i class="fab fa-instagram" style="width: 54px; height: 54px; font-size: 54px;"></i>
-        <% end %>
-      </div>
-
-        <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
@@ -177,10 +156,10 @@
                 <div class="modal-content py-4 px-5" style= "border: none;">
 
                   <%= simple_form_for @school, html: { multipart: true } do |f| %>
-                    <div class="d-flex justify-content-center">
-                      <%= f.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
-                      <%= f.submit "Upload", class: "btn btn-primary", style: "border-radius: 0px;" %>
-                    </div>
+                  <div class="d-flex justify-content-center">
+                    <%= f.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
+                    <%= f.submit "Upload", class: "btn btn-primary", style: "border-radius: 0px;" %>
+                  </div>
                   <% end %>
                 </div>
               </div>
@@ -188,6 +167,20 @@
           </div>
         </div>
 
+        <div class="d-flex flex-column flex-md-row justify-content-end align-items-center gap-3 mt-4">
+
+          <%= link_to @school.website, target: '_blank', class: 'text-center mx-4 mt-4' do %>
+            <i class="fi fi-rs-site-alt text-primary" style="font-size: calc(2.9rem + .5vw);"></i>
+          <% end %>
+
+          <%= link_to @school.facebook, target: '_blank', class: 'btn btn-outline-primary', title: 'Facebook' do %>
+            <i class="fab fa-facebook" style="width: 52px; height: 52px; font-size: 52px;"></i>
+          <% end %>
+
+          <%= link_to @school.instagram, target: '_blank', class: 'btn btn-outline-primary', title: 'Instagram' do %>
+            <i class="fab fa-instagram" style="width: 52px; height: 52px; font-size: 52px;"></i>
+          <% end %>
+        </div>
       </div>
     </div>
         <!--<h2 class="fs-4">Opening Hours</h2>
@@ -204,7 +197,6 @@
   </div>
 </div>
 
-
 <div class="container">
-  <%= render 'add_review' %>
+  <%= render 'add_review', locals: { school: @school } %>
 </div>
