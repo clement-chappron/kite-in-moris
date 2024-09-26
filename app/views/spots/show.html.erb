@@ -34,7 +34,7 @@
         <div class="d-flex justify-content-center mt-5">
           <%= link_to "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@spot.address || 'Le Morne kite lagoon, mauritius')}", target: '_blank', class: 'text-center mx-4' do %>
             <div style="transform: scaleX(-1); display: inline-block;">
-              <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2.2rem + 1.5vw);"></i>
+              <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2rem + 1.5vw);"></i>
             </div>
             <p class="text-dark link link-underline" style=" margin-top: -10px;">Go to <%= @spot.name %></p>
           <% end %>
@@ -110,6 +110,7 @@
       <% @spot.images.each do |image| %>
         <%= cl_image_tag(image.key,
                     crop: :fill,
+                    height: 300,
                     quality: "auto:good",
                     fetch_format: :auto,
                     data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>

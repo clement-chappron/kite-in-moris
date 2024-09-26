@@ -25,6 +25,67 @@ export default class extends Controller {
       image.addEventListener("load", () => this.centerImageInViewport());
     }
   }
+
+  // overviewImage() {
+  //   console.log("overviewImage");
+
+  //   // Sélectionne toutes les images dans le conteneur
+  //   const images = document.querySelectorAll('.images-show img');
+
+  //   // Parcourt chaque image et modifie la hauteur
+  //   images.forEach(image => {
+  //     // Vérifie la hauteur actuelle de l'image et alterne entre 20vh et 40vh
+  //     if (image.style.height === '40vh') {
+  //       image.style.height = '20vh'; // Revenir à la taille originale
+  //     } else {
+  //       image.style.height = '40vh'; // Augmenter la taille
+  //     }
+  //   });
+  // }
+
+  overviewImage(event) {
+    console.log("overviewImage");
+
+    const images = document.querySelectorAll('.images-show img');
+    const clickedImage = event.currentTarget.querySelector('img');
+
+    const body = document.querySelector('body');
+
+    body.classList.toggle('back-show');
+    body.classList.toggle('fixed');
+
+    images.forEach(image => {
+        if (image.style.height === '40vh') {
+            image.style.height = '20vh';
+        } else {
+            image.style.height = '40vh';
+        }
+    });
+
+    clickedImage.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+    });
+
+    const overlay = document.querySelector('.overlay');
+    overlay.addEventListener('click', () => {
+        body.classList.remove('back-show');
+        body.classList.remove('fixed');
+
+        images.forEach(image => {
+            image.style.height = '20vh';
+        });
+    });
+}
+
+
+
+
+
+
+
+
   centerImageInViewport() {
     const image = this.secondImageTarget;
     const container = this.imageContainerTarget;

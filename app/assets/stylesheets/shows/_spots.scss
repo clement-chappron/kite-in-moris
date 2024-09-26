@@ -95,8 +95,47 @@
   display: flex;
   overflow-y: auto;
   scroll-behavior: smooth;
-  img {
-    height: 20vh;
-    margin-right: 20px;
+  position: relative; /* Nécessaire pour le z-index des images */
+  z-index: 100; /* Positionner les images au-dessus de l'overlay */
+
+  img:hover {
+    cursor: pointer;
+  }
+}
+
+.images-show img {
+  height: 20vh;
+  margin-right: 20px;
+  transition: height 0.3s ease, transform 0.3s ease;
+}
+
+body.fixed {
+  overflow: hidden; /* Empêche le défilement de la page */
+}
+
+.overlay {
+  position: fixed; /* Rester en place lors du défilement */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Couleur et transparence */
+  z-index: 90; /* Positionné au-dessus de tout sauf des images */
+  display: none; /* Cacher par défaut */
+}
+
+.back-show .overlay {
+  display: block; /* Afficher l'overlay lorsque 'back-show' est appliqué au body */
+}
+
+
+
+
+.icons-show {
+  position:absolute;
+  font-size: calc(1.8rem + .5vw);
+  transition: font-size 0.2s;
+  &:hover {
+    font-size: calc(2rem + .5vw);
   }
 }
