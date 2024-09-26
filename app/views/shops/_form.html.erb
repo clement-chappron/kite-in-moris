@@ -7,65 +7,41 @@
           <h4 class="text-center" style="color: #5bbbbc; margin: 0;">Shop</h4>
         </div>
 
-          <%= simple_form_for shop, html: { class: 'form-horizontal', url: create_step1_shops_path } do |f| %>
+        <%= simple_form_for shop, html: { class: 'form-horizontal', url: create_step1_shops_path } do |f| %>
 
-
-          <div class="text-center mb-4">
-            <h5>Step <%= @step %> of 2</h5>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.input :name, label: 'Shop Name', input_html: { class: 'form-control' } %>
+              </div>
+              <div class="form-group">
+                <%= f.input :address, label: 'Address', input_html: { class: 'form-control' } %>
+              </div>
+              <div class="form-group">
+                <%= f.input :phone, label: 'Phone Number', input_html: { class: 'form-control' } %>
+              </div>
+              <div class="form-group">
+                <%= f.hidden_field :user_id, value: current_user.id %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.input :email, label: 'Email Address', input_html: { class: 'form-control' } %>
+              </div>
+              <div class="form-group">
+                <%= f.input :facebook, label: 'Facebook URL', input_html: { class: 'form-control' } %>
+              </div>
+              <div class="form-group">
+                <%= f.input :website, label: 'Website URL', input_html: { class: 'form-control' } %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group text-center">
+            <%= link_to 'Back', add_company_path, class: 'btn btn-secondary' %>
+            <%= button_tag 'Next', type: 'button', class: 'btn btn-primary', id: 'next-step-2' %>
           </div>
 
-          <div class="step step-1">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <%= f.input :name, label: 'Shop Name', input_html: { class: 'form-control' } %>
-                </div>
-                <div class="form-group">
-                  <%= f.input :address, label: 'Address', input_html: { class: 'form-control' } %>
-                </div>
-                <div class="form-group">
-                  <%= f.input :phone, label: 'Phone Number', input_html: { class: 'form-control' } %>
-                </div>
-                <div class="form-group">
-                  <%= f.hidden_field :user_id, value: current_user.id %>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <%= f.input :email, label: 'Email Address', input_html: { class: 'form-control' } %>
-                </div>
-                <div class="form-group">
-                  <%= f.input :facebook, label: 'Facebook URL', input_html: { class: 'form-control' } %>
-                </div>
-                <div class="form-group">
-                  <%= f.input :website, label: 'Website URL', input_html: { class: 'form-control' } %>
-                </div>
-              </div>
-            </div>
-            
-            <div class="form-group text-center">
-              <%= link_to 'Back', add_company_path, class: 'btn btn-secondary' %>
-              <%= button_tag 'Next', type: 'button', class: 'btn btn-primary', id: 'next-step-2' %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<%# Deuxième étape : Informations supplémentaires %>
-<% if @shop.persisted? %>
-<div class="mb-3" style="background-color: #5BBBBC;">
-  <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="text-center mb-4" style="width: 25rem; border-radius: 10px;">
-      <div class="card-body">
-        <h1 class="text-center mb-4">Additional Information</h1>
-        <div class="container d-flex justify-content-center align-items-center mb-4" style="width: 147px; height: 44px; background: #cfed58; border-radius: 35px;">
-          <h4 class="text-center" style="color: #5bbbbc; margin: 0;">Step 2: Additional Details</h4>
-        </div>
-
-        <%= simple_form_for @shop, html: { class: 'form-horizontal', url: create_shop_step2_path } do |f| %>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -84,9 +60,8 @@
             <%= f.button :submit, class: 'btn btn-primary me-2' %>
             <%= link_to 'Back', new_shop_path, class: 'btn btn-secondary' %>
           </div>
-        <% end %>
+        <% end %> <!-- End of simple_form_for -->
       </div>
     </div>
   </div>
 </div>
-<% end %>
