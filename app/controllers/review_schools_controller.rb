@@ -26,18 +26,27 @@ class ReviewSchoolsController < ApplicationController
     #   render :new
     # end
     
-    @review_school = @school.review_schools.new(review_school_params)
-    @review_school.user_id = current_user.id
+    # @review_school = @school.review_schools.new(review_school_params)
+    # @review_school.user_id = current_user.id
+    # if @review_school.save
+    #   respond_to do |format|
+    #     format.html { redirect_to school_path(@school) }
+    #     format.json { render json: @review_school }
+    #   end
+    # else
+    #   respond_to do |format|
+    #     format.html { render 'schools/show' }
+    #     format.json { render json: @review_school.errors, status: :unprocessable_entity }
+    #   end
+    # end
+    @school = School.find(params[:school_id])
+    @review_school = @school.review_schools.build(review_school_params)
+    @review_school.user = current_user
+
     if @review_school.save
-      respond_to do |format|
-        format.html { redirect_to school_path(@school) }
-        format.json { render json: @review_school }
-      end
+      redirect_to @school, notice: 'Your review has been successfully submitted.'
     else
-      respond_to do |format|
-        format.html { render 'schools/show' }
-        format.json { render json: @review_school.errors, status: :unprocessable_entity }
-      end
+      render 'schools/show', status: :unprocessable_entity
     end
   end
 
