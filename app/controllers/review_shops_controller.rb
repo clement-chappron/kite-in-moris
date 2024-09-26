@@ -26,9 +26,9 @@ class ReviewShopsController < ApplicationController
     @review_shop.user_id = current_user.id
 
     if @review_shop.save
-      redirect_to shop_path(@review_shop.shop_id)
+      redirect_to shop_path(@review_shop.shop_id), notice: "Creating review successfully"
     else
-      render :new
+      render :new, notice: "Creating review failed"
     end
   end
 
