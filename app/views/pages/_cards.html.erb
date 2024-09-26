@@ -5,8 +5,9 @@
         <div class="image-card"
              style="background-image: url('<%= card.images.attached? ? cl_image_path(card.images.first.key,
                            crop: :fill,
+                           width: 400,
                            dpr: 2.0,
-                           quality: "auto:best",
+                           quality: "auto:good",
                            gravity: :face,
                            fetch_format: :auto) : asset_path("IMG_4667.webp") %>');">
         </div>
@@ -15,7 +16,7 @@
           <div>
             <span><%= card.class.name %></span>
             <h2 class="fs-4 fw-1"><%= card.name %></h2>
-            <p><i class="fi fi-rr-marker text-primary me-2"></i><%= card.location.name %></p>
+            <p><i class="fi fi-rs-marker me-2"></i><%= card.location.name %></p>
           </div>
 
           <div class="mt-auto">

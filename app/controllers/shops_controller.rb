@@ -19,6 +19,10 @@ class ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @review_shop = ReviewShop.new
+    @reviews_shop = @shop.review_shops
+
+    @average_rating = @reviews_shop.average(:rating).to_f.round(1)
+    @total_review_shop = @reviews_shop.count
 
     @review_shops = @shop.review_shops.order(created_at: :desc).limit(5)
   end

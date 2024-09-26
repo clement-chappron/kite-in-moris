@@ -9,6 +9,7 @@
              style="background-image: url('<%= blog_page.blog_picture.attached? ? cl_image_path(blog_page.blog_picture.key,
                              crop: :fill,
                              dpr: 2.0,
+                             height: 400,
                              quality: "auto:best",
                              gravity: :face,
                              fetch_format: :auto) : asset_path("IMG_4667.webp") %>');

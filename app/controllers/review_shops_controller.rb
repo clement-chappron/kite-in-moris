@@ -1,5 +1,5 @@
 class ReviewShopsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index new create]
+  skip_before_action :authenticate_user!, only: %i[index new create load_more]
   before_action :set_shop, only: %i[index new create show]
 
 

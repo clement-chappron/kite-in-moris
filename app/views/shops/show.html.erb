@@ -1,3 +1,8 @@
+<div class="overlay">
+  <div class="title-show-for-overlay">
+    <h3><%= @shop.name %></h3>
+  </div>
+</div>
 <div class="header-show" style="background-image: url(<%= @shop.images.attached? ? cl_image_path(@shop.images.first.key,
                            crop: :fill,
                            dpr: 2.0,
@@ -10,7 +15,7 @@
 </div>
 
 
-<div style=' margin-top: calc(-45px - 5vw);'>
+<div style=' margin-top: calc(-43px - 5vw);'>
   <div class="custom-shape">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 915.4 120" preserveAspectRatio="none">
         <path class="cls-2" d="M915.4,119V46.8c-164.7,68.9-279.3,59.8-354.4,37.8C460.2,55,426.4.9,326.5,7.3c-62.5,4-93.4,20.5-211.2,46.9C60.9,66.4,33.2,86.9,0,66.5v52.5h915.4Z"/>
@@ -23,28 +28,33 @@
     <div class="container">
       <div class="content-show">
         <span><%= @shop.class.name %></span>
+        <h1><%= @shop.name %></h1>
         <div class="d-lg-flex align-items-end justify-content-between">
-          <h1><%= @shop.name %></h1>
-          <p><i class="fi fi-rs-marker"></i> <%= @shop.location.name %></p>
+
+            <a href="#reviews" class='link link-underline'>
+              <%= @average_rating %>/5 (<%= @total_review_shop %> reviews)
+            </a>
+
+          <p style="margin-bottom: 0px !important;"><i class="fi fi-rs-marker"></i> <%= @shop.location.name %></p>
         </div>
          <%# <i class="fi fi-rs-star"></i> <%= @shop.average_rating %>
 
         <div class="d-flex justify-content-center mt-5">
           <%= link_to "tel:#{@shop.phone}", target: '_blank', class: 'text-center mx-4 mx-md-5 ' do %>
             <div style="transform: scaleX(-1); display: inline-block;">
-              <i class="fi fi-rs-phone-flip text-primary" style="font-size: calc(2.2rem + .5vw);"></i>
+              <i class="fi fi-rs-phone-flip text-primary" style="font-size: calc(2rem + .5vw);"></i>
             </div>
             <p class="text-dark link link-underline" style="margin-top: -10px;">Phone</p>
           <% end %>
 
           <%= link_to "mailto:#{@shop.email}", target: '_blank', class: 'text-center mx-4 mx-md-5 ' do %>
-            <i class="fi fi-rs-comment text-primary" style="font-size: calc(2.2rem + .5vw);"></i>
+            <i class="fi fi-rs-comment text-primary" style="font-size: calc(2rem + .5vw);"></i>
             <p class="text-dark link link-underline" style=" margin-top: -10px;">Message</p>
           <% end %>
 
           <%= link_to "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@shop.address || 'Le Morne kite lagoon, mauritius')}", target: '_blank', class: 'text-center mx-4 mx-md-5 ' do %>
             <div style="transform: scaleX(-1); display: inline-block;">
-              <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2.2rem + .5vw);"></i>
+              <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2rem + .5vw);"></i>
             </div>
             <p class="text-dark link link-underline" style=" margin-top: -10px;">Go to</p>
           <% end %>
@@ -62,12 +72,15 @@
     <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
       <% count = 0 %>
       <% @shop.images.each do |image| %>
-        <%= cl_image_tag(image.key,
-                    crop: :fill,
-                    quality: "auto:best",
-                    fetch_format: :auto,
-                    data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
-        <% count += 1 %>
+        <div data-action= "click->images-show#overviewImage">
+          <%= cl_image_tag(image.key,
+                      crop: :fill,
+                      height: 300,
+                      quality: "auto:good",
+                      fetch_format: :auto,
+                      data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
+          <% count += 1 %>
+        </div>
       <% end %>
     </div>
 
@@ -109,6 +122,27 @@
             </div>
           </div>
         </div>
+
+        <div class="d-flex justify-content-end mt-5">
+          <p class="position-relative">
+            <%= link_to "https://#{@shop.website}", target: '_blank', class: 'text-center' do %>
+              <i class="fi fi-rs-site-alt text-primary icons-show" style= "left: -150px;"></i>
+            <% end %>
+          </p>
+
+          <p class="position-relative">
+            <%= link_to "https://#{@shop.instagram}", target: '_blank', class: 'text-center' do %>
+              <i class="fi fi-brands-instagram text-primary icons-show" style= "left: -90px;"></i>
+            <% end %>
+          </p>
+
+          <p class="position-relative">
+            <%= link_to "https://#{@shop.facebook}", target: '_blank', class: 'text-center' do %>
+              <i class="fi fi-brands-facebook text-primary icons-show" style= "left: -30px;"></i>
+            <% end %>
+          </p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -126,7 +160,7 @@
       </p>
     </div>
   <% else %>
-    <p class="mt-5 mb-3">* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "link link-underline" %></p>
+    <p class="mt-5 mb-4">* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "link link-underline" %></p>
   <% end %>
 
     <!-- Modal -->
@@ -160,7 +194,7 @@
   <div data-controller="load-more-shop-review" data-load-more-shop-review-shop-id-value="<%= @shop.id %>">
 
 
-      <div data-load-more-shop-review-target="reviews" class="">
+      <div id="reviews" data-load-more-shop-review-target="reviews">
         <% @review_shops.each do |review| %>
           <div class="review-card">
             <div class="d-flex align-items-center">

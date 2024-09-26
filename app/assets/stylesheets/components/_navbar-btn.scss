@@ -14,7 +14,7 @@
 }
 .hamburger-bg.animate {
   border: 1px solid $light-gray;
-  background-color: rgba(207, 237, 88, 0.6);
+  background-color: rgb(207, 237, 88);
 }
 
 .navbar-logo {
@@ -35,11 +35,11 @@
   padding: 6px;
   height: 54px;
   width: 54px;
-  background-color: rgba(255, 255, 255, .3);
+  background-color: rgba(255, 255, 255, .6);
   border-radius: 50px;
   &:hover {
     padding: 5px;
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, .9);
   }
 
 }

@@ -73,16 +73,15 @@
   padding: 2rem;
   padding-top: 0 !important;
   margin-top: 0 !important;
-  span:first-of-type {
-    position: absolute;
-    top: 77vh;
-    font-size: calc(1rem + 0.5vw);
-    color: #5B5B5B;
-    @media screen and (min-width: 768px) {
-      top: 76vh;
-
-    }
-  }
+  // span:first-of-type {
+  //   position: absolute;
+  //   top: 77vh;
+  //   font-size: calc(1rem + 0.5vw);
+  //   color: #5B5B5B;
+  //   @media screen and (min-width: 768px) {
+  //     top: 76vh;
+  //   }
+  // }
   h1 {
     font-size: calc(2rem + 1.5vw);
   }
@@ -95,8 +94,69 @@
   display: flex;
   overflow-y: auto;
   scroll-behavior: smooth;
-  img {
-    height: 20vh;
-    margin-right: 20px;
+  position: relative; /* Nécessaire pour le z-index des images */
+  z-index: 100; /* Positionner les images au-dessus de l'overlay */
+
+  img:hover {
+    cursor: pointer;
   }
+}
+
+.images-show img {
+  height: 20vh;
+  margin-right: 20px;
+  transition: height 0.3s ease, transform 0.3s ease;
+}
+
+body.fixed {
+  overflow: hidden; /* Empêche le défilement de la page */
+}
+
+.overlay {
+  position: fixed; /* Rester en place lors du défilement */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Couleur et transparence */
+  z-index: 90; /* Positionné au-dessus de tout sauf des images */
+  display: none; /* Cacher par défaut */
+}
+
+.back-show .overlay {
+  display: block; /* Afficher l'overlay lorsque 'back-show' est appliqué au body */
+}
+
+.title-show-for-overlay {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+
+  h3 {
+    color:#ffffffd3;
+    font-size: calc(1rem + 2vw) !important;
+    font-weight: 900;
+    line-height: 90%;
+    text-align: center;
+  }
+}
+
+
+.icons-show {
+  position:absolute;
+  font-size: calc(1.8rem + .5vw);
+  transition: font-size 0.2s;
+  &:hover {
+    font-size: calc(2rem + .5vw);
+  }
+}
+
+
+
+.mapboxgl-ctrl {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  color: #5B5B5B;
 }
