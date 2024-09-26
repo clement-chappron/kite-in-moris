@@ -18,7 +18,7 @@ gem "geocoder"
 gem "puma", ">= 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+gem "importmap-rails", "~> 1.2.3"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -55,6 +55,9 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem 'friendly_id', '~> 5.5.0'
 gem 'pg_search'
+# gem 'faraday'
+# gem 'geocoder'
+# gem 'open-weather-api'
 
 # Cloudinary
 gem "cloudinary"

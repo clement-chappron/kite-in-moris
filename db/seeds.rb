@@ -201,6 +201,7 @@ le_morne_img3 = URI.open('https://www.iksurfmag.com/wp-content/uploads/2015/08/I
 
 le_morne = Spot.create!(
   name: "Le Morne",
+  address: "Le Morne, Mauritius",
   description: "Le Morne is one of the most popular kitesurfing spots on the island of Mauritius, offering ideal conditions for both beginners and experts. The site features several kiting zones, ranging from flat water in the lagoon to waves for more experienced riders.",
   level: "All levels",
   location_id: south_location.id,
@@ -226,6 +227,7 @@ pointe_desny_img3 = URI.open('https://dynamic-media-cdn.tripadvisor.com/media/ph
 
 pointe_desny = Spot.create!(
   name: "La Pointe d'Esny",
+  address: "La Pointe d'Esny, Mauritius",
   description: "La Pointe d'Esny is a renowned kitesurfing spot on the southeast coast of Mauritius, famous for its stunning scenery and excellent conditions. The area features a wide lagoon with shallow waters, making it ideal for beginners and intermediate kitesurfers, as well as areas with stronger winds for advanced riders.",
   level: "All levels",
   location_id: south_est_coast_location.id,
@@ -251,6 +253,7 @@ bel_ombre_img3 = URI.open('https://dynamic-media-cdn.tripadvisor.com/media/photo
 
 bel_ombre = Spot.create!(
   name: "Bel Ombre",
+  address: "Bel Ombre, Mauritius",
   description: "Bel Ombre is a picturesque kitesurfing spot located on the southwest coast of Mauritius, known for its expansive lagoon and stunning natural beauty. It offers excellent conditions for all levels of kitesurfers, with a mix of flat water and small waves.",
   level: "All levels",
   location_id: south_location.id,
@@ -275,6 +278,7 @@ poste_lafayette_img3 = URI.open('https://image-stock2.mercuryholidays.co.uk/resi
 
 poste_lafayette = Spot.create!(
   name: "Poste Lafayette",
+  address: "Poste Lafayette, Mauritius",
   description: "Poste Lafayette is a serene kitesurfing destination located on the east coast of Mauritius, known for its calm and inviting waters. The spot offers ideal conditions for both beginners and experienced kitesurfers with a combination of flat water and gentle waves.",
   level: "All levels",
   location_id: east_coast_location.id,
@@ -300,6 +304,7 @@ anse_la_rae_img3 = URI.open('https://wordpress.wihphotels.com/mythic/media/sites
 
 anse_la_rae = Spot.create!(
   name: "Anse La Raie",
+  address: "Anse La Raie, Mauritius",
   description: "Anse La Raie is a popular kitesurfing spot located on the northern coast of Mauritius. Known for its large lagoon with shallow waters, it provides excellent conditions for beginners and intermediate kitesurfers. The spot also has areas for more advanced riders seeking stronger winds and waves.",
   level: "All levels",
   location_id: north_location.id,
@@ -326,6 +331,7 @@ trou_deau_douce_img3 = URI.open('https://lemandalamoris.com/wp-content/uploads/2
 
 trou_deau_douce = Spot.create!(
   name: "Trou d'Eau Douce",
+  address: "Trou d'Eau Douce, Mauritius",
   description: "Trou d'Eau Douce is a scenic kitesurfing spot located on the east coast of Mauritius. Known for its tranquil lagoon and stunning views of Île aux Cerfs, it offers great conditions for kitesurfers of all levels, especially beginners who appreciate the calm, shallow waters.",
   level: "All levels",
   location_id: east_coast_location.id,
@@ -350,6 +356,7 @@ la_prairie_img3 = URI.open('https://www.ivisitplus-maurice.com/wp-content/upload
 
 la_prairie = Spot.create!(
   name: "La Prairie",
+  address: "La Prairie, Mauritius",
   description: "La Prairie is a peaceful kitesurfing spot located on the southern coast of Mauritius. With its wide, shallow lagoon and stunning views of Le Morne mountain, it offers excellent conditions for beginners and intermediate kitesurfers. The spot is less crowded than others, providing a more relaxed experience.",
   level: "All levels",
   location_id: south_location.id,
@@ -375,6 +382,7 @@ palmar_img3 = URI.open('https://fun-and-fly.com/wp-content/uploads/pgi/brut/SPOT
 
 palmar = Spot.create!(
   name: "Palmar",
+  address: "Palmar, Mauritius",
   description: "Palmar is a picturesque kitesurfing spot located on the east coast of Mauritius. Known for its crystal-clear lagoon and gentle winds, it offers great conditions for beginners and intermediate riders. The spot is surrounded by lush greenery and is perfect for those looking for a peaceful kiting experience.",
   level: "All levels",
   location_id: east_coast_location.id,
@@ -399,6 +407,7 @@ grand_baie_img2 = URI.open('https://www.mauritius-travel.com/images/LieuxActivit
 
 grand_baie = Spot.create!(
   name: "Grand Baie",
+  address: "Grand Baie, Mauritius",
   description: "Grand Baie is a lively kitesurfing spot located in the north of Mauritius, known for its beautiful lagoon and vibrant atmosphere. Although the wind is not as strong as in other spots, it is an excellent destination for beginners and those looking to combine kitesurfing with other leisure activities in this popular tourist hub.",
   level: "Beginners to intermediate",
   location_id: north_location.id,
@@ -423,6 +432,7 @@ ile_aux_cerfs_img3 = URI.open('https://www.tropicalement-votre.com/dests/maurice
 
 ile_aux_cerfs = Spot.create!(
   name: "Île aux Cerfs",
+  address: "Île aux Cerfs, Mauritius",
   description: "Île aux Cerfs is a stunning kitesurfing spot located just off the east coast of Mauritius. Famous for its turquoise lagoon and sandy beaches, it offers ideal conditions for both beginners and experienced kitesurfers. The spot is surrounded by natural beauty, making it a popular destination for water sports enthusiasts and tourists alike.",
   level: "All levels",
   location_id: east_coast_location.id,
@@ -448,6 +458,7 @@ flic_en_flac_img3 = URI.open('https://visit.today/images/elements/upload/full/Fl
 
 flic_en_flac = Spot.create!(
   name: "Flic en Flac",
+  address: "Flic en Flac, Mauritius",
   description: "Flic en Flac is a popular beach destination located on the west coast of Mauritius, known for its long stretch of white sandy beaches and clear waters. While not the windiest spot on the island, it offers a pleasant kitesurfing experience, particularly for beginners looking for calm waters in a vibrant setting.",
   level: "Beginners to intermediate",
   location_id: west_coast_location.id,

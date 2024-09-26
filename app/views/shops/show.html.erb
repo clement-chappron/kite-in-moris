@@ -117,7 +117,6 @@
 
 <div class="container">
   <div class="content-show">
-
   <!-- Button to trigger modal -->
 
    <% if user_signed_in? %>
@@ -126,9 +125,9 @@
         <%= link_to 'Add a review', 'javascript:void(0);', class: 'link link-underline' %>
       </p>
     </div>
-    <% else %>
-      <p>* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "btn btn-warning" %></p>
-    <% end %>
+  <% else %>
+    <p class="mt-5 mb-3">* If you want to leave a comment, please <%= link_to 'sign in', new_user_session_path, class: "link link-underline" %></p>
+  <% end %>
 
     <!-- Modal -->
     <div class="modal fade" id="reviewShopModal" tabindex="-1" aria-labelledby="reviewShopModalLabel" aria-hidden="true">
@@ -141,6 +140,7 @@
           <div class="modal-body">
             <%= simple_form_for [@shop, @review_shop], url: shop_review_shops_path(@shop), method: :post, html: { class: 'form-horizontal' } do |f| %>
               <div class="mb-3">
+                <%= f.label :rating, "Rate (1 to 5)" %> <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]), {}, class: "form-control" %>
                 <%= f.input :description, as: :text, input_html: { rows: 3, class: 'form-control', required: true }, label_html: { class: 'form-label' } %>
               </div>
 
@@ -155,17 +155,19 @@
     </div>
 
 
-    <div data-controller="load-more" data-load-more-review_shop="<%= @review_shop %>">
+<%# Reviews %>
 
-      <div data-load-more-target="review" class="">
-          <%# rendu des cards dynamiquement par AJAX %>
-          <%  @shop.review_shops.each do |review| %>
-            <div class="review-card">
-              <div class="d-flex align-items-center">
-                <p>
-                  <%= cl_image_tag(review.user.profile_picture.key,
+  <div data-controller="load-more-shop-review" data-load-more-shop-review-shop-id-value="361">
+
+
+      <div data-load-more-shop-review-target="reviews" class="">
+        <% @review_shops.each do |review| %>
+          <div class="review-card">
+            <div class="d-flex align-items-center">
+              <p>
+                <%= cl_image_tag(review.user.profile_picture.key,
                                 class: 'me-2 img_fluid rounded-circle',
-                                alt: "#{review.user.first_name}'s avatar from kite in mauritius",
+                                alt: "#{review.user.first_name}'s avatar from kite in Mauritius",
                                 width: 40,
                                 height: 40,
                                 crop: :fill,
@@ -175,27 +177,33 @@
                                 fetch_format: :auto,
                                 effect: "sharpen:50",
                                 radius: "max")
-                                %>
-                </p>
-                <p class="review-user"><%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize.first %></p>
-                <p class="text-primary ms-auto"><%= review.rating %>/5</p>
-              </div>
-              <p class="review-description"><%= review.description %></p>
-              <small><%= review.created_at.strftime('%d %b %Y') %></small>
+                %>
+              </p>
+              <p class="review-user">
+                <%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize.first %>.
+              </p>
+              <p class="text-primary ms-auto">
+                <%= review.rating %>/5
+              </p>
             </div>
-          <% end %>
+            <p class="review-description"><%= review.description %></p>
+            <small><%= review.created_at.strftime('%d %b %Y') %></small>
+          </div>
+        <% end %>
 
-          <%= tag.div "", id: "more_reviews_exist", data: { more: @more_reviews_exist } %>
-
+        <%= tag.div "", id: "more_reviews_exist", data: { more: @more_reviews_exist } %>
       </div>
 
-      <div class="d-flex mx-auto mt-5">
-        <div data-action="click->load-more#loadMore" class="btn-load-more">
-          <%= link_to 'Load More', '#', class: 'link link-underline'%>
+
+        <div class="d-flex mx-auto mt-5">
+          <div data-action="click->load-more-shop-review#loadMoreShopReview" class="btn-load-more">
+            <%= link_to 'Load More', '#', class: 'link link-underline'%>
+          </div>
         </div>
-      </div>
+
 
     </div>
+
 
   </div>
 </div>
