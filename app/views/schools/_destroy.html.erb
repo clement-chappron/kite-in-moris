@@ -4,13 +4,10 @@
   <%# end %>
 <!--</div>
 -->
-<div class="d-flex justify-content-end align-items-center mt-3" data-bs-toggle="modal" data-bs-target="#destroyModal">
-  <%= link_to 'javascript:void(0);', class: "link link-underline" do %>
-    <div class="d-flex justify-content-end align-items-center">
-      <p class="mb-0">Destroy</p>
-      <p class="mb-0 mt-2">
-        <i class="fi fi-rs-delete text-danger ms-2 fs-4"></i>
-      </p>
+<div class="d-flex justify-content-end align-items-center mb-4" data-bs-toggle="modal" data-bs-target="#destroyModal">
+  <%= link_to 'javascript:void(0);' do %>
+    <div>
+      <p class="btn btn-danger text-white justify-content-center mb-0" style="width: 100px; height: 35px;">Destroy</p>
     </div>
   <% end %>
 </div>
