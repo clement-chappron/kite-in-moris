@@ -5,8 +5,9 @@
         <div class="image-card"
              style="background-image: url('<%= card.images.attached? ? cl_image_path(card.images.first.key,
                            crop: :fill,
+                           width: 400,
                            dpr: 2.0,
-                           quality: "auto:best",
+                           quality: "auto:good",
                            gravity: :face,
                            fetch_format: :auto) : asset_path("IMG_4667.webp") %>');">
         </div>

@@ -11,7 +11,7 @@
 </div>
 
 
-<div style=' margin-top: calc(-45px - 5vw);'>
+<div style=' margin-top: calc(-43px - 5vw);'>
   <div class="custom-shape">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 915.4 120" preserveAspectRatio="none">
         <path class="cls-2" d="M915.4,119V46.8c-164.7,68.9-279.3,59.8-354.4,37.8C460.2,55,426.4.9,326.5,7.3c-62.5,4-93.4,20.5-211.2,46.9C60.9,66.4,33.2,86.9,0,66.5v52.5h915.4Z"/>
@@ -110,7 +110,7 @@
       <% @spot.images.each do |image| %>
         <%= cl_image_tag(image.key,
                     crop: :fill,
-                    quality: "auto:best",
+                    quality: "auto:good",
                     fetch_format: :auto,
                     data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
         <% count += 1 %>
