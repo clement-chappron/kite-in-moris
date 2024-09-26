@@ -341,7 +341,6 @@ DEPENDENCIES
   devise
   dotenv-rails
   error_highlight (>= 0.4.0)
-  faraday
   ffi (= 1.15)
   font-awesome-sass (~> 6.1)
   friendly_id (~> 5.5.0)

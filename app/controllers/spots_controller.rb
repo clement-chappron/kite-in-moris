@@ -19,28 +19,28 @@ class SpotsController < ApplicationController
       }
     ]
 
-    # # Access the initialized openweatherAPI
-    # open_weather_api = Rails.configuration.open_weather_api
+    # Access the initialized openweatherAPI
+    open_weather_api = Rails.configuration.open_weather_api
 
-    # # Fetch weather data using the spot's address
-    # weather_data = open_weather_api.current(lon: @spot.longitude, lat: @spot.latitude)
+    # Fetch weather data using the spot's address
+    weather_data = open_weather_api.current(lon: @spot.longitude, lat: @spot.latitude)
 
 
-    # if weather_data && weather_data['main']
-    #   @weather = weather_data['main']
-    #   @weather['temp'] = @weather['temp'] - 273.15  # Convert from Kelvin to Celsius
-    #   @weather['description'] = weather_data['weather'][0]['description']  # Get the weather description
-    #   wind_speed_mps = weather_data['wind']['speed']  # Wind speed in m/s
-    #   @weather['speed_knots'] = (wind_speed_mps * 1.94384).round(1)  # Convert to knots and round to 2 decimal places
-    #   @weather['deg'] = weather_data['wind']['deg']  # Get wind direction
-    #   @weather['gust'] = weather_data['wind']['gust']  # Get wind gust
-    #   @weather['icon'] = weather_data['weather'][0]['icon']  # Get the weather icon
-    #   @weather['icon_url'] = "http://openweathermap.org/img/w/#{@weather['icon']}.png"
-    #   @weather['humidity'] = weather_data['main']['humidity']  # Get humidity
-    #   @weather['pressure'] = weather_data['main']['pressure']  # Get pressure
-    # else
-    #   @weather = nil  # Handle errors accordingly
-    # end
+    if weather_data && weather_data['main']
+      @weather = weather_data['main']
+      @weather['temp'] = @weather['temp'] - 273.15  # Convert from Kelvin to Celsius
+      @weather['description'] = weather_data['weather'][0]['description']  # Get the weather description
+      wind_speed_mps = weather_data['wind']['speed']  # Wind speed in m/s
+      @weather['speed_knots'] = (wind_speed_mps * 1.94384).round(1)  # Convert to knots and round to 2 decimal places
+      @weather['deg'] = weather_data['wind']['deg']  # Get wind direction
+      @weather['gust'] = weather_data['wind']['gust']  # Get wind gust
+      @weather['icon'] = weather_data['weather'][0]['icon']  # Get the weather icon
+      @weather['icon_url'] = "http://openweathermap.org/img/w/#{@weather['icon']}.png"
+      @weather['humidity'] = weather_data['main']['humidity']  # Get humidity
+      @weather['pressure'] = weather_data['main']['pressure']  # Get pressure
+    else
+      @weather = nil  # Handle errors accordingly
+    end
   end
 
   def edit
