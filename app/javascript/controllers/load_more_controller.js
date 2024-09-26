@@ -6,8 +6,10 @@ export default class extends Controller {
   static values = { params: Object };
 
   connect() {
+    // Récupérer le type de modèle (spot ou school) et le slug
     this.params = {
-      spot_slug: this.element.dataset.loadMoreSpotSlug,
+      modelType: this.element.dataset.loadMoreModelType, // 'spot' ou 'school'
+      modelSlug: this.element.dataset.loadMoreModelSlug, // le slug du Spot ou de l'École
       offset: 5,
       limit: 5
     };
@@ -16,7 +18,10 @@ export default class extends Controller {
   loadMore(event) {
     event.preventDefault();
 
-    fetch(`/load_more?spot_slug=${this.params.spot_slug}&limitLoad=${this.params.limit}&offset=${this.params.offset}`, {
+    // Construction dynamique de l'URL en fonction du type de modèle (Spot ou School)
+    const url = `/load_more?${this.params.modelType}_slug=${this.params.modelSlug}&limitLoad=${this.params.limit}&offset=${this.params.offset}`;
+
+    fetch(url, {
       headers: {
         "Accept": "text/html"
       }

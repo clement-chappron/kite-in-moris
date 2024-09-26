@@ -7,4 +7,5 @@ class Location < ApplicationRecord
   validates :name, uniqueness: true
 
   has_many_attached :images
+  has_one_attached :main_image
 end

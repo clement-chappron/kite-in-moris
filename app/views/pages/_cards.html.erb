@@ -3,14 +3,13 @@
     <div class="col px-1">
       <div class="categories-card" data-category="<%= card.class.name.downcase %>">
         <div class="image-card"
-             style="background-image: url('<%= card.images.attached? ? cl_image_path(card.images.first.key,
+             style="background-image: url('<%= card.main_image.attached? ? cl_image_path(card.main_image.key,
                            crop: :fill,
                            dpr: 2.0,
                            quality: "auto:best",
                            gravity: :face,
                            fetch_format: :auto) : asset_path("IMG_4667.webp") %>');">
         </div>
-
 
         <div class="pt-3 ps-3 d-flex justify-content-between">
           <div>
