@@ -1,8 +1,5 @@
 source "https://rubygems.org"
 
-gem 'rubygems-update', '>= 3.3.22'
-
-
 ruby "3.1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -55,9 +52,9 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem 'friendly_id', '~> 5.5.0'
 gem 'pg_search'
-# gem 'faraday'
-# gem 'geocoder'
-# gem 'open-weather-api'
+gem 'faraday'
+gem 'geocoder'
+gem 'open-weather-api'
 
 # Cloudinary
 gem "cloudinary"
