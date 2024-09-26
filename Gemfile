@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
+gem 'ffi', '1.15'
+
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 
@@ -11,14 +14,11 @@ gem "sprockets-rails"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
-# Geocoder
-gem "geocoder"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+gem "importmap-rails", "~> 1.2.3"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -55,6 +55,9 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem 'friendly_id', '~> 5.5.0'
 gem 'pg_search'
+gem 'faraday'
+gem 'geocoder'
+gem 'open-weather-api'
 
 # Cloudinary
 gem "cloudinary"

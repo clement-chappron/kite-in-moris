@@ -1,4 +1,10 @@
-<div class="header-show" style="background-image: url(<%= @school.main_image.attached? ? cl_image_path(@school.main_image.key,
+<div class="overlay">
+  <div class="title-show-for-overlay">
+    <h1><%= @school.name %></h1>
+  </div>
+</div>
+
+<div class="header-show" style="background-image: url(<%= @school.images.attached? ? cl_image_path(@school.images.first.key,
                            crop: :fill,
                            dpr: 2.0,
                            quality: "auto:best",
@@ -12,7 +18,7 @@
 </div>
 
 
-<div style=' margin-top: calc(-45px - 5vw);'>
+<div style=' margin-top: calc(-43px - 5vw);'>
   <div class="custom-shape">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 915.4 120" preserveAspectRatio="none">
         <path class="cls-2" d="M915.4,119V46.8c-164.7,68.9-279.3,59.8-354.4,37.8C460.2,55,426.4.9,326.5,7.3c-62.5,4-93.4,20.5-211.2,46.9C60.9,66.4,33.2,86.9,0,66.5v52.5h915.4Z"/>
@@ -39,7 +45,7 @@
           <% end %>
 
           <div class="ms-3 d-flex align-item-center">
-            
+
               <i class="fi fi-rs-fee" style="color: #CFED58; font-size: 2rem; margin-right: 10px;"></i>
               <p class="fs-4 mb-0">
               <%= number_to_currency(@school.fee, unit: "€") %>
@@ -138,7 +144,6 @@
           <% end %>
         </div>
 
-        <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
@@ -167,14 +172,6 @@
           <%= link_to @school.website, target: '_blank', class: 'text-center mx-4 mt-4' do %>
             <i class="fi fi-rs-site-alt text-primary" style="font-size: calc(2.9rem + .5vw);"></i>
           <% end %>
-
-          <%#= link_to @school.facebook, target: '_blank', class: 'text-center mx-4 mt-4' do %>
-  <!--          <i class="fi fi-brands-facebook text-primary" style="font-size: calc(2.2rem + .5vw);"></i>-->
-          <%# end %>
-  <!---->
-          <%#= link_to @school.instagram, target: '_blank', class: 'text-center mx-4 mt-4' do %>
-  <!--          <i class="fi fi-brands-instagram text-primary" style="font-size: calc(2.2rem + .5vw);"></i>-->
-          <%# end %>
 
           <%= link_to @school.facebook, target: '_blank', class: 'btn btn-outline-primary', title: 'Facebook' do %>
             <i class="fab fa-facebook" style="width: 52px; height: 52px; font-size: 52px;"></i>

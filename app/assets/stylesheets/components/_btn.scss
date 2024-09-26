@@ -113,3 +113,33 @@
 
 }
 
+#scrollToTop {
+  position: fixed;
+  bottom: 60px;
+  right: 36px;
+  background-color: $secondary;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  width: 56px;
+  height: 56px;
+  padding-left: 9px;
+  font-size: 16px;
+  padding-top: 4px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  transform: rotate(-45deg) !important;
+}
+
+#scrollToTop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+#scrollToTop:hover {
+  background-color: $gray;
+}

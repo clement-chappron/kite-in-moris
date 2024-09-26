@@ -7,9 +7,11 @@
 @import "config/layout";
 
 // External libraries
+@import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
 @import "bootstrap";
 @import "font-awesome";
 @import url('https://cdn-uicons.flaticon.com/2.5.1/uicons-regular-straight/css/uicons-regular-straight.css');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css');
 
 // Your CSS partials
 @import "components/index";

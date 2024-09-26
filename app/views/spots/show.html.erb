@@ -1,4 +1,10 @@
-<div class="header-show" style="background-image: url(<%= @spot.main_image.attached? ? cl_image_path(@spot.main_image.key,
+<div class="overlay">
+  <div class="title-show-for-overlay">
+    <h1><%= @spot.name %></h1>
+  </div>
+</div>
+
+<div class="header-show" style="background-image: url(<%= @spot.images.attached? ? cl_image_path(@spot.images.first.key,
                            crop: :fill,
                            dpr: 2.0,
                            quality: "auto:best",
@@ -11,7 +17,7 @@
 </div>
 
 
-<div style=' margin-top: calc(-45px - 5vw);'>
+<div style=' margin-top: calc(-43px - 5vw);'>
   <div class="custom-shape">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 915.4 120" preserveAspectRatio="none">
         <path class="cls-2" d="M915.4,119V46.8c-164.7,68.9-279.3,59.8-354.4,37.8C460.2,55,426.4.9,326.5,7.3c-62.5,4-93.4,20.5-211.2,46.9C60.9,66.4,33.2,86.9,0,66.5v52.5h915.4Z"/>
@@ -34,11 +40,13 @@
         <div class="d-flex justify-content-center mt-5">
           <%= link_to "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@spot.address || 'Le Morne kite lagoon, mauritius')}", target: '_blank', class: 'text-center mx-4' do %>
             <div style="transform: scaleX(-1); display: inline-block;">
-              <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2.2rem + 1.5vw);"></i>
+              <i class="fi fi-rs-diamond-turn-right text-primary" style="font-size: calc(2rem + 1.5vw);"></i>
             </div>
-            <p class="text-dark link link-underline" style=" margin-top: -10px;">Go to</p>
+            <p class="text-dark link link-underline" style=" margin-top: -10px;">Go to <%= @spot.name %></p>
           <% end %>
         </div>
+        <%# MapBox %>
+
 
         <h2 class="fs-4 mt-3">Description</h2>
         <p><%= @spot.description %></p>
@@ -70,20 +78,51 @@
         <h2 class="fs-4">Water temperature</h2>
         <p><%= @spot.water_temperature %></p>
 
+        <div class="mt-3 mb-5" style="width: 100%; height: 70vh;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
-    </div>
 
+
+        <!--weather div
+        <div class="card mt-4 mb-5">
+          <div class="card-body">
+            <h1>Weather in <span id="city"><%# @spot.address %></span></h1>
+            <h3 id="date" class="text-secondary"><%# Date.today.strftime("%B %d, %Y") %></h3>
+            <div id="weather">
+              <p id="description"><%# @weather ? @weather['description'].capitalize : 'No weather data available' %></p>
+              <div class="d-flex align-items-center">
+                <% if @weather %>
+                  <img src="<%# @weather['icon_url'] %>" alt="Weather Icon" id="icon">
+                  <h2 id="temperature"><%# @weather['temp'].round(1) %>°C</h2>
+                <% else %>
+                  <img src="" alt="Weather Icon" id="icon" style="display: none;">
+                  <h2 id="temperature">N/A</h2>
+                <% end %>
+              </div>
+              <h3>💨 <%# @weather['speed_knots'] %> knots  🧭 <%# @weather ? @weather['deg'] : 'N/A' %>°</h3>
+              <p>Gust: <%# @weather ? @weather['gust'] : 'N/A' %> knots</p>
+              <p>Humidity: <%# @weather ? @weather['humidity'] : 'N/A' %>%</p>
+              <p>Pressure: <%# @weather ? @weather['pressure'] : 'N/A' %> hPa</p>
+            </div>
+          </div>
+        </div>-->
+    </div>
 
     <div data-controller="images-show" data-images-show-target="imageContainer" class="images-show">
       <% count = 0 %>
       <% @spot.images.each do |image| %>
-        <%= cl_image_tag(image.key,
-                    crop: :fill,
-                    quality: "auto:best",
-                    fetch_format: :auto,
-                    data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
-        <% count += 1 %>
-
+        <div data-action= "click->images-show#overviewImage">
+          <%= cl_image_tag(image.key,
+                      crop: :fill,
+                      height: 300,
+                      quality: "auto:good",
+                      fetch_format: :auto,
+                      data: (count == 1 ? { images_show_target: "secondImage" } : {})) %>
+          <% count += 1 %>
+        </div>
       <% end %>
     </div>
 

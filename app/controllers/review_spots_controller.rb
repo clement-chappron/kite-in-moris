@@ -1,5 +1,5 @@
 class ReviewSpotsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new create]
+  skip_before_action :authenticate_user!, only: %i[new create load_more]
   before_action :set_spot, only: %i[new create]
 
 

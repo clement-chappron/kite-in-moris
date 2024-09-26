@@ -3,8 +3,7 @@ class School < ApplicationRecord
   belongs_to :location
   has_many :review_schools, dependent: :destroy
   has_many_attached :images
-  has_one_attached :main_image
-  
+
 
   # validates :name, :address, :description, :rental, :levels, :fee, :location_id, presence: true
 
