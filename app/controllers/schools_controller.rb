@@ -5,12 +5,14 @@ class SchoolsController < ApplicationController
   before_action :set_school_step, only: [:create_step_1, :create_step_2, :create_step_3, :create_step_4]
 
   def show
-    @review_schools = @school.review_schools
-    @average_rating = @review_schools.average(:rating).to_f.round(1)
-    @total_review_schools = @review_schools.count
-    @review_school = @school.review_schools.build
-    @review_schools = @school.review_schools.limit(5)
-    @more_reviews_exist = @total_review_schools > 5
+    @review_school = ReviewSchool.new
+    @reviews_school = @school.review_schools
+
+    @average_rating = @reviews_school.average(:rating).to_f.round(1)
+    @total_review_schools = @reviews_school.count
+
+    @review_schools = @school.review_schools.order(created_at: :desc).limit(5)
+    # @more_reviews_exist = @total_review_schools > 5
   end
 
   def new
@@ -57,14 +59,14 @@ class SchoolsController < ApplicationController
       @step = 4
       render :new
     end
-  end  
+  end
 
   def update
-    if params[:school][:images]
-      @school.images.attach(params[:school][:images])
+    if school_params[:images]
+      @school.images.attach(school_params[:images])
     end
-    if @school.update(school_params)
-      redirect_to @school, notice: 'L\'école a été mise à jour avec succès.'
+    if @school.update(school_params.except(:images))
+      redirect_to @school, notice: "School updated successfully!"
     else
       render :edit
     end

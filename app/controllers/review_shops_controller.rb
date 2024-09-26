@@ -1,20 +1,20 @@
 class ReviewShopsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index new create load_more]
-  before_action :set_shop, only: %i[index new create show]
+  before_action :set_shop, only: %i[index new create]
 
 
   def index
     @review_shops = @shop.review_shops
   end
 
-  def show
-    @review_shop = ReviewShop.new
-    @location = Location.find_by(id: @shop.location_id)
-    @review_shop.user = current_user
+  # def show
+  #   @review_shop = ReviewShop.new
+  #   @location = Location.find_by(id: @shop.location_id)
+  #   @review_shop.user = current_user
 
-    @review_shops = @shop.review_shops.order(created_at: :desc).limit(5)
-    @more_reviews_exist = @shop.review_shops.count > 5
-  end
+  #   @review_shops = @shop.review_shops.order(created_at: :desc).limit(5)
+  #   @more_reviews_exist = @shop.review_shops.count > 5
+  # end
 
   def new
     @review_shop = ReviewShop.new
