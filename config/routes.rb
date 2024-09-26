@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'companies/new'
   get "up" => "rails/health#show", as: :rails_health_check
 
   devise_for :users, controllers: {
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   get 'filter_categories', to: 'pages#filter_categories'
+  get 'add_company', to: 'companies#new'
 
   resources :locations, only: [:index]
 
@@ -35,6 +37,11 @@ Rails.application.routes.draw do
 
   resources :shops, except: [:index] do
     resources :review_shops, only: [:index, :new, :create]
+
+    collection do
+      post :create_step1
+      post :create_step2
+    end
   end
 
   resources :spots, param: :slug, only: [:show, :edit, :update] do

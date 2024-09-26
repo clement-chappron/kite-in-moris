@@ -1,47 +1,92 @@
-<%= simple_form_for shop, html: { class: 'form-horizontal' } do |f| %>
-  <div class="form-group">
-    <%= f.input :name, label: 'Shop Name', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.input :address, label: 'Address', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.input :phone, label: 'Phone Number', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.input :website, label: 'Website URL', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.input :description, label: 'Description', as: :text, input_html: { class: 'form-control', rows: 4 }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.input :email, label: 'Email Address', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.input :facebook, label: 'Facebook URL', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.input :instagram, label: 'Instagram URL', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.association :location, label: 'Location', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.association :user, label: 'User', input_html: { class: 'form-control' }, label_html: { class: 'col-sm-2 control-label' } %>
-  </div>
-  
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.button :submit, class: 'btn btn-primary' %>
+<div class="mb-3" style="background-color: #5BBBBC;">
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center mb-4" style="width: 25rem; border-radius: 10px;">
+      <div class="card-body">
+        <h1 class="text-center mb-4">Create Your Company</h1>
+        <div class="container d-flex justify-content-center align-items-center mb-4" style="width: 147px; height: 44px; background: #cfed58; border-radius: 35px;">
+          <h4 class="text-center" style="color: #5bbbbc; margin: 0;">Shop</h4>
+        </div>
+
+          <%= simple_form_for shop, html: { class: 'form-horizontal', url: create_step1_shops_path } do |f| %>
+
+
+          <div class="text-center mb-4">
+            <h5>Step <%= @step %> of 2</h5>
+          </div>
+
+          <div class="step step-1">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <%= f.input :name, label: 'Shop Name', input_html: { class: 'form-control' } %>
+                </div>
+                <div class="form-group">
+                  <%= f.input :address, label: 'Address', input_html: { class: 'form-control' } %>
+                </div>
+                <div class="form-group">
+                  <%= f.input :phone, label: 'Phone Number', input_html: { class: 'form-control' } %>
+                </div>
+                <div class="form-group">
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <%= f.input :email, label: 'Email Address', input_html: { class: 'form-control' } %>
+                </div>
+                <div class="form-group">
+                  <%= f.input :facebook, label: 'Facebook URL', input_html: { class: 'form-control' } %>
+                </div>
+                <div class="form-group">
+                  <%= f.input :website, label: 'Website URL', input_html: { class: 'form-control' } %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group text-center">
+              <%= link_to 'Back', add_company_path, class: 'btn btn-secondary' %>
+              <%= button_tag 'Next', type: 'button', class: 'btn btn-primary', id: 'next-step-2' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+<%# Deuxième étape : Informations supplémentaires %>
+<% if @shop.persisted? %>
+<div class="mb-3" style="background-color: #5BBBBC;">
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center mb-4" style="width: 25rem; border-radius: 10px;">
+      <div class="card-body">
+        <h1 class="text-center mb-4">Additional Information</h1>
+        <div class="container d-flex justify-content-center align-items-center mb-4" style="width: 147px; height: 44px; background: #cfed58; border-radius: 35px;">
+          <h4 class="text-center" style="color: #5bbbbc; margin: 0;">Step 2: Additional Details</h4>
+        </div>
+
+        <%= simple_form_for @shop, html: { class: 'form-horizontal', url: create_shop_step2_path } do |f| %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.input :description, label: 'Description', as: :text, input_html: { class: 'form-control', rows: 4 } %>
+              </div>
+              <div class="form-group">
+                <%= f.input :instagram, label: 'Instagram URL', input_html: { class: 'form-control' } %>
+              </div>
+              <div class="form-group">
+                <%= f.association :location, label: 'Location', input_html: { class: 'form-control' } %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group text-center">
+            <%= f.button :submit, class: 'btn btn-primary me-2' %>
+            <%= link_to 'Back', new_shop_path, class: 'btn btn-secondary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
