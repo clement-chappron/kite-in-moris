@@ -15,7 +15,6 @@ class Spot < ApplicationRecord
   multisearchable against: [:name, :description]
 
   has_many_attached :images
-  has_one_attached :main_image
 
   def should_generate_new_friendly_id?
     slug.blank? || name_changed?

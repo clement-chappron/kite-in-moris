@@ -34,9 +34,9 @@
       </div>
     </div>
 
-    <div id="reviews-section" data-controller="load-more" 
-         data-load-more-model-type="school" 
-         data-load-more-model-slug="<%= @school.slug %>">
+    <div id="reviews-section" data-controller="load-more"
+         data-load-more-model-type="school"
+         data-load-more-model-slug="<%# @school.slug %>">
 
       <div data-load-more-target="reviews">
         <% @review_schools.each do |review| %>
