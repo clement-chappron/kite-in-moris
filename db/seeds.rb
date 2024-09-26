@@ -480,8 +480,6 @@ puts "Spot #{flic_en_flac.name} created ..."
 puts 'All spots created'
 puts '-------------------------------'
 
-# Schools seeds
-puts 'Creating schools...'
 
 #Review_spots
 #
@@ -515,91 +513,857 @@ puts 'All reviews for spots created.'
 puts '-------------------------------'
 
 
+# Schools seeds
+puts 'Creating schools...'
 
-schools = [
-  {
-    name: 'Ocean Academy',
-    address: 'Blue Bay, Mauritius',
-    phone: '+230 1234567',
-    website: 'http://oceanacademy.mu',
-    email: 'info@oceanacademy.mu',
-    description: 'A top-notch kitesurf school with a focus on safety and fun. In short, Mauritius offers the ultimate kite surfing destination, combining world-class conditions with expert instruction, a warm and welcoming community, and endless opportunities for adventure both on and off the water. Whether you’re looking to learn, improve your skills, or just enjoy an unforgettable kite surfing holiday, Mauritius has everything you need for the perfect getaway.',
-    rental: true,
-    levels: 'All levels',
-    fee: '50',
-    facebook: 'https://www.facebook.com/oceanacademy',
-    instagram: 'https://www.instagram.com/oceanacademy',
-    location_id: south_location.id,
-    user: user1
-  },
-  {
-    name: 'Wave Riders School',
-    address: 'Le Morne, Mauritius',
-    phone: '+230 9876543',
-    website: 'http://waveriders.mu',
-    email: 'contact@waveriders.mu',
-    description: 'Professional kitesurfing lessons in the heart of Le Morne. Beyond the waves, Mauritius is a paradise filled with opportunities to explore nature, culture, and cuisine. When you’re not kite surfing, you can hike the island’s lush green mountains, visit waterfalls, or relax on white sandy beaches. The island’s blend of Creole, Indian, African, and European cultures provides a rich culinary scene to explore, with a variety of flavors and dishes to suit every taste. After a day on the water, you can enjoy a fresh seafood meal, experience the vibrant nightlife, or simply unwind with a cocktail while watching the sunset.',
-    rental: true,
-    levels: 'Beginners to experts',
-    fee: '70',
-    facebook: 'https://www.facebook.com/waveriders',
-    instagram: 'https://www.instagram.com/waveriders',
-    location_id: south_location.id,
-    user: user2
-  },
-  {
-    name: 'KiteXperience',
-    address: 'Belle Mare, Mauritius',
-    phone: '+230 2345678',
-    website: 'http://kitexperience.mu',
-    email: 'hello@kitexperience.mu',
-    description: 'Personalized kiteboarding lessons for all skill levels. The island is not just about great kite surfing conditions; it also offers a welcoming community of kite surfers. Local riders are often seen on the beaches, and the sense of camaraderie between locals and tourists makes the kite surfing experience even more enjoyable. Various kite surfing competitions and events are held throughout the year, attracting professionals and enthusiasts from around the globe. These events not only showcase high-level talent but also create a fun, inclusive atmosphere where kite surfers of all levels can connect and learn from each other.',
-    rental: false,
-    levels: 'Intermediate to experts',
-    fee: '80',
-    facebook: 'https://www.facebook.com/kitexperience',
-    instagram: 'https://www.instagram.com/kitexperience',
-    location_id: east_coast_location.id,
-    user: user3
-  },
-  {
-    name: 'Island Kite School',
-    address: 'Tamarin Bay, Mauritius',
-    phone: '+230 8765432',
-    website: 'http://islandkiteschool.mu',
-    email: 'info@islandkiteschool.mu',
-    description: 'Expert instruction and rental services in the best location_ids. For those new to the sport, Mauritius has numerous kite surfing schools that provide expert guidance. The instructors, many of whom are certified by international kite surfing organizations, offer personalized lessons in multiple languages, ensuring a safe and efficient learning experience. Beginner lessons typically start in the calm, shallow waters of the lagoon, where learners can practice getting up on the board and controlling the kite with minimal risk. As skills progress, students move to deeper water and experience more of what the island has to offer. For intermediate and advanced surfers, the schools also offer coaching sessions, focusing on more advanced techniques such as wave riding, jumps, and tricks. The friendly and professional guidance ensures that everyone can push their limits safely while enjoying the thrill of kite surfing.',
-    rental: true,
-    levels: 'All levels',
-    fee: '65',
-    facebook: 'https://www.facebook.com/islandkiteschool',
-    instagram: 'https://www.instagram.com/islandkiteschool',
-    location_id:  south_location.id,
-    user: user4
-  },
-  {
-    name: 'Lagoon Riders',
-    address: 'Anse La Raie, Mauritius',
-    phone: '+230 1234987',
-    website: 'http://lagoonriders.mu',
-    email: 'contact@lagoonriders.mu',
-    description: 'Great conditions and expert guidance for kite surfers. Mauritius offers an unparalleled experience for kite enthusiasts of all levels, combining ideal weather, stunning locations, and a vibrant local culture. The island’s pristine waters and consistent winds create the perfect environment for kite surfing year-round. Whether you are a beginner looking to take your first steps or an experienced kitesurfer seeking a challenge, Mauritius has something for everyone. The trade winds blow steadily from May to October, providing reliable conditions, while the island’s diverse coastline offers a variety of spots, from flat lagoons to challenging reef breaks. One of the most famous kite surfing spots is Le Morne, situated on the southwest coast. Le Morne offers world-class conditions, with steady winds and a wide range of water conditions, from calm, shallow lagoons ideal for learners to powerful waves just beyond the reef for advanced riders. The backdrop of Le Morne Brabant, a UNESCO World Heritage Site, adds to the breathtaking beauty of the area.',
-    rental: true,
-    levels: 'Beginners to intermediates',
-    fee: '60',
-    facebook: 'https://www.facebook.com/lagoonriders',
-    instagram: 'https://www.instagram.com/lagoonriders',
-    location_id: north_location.id,
-    user: user1
-  }
-]
+north_school_1 = School.create!(
+  name: "Oceanic Kite Academy",
+  address: "Royal Road, Grand Baie",
+  phone: "+230 5678 1234",
+  website: "www.oceanickiteacademy.mu",
+  email: "info@oceanickiteacademy.mu",
+  description: "Oceanic Kite Academy is one of the most popular kitesurfing schools in the North of Mauritius. Located in Grand Baie, it offers a perfect combination of top-notch teaching, high-end equipment, and breathtaking lagoon views. The school is operated by experienced instructors who are passionate about the sport and dedicated to providing personalized training for all skill levels, from beginners to advanced riders. With favorable wind conditions year-round, Oceanic Kite Academy is a fantastic choice for anyone looking to learn kitesurfing or improve their skills in a safe and fun environment. The school also offers tailored packages for tourists who want to experience the thrill of kitesurfing while exploring the beautiful northern coastline. Beyond kitesurfing, the academy offers SUP (Stand-Up Paddleboarding) lessons, with guided tours along the coast. Their emphasis on safety and enjoyment makes it a go-to destination for water sports enthusiasts in the region.",
+  rental: "Oceanic Kite Academy offers a wide range of rental equipment, including top-of-the-line kites, boards, harnesses, and wetsuits from leading brands such as Cabrinha and North Kiteboarding. They cater to all levels, ensuring that beginners have access to larger, more stable kites, while experienced riders can rent performance-focused gear. The rental service is flexible, with hourly, half-day, or full-day options, and the team ensures that all equipment is meticulously maintained for a safe and enjoyable experience.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 50 USD per hour",
+  facebook: "facebook.com/oceanickiteacademy",
+  instagram: "instagram.com/oceanickiteacademy",
+  user_id: user1.id,
+  location_id: north_location.id
+)
+north_school_1.save
+puts "School #{north_school_1.name} created in the North location..."
+north_school_2 = School.create!(
+  name: "Kite Masters Mauritius",
+  address: "Pointe aux Canonniers, North",
+  phone: "+230 5879 4567",
+  website: "www.kitemasters.mu",
+  email: "info@kitemasters.mu",
+  description: "Kite Masters Mauritius is a top-notch kiteboarding school in the Northern region of the island, situated in the picturesque area of Pointe aux Canonniers. Known for its personalized instruction, the school caters to both beginners and advanced riders. The instructors at Kite Masters are highly experienced and internationally certified, ensuring that every student receives a tailored experience based on their skill level and progression. The school’s location offers consistent winds and excellent lagoon conditions, making it a perfect spot for those looking to hone their skills or try kitesurfing for the first time. The school also organizes weekly kite safaris for the more adventurous, offering the chance to explore hidden spots along the northern coast.",
+  rental: "Kite Masters Mauritius provides premium rental equipment, including high-performance kites, twin-tips, surfboards, and hydrofoils from brands like Core and Duotone. Their rental fleet is updated regularly, ensuring that the gear is in top condition for an optimal experience. For beginners, they offer larger, stable kites, while advanced riders can rent specialized equipment such as hydrofoils and directional boards. Additionally, helmets and impact vests are included in all rentals for safety. The rental services are available on a half-day or full-day basis, with flexible options to cater to the needs of both locals and tourists.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 45 USD per hour",
+  facebook: "facebook.com/kitemastersmauritius",
+  instagram: "instagram.com/kitemasters.mu",
+  user_id: user1.id,
+  location_id: north_location.id
+)
+north_school_2.save
+puts "School #{north_school_2.name} created in the North location..."
+north_school_3 = School.create!(
+  name: "Northern Breeze Kitesurf School",
+  address: "Pereybere Beach, North",
+  phone: "+230 5932 9876",
+  website: "www.northernbreeze.mu",
+  email: "info@northernbreeze.mu",
+  description: "Northern Breeze Kitesurf School is located on the stunning Pereybere Beach, known for its calm waters and vibrant marine life. This school focuses on providing an inclusive environment for all kitesurfers, from complete beginners to seasoned pros. Northern Breeze prides itself on small group sizes and one-on-one attention, allowing students to learn and progress at their own pace. The school’s team is comprised of dedicated kitesurfing professionals who prioritize safety and fun in their lessons. In addition to kitesurfing, Northern Breeze also offers eco-tours, where participants can combine kiting with environmental conservation efforts, such as lagoon clean-ups and coral restoration projects.",
+  rental: "Northern Breeze Kitesurf School offers a full range of kitesurfing equipment for rent, including kites, boards, harnesses, and wetsuits from brands like Ozone and F-One. All gear is maintained to the highest standards, with regular inspections to ensure optimal safety and performance. For beginners, they provide easy-to-control kites and wide, stable boards to facilitate learning. Advanced riders can rent high-performance gear, including directional boards for wave riding and hydrofoils for light-wind conditions. They also offer rental packages that include safety gear, such as helmets, buoyancy aids, and GPS trackers for open-water sessions.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 55 USD per hour",
+  facebook: "facebook.com/northernbreezekitesurf",
+  instagram: "instagram.com/northernbreezekitesurf",
+  user_id: user1.id,
+  location_id: north_location.id
+)
+north_school_3.save
+puts "School #{north_school_3.name} created in the North location..."
+north_school_4 = School.create!(
+  name: "Wind Riders Academy",
+  address: "Cap Malheureux, North",
+  phone: "+230 5498 2345",
+  website: "www.windriders.mu",
+  email: "info@windriders.mu",
+  description: "Wind Riders Academy, located in the serene village of Cap Malheureux, is renowned for its tranquil settings and excellent teaching programs. The school offers a unique combination of traditional kitesurfing courses and kite yoga sessions, allowing participants to experience both physical and mental relaxation during their time on the water. The academy’s instructors are known for their patience and ability to adapt to different learning styles, making it an ideal choice for nervous beginners. Wind Riders Academy also specializes in teaching kids and families, providing specialized courses that focus on safety, fun, and skill development.",
+  rental: "Wind Riders Academy offers a comprehensive rental service, featuring equipment from high-end brands like Slingshot and RRD. Beginners can rent larger kites with extra stability, while more experienced riders have access to a wide variety of performance boards, including twin-tips and surfboards. The rental options are designed to cater to different experience levels, with a special focus on children’s equipment, including smaller kites and boards. All rentals include the necessary safety gear, and customers are offered a brief equipment orientation to ensure they’re comfortable with the gear before hitting the water.",
+  levels: "Beginner, Intermediate, Advanced, Kids",
+  fee: "From 40 USD per hour",
+  facebook: "facebook.com/windridersacademy",
+  instagram: "instagram.com/windridersacademy",
+  user_id: user1.id,
+  location_id: north_location.id
+)
+north_school_4.save
+puts "School #{north_school_4.name} created in the North location..."
+north_school_4 = School.create!(
+  name: "Wind Riders Academy",
+  address: "Cap Malheureux, North",
+  phone: "+230 5498 2345",
+  website: "www.windriders.mu",
+  email: "info@windriders.mu",
+  description: "Wind Riders Academy, located in the serene village of Cap Malheureux, is renowned for its tranquil settings and excellent teaching programs. The school offers a unique combination of traditional kitesurfing courses and kite yoga sessions, allowing participants to experience both physical and mental relaxation during their time on the water. The academy’s instructors are known for their patience and ability to adapt to different learning styles, making it an ideal choice for nervous beginners. Wind Riders Academy also specializes in teaching kids and families, providing specialized courses that focus on safety, fun, and skill development.",
+  rental: "Wind Riders Academy offers a comprehensive rental service, featuring equipment from high-end brands like Slingshot and RRD. Beginners can rent larger kites with extra stability, while more experienced riders have access to a wide variety of performance boards, including twin-tips and surfboards. The rental options are designed to cater to different experience levels, with a special focus on children’s equipment, including smaller kites and boards. All rentals include the necessary safety gear, and customers are offered a brief equipment orientation to ensure they’re comfortable with the gear before hitting the water.",
+  levels: "Beginner, Intermediate, Advanced, Kids",
+  fee: "From 40 USD per hour",
+  facebook: "facebook.com/windridersacademy",
+  instagram: "instagram.com/windridersacademy",
+  user_id: user1.id,
+  location_id: north_location.id
+)
+north_school_4.save
+puts "School #{north_school_4.name} created in the North location..."
+north_school_5 = School.create!(
+  name: "Kite Lagoon School",
+  address: "Anse La Raie, North",
+  phone: "+230 5231 7654",
+  website: "www.kitelagoon.mu",
+  email: "info@kitelagoon.mu",
+  description: "Kite Lagoon School is situated at Anse La Raie, a stunning location offering ideal conditions for both beginner and advanced kitesurfers. With shallow, flat waters and consistent winds, this spot is a favorite among locals and tourists alike. The school prides itself on providing a fun and supportive environment, with instructors who are passionate about the sport and dedicated to helping students achieve their personal best. Kite Lagoon School offers courses that cover all aspects of kitesurfing, from basic kite control to advanced tricks and jumps. They also offer SUP (Stand-Up Paddleboarding) lessons and guided eco-tours of the surrounding lagoons and mangroves.",
+  rental: "Kite Lagoon School offers a wide selection of kites, boards, harnesses, and wetsuits from brands like Naish and Core Kiteboarding. All rental equipment is maintained in top condition, with gear suitable for beginners, intermediates, and advanced riders. For more experienced kitesurfers, they offer foil boards and surfboards for rent, providing a variety of options for different wind and water conditions. The school’s rental packages include safety equipment, such as helmets and life vests, ensuring that all participants are properly equipped for a safe and enjoyable session.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 50 USD per hour",
+  facebook: "facebook.com/kitelagoonschool",
+  instagram: "instagram.com/kitelagoonschool",
+  user_id: user1.id,
+  location_id: north_location.id
+)
+north_school_5.save
+puts "School #{north_school_5.name} created in the North location..."
+north_school_6 = School.create!(
+  name: "Blue Sky Kitesurfing",
+  address: "Calodyne, North",
+  phone: "+230 5932 5432",
+  website: "www.blueskykitesurf.mu",
+  email: "info@blueskykitesurf.mu",
+  description: "Blue Sky Kitesurfing, located in Calodyne, offers an immersive kitesurfing experience for both beginners and seasoned riders. The school’s team of instructors is passionate about the sport and is dedicated to providing personalized instruction that focuses on the individual’s progress and comfort. The Calodyne area offers flat water lagoons and consistent winds, making it an ideal spot for learning or practicing. Blue Sky Kitesurfing also offers hydrofoil courses, where participants can experience the thrill of flying above the water on a foil board. For those looking for a more relaxed pace, the school provides guided stand-up paddleboarding tours along the northern coast.",
+  rental: "Blue Sky Kitesurfing offers a wide range of high-quality rental gear, including kites, boards, harnesses, and wetsuits from premium brands like Cabrinha and Duotone. Their equipment selection caters to all skill levels, with specialized gear available for hydrofoiling and wave riding. All rentals come with the option to include safety gear such as helmets and impact vests. The school’s rental services are available for half-day and full-day sessions, with flexible pricing for extended rental periods.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 60 USD per hour",
+  facebook: "facebook.com/blueskykitesurfing",
+  instagram: "instagram.com/blueskykitesurfing",
+  user_id: user1.id,
+  location_id: north_location.id
+)
+north_school_6.save
+puts "School #{north_school_6.name} created in the North location..."
 
-schools.each do |school|
-  School.create!(school)
-  puts "School #{school[:name]} created ..."
+west_school_1 = School.create!(
+  name: "Sunset Surf Academy",
+  address: "Tamarin Bay, West Coast",
+  phone: "+230 5987 4567",
+  website: "www.sunsetsurf.mu",
+  email: "info@sunsetsurf.mu",
+  description: "Sunset Surf Academy is located at the iconic Tamarin Bay, one of the best surfing spots on the west coast of Mauritius. Known for its picturesque sunsets and excellent waves, Tamarin Bay attracts surfers from around the world. Sunset Surf Academy provides expert coaching for all levels, from those trying to catch their first wave to advanced surfers looking to improve their technique. The academy emphasizes a laid-back, yet professional approach to teaching, creating a welcoming environment for both locals and tourists. Besides surf lessons, the academy offers surfboard rentals and guided tours to secret surfing spots along the coast.",
+  rental: "Sunset Surf Academy offers a full range of surfboards for rent, from longboards to shortboards, depending on the surfer's skill level and preference. All boards are sourced from leading surf brands such as Firewire and Channel Islands. The rental fleet includes beginner-friendly soft tops for first-timers, as well as high-performance shortboards for experienced surfers. Wetsuits are also available for rent, along with safety gear, such as leashes and rash guards. Rentals are available on an hourly or daily basis, with affordable pricing for extended use.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 30 USD per hour",
+  facebook: "facebook.com/sunsetsurfacademy",
+  instagram: "instagram.com/sunsetsurfacademy",
+  user_id: user2.id,
+  location_id: west_coast_location.id
+)
+west_school_1.save
+puts "School #{west_school_1.name} created in the West Coast location..."
+west_school_2 = School.create!(
+  name: "Wave Riders Surf School",
+  address: "Le Morne, West Coast",
+  phone: "+230 5765 1234",
+  website: "www.waveriders.mu",
+  email: "info@waveriders.mu",
+  description: "Wave Riders Surf School is located at the world-renowned Le Morne Peninsula, a UNESCO World Heritage Site famous for its excellent wind and wave conditions. The school is an ideal destination for water sports enthusiasts, offering both surfing and kitesurfing lessons in one of the best locations on the island. Wave Riders prides itself on delivering high-quality lessons with a focus on safety and progression. The school offers a range of courses for all levels, whether you're learning to balance on a surfboard for the first time or you're an experienced kitesurfer looking to master advanced tricks.",
+  rental: "Wave Riders Surf School provides an extensive selection of rental equipment for both surfers and kitesurfers. For surfing, they offer a variety of longboards, shortboards, and funboards from brands like NSP and Lost. The kitesurfing gear includes kites, boards, harnesses, and wetsuits from leading brands like Slingshot and Naish. All equipment is available for hourly or daily rentals, with special packages for those wanting to rent both surfing and kitesurfing gear. Safety equipment is included with every rental to ensure that all participants have a secure and enjoyable session.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 40 USD per hour",
+  facebook: "facebook.com/waveriderssurf",
+  instagram: "instagram.com/waveriderssurf",
+  user_id: user2.id,
+  location_id: west_coast_location.id
+)
+west_school_2.save
+puts "School #{west_school_2.name} created in the West Coast location..."
+west_school_3 = School.create!(
+  name: "West Coast Kitesurfing School",
+  address: "La Preneuse, West Coast",
+  phone: "+230 5998 2345",
+  website: "www.westcoastkite.mu",
+  email: "info@westcoastkite.mu",
+  description: "West Coast Kitesurfing School is situated in La Preneuse, a tranquil beach on the west coast known for its ideal kitesurfing conditions. The school offers a range of kitesurfing lessons tailored to all skill levels, from beginner to advanced riders. West Coast Kitesurfing School is committed to providing a safe and fun learning experience, with certified instructors who offer one-on-one and group lessons. The school also organizes downwind tours for experienced kitesurfers who wish to explore the beautiful west coast scenery while riding the wind.",
+  rental: "West Coast Kitesurfing School provides a variety of rental options, including kites, boards, harnesses, and wetsuits from top brands like Cabrinha and F-One. Their rental service caters to kitesurfers of all skill levels, offering stable, easy-to-fly kites for beginners and high-performance gear for more experienced riders. They also offer safety equipment such as helmets, life vests, and impact vests, all included in the rental package. Rentals are available for half-day, full-day, or weekly periods, depending on the customer's needs.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 50 USD per hour",
+  facebook: "facebook.com/westcoastkite",
+  instagram: "instagram.com/westcoastkite",
+  user_id: user2.id,
+  location_id: west_coast_location.id
+)
+west_school_3.save
+puts "School #{west_school_3.name} created in the West Coast location..."
+west_school_4 = School.create!(
+  name: "Tamarin Surf & Kite School",
+  address: "Tamarin Bay, West Coast",
+  phone: "+230 5234 5678",
+  website: "www.tamarinsurfkite.mu",
+  email: "info@tamarinsurfkite.mu",
+  description: "Tamarin Surf & Kite School, located at Tamarin Bay, is a dual-purpose school offering both surfing and kitesurfing lessons. The school benefits from Tamarin's unique coastal geography, which provides reliable waves for surfers and consistent winds for kitesurfers. Tamarin Surf & Kite School offers a comprehensive curriculum that includes safety, wave reading, and technique improvement. Instructors at the school are highly experienced, ensuring that every student receives quality instruction and attention. Whether you’re here to ride the waves or catch the wind, Tamarin Surf & Kite School has something for everyone.",
+  rental: "Tamarin Surf & Kite School offers high-quality rental equipment for both surfers and kitesurfers. Their surf rental options include soft-top longboards for beginners and high-performance shortboards for experienced surfers. For kitesurfing, they provide a variety of kites and boards from brands like North and Duotone. All rentals come with the necessary safety gear, including harnesses, leashes, and wetsuits. The school also offers combo rental packages for those interested in both surfing and kitesurfing.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 45 USD per hour",
+  facebook: "facebook.com/tamarinsurfkite",
+  instagram: "instagram.com/tamarinsurfkite",
+  user_id: user2.id,
+  location_id: west_coast_location.id
+)
+west_school_4.save
+puts "School #{west_school_4.name} created in the West Coast location..."
+west_school_5 = School.create!(
+  name: "Wind Chasers Mauritius",
+  address: "Flic en Flac, West Coast",
+  phone: "+230 5123 8765",
+  website: "www.windchasers.mu",
+  email: "info@windchasers.mu",
+  description: "Wind Chasers Mauritius is based in Flic en Flac, a popular beach destination on the west coast of Mauritius. Known for its golden sands and crystal-clear waters, Flic en Flac offers a fantastic environment for water sports, particularly kitesurfing and windsurfing. Wind Chasers specializes in both sports, with highly qualified instructors who are passionate about teaching. Whether you're a complete beginner or looking to advance your skills, Wind Chasers offers a supportive and fun learning environment. They also provide equipment rentals and organize windsurfing and kitesurfing competitions throughout the year.",
+  rental: "Wind Chasers Mauritius offers a full range of kitesurfing and windsurfing equipment for rent, including kites, boards, and sails from leading brands like Naish and Starboard. The school ensures that all gear is meticulously maintained, with options for beginners, intermediates, and advanced riders. Safety gear, such as helmets and life vests, is also included in the rental package. Customers can rent equipment by the hour or for longer durations, with special discounts available for extended rental periods.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 55 USD per hour",
+  facebook: "facebook.com/windchasersmauritius",
+  instagram: "instagram.com/windchasersmauritius",
+  user_id: user2.id,
+  location_id: west_coast_location.id
+)
+west_school_5.save
+puts "School #{west_school_5.name} created in the West Coast location..."
+west_school_6 = School.create!(
+  name: "Lagoon Riders Academy",
+  address: "Black River, West Coast",
+  phone: "+230 5987 6543",
+  website: "www.lagoonriders.mu",
+  email: "info@lagoonriders.mu",
+  description: "Lagoon Riders Academy is located in the scenic area of Black River on the west coast of Mauritius. The school offers a range of water sports lessons, including kitesurfing, stand-up paddleboarding, and windsurfing. Black River's calm and shallow lagoon provides an excellent environment for beginners, while more advanced students can take advantage of the strong winds and open water. Lagoon Riders Academy is known for its highly personalized lessons, with instructors focusing on each student's individual needs and goals. The school also organizes eco-tours of the lagoon, where participants can explore the area's rich marine life and mangroves.",
+  rental: "Lagoon Riders Academy provides top-of-the-line rental gear for kitesurfing, windsurfing, and stand-up paddleboarding. Their rental fleet includes kites, boards, and SUPs from renowned brands like Naish and Core. Safety equipment such as helmets, impact vests, and leashes are included with all rentals. Customers can rent equipment on an hourly or daily basis, with multi-day packages available for those who wish to explore the lagoon over several days.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 50 USD per hour",
+  facebook: "facebook.com/lagoonridersacademy",
+  instagram: "instagram.com/lagoonridersacademy",
+  user_id: user2.id,
+  location_id: west_coast_location.id
+)
+west_school_6.save
+puts "School #{west_school_6.name} created in the West Coast location..."
+
+east_school_1 = School.create!(
+  name: "East Coast Surf Academy",
+  address: "Belle Mare, East Coast",
+  phone: "+230 5678 1234",
+  website: "www.eastcoastsurf.mu",
+  email: "info@eastcoastsurf.mu",
+  description: "East Coast Surf Academy is located at Belle Mare, a stunning beach known for its long stretches of white sand and clear turquoise waters. The school provides top-notch surfing lessons for beginners and advanced surfers alike. With the East Coast's consistent wave conditions, it’s the perfect spot to learn and improve your surfing skills. The school offers a range of surf packages, including one-on-one coaching and group lessons. East Coast Surf Academy also places a strong emphasis on ocean safety, ensuring that all students understand the basics of wave dynamics and water safety before hitting the waves.",
+  rental: "East Coast Surf Academy offers a wide range of surfboards for rent, catering to both beginner and advanced surfers. Their rental collection includes longboards, shortboards, and soft-top boards from leading brands such as Oxbow and Bic. Beginners can rent stable soft tops that make catching waves easier, while experienced surfers can choose high-performance shortboards for sharper turns and more aggressive rides. Wetsuits, leashes, and rash guards are also available for rent to ensure a comfortable and safe surfing experience.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 35 USD per hour",
+  facebook: "facebook.com/eastcoastsurfacademy",
+  instagram: "instagram.com/eastcoastsurfacademy",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_1.save
+puts "School #{east_school_1.name} created in the East Coast location..."
+east_school_2 = School.create!(
+  name: "Lagoon Winds Kitesurfing",
+  address: "Trou d'Eau Douce, East Coast",
+  phone: "+230 5987 6543",
+  website: "www.lagoonwinds.mu",
+  email: "info@lagoonwinds.mu",
+  description: "Lagoon Winds Kitesurfing is located in Trou d'Eau Douce, a tranquil village on the East Coast known for its calm lagoon and steady winds, making it a premier kitesurfing destination. The school offers beginner-friendly lessons with certified instructors who specialize in teaching newcomers the art of kitesurfing. Advanced riders can also benefit from freestyle clinics to hone their skills. Lagoon Winds focuses on providing a safe and enjoyable learning environment with high-quality equipment and personalized coaching. The school also organizes lagoon tours for kitesurfers looking to explore the coastline from the water.",
+  rental: "Lagoon Winds Kitesurfing provides a full selection of kites, boards, and harnesses from brands such as Cabrinha and Core. Beginners can rent large, stable kites designed for ease of use, while experienced riders can opt for more performance-driven models. Wetsuits and safety gear, including helmets and impact vests, are included with every rental. The school offers hourly, half-day, and full-day rental packages, with discounts for extended use.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 45 USD per hour",
+  facebook: "facebook.com/lagoonwindskite",
+  instagram: "instagram.com/lagoonwindskite",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_2.save
+puts "School #{east_school_2.name} created in the East Coast location..."
+east_school_3 = School.create!(
+  name: "Coral Lagoon SUP School",
+  address: "Palmar, East Coast",
+  phone: "+230 5678 9876",
+  website: "www.corallagoon.mu",
+  email: "info@corallagoon.mu",
+  description: "Coral Lagoon SUP School, based in Palmar, offers stand-up paddleboarding (SUP) lessons on the serene East Coast of Mauritius. The calm and clear lagoon is perfect for beginners to learn how to balance on the board and paddle through the water. The school offers both individual and group lessons, with highly trained instructors who guide participants through each step of the process. More advanced paddleboarders can take part in guided SUP tours, exploring the nearby mangroves and coral reefs. Coral Lagoon SUP School also promotes eco-friendly practices, ensuring that all tours are conducted with minimal impact on the local environment.",
+  rental: "Coral Lagoon SUP School provides a range of high-quality paddleboards for rent, including inflatable and rigid boards from brands like Red Paddle Co and Naish. All rentals come with paddles, leashes, and life vests. Customers can rent SUP equipment by the hour or for the day, with the option to join guided tours or explore the lagoon on their own. The school also offers SUP yoga sessions, combining the tranquility of the lagoon with the mindfulness of yoga.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 30 USD per hour",
+  facebook: "facebook.com/corallagoonSUP",
+  instagram: "instagram.com/corallagoonSUP",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_3.save
+puts "School #{east_school_3.name} created in the East Coast location..."
+east_school_4 = School.create!(
+  name: "Blue Reef Windsurfing School",
+  address: "Poste Lafayette, East Coast",
+  phone: "+230 5789 2345",
+  website: "www.bluereef.mu",
+  email: "info@bluereef.mu",
+  description: "Blue Reef Windsurfing School is located in Poste Lafayette, a hidden gem on the East Coast known for its windy conditions and untouched natural beauty. The school offers windsurfing lessons for all levels, from complete beginners to advanced riders. Blue Reef's instructors are passionate about windsurfing and provide personalized instruction to ensure that each student makes progress at their own pace. The East Coast's steady winds and calm lagoon create the perfect environment for learning and practicing windsurfing techniques. The school also organizes advanced windsurfing clinics for those looking to refine their skills.",
+  rental: "Blue Reef Windsurfing School offers a wide selection of windsurfing gear for rent, including boards and sails from Starboard and Severne. Beginners can rent stable boards with larger sails to practice balance, while experienced windsurfers can opt for performance boards designed for speed and agility. Safety gear such as harnesses and life vests are included in all rentals. The school also provides wetsuits for those looking to stay warm while windsurfing in cooler conditions. Rental options range from hourly to weekly packages.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 40 USD per hour",
+  facebook: "facebook.com/bluereefwindsurf",
+  instagram: "instagram.com/bluereefwindsurf",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_4.save
+puts "School #{east_school_4.name} created in the East Coast location..."
+east_school_5 = School.create!(
+  name: "Kite Paradise Mauritius",
+  address: "Belle Mare, East Coast",
+  phone: "+230 5678 8765",
+  website: "www.kiteparadise.mu",
+  email: "info@kiteparadise.mu",
+  description: "Kite Paradise Mauritius is a premium kitesurfing school located at Belle Mare Beach. The school is known for its world-class instructors and idyllic location, with steady winds and a shallow lagoon that offers perfect conditions for learning how to kitesurf. Kite Paradise provides both group and private lessons, ensuring that each student receives tailored instruction based on their experience level. The school also offers kitesurfing safaris, where participants can explore the pristine East Coast while riding the wind.",
+  rental: "Kite Paradise Mauritius offers a comprehensive range of kitesurfing gear for rent, including kites, boards, and harnesses from top brands like Duotone and Cabrinha. Beginners can rent easy-to-fly kites designed for safety and control, while more advanced kitesurfers can choose high-performance models for speed and tricks. All rentals include safety gear, such as helmets, life vests, and impact vests. The school provides flexible rental packages, with options ranging from hourly rentals to weekly plans.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 50 USD per hour",
+  facebook: "facebook.com/kiteparadisemauritius",
+  instagram: "instagram.com/kiteparadisemauritius",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_5.save
+puts "School #{east_school_5.name} created in the East Coast location..."
+east_school_6 = School.create!(
+  name: "Ocean Explorers Surf & Dive",
+  address: "Ile aux Cerfs, East Coast",
+  phone: "+230 5123 9876",
+  website: "www.oceanexplorers.mu",
+  email: "info@oceanexplorers.mu",
+  description: "Ocean Explorers Surf & Dive is located on the stunning Ile aux Cerfs, a small island off the East Coast of Mauritius. The school specializes in both surfing and diving lessons, making it the perfect destination for ocean enthusiasts. Ocean Explorers offers surf lessons for all levels, as well as guided dives for certified divers looking to explore the vibrant coral reefs and underwater caves surrounding the island. The school is known for its eco-friendly approach, prioritizing ocean conservation and sustainable practices in all of its activities.",
+  rental: "Ocean Explorers Surf & Dive provides a full range of surf and diving equipment for rent. Surf rentals include longboards, shortboards, and soft tops from brands like Bic and NSP. Diving gear includes wetsuits, masks, fins, and tanks, all from top-tier manufacturers. Rental packages are available for half-day and full-day sessions, with discounts for those booking multiple activities. All rental gear is maintained to the highest safety standards.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 60 USD per hour",
+  facebook: "facebook.com/oceanexplorers.mu",
+  instagram: "instagram.com/oceanexplorers.mu",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_6.save
+puts "School #{east_school_6.name} created in the East Coast location..."
+
+south_school_1 = School.create!(
+  name: "South Coast Adventure School",
+  address: "Bel Ombre, South Coast",
+  phone: "+230 6123 4567",
+  website: "www.southcoastadventure.mu",
+  email: "info@southcoastadventure.mu",
+  description: "South Coast Adventure School is nestled in the picturesque village of Bel Ombre, known for its breathtaking landscapes and stunning coastline. The school offers a variety of water sports, including surfing, kayaking, and paddleboarding. With experienced instructors dedicated to providing quality education and safety, South Coast Adventure ensures that students of all levels can enjoy their time on the water. The school also organizes eco-tours that explore the natural beauty of the region, highlighting its rich marine life and conservation efforts.",
+  rental: "South Coast Adventure School provides a full range of rental equipment for various water sports. Surfboards come in different sizes to cater to both beginners and advanced surfers, while stand-up paddleboards and kayaks are available for those looking to explore the tranquil waters. Additionally, the school rents out life jackets, paddles, and safety gear to ensure a safe and enjoyable experience on the water. Rental options are flexible, with hourly, half-day, and full-day rates.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 40 USD per hour",
+  facebook: "facebook.com/southcoastadventure",
+  instagram: "instagram.com/southcoastadventure",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_1.save
+puts "School #{south_school_1.name} created in the South Coast location..."
+south_school_2 = School.create!(
+  name: "Sandy Beach Surf School",
+  address: "Le Morne, South Coast",
+  phone: "+230 6876 5432",
+  website: "www.sandybeachsurf.mu",
+  email: "info@sandybeachsurf.mu",
+  description: "Sandy Beach Surf School is situated in the iconic Le Morne region, famous for its stunning backdrop of the Le Morne Brabant mountain and some of the best surf spots in Mauritius. The school caters to surfers of all levels, offering personalized coaching to help students improve their skills. With a focus on safety and fun, Sandy Beach Surf School has a team of certified instructors who ensure that every student feels comfortable and confident in the water. The school also offers beach yoga sessions and surf camps for a complete ocean experience.",
+  rental: "Sandy Beach Surf School offers a wide variety of surfboards and bodyboards for rent, including beginner-friendly soft tops and high-performance shortboards for experienced surfers. All rentals come with safety gear, including leashes and wetsuits when needed. The school also provides surf accessories, such as rash guards and sunscreen, to ensure that all surfers are protected from the sun and elements while enjoying their time on the water. Flexible rental options include hourly, half-day, and full-day rates.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 45 USD per hour",
+  facebook: "facebook.com/sandybeachsurf",
+  instagram: "instagram.com/sandybeachsurf",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_2.save
+puts "School #{south_school_2.name} created in the South Coast location..."
+south_school_3 = School.create!(
+  name: "Ocean Spirit Kitesurfing School",
+  address: "Bel Ombre, South Coast",
+  phone: "+230 5987 7654",
+  website: "www.oceanspirit.mu",
+  email: "info@oceanspirit.mu",
+  description: "Ocean Spirit Kitesurfing School is located in Bel Ombre, a beautiful area that offers ideal conditions for kitesurfing. The school prides itself on providing top-quality instruction, with certified instructors who have years of experience in kitesurfing. Ocean Spirit offers a variety of lessons, from beginner courses to advanced tricks and techniques for seasoned riders. Safety is a top priority, and all students are taught essential skills to navigate the water safely and effectively. The school also organizes kitesurfing excursions to nearby spots for those looking for a bit of adventure.",
+  rental: "Ocean Spirit Kitesurfing School has a vast selection of kites, boards, and harnesses available for rent. Beginners can access stable kites designed for ease of control, while experienced kitesurfers can rent high-performance equipment. All rentals include safety gear, such as life vests and helmets, ensuring that all students and renters have a secure experience. Rental packages are available by the hour, day, or week, making it convenient for all visitors.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 50 USD per hour",
+  facebook: "facebook.com/oceanspiritkitesurf",
+  instagram: "instagram.com/oceanspiritkitesurf",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_3.save
+puts "School #{south_school_3.name} created in the South Coast location..."
+south_school_4 = School.create!(
+  name: "Lush Lagoon Diving School",
+  address: "Blue Bay, South Coast",
+  phone: "+230 6123 7890",
+  website: "www.lushlagoondiving.mu",
+  email: "info@lushlagoondiving.mu",
+  description: "Lush Lagoon Diving School is located in Blue Bay, renowned for its spectacular marine life and coral reefs. The school provides PADI-certified diving lessons for beginners and experienced divers alike. With a focus on safety and environmental stewardship, Lush Lagoon aims to educate divers about the importance of coral reef conservation while providing unforgettable underwater experiences. The school organizes regular diving trips to explore the stunning nearby reefs and marine reserves, allowing students to experience the incredible biodiversity that Mauritius has to offer.",
+  rental: "Lush Lagoon Diving School offers all the necessary diving equipment for rent, including tanks, weights, masks, fins, and wetsuits from reputable brands. All rental gear is maintained to the highest safety standards, ensuring a secure diving experience for all participants. The school provides flexible rental options, accommodating both half-day and full-day excursions, with discounts for multiple-day rentals.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 60 USD per hour",
+  facebook: "facebook.com/lushlagoondiving",
+  instagram: "instagram.com/lushlagoondiving",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_4.save
+puts "School #{south_school_4.name} created in the South Coast location..."
+south_school_5 = School.create!(
+  name: "Wild Coast Stand-Up Paddleboarding",
+  address: "Le Morne, South Coast",
+  phone: "+230 5789 3456",
+  website: "www.wildcoastSUP.mu",
+  email: "info@wildcoastSUP.mu",
+  description: "Wild Coast Stand-Up Paddleboarding is located in Le Morne, where the stunning backdrop of the mountain meets the azure waters of the lagoon. The school specializes in SUP lessons and rentals, offering experiences for everyone from beginners to seasoned paddlers. With a focus on fun and fitness, Wild Coast SUP promotes an active lifestyle while allowing participants to explore the breathtaking scenery of the area. The school also hosts group excursions, combining paddleboarding with eco-tours to educate participants about the local ecosystem.",
+  rental: "Wild Coast Stand-Up Paddleboarding provides high-quality SUP boards for rent, including both inflatable and rigid models suitable for different skill levels. Rentals include paddles and safety equipment such as life jackets. The school offers various rental packages, including hourly, half-day, and full-day options, allowing guests to enjoy the lagoon at their own pace. Additionally, the school organizes SUP yoga classes for those looking to combine fitness and relaxation on the water.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 35 USD per hour",
+  facebook: "facebook.com/wildcoastSUP",
+  instagram: "instagram.com/wildcoastSUP",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_5.save
+puts "School #{south_school_5.name} created in the South Coast location..."
+south_school_6 = School.create!(
+  name: "Blue Lagoon Sailing & Surf School",
+  address: "La Preneuse, South Coast",
+  phone: "+230 6543 2109",
+  website: "www.bluelagoonsurf.mu",
+  email: "info@bluelagoonsurf.mu",
+  description: "Blue Lagoon Sailing & Surf School is set in the tranquil waters of La Preneuse, offering a serene environment for learning and enjoying various water sports. The school specializes in sailing, surfing, and snorkeling. With a commitment to safety and environmental stewardship, Blue Lagoon provides lessons tailored to all skill levels, ensuring that every participant has a positive and enriching experience. The school also organizes beach clean-up events and educational workshops to promote ocean conservation.",
+  rental: "Blue Lagoon Sailing & Surf School offers a diverse range of rental equipment, including sailboats, surfboards, and snorkeling gear. Each piece of equipment is regularly inspected and maintained for optimal performance. The school provides both group and individual rental options, accommodating various preferences. Whether you want to sail the beautiful waters or catch some waves, the school has you covered with competitive rental rates for all types of equipment.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 65 USD per hour",
+  facebook: "facebook.com/bluelagoonsurf",
+  instagram: "instagram.com/bluelagoonsurf",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_6.save
+puts "School #{south_school_6.name} created in the South Coast location..."
+
+south_east_school_1 = School.create!(
+  name: "Serenity Watersports School",
+  address: "Palmar, South East Coast",
+  phone: "+230 6901 2345",
+  website: "www.serenitywatersports.mu",
+  email: "info@serenitywatersports.mu",
+  description: "Serenity Watersports School is located in the tranquil village of Palmar, known for its stunning coastline and calm waters. The school offers a range of water sports, including kayaking, paddleboarding, and snorkeling. With a focus on creating a serene and enjoyable environment, Serenity Watersports aims to provide personalized instruction for all skill levels. Experienced instructors prioritize safety and fun, ensuring that every student feels comfortable and confident on the water. The school also organizes eco-friendly beach activities and conservation workshops.",
+  rental: "Serenity Watersports School provides a variety of rental equipment for water sports enthusiasts. Kayaks and paddleboards are available for rent by the hour or for full days, allowing guests to explore the beautiful coastline at their own pace. Additionally, snorkeling gear, including masks, snorkels, and fins, is available for those wanting to discover the vibrant marine life in the area. All rental equipment is well-maintained and regularly checked for safety.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 35 USD per hour",
+  facebook: "facebook.com/serenitywatersports",
+  instagram: "instagram.com/serenitywatersports",
+  user_id: user3.id,
+  location_id: south_est_coast_location.id
+)
+south_east_school_1.save
+puts "School #{south_east_school_1.name} created in the South East Coast location..."
+south_east_school_2 = School.create!(
+  name: "Coral Reef Kitesurfing School",
+  address: "Trou d'Eau Douce, South East Coast",
+  phone: "+230 6987 6543",
+  website: "www.coralreefkitesurf.mu",
+  email: "info@coralreefkitesurf.mu",
+  description: "Coral Reef Kitesurfing School is set against the stunning backdrop of Trou d'Eau Douce, a paradise for kitesurfers. The school offers expert lessons for all levels, focusing on safety and technique. With experienced instructors who are passionate about kitesurfing, Coral Reef provides personalized coaching tailored to each student's goals. The school also organizes group outings and fun events, creating a community atmosphere among kitesurfing enthusiasts.",
+  rental: "Coral Reef Kitesurfing School has a full range of kitesurfing equipment available for rent. This includes a variety of kites and boards, suitable for beginners to advanced riders. Rental options are flexible, with hourly, daily, and weekly rates available. All equipment is rigorously maintained and safety-checked before use, ensuring that students have the best experience possible on the water.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 75 USD per hour",
+  facebook: "facebook.com/coralreefkitesurf",
+  instagram: "instagram.com/coralreefkitesurf",
+  user_id: user3.id,
+  location_id: south_est_coast_location.id
+)
+south_east_school_2.save
+puts "School #{south_east_school_2.name} created in the South East Coast location..."
+south_east_school_3 = School.create!(
+  name: "Tropical Dive School",
+  address: "Mahébourg, South East Coast",
+  phone: "+230 6871 2345",
+  website: "www.tropicaldives.mu",
+  email: "info@tropicaldives.mu",
+  description: "Tropical Dive School is situated in Mahébourg, a coastal town renowned for its rich marine biodiversity. The school offers a range of diving courses, from beginner lessons to advanced certifications. With a team of certified dive instructors, Tropical Dive School emphasizes safety and environmental awareness, providing students with the knowledge and skills necessary for safe diving practices. The school also organizes diving excursions to explore the stunning coral reefs and shipwrecks in the area.",
+  rental: "Tropical Dive School provides all necessary diving equipment for rent, including wetsuits, tanks, masks, and fins. Rental packages are available for single dives or multi-day trips, catering to both beginners and experienced divers. All gear is regularly inspected and maintained to ensure the highest safety standards, allowing divers to focus on enjoying their underwater adventures.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 90 USD per dive",
+  facebook: "facebook.com/tropicaldives",
+  instagram: "instagram.com/tropicaldives",
+  user_id: user3.id,
+  location_id: south_est_coast_location.id
+)
+south_east_school_3.save
+puts "School #{south_east_school_3.name} created in the South East Coast location..."
+south_east_school_4 = School.create!(
+  name: "Lagoon Adventures School",
+  address: "Blue Bay, South East Coast",
+  phone: "+230 6795 4321",
+  website: "www.lagoonadventures.mu",
+  email: "info@lagoonadventures.mu",
+  description: "Lagoon Adventures School is located in the beautiful Blue Bay, known for its crystal-clear waters and vibrant marine life. The school specializes in snorkeling, sailing, and water sports lessons. With experienced instructors and a focus on customer satisfaction, Lagoon Adventures ensures that each student receives personalized instruction tailored to their skill level. The school also hosts eco-tours to raise awareness about marine conservation and the importance of protecting the environment.",
+  rental: "Lagoon Adventures School offers a wide range of rental equipment, including snorkeling gear, kayaks, and sailing equipment. All rental items are regularly maintained to provide guests with a safe and enjoyable experience. Whether guests want to explore the lagoon by kayak or snorkel with colorful fish, the school has the right gear available for a perfect day out on the water. Rental packages are available for hourly or daily use.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 50 USD per hour",
+  facebook: "facebook.com/lagoonadventures",
+  instagram: "instagram.com/lagoonadventures",
+  user_id: user3.id,
+  location_id: south_est_coast_location.id
+)
+south_east_school_4.save
+puts "School #{south_east_school_4.name} created in the South East Coast location..."
+south_east_school_5 = School.create!(
+  name: "Eco Marine Academy",
+  address: "Grand River South East, South East Coast",
+  phone: "+230 6123 9876",
+  website: "www.ecomarineacademy.mu",
+  email: "info@ecomarineacademy.mu",
+  description: "Eco Marine Academy is dedicated to promoting marine conservation while providing exceptional training in various water sports. Located in Grand River South East, the academy offers surfing, kitesurfing, and environmental workshops. Their certified instructors are passionate about the ocean and share their knowledge of marine ecosystems with students. The academy hosts regular beach clean-up events and eco-awareness activities, making it a great choice for environmentally conscious water sports enthusiasts.",
+  rental: "Eco Marine Academy provides rental equipment for surfing, kitesurfing, and snorkeling. Their inventory includes high-quality boards, kites, and safety gear, all of which are maintained to the highest standards. Rental options are available for both beginners and advanced practitioners, with flexible pricing for hourly or daily use. The academy also offers eco-friendly gear rentals to promote sustainability.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 65 USD per hour",
+  facebook: "facebook.com/ecomarineacademy",
+  instagram: "instagram.com/ecomarineacademy",
+  user_id: user3.id,
+  location_id: south_est_coast_location.id
+)
+south_east_school_5.save
+puts "School #{south_east_school_5.name} created in the South East Coast location..."
+south_east_school_6 = School.create!(
+  name: "KiteWave Academy",
+  address: "Ile aux Cerfs, South East Coast",
+  phone: "+230 6985 1234",
+  website: "www.kitewaveacademy.mu",
+  email: "info@kitewaveacademy.mu",
+  description: "KiteWave Academy is located on the beautiful Ile aux Cerfs, a prime spot for kitesurfing and water sports. The academy offers professional kitesurfing lessons, catering to all levels of experience. With a team of experienced instructors, KiteWave Academy focuses on safety and progression, ensuring that each student learns at their own pace. The academy also hosts fun events and kitesurfing competitions, fostering a vibrant community among water sports enthusiasts.",
+  rental: "KiteWave Academy provides a complete range of kitesurfing equipment for rent, including kites, boards, and harnesses. Rental packages are available for hourly, daily, or weekly use, with discounts for longer rentals. All equipment is regularly inspected and maintained for optimal performance and safety. Whether students are just starting or looking to improve their skills, KiteWave Academy has the right gear available.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 85 USD per hour",
+  facebook: "facebook.com/kitewaveacademy",
+  instagram: "instagram.com/kitewaveacademy",
+  user_id: user3.id,
+  location_id: south_est_coast_location.id
+)
+south_east_school_6.save
+puts "School #{south_east_school_6.name} created in the South East Coast location..."
+
+south_school_1 = School.create!(
+  name: "Adventurous Trails School",
+  address: "Souillac, The South",
+  phone: "+230 6578 1234",
+  website: "www.adventuroustrails.mu",
+  email: "info@adventuroustrails.mu",
+  description: "Adventurous Trails School is nestled in the scenic village of Souillac, famous for its dramatic cliffs and stunning ocean views. The school offers a wide range of adventure sports, including hiking, mountain biking, and outdoor survival courses. With a team of passionate instructors, Adventurous Trails focuses on safety and skill development, ensuring that participants are well-prepared for their adventures. The school also organizes regular excursions to explore the breathtaking landscapes of the southern region, providing an unforgettable experience.",
+  rental: "Adventurous Trails School offers various rental equipment for outdoor activities, including mountain bikes, hiking gear, and safety equipment. All rental items are well-maintained and suitable for all skill levels, ensuring that adventurers can explore the beautiful terrain of the South without any worries. Rental packages are available for single-day use or longer durations, catering to both beginners and seasoned adventurers.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 40 USD per hour",
+  facebook: "facebook.com/adventuroustrails",
+  instagram: "instagram.com/adventuroustrails",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_1.save
+puts "School #{south_school_1.name} created in The South location..."
+south_school_2 = School.create!(
+  name: "Oceanic Explorers School",
+  address: "Bel Ombre, The South",
+  phone: "+230 6789 4321",
+  website: "www.oceanicexplorers.mu",
+  email: "info@oceanicexplorers.mu",
+  description: "Oceanic Explorers School is located in the picturesque Bel Ombre area, renowned for its stunning beaches and vibrant coral reefs. The school specializes in scuba diving and snorkeling, offering courses and excursions for all levels. With a focus on marine conservation, Oceanic Explorers provides training that emphasizes safety, respect for the ocean, and environmental awareness. The school organizes regular dives to explore the rich underwater biodiversity of the region, creating memorable experiences for all participants.",
+  rental: "Oceanic Explorers School provides all necessary diving equipment for rent, including wetsuits, tanks, masks, and fins. Rental options are flexible, with hourly, daily, and multi-day packages available. All gear is rigorously inspected and maintained to ensure the highest safety standards, allowing divers to focus on enjoying their underwater adventures without any concerns.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 85 USD per dive",
+  facebook: "facebook.com/oceanicexplorers",
+  instagram: "instagram.com/oceanicexplorers",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_2.save
+puts "School #{south_school_2.name} created in The South location..."
+south_school_3 = School.create!(
+  name: "Island Safari School",
+  address: "La Vallée des Couleurs, The South",
+  phone: "+230 6934 5678",
+  website: "www.islandsafarischool.mu",
+  email: "info@islandsafarischool.mu",
+  description: "Island Safari School is situated in the breathtaking La Vallée des Couleurs, a unique natural reserve famous for its vibrant landscapes. The school offers adventure tours, including quad biking, zip-lining, and nature walks, providing visitors with thrilling experiences in one of the island's most beautiful settings. Experienced guides lead the tours, sharing their knowledge of the area's flora and fauna, ensuring that every guest leaves with a deeper appreciation of Mauritius's natural beauty.",
+  rental: "Island Safari School offers rental options for various adventure equipment, including quad bikes and safety gear for outdoor activities. All rental items are thoroughly maintained for optimal performance and safety. Guests can choose from flexible rental packages, allowing them to explore the stunning landscapes at their own pace, whether on a guided tour or on their own.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 60 USD per hour",
+  facebook: "facebook.com/islandsafarischool",
+  instagram: "instagram.com/islandsafarischool",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_3.save
+puts "School #{south_school_3.name} created in The South location..."
+south_school_4 = School.create!(
+  name: "Kite Masters Academy",
+  address: "Le Morne, The South",
+  phone: "+230 6781 2345",
+  website: "www.kitemasters.mu",
+  email: "info@kitemasters.mu",
+  description: "Kite Masters Academy is located at Le Morne, one of the best kitesurfing spots in Mauritius. The academy offers lessons for all levels, from beginners to advanced riders. With experienced instructors and a focus on safety and technique, Kite Masters ensures that students learn at their own pace while enjoying the thrill of kitesurfing. The academy also organizes kitesurfing competitions and social events, fostering a vibrant community of water sports enthusiasts.",
+  rental: "Kite Masters Academy has a comprehensive range of kitesurfing equipment available for rent, including kites, boards, and safety gear. Rental options are flexible, with hourly, daily, and weekly rates available. All equipment is rigorously checked and maintained to ensure safety and optimal performance on the water.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 70 USD per hour",
+  facebook: "facebook.com/kitemastersacademy",
+  instagram: "instagram.com/kitemastersacademy",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_4.save
+puts "School #{south_school_4.name} created in The South location..."
+south_school_5 = School.create!(
+  name: "Nature's Heart School",
+  address: "Chamarel, The South",
+  phone: "+230 6598 7654",
+  website: "www.naturesheart.mu",
+  email: "info@naturesheart.mu",
+  description: "Nature's Heart School is situated in the picturesque Chamarel region, known for its lush landscapes and stunning waterfalls. The school offers eco-tours and nature workshops, focusing on sustainable practices and environmental awareness. Participants can enjoy guided hikes through the beautiful hills and learn about the unique ecosystems of the island. The instructors are passionate about nature and strive to instill a love for the environment in every participant.",
+  rental: "Nature's Heart School provides rental equipment for hiking and nature exploration, including walking sticks, backpacks, and eco-friendly gear. All rental items are carefully maintained to ensure that guests can explore the natural beauty of Chamarel comfortably and safely. Flexible rental options are available, catering to both short hikes and extended explorations.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 45 USD per hour",
+  facebook: "facebook.com/naturesheartschool",
+  instagram: "instagram.com/naturesheartschool",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_5.save
+puts "School #{south_school_5.name} created in The South location..."
+south_school_6 = School.create!(
+  name: "Reef Runners School",
+  address: "Bel Ombre, The South",
+  phone: "+230 6789 1234",
+  website: "www.reefrunners.mu",
+  email: "info@reefrunners.mu",
+  description: "Reef Runners School is based in Bel Ombre, offering exciting marine sports and training programs. With a strong emphasis on marine conservation, the school provides snorkeling, diving, and sailing lessons that educate participants about the importance of protecting the ocean. Experienced instructors guide students through every activity, ensuring a fun and safe learning environment while fostering a sense of responsibility towards the marine ecosystem.",
+  rental: "Reef Runners School offers an extensive range of rental equipment, including snorkeling gear, diving equipment, and sailing boats. All rental items are regularly maintained and inspected to guarantee safety and performance. Flexible rental options allow guests to choose from hourly, daily, or multi-day use, catering to both beginners and experienced water sports enthusiasts.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 70 USD per hour",
+  facebook: "facebook.com/reefrunnersschool",
+  instagram: "instagram.com/reefrunnersschool",
+  user_id: user3.id,
+  location_id: south_location.id
+)
+south_school_6.save
+puts "School #{south_school_6.name} created in The South location..."
+
+east_school_1 = School.create!(
+  name: "Coral Reef Academy",
+  address: "Trou d'Eau Douce, East Coast",
+  phone: "+230 6781 2345",
+  website: "www.coralreefacademy.mu",
+  email: "info@coralreefacademy.mu",
+  description: "Coral Reef Academy is located in the beautiful Trou d'Eau Douce area, known for its stunning beaches and rich marine biodiversity. The academy offers comprehensive courses in snorkeling and scuba diving, catering to all levels of experience. With a team of certified instructors, Coral Reef Academy emphasizes safety, skill development, and environmental conservation. The academy organizes regular trips to explore the nearby Île aux Cerfs, allowing students to enjoy breathtaking underwater landscapes while learning about marine ecosystems.",
+  rental: "Coral Reef Academy provides a wide range of rental equipment for snorkeling and scuba diving, including wetsuits, masks, fins, and tanks. All gear is meticulously maintained to ensure the highest safety standards, allowing participants to focus on their underwater adventures. Flexible rental options are available for single-day or multi-day use, making it convenient for all guests.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 60 USD per dive",
+  facebook: "facebook.com/coralreefacademy",
+  instagram: "instagram.com/coralreefacademy",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_1.save
+puts "School #{east_school_1.name} created in the East Coast location..."
+east_school_2 = School.create!(
+  name: "Kite Surf Paradise",
+  address: "Belle Mare, East Coast",
+  phone: "+230 6790 1234",
+  website: "www.kitesurfparadise.mu",
+  email: "info@kitesurfparadise.mu",
+  description: "Kite Surf Paradise is situated at Belle Mare, a renowned kitesurfing hotspot in Mauritius. The school offers professional kitesurfing lessons for beginners and experienced riders alike. With a focus on personalized instruction, Kite Surf Paradise provides tailored lessons that cater to individual skill levels and learning styles. The school also organizes kitesurfing camps and workshops, creating a community for enthusiasts to connect and improve their skills together.",
+  rental: "Kite Surf Paradise offers an extensive selection of kitesurfing gear for rent, including kites, boards, and safety equipment. All rental items are regularly inspected and maintained to ensure safety and performance. Rental packages are available for both short and long-term use, catering to the needs of all kitesurfers visiting the region.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 75 USD per lesson",
+  facebook: "facebook.com/kitesurfparadise",
+  instagram: "instagram.com/kitesurfparadise",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_2.save
+puts "School #{east_school_2.name} created in the East Coast location..."
+east_school_3 = School.create!(
+  name: "Blue Lagoon Watersports",
+  address: "Palmar, East Coast",
+  phone: "+230 6785 6789",
+  website: "www.bluelagoonwatersports.mu",
+  email: "info@bluelagoonwatersports.mu",
+  description: "Blue Lagoon Watersports is located in the picturesque Palmar area, famous for its calm waters and stunning lagoon views. The school specializes in various water sports, including windsurfing, stand-up paddleboarding, and kayaking. With experienced instructors, Blue Lagoon Watersports offers courses that prioritize safety, technique, and enjoyment. The school also hosts regular community events, promoting water sports and environmental awareness among participants.",
+  rental: "Blue Lagoon Watersports provides a wide array of rental equipment, including windsurfing boards, paddleboards, and kayaks. All rental items are well-maintained and suitable for users of all skill levels. Flexible rental options allow guests to choose from hourly, daily, or multi-day packages, making it easy to enjoy the beautiful lagoon at their own pace.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 50 USD per hour",
+  facebook: "facebook.com/bluelagoonwatersports",
+  instagram: "instagram.com/bluelagoonwatersports",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_3.save
+puts "School #{east_school_3.name} created in the East Coast location..."
+east_school_4 = School.create!(
+  name: "Ocean Explorers School",
+  address: "Île aux Cerfs, East Coast",
+  phone: "+230 6578 9012",
+  website: "www.oceanexplorers.mu",
+  email: "info@oceanexplorers.mu",
+  description: "Ocean Explorers School is situated on the stunning Île aux Cerfs, famous for its crystal-clear waters and vibrant coral reefs. The school specializes in snorkeling and diving excursions, providing unforgettable experiences in one of the most beautiful marine environments in the world. With a dedicated team of instructors, Ocean Explorers offers a variety of courses that cater to all skill levels, emphasizing marine conservation and safety throughout every adventure.",
+  rental: "Ocean Explorers School offers a full range of rental equipment for snorkeling and diving, including masks, fins, wetsuits, and tanks. All gear is regularly serviced to ensure safety and functionality, allowing guests to enjoy their underwater explorations without worry. Rental options are flexible, with both hourly and daily rates available.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 80 USD per dive",
+  facebook: "facebook.com/oceanexplorersschool",
+  instagram: "instagram.com/oceanexplorersschool",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_4.save
+puts "School #{east_school_4.name} created in the East Coast location..."
+east_school_5 = School.create!(
+  name: "Tropical Winds Academy",
+  address: "Ros Belle Eau, East Coast",
+  phone: "+230 6579 2345",
+  website: "www.tropicalwinds.mu",
+  email: "info@tropicalwinds.mu",
+  description: "Tropical Winds Academy is located in the charming village of Ros Belle Eau, surrounded by stunning beaches and lush greenery. The academy specializes in windsurfing and offers lessons for all ages and skill levels. With a team of qualified instructors, Tropical Winds Academy emphasizes safety and fun, ensuring that every student feels comfortable and confident on the water. The academy also hosts friendly competitions and community events to foster camaraderie among water sports enthusiasts.",
+  rental: "Tropical Winds Academy provides rental equipment for windsurfing, including boards, sails, and safety gear. All rental items are in excellent condition, ensuring safety and performance on the water. Guests can choose from flexible rental packages to suit their needs, whether for a few hours or several days.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 55 USD per lesson",
+  facebook: "facebook.com/tropicalwindsacademy",
+  instagram: "instagram.com/tropicalwindsacademy",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_5.save
+puts "School #{east_school_5.name} created in the East Coast location..."
+east_school_6 = School.create!(
+  name: "Paradise Watersports School",
+  address: "Quatre Soeurs, East Coast",
+  phone: "+230 6578 7654",
+  website: "www.paradisewatersports.mu",
+  email: "info@paradisewatersports.mu",
+  description: "Paradise Watersports School is nestled in the scenic Quatre Soeurs region, offering a variety of exciting water sports activities. The school specializes in wakeboarding, paddleboarding, and jet skiing, providing lessons for all skill levels. With experienced instructors and a strong focus on safety, Paradise Watersports ensures that participants have a thrilling and enjoyable experience on the water. The school also organizes regular social events, creating a friendly and welcoming community for all water sports enthusiasts.",
+  rental: "Paradise Watersports School offers rental options for wakeboarding gear, paddleboards, and jet skis. All equipment is regularly maintained and inspected to ensure optimal performance and safety. Flexible rental packages are available for both short-term and long-term use, allowing guests to enjoy the beautiful East Coast at their leisure.",
+  levels: "Beginner, Intermediate, Advanced",
+  fee: "From 70 USD per hour",
+  facebook: "facebook.com/paradisewatersports",
+  instagram: "instagram.com/paradisewatersports",
+  user_id: user3.id,
+  location_id: east_coast_location.id
+)
+east_school_6.save
+puts "School #{east_school_6.name} created in the East Coast location..."
+
+
+
+def fetch_public_ids_from_cloudinary_for_schools
+  public_ids = []
+  next_cursor = nil
+
+  begin
+    response = Cloudinary::Api.resources(type: 'upload', prefix: 'Kite_in_moris/Schools', max_results: 100, next_cursor: next_cursor)
+    # Ajouter les public_ids récupérés à la liste
+    public_ids.concat(response['resources'].map { |resource| resource['public_id'] })
+    # Vérifier s'il y a une page suivante
+    next_cursor = response['next_cursor']
+  end while next_cursor
+  public_ids
 end
 
+public_ids = fetch_public_ids_from_cloudinary
+
+if public_ids.any?
+  School.all.each do |school|
+    selected_images = public_ids.sample(8)
+    selected_images.each do |public_id|
+      image_url = Cloudinary::Utils.cloudinary_url(public_id)
+      school.images.attach(io: URI.open(image_url), filename: "#{public_id}.jpg")
+      puts "Image attached to #{school.name}"
+    end
+  end
+else
+  puts "No image in the Cloudinary folder."
+end
+
+
+puts 'All images are uploaded'
+puts '-------------------------------'
+
+
+
+
 puts 'All schools created.'
+puts '-------------------------------'
+
+puts 'Creating reviews for schools...'
+puts '-------------------------------'
+
+
+schools = School.all
+schools.each do |school|
+  User.all.each do |user|
+    description = [
+      "Amazing experience! #{school.name} is located right on the beach, making it super convenient. Prices are reasonable, and the instructors are top-notch. The equipment was in excellent condition, and the staff was incredibly friendly.",
+      "I had a great time learning kitesurfing here. The school’s location is perfect with steady winds and beautiful views. Prices are fair, and they offer quality instruction. The gear provided was modern and well-maintained.",
+      "#{school.name} offers a good balance of price and quality. The location is scenic, though a bit crowded during peak season. The instructors were patient and the equipment was in good shape.",
+      "The staff is what makes #{school.name}stand out. Super friendly and knowledgeable. The beach location is ideal for beginners. The equipment could be better, but overall, a solid experience.",
+      "I loved the experience! The price was a bit high, but the quality of the instruction and the equipment was worth it. The school’s location is beautiful and the wind conditions were perfect.",
+      "The equipment was brand new, and the instructors were very professional. The location is easy to access, and the school offers excellent value for money. The staff made me feel welcome from the moment I arrived.",
+      "Fantastic location right by the water, and the winds were perfect for kitesurfing. Prices are reasonable, but the equipment was a bit worn. However, the staff more than made up for it with their enthusiasm.",
+      "I was impressed with the overall quality of #{school.name}. The beachside location is perfect, the instructors are passionate, and the prices are affordable. The equipment was clean and well-maintained.",
+      "A great place to learn kitesurfing. The price was reasonable for the quality of instruction. The equipment could use an upgrade, but the staff is excellent and very supportive.",
+      "This school is well-located on a pristine beach. The staff is friendly, and the prices are competitive. However, the equipment was showing some signs of wear.",
+      "The instructors here are world-class. The price was a bit steep, but considering the level of expertise and the quality of equipment, it was worth every penny. The beach was stunning!",
+      "Superb location with clear waters and strong winds. The equipment was brand new, and the staff made sure I felt safe at all times. Pricing was fair considering the quality provided.",
+      "Loved my kitesurfing lessons here! The school is in a prime spot and has good wind conditions. The staff is knowledgeable, and the prices were reasonable. The gear is in great condition too!",
+      "The location is beautiful, and the school is very professional. The equipment is high quality, but the prices are a bit on the high side. Still, it’s a great place to learn kitesurfing.",
+      "Amazing staff and high-quality equipment. The prices are a little high but justified by the level of expertise and the pristine beach location.",
+      "Fantastic experience! #{school.name}is in a great spot, the winds were perfect, and the equipment was well maintained. Prices were fair, and the staff was super friendly.",
+      "A well-run school in a stunning location. The price was affordable for the quality of lessons provided. The instructors were patient, and the equipment was in good shape.",
+      "Loved the beach and the vibe of the school. Prices are on the higher side, but you get what you pay for. The equipment was in excellent condition, and the staff was very helpful.",
+      "The equipment here is first-rate, and the instructors are very skilled. The location is unbeatable, but the prices are on the expensive side. Overall, a great place to learn.",
+      "Great school with a friendly atmosphere. The prices were reasonable, and the equipment was modern. The beach location made it super convenient to start lessons right away.",
+      "The perfect spot for kitesurfing! The prices are affordable, and the instructors were very knowledgeable. The equipment was up-to-date, and the staff was always willing to help.",
+      "Had a fantastic time here! The staff is super accommodating, the equipment is in great shape, and the location is unbeatable. Prices were a bit high but worth it.",
+      "The school is well-located with easy beach access. The instructors are friendly, but the prices are a bit steep. The equipment was adequate but could use an upgrade.",
+      "Awesome experience with fantastic instructors! The location is ideal for kitesurfing, and the prices are reasonable. The equipment was in great condition.",
+      "I found the location perfect, and the staff was very welcoming. The prices are affordable, and the equipment was top-notch. Great school for beginners and pros alike.",
+      "The beach is just perfect for kitesurfing. The instructors are knowledgeable, and the prices are fair. The equipment was in decent condition, but could be a bit more modern.",
+      "#{school.name} offers great value for the money. The location is breathtaking, and the equipment was in good shape. The instructors were patient and thorough.",
+      "The instructors here are very professional, and the equipment was in excellent condition. The location is great, although it can get crowded. Prices were reasonable for the quality.",
+      "Fantastic school in an amazing location. The wind was perfect, and the equipment was almost new. The staff was very friendly, though the prices were a bit high.",
+      "Great instructors and high-quality gear. The prices are a bit steep, but the location is perfect for learning kitesurfing. I highly recommend this school.",
+      "The beach location is stunning and ideal for kitesurfing. Prices are on the higher side, but the quality of the instruction and the equipment made it worth it.",
+      "I had a wonderful time! The school is located on a beautiful beach, and the equipment was in excellent condition. The staff is friendly and knowledgeable, though prices could be lower.",
+      "The equipment was in great condition, and the instructors were highly skilled. The location is amazing, but the price was a little higher than expected.",
+      "Excellent kitesurfing school with a great vibe. The location is unbeatable, and the staff is professional and friendly. The equipment is well-maintained, though the prices are a bit high.",
+      "Good experience overall! The location is beautiful, and the instructors were very supportive. The equipment was well taken care of, though I found the prices a bit high.",
+      "Perfect for beginners and intermediate kitesurfers. The location is beautiful, and the equipment was modern. The prices are fair, and the instructors are excellent.",
+      "#{school.name} is located in a prime spot with strong winds and clean beaches. The staff is very friendly, and the equipment is modern. Prices are reasonable considering the quality offered.",
+      "Great value for money! The beach is clean, the equipment is top-quality, and the staff is very welcoming. Perfect for anyone looking to learn or improve their kitesurfing skills.",
+      "Amazing kitesurfing lessons in a beautiful location. The staff was helpful, and the prices were fair. The equipment was slightly worn, but overall, a great experience.",
+      "This school is worth every penny! The instructors were top-notch, the beach was perfect, and the equipment was in excellent shape. Prices are a little high but worth it.",
+      "Beautiful location with steady winds. The instructors were very knowledgeable, and the equipment was in excellent condition. Prices are a little steep but overall a great school.",
+      "Loved my lessons here! The beach is beautiful, the staff is professional, and the equipment was well-maintained. Prices were a bit high but worth it.",
+      "The perfect location for kitesurfing, with great wind conditions. The equipment was in good shape, and the instructors were very helpful. Prices were reasonable as well.",
+      "Fantastic school in a great location. The instructors were friendly, and the equipment was in excellent condition. Prices were a bit on the higher side, but the experience was worth it.",
+      "Great experience! The location is stunning, and the wind was perfect. The equipment was well-maintained, and the staff was very helpful. Prices are a little high but worth it.",
+      "The beach location is perfect for kitesurfing. The staff is friendly and knowledgeable, and the equipment is modern. Prices are fair considering the quality of instruction.",
+      "Awesome lessons with excellent instructors. The equipment was brand new, and the location was perfect for kitesurfing. Prices were a bit high but worth it for the quality.",
+      "Loved the vibe of this school! The location is ideal, the equipment was in great condition, and the staff was super friendly. Prices were reasonable for the quality of instruction."
+    ]
+    n = description.count
+    i = (0...n).to_a.sample
+    ReviewSchool.create(
+      rating: rand(3..5),
+      description: description[i],
+      user: user,
+      school: school
+    )
+  end
+end
+
+puts 'All reviews for schools created.'
 puts '-------------------------------'
 
 
