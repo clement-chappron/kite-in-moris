@@ -26,7 +26,6 @@ CommentBlog.destroy_all
 puts 'All comments on blogpages destroyed ...'
 puts '-------------------------------'
 
-# User seeds
 user1_img = URI.open('https://res.cloudinary.com/deewxzlno/image/upload/v1724074421/production/avatars/u46sxktotibbrjhhjsym.jpg')
 user1 = User.create!(
   first_name: 'Clément',
@@ -34,7 +33,8 @@ user1 = User.create!(
   email: 'clement.chappron@gmail.com',
   address: '13D rue des terminalias, Tamarin, Mauritius',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  bio: "I've been kitesurfing for about 5 years now. I started learning while I was traveling in South Africa, and since then, I’ve been hooked. My favorite style is freestyle, but I also enjoy the occasional wave riding. I usually ride with a Cabrinha Switchblade and a twin-tip board. I love the feeling of being powered by the wind, and Tamarin Bay is one of my favorite spots. When I'm not kiting, I like to keep up with the latest gear and trends in the kitesurfing world."
 )
 user1.profile_picture.attach(io: user1_img, filename: 'user1.jpg', content_type: 'image/jpg')
 user1.save
@@ -47,7 +47,8 @@ user2 = User.create!(
   email: 'ed@mail.com',
   address: 'Casablanca, Morocco',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  bio: "Kitesurfing has been my passion for the last 7 years. I learned on the shores of Dakhla, Morocco, which is still my favorite spot. I prefer long downwind sessions and sometimes engage in freestyle when the conditions are perfect. I ride a North Kiteboarding Evo and prefer larger kites for smooth control. Kitesurfing for me is more than just a sport; it's a lifestyle that connects me to the sea and wind. Whenever I can, I travel to new spots to explore different waters and wind patterns."
 )
 user2.profile_picture.attach(io: user2_img, filename: 'user2.jpg', content_type: 'image/jpg')
 user2.save
@@ -60,7 +61,8 @@ user3 = User.create!(
   email: 'ad@mail.com',
   address: 'Vacoas, Mauritius',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  bio: "I’ve been kitesurfing for around 3 years now, mostly in Mauritius. I picked it up after watching some locals ride near Le Morne, and I instantly knew I had to try. I mostly enjoy freeriding, as it allows me to explore different spots around the island. My go-to gear is a Duotone Rebel, which handles great in the varying wind conditions here. Kitesurfing has become my way to unwind and connect with nature after a busy week."
 )
 user3.profile_picture.attach(io: user3_img, filename: 'user3.jpg', content_type: 'image/jpg')
 user3.save
@@ -73,7 +75,8 @@ user4 = User.create!(
   email: 'ls@mail.com',
   address: 'Port Louis, Mauritius',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  bio: "I’ve been kitesurfing for over 4 years, and it’s something I truly enjoy. I learned in Rodrigues, where the conditions are ideal for beginners, and quickly progressed. My favorite discipline is wave riding, as I love the challenge of reading the ocean. I ride a Slingshot RPM, which gives me the perfect balance between power and maneuverability. Kitesurfing for me is about freedom and feeling one with the ocean and wind."
 )
 user4.profile_picture.attach(io: user4_img, filename: 'user4.jpg', content_type: 'image/jpg')
 user4.save
@@ -86,7 +89,8 @@ user5 = User.create!(
   email: 'ar@mail.com',
   address: 'Calodyne, Mauritius',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  bio: "I’ve been passionate about kitesurfing for almost 8 years now. I started in Europe, and after moving to Mauritius, I discovered some of the best kitesurfing spots in the world. My preferred style is freestyle, as it allows for creativity and expression on the water. I ride with a Core XR6 and enjoy every session like it’s my first. Kitesurfing is more than a hobby for me; it's a lifestyle that brings me peace and joy."
 )
 user5.profile_picture.attach(io: user5_img, filename: 'user5.jpg', content_type: 'image/jpg')
 user5.save
@@ -99,7 +103,8 @@ user6 = User.create!(
   email: 'ot@mail.com',
   address: 'Beau-Bassin, Mauritius',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  bio: "I’ve been kitesurfing for about 6 years. I learned while on vacation in Mauritius, and it quickly became a part of my life. I enjoy wave riding, but also dabble in some freestyle from time to time. I ride a F-One Bandit and feel most alive when I’m out on the water. Kitesurfing has become my escape and my way to stay connected with nature."
 )
 user6.profile_picture.attach(io: user6_img, filename: 'user6.jpg', content_type: 'image/jpg')
 user6.save
@@ -112,7 +117,8 @@ user7 = User.create!(
   email: 'ct@mail.com',
   address: 'Mahébourg, Mauritius',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  bio: "I’ve been kitesurfing for nearly 10 years. I learned in Mahébourg and it’s still one of my favorite spots. I prefer long-distance downwind rides and occasionally do freestyle. I use a Naish Pivot, which gives me all the control I need. Kitesurfing is a huge part of my life, and I take every opportunity to improve my skills and explore new spots across Mauritius."
 )
 user7.profile_picture.attach(io: user7_img, filename: 'user7.jpg', content_type: 'image/jpg')
 user7.save
@@ -125,7 +131,8 @@ user8 = User.create!(
   email: 'ajmal@mail.com',
   address: 'Curepipe, Mauritius',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  bio: "I’ve been kitesurfing for around 2 years, and it's quickly become my main sport. I learned in Belle Mare, where the lagoon provides perfect conditions. I’m mainly into freeriding and enjoy using a Cabrinha Moto kite for its versatility. For me, kitesurfing is about the rush of adrenaline and the peaceful moments in between."
 )
 user8.profile_picture.attach(io: user8_img, filename: 'user8.jpg', content_type: 'image/jpg')
 user8.save
@@ -138,7 +145,8 @@ user9 = User.create!(
   email: 'yc@mail.com',
   address: 'Port-Louis, Mauritius',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  bio: "I’ve been kitesurfing for about 4 years, and I started in the north of Mauritius at Anse La Raie. I mostly enjoy freestyle sessions, but I also love cruising along the coastline when the wind is steady. I ride with an Ozone Edge kite, which gives me the perfect balance for both power and control. For me, kitesurfing is all about freedom and pushing my boundaries. It’s not just a sport—it’s a way of life that keeps me energized and connected to the ocean."
 )
 user9.profile_picture.attach(io: user9_img, filename: 'user9.jpg', content_type: 'image/jpg')
 user9.save
@@ -146,6 +154,129 @@ puts "User #{user9.first_name} #{user9.last_name} created ..."
 
 puts 'All users created ...'
 puts '-------------------------------'
+
+
+
+# # User seeds
+# user1_img = URI.open('https://res.cloudinary.com/deewxzlno/image/upload/v1724074421/production/avatars/u46sxktotibbrjhhjsym.jpg')
+# user1 = User.create!(
+#   first_name: 'Clément',
+#   last_name: 'Chappron',
+#   email: 'clement.chappron@gmail.com',
+#   address: '13D rue des terminalias, Tamarin, Mauritius',
+#   password: 'password',
+#   password_confirmation: 'password'
+# )
+# user1.profile_picture.attach(io: user1_img, filename: 'user1.jpg', content_type: 'image/jpg')
+# user1.save
+# puts "User #{user1.first_name} #{user1.last_name} created ..."
+
+# user2_img = URI.open('https://res.cloudinary.com/deewxzlno/image/upload/v1724074422/production/avatars/fxstnxf6mudy64ohbug1.jpg')
+# user2 = User.create!(
+#   first_name: 'Eldave',
+#   last_name: 'Dibala',
+#   email: 'ed@mail.com',
+#   address: 'Casablanca, Morocco',
+#   password: 'password',
+#   password_confirmation: 'password'
+# )
+# user2.profile_picture.attach(io: user2_img, filename: 'user2.jpg', content_type: 'image/jpg')
+# user2.save
+# puts "User #{user2.first_name} #{user2.last_name} created ..."
+
+# user3_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726678411/Avi_wsv3rl.jpg')
+# user3 = User.create!(
+#   first_name: 'Avinash',
+#   last_name: 'Daby',
+#   email: 'ad@mail.com',
+#   address: 'Vacoas, Mauritius',
+#   password: 'password',
+#   password_confirmation: 'password'
+# )
+# user3.profile_picture.attach(io: user3_img, filename: 'user3.jpg', content_type: 'image/jpg')
+# user3.save
+# puts "User #{user3.first_name} #{user3.last_name} created ..."
+
+# user4_img = URI.open('https://res.cloudinary.com/deewxzlno/image/upload/v1724074421/production/avatars/fvpxbivbzkzu01budynj.jpg')
+# user4 = User.create!(
+#   first_name: 'Lalenee',
+#   last_name: 'Sahye',
+#   email: 'ls@mail.com',
+#   address: 'Port Louis, Mauritius',
+#   password: 'password',
+#   password_confirmation: 'password'
+# )
+# user4.profile_picture.attach(io: user4_img, filename: 'user4.jpg', content_type: 'image/jpg')
+# user4.save
+# puts "User #{user4.first_name} #{user4.last_name} created ..."
+
+# user5_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726593709/Aurelia_pcd7xx.jpg')
+# user5 = User.create!(
+#   first_name: 'Aurelia',
+#   last_name: 'Ritter',
+#   email: 'ar@mail.com',
+#   address: 'Calodyne, Mauritius',
+#   password: 'password',
+#   password_confirmation: 'password'
+# )
+# user5.profile_picture.attach(io: user5_img, filename: 'user5.jpg', content_type: 'image/jpg')
+# user5.save
+# puts "User #{user5.first_name} #{user5.last_name} created ..."
+
+# user6_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726640658/Ophelie_cuhaxf.jpg')
+# user6 = User.create!(
+#   first_name: 'Ophelie',
+#   last_name: 'Turenne',
+#   email: 'ot@mail.com',
+#   address: 'Beau-Bassin, Mauritius',
+#   password: 'password',
+#   password_confirmation: 'password'
+# )
+# user6.profile_picture.attach(io: user6_img, filename: 'user6.jpg', content_type: 'image/jpg')
+# user6.save
+# puts "User #{user6.first_name} #{user6.last_name} created ..."
+
+# user7_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726640647/Cedric_ycjlgc.jpg')
+# user7 = User.create!(
+#   first_name: 'Cédric',
+#   last_name: 'Thonney',
+#   email: 'ct@mail.com',
+#   address: 'Mahébourg, Mauritius',
+#   password: 'password',
+#   password_confirmation: 'password'
+# )
+# user7.profile_picture.attach(io: user7_img, filename: 'user7.jpg', content_type: 'image/jpg')
+# user7.save
+# puts "User #{user7.first_name} #{user7.last_name} created ..."
+
+# user8_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726640634/Ajmal_deqeul.jpg')
+# user8 = User.create!(
+#   first_name: 'Ajmal',
+#   last_name: 'Rambocus',
+#   email: 'ajmal@mail.com',
+#   address: 'Curepipe, Mauritius',
+#   password: 'password',
+#   password_confirmation: 'password'
+# )
+# user8.profile_picture.attach(io: user8_img, filename: 'user8.jpg', content_type: 'image/jpg')
+# user8.save
+# puts "User #{user8.first_name} #{user8.last_name} created ..."
+
+# user9_img = URI.open('https://res.cloudinary.com/dfwgh9ry5/image/upload/v1726640668/Yaasir_vuvah0.jpg')
+# user9 = User.create!(
+#   first_name: 'Yaasir',
+#   last_name: 'Cheekoory',
+#   email: 'yc@mail.com',
+#   address: 'Port-Louis, Mauritius',
+#   password: 'password',
+#   password_confirmation: 'password'
+# )
+# user9.profile_picture.attach(io: user9_img, filename: 'user9.jpg', content_type: 'image/jpg')
+# user9.save
+# puts "User #{user9.first_name} #{user9.last_name} created ..."
+
+# puts 'All users created ...'
+# puts '-------------------------------'
 
 
 

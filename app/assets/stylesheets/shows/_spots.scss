@@ -102,7 +102,7 @@
   overflow-y: auto;
   scroll-behavior: smooth;
   position: relative; /* Nécessaire pour le z-index des images */
-  z-index: 100; /* Positionner les images au-dessus de l'overlay */
+  z-index: 90; /* Positionner les images au-dessus de l'overlay */
 
   img:hover {
     cursor: pointer;
