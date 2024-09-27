@@ -53,12 +53,15 @@ class SchoolsController < ApplicationController
   def create_step_4
     Rails.logger.info("Paramètres avant la mise à jour : #{school_params_step_4.inspect}")
     if @school.update(school_params_step_4)
-      redirect_to school_path(@school), notice: 'Établissement créé avec succès.'
+      redirect_to school_path(@school), notice: 'School was succefully created.'
     else
-      Rails.logger.error("Erreur lors de la mise à jour : #{@school.errors.full_messages}")
+      Rails.logger.error("Update error: #{@school.errors.full_messages}")
       @step = 4
       render :new
     end
+  end
+
+  def edit
   end
 
   def update
@@ -74,17 +77,13 @@ class SchoolsController < ApplicationController
 
   def destroy
     @school.destroy
-    redirect_to schools_path, notice: 'L\'école a été supprimée avec succès.'
-  rescue ActiveRecord::RecordNotFound
-    redirect_to schools_path, alert: 'École non trouvée.'
+    redirect_to root_path, notice: 'School was successfully destroyed.'
   end
 
   private
 
   def set_school
     @school = School.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to schools_path, alert: 'École non trouvée.'
   end
 
   def set_school_step

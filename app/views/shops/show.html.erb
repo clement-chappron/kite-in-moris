@@ -38,6 +38,19 @@
           <p style="margin-bottom: 0px !important;"><i class="fi fi-rs-marker"></i> <%= @shop.location.name %></p>
         </div>
 
+        <%# Edit &detroy buttons %>
+
+         <div class="d-flex justify-content-end mt-5">
+           <% if @shop.user == current_user %>
+              <div class="d-flex">
+                <%= render 'edit_shop' %>
+                <div class="ms-3">
+                  <%= render 'destroy' %>
+                </div>
+              </div>
+            <% end %>
+         </div>
+
         <%# icons %>
 
         <div class="d-flex justify-content-center mt-5">

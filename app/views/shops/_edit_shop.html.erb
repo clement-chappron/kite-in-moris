@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-end align-items-center mb-4" data-bs-toggle="modal" data-bs-target="#editModal">
+  <%= link_to 'javascript:void(0);' do %>
+    <div>
+      <p class="btn btn-primary justify-content-center mb-0" style="width: 100px; height: 35px;">Edit</p>
+    </div>
+  <% end %>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg rounded-3">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title fs-5" id="editModalLabel">Edit <%= @shop.name %></h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @shop do |f| %>
+        <div class="row align-items-start">
+          <div class="col">
+            <div class="mb-3">
+              <%= f.label :name, "Shop Name", class: 'form-label' %>
+              <%= f.text_field :name, class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :phone, "Phone", class: 'form-label' %>
+              <%= f.text_field :phone, class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :email, "Email", class: 'form-label' %>
+              <%= f.email_field :email, class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :address, "Address", class: 'form-label' %>
+              <%= f.text_field :address, class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :website, "Website", class: 'form-label' %>
+              <%= f.url_field :website, class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="mb-3">
+              <%= f.label :description, "Description", class: 'form-label' %>
+              <%= f.text_area :description, class: "form-control", rows: 3 %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :facebook, "Facebook", class: 'form-label' %>
+              <%= f.url_field :facebook, class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :instagram, "Instagram", class: 'form-label' %>
+              <%= f.url_field :instagram, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">Close</button>
+          <%= f.submit 'Save', class: 'btn btn-primary text-light' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

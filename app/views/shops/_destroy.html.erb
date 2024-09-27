@@ -10,15 +10,15 @@
   <div class="modal-dialog modal-dialog-centered modal-md">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title fs-5" id="destroyModalLabel">Delete <%= @school.name %>?</h3>
+        <h3 class="modal-title fs-5" id="destroyModalLabel">Delete <%= @shop.name %>?</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to delete your school?</p>
+        <p>Are you sure you want to delete your shop?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">Cancel</button>
-        <%= link_to 'Destroy', school_path(@school), data: { turbo_method: :delete }, class: 'btn btn-danger text-light' %>
+        <%= link_to 'Destroy', shop_path(@shop), data: { turbo_method: :delete }, class: 'btn btn-danger text-light' %>
       </div>
     </div>
   </div>

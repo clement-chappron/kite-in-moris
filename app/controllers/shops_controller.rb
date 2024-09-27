@@ -42,7 +42,7 @@ class ShopsController < ApplicationController
 
   def destroy
     @shop.destroy
-    redirect_to shops_url, notice: 'Shop was successfully destroyed.'
+    redirect_to root_path, notice: 'Shop was successfully destroyed.'
   end
 
   private
