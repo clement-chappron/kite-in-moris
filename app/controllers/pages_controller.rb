@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  layout 'create_company_layout', only: [:create_company]
   skip_before_action :authenticate_user!, only: [ :home, :filter_categories ]
 
   def home
@@ -13,7 +14,8 @@ class PagesController < ApplicationController
     end
   end
 
-
+  def create_company
+  end
 
   def filter_categories
     @category = params[:category]

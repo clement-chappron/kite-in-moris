@@ -1,1 +1,110 @@
-<%= render 'form', shop: @shop %>
+<div class="container">
+  <div class="container-create-company">
+    <div data-controller="create-company">
+      <div class="text-center mt-5">
+        <h1>Create your shop</h1>
+      </div>
+
+      <%= simple_form_for @shop, html: { multipart: true } do |f| %>
+        <!-- Step 1 -->
+        <section data-create-company-target="step1">
+          <p class="text-center">Step 1/4</p>
+          <div style="margin-top: 10vh;">
+            <div class="d-flex flex-column align-items-center">
+              <div class="mb-3" style="width: 70%;">
+                <%= f.text_field :name, placeholder: "Shop Name", class: "form-control form-company", required: true %>
+              </div>
+
+              <div class="mb-3" style="width: 70%;">
+                <%= f.email_field :email, placeholder: "Email", class: "form-control form-company", required: true %>
+              </div>
+
+              <div class="mb-3" style="width: 70%;">
+                <%= f.text_field :address, placeholder: "Address", class: "form-control form-company", required: true %>
+              </div>
+
+              <div class="mb-3" style="width: 70%;">
+                <%= f.text_field :phone, placeholder: "Phone", class: "form-control form-company", required: true %>
+              </div>
+
+              <div class="mb-3" style="width: 70%;">
+                <%= f.url_field :website, placeholder: "Website", class: "form-control form-company" %>
+              </div>
+
+              <div class="text-center mt-4 mb-3">
+                <%= link_to 'back', create_company_path, class:"btn-bg-opacity-next" %>
+                <a data-action="click->create-company#step1" href="#" class="btn-bg-opacity-next">next</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section data-create-company-target="step2">
+          <p class="text-center">Step 2/4</p>
+          <div style="margin-top: 10vh;">
+            <div class="d-flex flex-column align-items-center">
+              <div class="mb-3" style="width: 70%;">
+                <%= f.text_area :description, placeholder: "Description", class: "form-control form-company-input", rows: 10 %>
+              </div>
+
+              <div class="text-center mt-4 mb-3">
+                <a data-action="click->create-company#backStep1" href="#" class="btn-bg-opacity-next">back</a>
+                <a data-action="click->create-company#step2" href="#" class="btn-bg-opacity-next">next</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section data-create-company-target="step3">
+          <p class="text-center">Step 3/4</p>
+          <div style="margin-top: 10vh;">
+            <div class="d-flex flex-column align-items-center">
+              <div class="mb-3" style="width: 70%;">
+                <%= f.select :location_id, options_from_collection_for_select(@locations, :id, :name), { prompt: 'Select Location' }, class: "form-control form-company" %>
+              </div>
+
+              <div class="text-center mt-4 mb-3">
+                <a data-action="click->create-company#backStep2" href="#" class="btn-bg-opacity-next">back</a>
+                <a data-action="click->create-company#step3" href="#" class="btn-bg-opacity-next">next</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section data-create-company-target="step4">
+          <p class="text-center">Step 4/4</p>
+          <div style="margin-top: 10vh;">
+            <div class="d-flex flex-column align-items-center">
+              <div class="mb-3" style="width: 70%;">
+                <%= f.url_field :facebook, placeholder: "Facebook", class: "form-control form-company" %>
+              </div>
+              <div class="mb-3" style="width: 70%;">
+                <%= f.url_field :instagram, placeholder: "Instagram", class: "form-control form-company" %>
+              </div>
+              <div class="mb-3" style="width: 70%;">
+                <%= f.label "Add your pictures", class:"d-flex justify-content-center" %>
+                <%= f.file_field :images, multiple: true, direct_upload: true, class: "form-control form-company" %>
+              </div>
+              <div class="text-center mt-4 mb-3">
+                <a data-action="click->create-company#backStep3" href="#" class="btn-bg-opacity-next">back</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hidden Fields -->
+          <%= f.hidden_field :user_id %>
+
+          <!-- Submit Button -->
+          <div class="d-flex justify-content-center mt-2 mb-3">
+            <%= f.submit 'Create your shop', class: 'btn btn-primary fs-5 rounded-pill px-4' %>
+          </div>
+        </section>
+      <% end %>
+
+    </div>
+
+  </div>
+</div>
