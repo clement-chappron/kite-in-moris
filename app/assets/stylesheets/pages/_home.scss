@@ -13,7 +13,7 @@
   margin-bottom: 20px;
   font-weight: 900;
   color: $secondary;
-  opacity: .14;
+  opacity: .3;
   line-height: .9;
   z-index: -1;
   transform: translateY(0px);
@@ -23,6 +23,7 @@
     font-size: 6.6rem;
     position: absolute;
     top: 35px;
+    opacity: .18;
     max-width: 1220px;
     padding-left: 470px;
   }
@@ -40,11 +41,6 @@
   }
 }
 
-.bg-content {
-  // @media screen and (max-width: 1400px) {
-  //   background-color: rgba(245, 247, 237, 1);
-  // }
-}
 
 .categories-item {
   display: flex;

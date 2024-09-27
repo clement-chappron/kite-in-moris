@@ -50,9 +50,11 @@ export default class extends Controller {
     const clickedImage = event.currentTarget.querySelector('img');
 
     const body = document.querySelector('body');
+    const scrollToTop = document.getElementById('scrollToTop');
 
     body.classList.toggle('back-show');
     body.classList.toggle('fixed');
+    scrollToTop.classList.toggle('hidden');
 
     images.forEach(image => {
         if (image.style.height === '40vh') {
@@ -62,16 +64,19 @@ export default class extends Controller {
         }
     });
 
+
     clickedImage.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'center'
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'center'
     });
+
 
     const overlay = document.querySelector('.overlay');
     overlay.addEventListener('click', () => {
         body.classList.remove('back-show');
         body.classList.remove('fixed');
+        scrollToTop.classList.remove('hidden');
 
         images.forEach(image => {
             image.style.height = '20vh';
