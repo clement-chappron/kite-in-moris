@@ -12,53 +12,50 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.input :name, label: 'Shop Name', input_html: { class: 'form-control' } %>
+                <%= f.input :name, label: false, placeholder: 'Shop Name', input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px;' } %>
               </div>
-              <div class="form-group">
-                <%= f.input :address, label: 'Address', input_html: { class: 'form-control' } %>
+              <div class="form-group" >
+                <%= f.input :phone, label: false, placeholder: 'Phone Number', input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px;' } %>
               </div>
-              <div class="form-group">
-                <%= f.input :phone, label: 'Phone Number', input_html: { class: 'form-control' } %>
-              </div>
-              <div class="form-group">
+              <div class="form-group" >
                 <%= f.hidden_field :user_id, value: current_user.id %>
+              </div>
+              <div class="form-group" >
+                <%= f.input :email, label: false, placeholder: 'Email Address', input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px;' } %>
               </div>
             </div>
             <div class="col-md-6">
-              <div class="form-group">
-                <%= f.input :email, label: 'Email Address', input_html: { class: 'form-control' } %>
+              <div class="form-group" >
+                <%= f.input :facebook, label: false, placeholder: 'Facebook URL', input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px;' } %>
               </div>
-              <div class="form-group">
-                <%= f.input :facebook, label: 'Facebook URL', input_html: { class: 'form-control' } %>
+              <div class="form-group" >
+                <%= f.input :website, label: false, placeholder: 'Website URL', input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px;' } %>
               </div>
-              <div class="form-group">
-                <%= f.input :website, label: 'Website URL', input_html: { class: 'form-control' } %>
+              <div class="form-group" >
+                <%= f.input :instagram, label: false, placeholder: 'Instagram URL', input_html: { class: 'text-center form-control-custom', style: 'border-radius: 35px;' } %>
               </div>
             </div>
-          </div>
-          
-          <div class="form-group text-center">
-            <%= link_to 'Back', add_company_path, class: 'btn btn-secondary' %>
-            <%= button_tag 'Next', type: 'button', class: 'btn btn-primary', id: 'next-step-2' %>
           </div>
 
           <div class="row">
             <div class="col-md-6">
-              <div class="form-group">
-                <%= f.input :description, label: 'Description', as: :text, input_html: { class: 'form-control', rows: 4 } %>
+              <div class="form-group" >
+                <%= f.input :address, label: false, placeholder: 'Address', input_html: { class: 'text-center form-control-custom', style: ' width: 397px; height: 40px; border-radius: 35px;' } %>
               </div>
-              <div class="form-group">
-                <%= f.input :instagram, label: 'Instagram URL', input_html: { class: 'form-control' } %>
+              
+              <div class="form-group" >
+                <%= f.association :location, label: false, prompt: 'Select the location', input_html: { class: 'text-center form-control-custom', style: 'width: 400px; border-radius: 35px;' } %>
               </div>
+
               <div class="form-group">
-                <%= f.association :location, label: 'Location', input_html: { class: 'form-control' } %>
+                <%= f.input :description, label: false, placeholder: 'Description ...', as: :text, input_html: { class: 'form-control-custom', rows: 4, style: 'width: 400px; border-radius: 11px;' } %>
               </div>
             </div>
           </div>
 
           <div class="form-group text-center">
+            <%= link_to 'Back', add_company_path, class: 'btn btn-secondary' %>
             <%= f.button :submit, class: 'btn btn-primary me-2' %>
-            <%= link_to 'Back', new_shop_path, class: 'btn btn-secondary' %>
           </div>
         <% end %> <!-- End of simple_form_for -->
       </div>

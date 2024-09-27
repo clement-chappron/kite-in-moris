@@ -167,25 +167,29 @@
           </div>
         </div>
 
-        <div class="d-flex flex-column flex-md-row justify-content-end align-items-center gap-3 mt-4">
+        <div class="d-flex justify-content-end mt-5">
+          <p class="position-relative">
+            <%= link_to "https://#{@school.website}", target: '_blank', class: 'text-center' do %>
+              <i class="fi fi-rs-site-alt text-primary icons-show" style= "left: -150px;"></i>
+            <% end %>
+          </p>
 
-          <%= link_to @school.website, target: '_blank', class: 'text-center mx-4 mt-4' do %>
-            <i class="fi fi-rs-site-alt text-primary" style="font-size: calc(2.9rem + .5vw);"></i>
-          <% end %>
+          <p class="position-relative">
+            <%= link_to "https://#{@school.instagram}", target: '_blank', class: 'text-center' do %>
+              <i class="fi fi-brands-instagram text-primary icons-show" style= "left: -90px;"></i>
+            <% end %>
+          </p>
 
-          <%= link_to @school.facebook, target: '_blank', class: 'btn btn-outline-primary', title: 'Facebook' do %>
-            <i class="fab fa-facebook" style="width: 52px; height: 52px; font-size: 52px;"></i>
-          <% end %>
-
-          <%= link_to @school.instagram, target: '_blank', class: 'btn btn-outline-primary', title: 'Instagram' do %>
-            <i class="fab fa-instagram" style="width: 52px; height: 52px; font-size: 52px;"></i>
-          <% end %>
+          <p class="position-relative">
+            <%= link_to "https://#{@school.facebook}", target: '_blank', class: 'text-center' do %>
+              <i class="fi fi-brands-facebook text-primary icons-show" style= "left: -30px;"></i>
+            <% end %>
+          </p>
         </div>
       </div>
     </div>
         <!--<h2 class="fs-4">Opening Hours</h2>
         <p><%#= @school.opening_hours %></p>-->
-
 
         <!--<div style="width: 100%; height: 600px;"
           data-controller="map"
