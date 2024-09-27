@@ -1,12 +1,15 @@
-<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-  <div class="row">
-    <!-- Bouton School -->
-    <div class="col text-center mb-3">
-      <%= link_to 'School', new_school_path, class: 'btn btn-primary btn-lg', style: 'width: 150px;' %>
-    </div>
-    <!-- Bouton Shop -->
-    <div class="col text-center mb-3">
-      <%= link_to 'Shop', new_shop_path, class: 'btn btn-success btn-lg', style: 'width: 150px;' %>
+<div class="mb-3" style="background-color: #5BBBBC;">
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center" style="width: 25rem; border-radius: 10px;">
+      <h1 class="text-center">Create Your Company</h1>
+      <div class="card-body">
+        <div class="container mt-5 d-flex justify-content-center align-items-center mb-4" style="width: 201px; height: 54px; background: #cfed58; border-radius: 35px;">
+          <%= link_to 'School', new_school_path, class: 'btn btn-lg', style: 'font-size: 30px; color: #5bbbbc; margin: 0;' %>
+        </div>
+        <div class="container mt-3 d-flex justify-content-center align-items-center mb-4" style="width: 201px; height: 54px; background: #FFFFFF4A; border-radius: 35px;">
+          <%= link_to 'Shop', new_shop_path, class: 'btn btn-lg', style: 'font-size: 30px; color: #141414; margin: 0;' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
