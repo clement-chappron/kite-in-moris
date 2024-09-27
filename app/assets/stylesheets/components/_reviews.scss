@@ -10,8 +10,13 @@
   font-weight: 500;
   color: #141414 !important;
 }
-  .review-description {
-    font-size: .9rem;
-    color: #5B5B5B !important;
-    font-weight: 300;
-  }
+
+.review-description {
+  font-size: .9rem;
+  color: #5B5B5B !important;
+  font-weight: 300;
+}
+
+.d-none {
+  display: none !important;
+}

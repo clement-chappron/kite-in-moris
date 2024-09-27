@@ -1,8 +1,15 @@
 <div class='container'>
 
-    <h1 class="mb-3" style='margin-top: 60px;'>Categories</h1>
+    <div data-controller="typed" class="home-title">
+      <div class="element-to-animate"></div>
+    </div>
 
-    <div id="allCategories" class="categories horizontal-scroll-container">
+
+    <%# <h1 class="home-title"></h1> %>
+
+    <h2 class="fs-1 mb-3 ps-4 ps-md-5 category-title">Categories</h2>
+
+    <div id="allCategories" class="categories horizontal-scroll-container ps-3">
       <div class="d-flex">
         <div id="all" data-action="click->categories-filter#filter" data-category="all" class="categories-item active-category">
           <%= link_to 'All', '', class: 'link link-underline' %>
@@ -20,13 +27,14 @@
     </div>
     <br>
 
-    <div class="d-flex">
+
+    <div class="d-flex ps-3">
       <div data-action="click->categories-filter#locations" data-categories-filter-target="locationBtn" class="location-filter">
         <%= link_to 'Filter by location', '', class: 'link link-underline' %>
       </div>
     </div>
 
-    <div data-categories-filter-target="locations" class="d-none d-flex flex-wrap mt-2 px-4 w-100" style="max-width: 650px;">
+    <div data-categories-filter-target="locations" class="d-none d-flex flex-wrap ms-3 mt-2 px-4 w-100" style="max-width: 650px;">
 
       <div>
         <div id="all-locations" data-action="click->categories-filter#filterByLocation" data-location="All locations" class="location-items active-location">
@@ -76,3 +84,11 @@
 
   <% end %>
 </div>
+
+<script>
+  window.addEventListener('scroll', function() {
+    const title = document.querySelector('.home-title');
+    const scrolled = window.scrollY;
+    title.style.transform = `translateY(${scrolled * .1}px)`;
+  });
+</script>

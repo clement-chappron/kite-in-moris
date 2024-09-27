@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@flaticon/flaticon-uicons": "^3.3.1"
+    "@flaticon/flaticon-uicons": "^3.3.1",
+    "typed.js": "^2.1.0"
   }
 }

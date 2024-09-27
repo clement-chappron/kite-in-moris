@@ -26,23 +26,6 @@ export default class extends Controller {
     }
   }
 
-  // overviewImage() {
-  //   console.log("overviewImage");
-
-  //   // Sélectionne toutes les images dans le conteneur
-  //   const images = document.querySelectorAll('.images-show img');
-
-  //   // Parcourt chaque image et modifie la hauteur
-  //   images.forEach(image => {
-  //     // Vérifie la hauteur actuelle de l'image et alterne entre 20vh et 40vh
-  //     if (image.style.height === '40vh') {
-  //       image.style.height = '20vh'; // Revenir à la taille originale
-  //     } else {
-  //       image.style.height = '40vh'; // Augmenter la taille
-  //     }
-  //   });
-  // }
-
   overviewImage(event) {
     console.log("overviewImage");
 
@@ -50,9 +33,12 @@ export default class extends Controller {
     const clickedImage = event.currentTarget.querySelector('img');
 
     const body = document.querySelector('body');
+    const scrollToTop = document.getElementById('scrollToTop');
 
-    body.classList.toggle('back-show');
-    body.classList.toggle('fixed');
+    // Ajoute la classe qui bloque le défilement
+    body.classList.add('back-show');
+    body.classList.add('fixed');
+    scrollToTop.classList.add('hidden');
 
     images.forEach(image => {
         if (image.style.height === '40vh') {
@@ -62,6 +48,7 @@ export default class extends Controller {
         }
     });
 
+    // Fait défiler l'image cliquée dans la vue
     clickedImage.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
@@ -72,16 +59,13 @@ export default class extends Controller {
     overlay.addEventListener('click', () => {
         body.classList.remove('back-show');
         body.classList.remove('fixed');
+        scrollToTop.classList.remove('hidden');
 
         images.forEach(image => {
             image.style.height = '20vh';
         });
     });
 }
-
-
-
-
 
 
 
