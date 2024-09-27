@@ -80,7 +80,13 @@
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
-  scroll: smooth;
+  scroll-behavior: smooth;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none;
 }
 
 .horizontal-scroll-content {
