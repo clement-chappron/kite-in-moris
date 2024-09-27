@@ -16,10 +16,9 @@ class ReviewSchoolsController < ApplicationController
     @review_school.user_id = current_user.id
 
     if @review_school.save
-      # redirect_to school_path(@review_school.school_id)
-      redirect_to school_path(@review_school.school_id), notice: "Review créée avec succès"
+      redirect_to school_path(@review_school.school_id), notice: "Creating review successfully"
     else
-      render :new, notice: "Erreur lors de la création de la review"
+      render :new, notice: "Creating review failed"
     end
   end
 

@@ -2,6 +2,50 @@
   display: flex;
 }
 
+.home-title {
+  position: relative;
+  display: block;
+  align-items: center;
+  font-size: calc(1.5rem + 4.8vw);
+  height: 150px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  font-weight: 900;
+  color: $secondary;
+  opacity: .14;
+  line-height: .9;
+  z-index: -1;
+  transform: translateY(0px);
+  transition: transform 0.2s ease-out;
+  @media screen and (min-width: 1400px) {
+    display: block;
+    font-size: 6.6rem;
+    position: absolute;
+    top: 35px;
+    max-width: 1220px;
+    padding-left: 470px;
+  }
+}
+
+.parallax-effect {
+  @media screen and (min-width: 1400px) {
+  will-change: transform;
+  }
+}
+
+.category-title {
+  @media screen and (min-width: 1400px) {
+    margin-top: 150px;
+  }
+}
+
+.bg-content {
+  // @media screen and (max-width: 1400px) {
+  //   background-color: rgba(245, 247, 237, 1);
+  // }
+}
+
 .categories-item {
   display: flex;
   align-items: center;
