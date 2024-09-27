@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="text-center mt-5">
+    <h1>Create your company</h1>
+    <p>Step 1/6</p>
+  </div>
+
+
+  <div data-controller="toggle-class" style="margin-top: 27vh;">
+    <!-- Bouton School -->
+    <div class="text-center pb-4 mb-2">
+      <%= link_to 'School', new_school_path, class: 'btn-bg-primary', id: "btn1" %>
+    </div>
+    <!-- Bouton Shop -->
+    <div class="text-center pb-4 mb-2">
+      <%= link_to 'Shop', new_shop_path, class: 'btn-bg-opacity', id: "btn2" %>
+    </div>
+  </div>
+
+</div>

@@ -1,4 +1,5 @@
 class ShopsController < ApplicationController
+  layout 'create_company_layout', only: [:new]
   before_action :set_shop, only: %i[show edit update destroy]
   skip_before_action :authenticate_user!, only: %i[show]
 

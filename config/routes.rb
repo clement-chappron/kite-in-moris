@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   get 'filter_categories', to: 'pages#filter_categories'
-  get 'add_company', to: 'companies#new'
+  get 'create_company', to: 'pages#create_company'
 
   resources :locations, only: [:index]
 
