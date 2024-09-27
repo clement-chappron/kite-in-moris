@@ -101,12 +101,18 @@
   display: flex;
   overflow-y: auto;
   scroll-behavior: smooth;
-  position: relative; /* Nécessaire pour le z-index des images */
-  z-index: 90; /* Positionner les images au-dessus de l'overlay */
+  position: relative;
+  z-index: 90;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   img:hover {
     cursor: pointer;
   }
+}
+.images-show::-webkit-scrollbar {
+  display: none;
 }
 
 .images-show img {
@@ -115,8 +121,9 @@
   transition: height 0.3s ease, transform 0.3s ease;
 }
 
-body.fixed {
-  overflow: hidden; /* Empêche le défilement de la page */
+.fixed {
+  overflow: hidden;
+  height: 100vh;
 }
 
 .overlay {
