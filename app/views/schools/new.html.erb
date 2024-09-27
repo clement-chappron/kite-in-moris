@@ -6,9 +6,9 @@
       </div>
 
       <%= simple_form_for @school, html: { multipart: true } do |f| %>
-        <!-- Step 2 -->
-        <section data-create-company-target="step2">
-          <p class="text-center">Step 2/6</p>
+        <!-- Step 1 -->
+        <section data-create-company-target="step1">
+          <p class="text-center">Step 1/5</p>
           <div style="margin-top: 10vh;">
             <div class="d-flex flex-column align-items-center">
               <div class="mb-3" style="width: 70%;">
@@ -33,6 +33,23 @@
 
               <div class="text-center mt-4 mb-3">
                 <%= link_to 'back', create_company_path, class:"btn-bg-opacity-next" %>
+                <a data-action="click->create-company#step1" href="#" class="btn-bg-opacity-next">next</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section data-create-company-target="step2">
+          <p class="text-center">Step 2/5</p>
+          <div style="margin-top: 10vh;">
+            <div class="d-flex flex-column align-items-center">
+              <div class="mb-3" style="width: 70%;">
+                <%= f.text_area :description, placeholder: "Description", class: "form-control form-company-input", rows: 10 %>
+              </div>
+
+              <div class="text-center mt-4 mb-3">
+                <a data-action="click->create-company#backStep1" href="#" class="btn-bg-opacity-next">back</a>
                 <a data-action="click->create-company#step2" href="#" class="btn-bg-opacity-next">next</a>
               </div>
             </div>
@@ -41,11 +58,14 @@
 
         <!-- Step 3 -->
         <section data-create-company-target="step3">
-          <p class="text-center">Step 3/6</p>
+          <p class="text-center">Step 3/5</p>
           <div style="margin-top: 10vh;">
             <div class="d-flex flex-column align-items-center">
               <div class="mb-3" style="width: 70%;">
-                <%= f.text_area :description, placeholder: "Description", class: "form-control form-company-input", rows: 10 %>
+                <%= f.text_area :rental, placeholder: "Rental", class: "form-control form-company-input", rows: 4 %>
+              </div>
+              <div class="mb-3" style="width: 70%;">
+                <%= f.text_area :levels, placeholder: "Levels", class: "form-control form-company-input", rows: 4 %>
               </div>
 
               <div class="text-center mt-4 mb-3">
@@ -58,14 +78,14 @@
 
         <!-- Step 4 -->
         <section data-create-company-target="step4">
-          <p class="text-center">Step 4/6</p>
+          <p class="text-center">Step 4/5</p>
           <div style="margin-top: 10vh;">
             <div class="d-flex flex-column align-items-center">
               <div class="mb-3" style="width: 70%;">
-                <%= f.text_area :rental, placeholder: "Rental", class: "form-control form-company-input", rows: 4 %>
+                <%= f.text_field :fee, placeholder: "Fee", class: "form-control form-company" %>
               </div>
               <div class="mb-3" style="width: 70%;">
-                <%= f.text_area :levels, placeholder: "Levels", class: "form-control form-company-input", rows: 4 %>
+                <%= f.select :location_id, options_from_collection_for_select(@locations, :id, :name), { prompt: 'Select Location' }, class: "form-control form-company" %>
               </div>
 
               <div class="text-center mt-4 mb-3">
@@ -78,27 +98,7 @@
 
         <!-- Step 5 -->
         <section data-create-company-target="step5">
-          <p class="text-center">Step 5/6</p>
-          <div style="margin-top: 10vh;">
-            <div class="d-flex flex-column align-items-center">
-              <div class="mb-3" style="width: 70%;">
-                <%= f.text_field :fee, placeholder: "Fee", class: "form-control form-company" %>
-              </div>
-              <div class="mb-3" style="width: 70%;">
-                <%= f.select :location_id, options_from_collection_for_select(@locations, :id, :name), { prompt: 'Select Location' }, class: "form-control form-company" %>
-              </div>
-
-              <div class="text-center mt-4 mb-3">
-                <a data-action="click->create-company#backStep4" href="#" class="btn-bg-opacity-next">back</a>
-                <a data-action="click->create-company#step5" href="#" class="btn-bg-opacity-next">next</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Step 6 -->
-        <section data-create-company-target="step6">
-          <p class="text-center">Step 6/6</p>
+          <p class="text-center">Step 5/5</p>
           <div style="margin-top: 10vh;">
             <div class="d-flex flex-column align-items-center">
               <div class="mb-3" style="width: 70%;">
@@ -108,14 +108,15 @@
                 <%= f.url_field :instagram, placeholder: "Instagram", class: "form-control form-company" %>
               </div>
               <div class="mb-3" style="width: 70%;">
-                <%= f.label "Add yours pictures", class:"d-flex justify-content-center" %>
+                <%= f.label "Add your pictures", class:"d-flex justify-content-center" %>
                 <%= f.file_field :images, multiple: true, direct_upload: true, class: "form-control form-company" %>
               </div>
               <div class="text-center mt-4 mb-3">
-                <a data-action="click->create-company#backStep5" href="#" class="btn-bg-opacity-next">back</a>
+                <a data-action="click->create-company#backStep4" href="#" class="btn-bg-opacity-next">back</a>
               </div>
             </div>
           </div>
+
           <!-- Hidden Fields -->
           <%= f.hidden_field :user_id %>
 
@@ -129,5 +130,4 @@
     </div>
 
   </div>
-
 </div>

@@ -24,6 +24,7 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(school_params)
+    @locations = Location.all
     @school.user = current_user
     if @school.save
       redirect_to @school, notice: 'School was successfully created.'

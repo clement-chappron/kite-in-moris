@@ -1,19 +1,77 @@
-<div class="container">
-  <div class="text-center mt-5">
-    <h1>Create your company</h1>
-    <p>Step 1/6</p>
+<div class="d-flex align-items-center">
+  <div class="container">
+    <div class="text-center mt-5">
+      <h1>Create your company</h1>
+      <p>
+        Creating your company profile on Kite in Moris is a great way to enhance your visibility on the web and attract a broader audience of kite enthusiasts. Whether you're running a school or a shop, having your business featured here allows you to reach both local and international visitors looking for the best kitesurfing services in Mauritius.
+        <br><br>
+
+    <div data-controller="toggle-class" class="text-center mt-4 mb-3">
+      <!-- Bouton School -->
+      <div class="pb-4 mb-2">
+        <%= link_to 'School', new_school_path, class: 'btn-bg-primary', id: "btn1" %>
+      </div>
+      <!-- Bouton Shop -->
+      <div class="pb-4 mb-2">
+        <%= link_to 'Shop', new_shop_path, class: 'btn-bg-opacity', id: "btn2" %>
+      </div>
+    </div>
+
+        <strong>Why register your company?</strong>
+      </p>
+    </div>
+
+    <div class="row text-center mt-4">
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="advantage-box">
+          <strong>Increased Visibility</strong>
+          <p>Gain exposure to a niche audience passionate about kitesurfing, increasing your business visibility.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="advantage-box">
+          <strong>Targeted Audience</strong>
+          <p>Ensure your services are seen by kitesurfers, reaching those specifically looking for kite-related activities.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="advantage-box">
+          <strong>Boost Your Online Presence</strong>
+          <p>Improve your SEO, making it easier for customers to find you online and expand your digital reach.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="advantage-box">
+          <strong>Free and Quick Registration</strong>
+          <p>Sign up for free in less than a minute and start attracting new customers today!</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 
+  <style>
+    .advantage-box {
+      padding: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: #f8f8f8;
+      transition: transform 0.3s;
+    }
 
-  <div data-controller="toggle-class" style="margin-top: 27vh;">
-    <!-- Bouton School -->
-    <div class="text-center pb-4 mb-2">
-      <%= link_to 'School', new_school_path, class: 'btn-bg-primary', id: "btn1" %>
-    </div>
-    <!-- Bouton Shop -->
-    <div class="text-center pb-4 mb-2">
-      <%= link_to 'Shop', new_shop_path, class: 'btn-bg-opacity', id: "btn2" %>
-    </div>
-  </div>
+    .advantage-box:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Responsive for smaller screens */
+    @media (max-width: 768px) {
+      .advantage-box {
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
 
 </div>

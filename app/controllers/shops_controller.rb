@@ -16,14 +16,17 @@ class ShopsController < ApplicationController
 
   def new
     @shop = Shop.new
+    @locations = Location.all
   end
 
   def create
     @shop = Shop.new(shop_params)
+    @locations = Location.all
+    @shop.user = current_user
     if @shop.save
       redirect_to @shop, notice: 'Shop was successfully created.'
     else
-      render :new
+      redirect_to new_school_path, alert: 'School was not created.'
     end
   end
 
